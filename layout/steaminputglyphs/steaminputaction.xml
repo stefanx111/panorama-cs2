@@ -1,0 +1,14 @@
+<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/csgostyles.vcss_c" />
+		<include src="s2r://panorama/styles/steaminputglyphs/steaminputaction.vcss_c" />
+		<include src="s2r://panorama/styles/mainmenu_play.vcss_c" />
+		<include src="s2r://panorama/styles/steaminputglyphs/steaminputglyphs.vcss_c" />
+		<include src="s2r://panorama/styles/hud/hudweaponselection.vcss_c" />
+		<include src="s2r://panorama/styles/hud/hudgameicons.vcss_c" />
+	</styles>
+	<CCSGOSteamInputAction>
+		<Panel class="action-container" />
+	</CCSGOSteamInputAction>
+</root>

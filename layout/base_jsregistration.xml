@@ -1,0 +1,8 @@
+<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<root>
+	<scripts>
+		<include src="s2r://panorama/scripts/common/panelregistration.vts_c" />
+		<include src="s2r://panorama/scripts/common/eventdefinition.vjs_c" />
+	</scripts>
+	<Panel hittest="false" />
+</root>

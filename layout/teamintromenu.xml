@@ -1,0 +1,28 @@
+<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/csgostyles.vcss_c" />
+		<include src="s2r://panorama/styles/teamintromenu.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/common/async.vts_c" />
+		<include src="s2r://panorama/scripts/teamintromenu.vts_c" />
+	</scripts>
+	<snippets>
+		<snippet name="TeamIntroTeammateInfo">
+			<Panel hittest="false" class="team-intro-teammate-info hidden">
+				<CSGOAvatarImage id="AvatarImage" />
+				<Label id="Name" class="team-intro-teammate-name" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<CSGOTeamIntroMenu class="teamintro-root">
+		<Panel id="TeamIntroHeader" class="team-intro-header hidden">
+			<Image id="TeamIntroIcon" class="team-intro-icon" />
+			<Label id="TeamIntroHalfLabel" class="team-intro-half-label" />
+			<Label id="TeamIntroTeamLabel" class="team-intro-team-label" />
+		</Panel>
+		<Panel id="TeamIntroTeammateInfos" class="full-width full-height" />
+		<Panel id="TeamIntroFade" class="full-width full-height team-intro-fade hidden" />
+	</CSGOTeamIntroMenu>
+</root>

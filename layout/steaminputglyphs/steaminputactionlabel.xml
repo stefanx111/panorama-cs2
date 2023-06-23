@@ -1,0 +1,10 @@
+<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/csgostyles.vcss_c" />
+		<include src="s2r://panorama/styles/steaminputglyphs/steaminputactionlabel.vcss_c" />
+	</styles>
+	<CCSGOSteamInputAction>
+		<Label id="ActionLabel" class="steam-action-name" />
+	</CCSGOSteamInputAction>
+</root>

@@ -1,0 +1,16 @@
+<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/csgostyles.vcss_c" />
+		<include src="s2r://panorama/styles/settings/settings.vcss_c" />
+		<include src="s2r://panorama/styles/settings/settings_slider.vcss_c" />
+	</styles>
+	<CSGOSettingsSlider>
+		<Panel class="left-right-flow vertical-center">
+			<Label class="" id="Title" />
+			<ToggleButton class="TickBox setting-toggle" id="Toggle" />
+			<Slider class="HorizontalSlider" direction="horizontal" id="Slider" />
+			<TextEntry maxchars="4" textmode="numeric" id="Value" />
+		</Panel>
+	</CSGOSettingsSlider>
+</root>

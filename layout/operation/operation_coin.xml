@@ -1,0 +1,9 @@
+<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/gamestyles.vcss_c" />
+	</styles>
+	<Panel class="full-width full-height">
+		<Label class="vertical-center horizontal-center" text="coin" />
+	</Panel>
+</root>

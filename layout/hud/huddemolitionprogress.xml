@@ -1,0 +1,37 @@
+<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/csgostyles.vcss_c" />
+		<include src="s2r://panorama/styles/hud/huddemolitionprogress.vcss_c" />
+	</styles>
+	<snippets>
+		<snippet name="WeaponIcon">
+			<Panel class="gg-weapon">
+				<Panel class="gg-weapon-overflow">
+					<Panel class="gg-weapon-background">
+						<Panel class="gg-weapon-background-chevron-left">
+							<Panel class="gg-weapon-background-chevron-left-top" />
+							<Panel class="gg-weapon-background-chevron-left-bottom" />
+						</Panel>
+						<Panel class="gg-weapon-background-center" />
+						<Panel class="gg-weapon-background-chevron-right">
+							<Panel class="gg-weapon-background-chevron-right-top" />
+							<Panel class="gg-weapon-background-chevron-right-bottom" />
+						</Panel>
+					</Panel>
+					<Panel class="gg-weapon-container">
+						<Panel class="gg-weapon-icon">
+							<Image class="WeaponIconImage gg-weapon-icon-solid" src="s2r://panorama/images/icons/equipment/flashbang.vsvg" textureheight="50" svgstrokeopacity="0" svgfillopacity="1" svgfill="#ffffff" />
+							<Image class="WeaponIconImage gg-weapon-icon-outline" src="s2r://panorama/images/icons/equipment/flashbang.vsvg" textureheight="50" svgstrokewidth="0.5" svgstrokeopacity="1" svgstroke="#ffffff" svgfillopacity="0" svgfill="#000000" />
+						</Panel>
+						<Label class="gg-weapon-name stratum-medium" id="weaponname" text="" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<CSGOHudDemolitionProgression class="gg-progress" hittest="false" hittestchildren="false">
+		<Label class="gg-progress-title stratum-bold" text="#SFUI_Rules_Demolition_Progression" />
+		<Panel class="gg-weapon-list" id="gg-weapon-list" />
+	</CSGOHudDemolitionProgression>
+</root>

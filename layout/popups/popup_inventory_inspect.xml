@@ -1,0 +1,36 @@
+<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/gamestyles.vcss_c" />
+		<include src="s2r://panorama/styles/popups/popups_shared.vcss_c" />
+		<include src="s2r://panorama/styles/mainmenu.vcss_c" />
+		<include src="s2r://panorama/styles/popups/popup_inventory_inspect.vcss_c" />
+		<include src="s2r://panorama/styles/popups/popup_capability_shared.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/inspect.vts_c" />
+		<include src="s2r://panorama/scripts/popups/popup_inspect_action-bar.vts_c" />
+		<include src="s2r://panorama/scripts/popups/popup_acknowledge_item.vts_c" />
+		<include src="s2r://panorama/scripts/popups/popup_inventory_inspect.vjs_c" />
+		<include src="s2r://panorama/scripts/generated/items_event_current_generated_store.vjs_c" />
+		<include src="s2r://panorama/scripts/common/iteminfo.vts_c" />
+	</scripts>
+	<PopupCustomLayout class="PopupPanel Capability Hidden" useglobalcontext="true" popupbackground="blur" oncancel="InventoryInspect.ClosePopup();" onload="InventoryInspect.Init()">
+		<Panel class="mainmenu-content__container mainmenu-content__container--inspect" useglobalcontext="true">
+			<Panel class="full-width full-height top-bottom-flow vertical-center">
+				<Panel id="PopUpInspectFullScreenHostContainer" class="full-width full-height">
+					<Frame id="PopUpInspectModelOrImage" src="s2r://panorama/layout/inspect.vxml_c" />
+					<Panel class="popup-inspect-border" hittest="false" />
+					<Frame id="PopUpInspectHeader" class="hidden" src="s2r://panorama/layout/popups/popup_inspect_header.vxml_c" />
+					<Frame id="PopUpCapabilityHeader" class="hidden" src="s2r://panorama/layout/popups/popup_capability_header.vxml_c" />
+					<Panel class="bottom-top-flow vertical-align-bottom full-width horizontal-center">
+						<Frame id="PopUpInspectActionBar" class="hidden" src="s2r://panorama/layout/popups/popup_inspect_action-bar.vxml_c" />
+						<Frame id="PopUpInspectAsyncBar" class="hidden" src="s2r://panorama/layout/popups/popup_inspect_async-bar.vxml_c" />
+						<Frame id="PopUpInspectPurchaseBar" class="hidden" src="s2r://panorama/layout/popups/popup_inspect_purchase-bar.vxml_c" />
+						<Label id="InspectItemDesc" html="true" class="popup-inspect__desc" text="{s:h:item_description}" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</PopupCustomLayout>
+</root>

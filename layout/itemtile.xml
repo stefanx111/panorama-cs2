@@ -1,0 +1,30 @@
+<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/csgostyles.vcss_c" />
+		<include src="s2r://panorama/styles/itemtile.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/common/formattext.vts_c" />
+		<include src="s2r://panorama/scripts/itemtile.vjs_c" />
+		<include src="s2r://panorama/scripts/common/iteminfo.vts_c" />
+		<include src="s2r://panorama/scripts/common/tint_spray_icon.vts_c" />
+	</scripts>
+	<Panel class="item-tile" onactivate="ItemTile.OnActivate()" oncontextmenu="ItemTile.OnActivate()" acceptsinput="true" onmouseover="ItemTile.ShowTooltip()" onmouseout="ItemTile.HideTooltip()" antialias="true" useglobalcontext="true">
+		<Panel id="ItemTileBg" class="item-tile__bg">
+			<Image id="ItemTileTeam" class="item-tile__team" />
+		</Panel>
+		<ItemImage class="item-tile__image" id="ItemImage" scaling="stretch-to-fit-preserve-aspect" />
+		<Label html="true" id="JsItemName" class="item-tile__name" />
+		<Panel class="item-tile__rarity" id="JsRarity" />
+		<Label class="item-tile__recent hidden" id="JsRecent" text="#inv_session_prop_recent" />
+		<Panel class="item-tile__equipped">
+			<Panel id="ItemEquipped-ct" class="item-tile__equipped__radiodot item-tile__equipped__radiodot--ct hidden" />
+			<Panel id="ItemEquipped-t" class="item-tile__equipped__radiodot item-tile__equipped__radiodot--t hidden" />
+		</Panel>
+		<Panel id="StickersOnWeapon" class="item-tile__stickers" />
+		<Panel class="item-tile__multi-select">
+			<Image id="IconMultiSelect" texturewidth="32" textureheight="32" src="s2r://panorama/images/icons/ui/check.vsvg" />
+		</Panel>
+	</Panel>
+</root>

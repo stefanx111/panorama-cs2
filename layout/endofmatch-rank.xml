@@ -1,0 +1,58 @@
+<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/csgostyles.vcss_c" />
+		<include src="s2r://panorama/styles/endofmatch-win.vcss_c" />
+		<include src="s2r://panorama/styles/endofmatch-rank.vcss_c" />
+		<include src="s2r://panorama/styles/endofmatch-skillgroup.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/rank_skillgroup_particles.vts_c" />
+		<include src="s2r://panorama/scripts/endofmatch-rank.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="snippet_rank__lister__item">
+			<Panel class="eom-rank__lister__item eom-rank__lister__item--appear">
+				<Label id="id-eom-rank__lister__item__amt" class="eom-rank__lister__item__amt stratum-font" />
+				<Label id="id-eom-rank__lister__item__desc" class="eom-rank__lister__item__desc stratum-font" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<CSGOEndOfMatchXpPanel class="eom-rank full-width full-height" useglobalcontext="true">
+		<Panel class="eom-rank-data">
+			<Panel class="eom-rank-data-bg">
+				<Panel class="eom-win__main__line" />
+				<Panel class="eom-win__main__line vertical-align-bottom" />
+			</Panel>
+			<Panel id="id-eom-rank__current" class="left-right-flow horizontal-center">
+				<Panel class="eom-rank-current-icon">
+					<Image id="id-eom-rank__current__emblem" />
+				</Panel>
+				<Panel class="eom-skillgroup__info-bar-label-container">
+					<Label id="id-eom-rank__current__label" class="eom-skillgroup__info-label" text="#XP_RankName_Display">
+						<Image texturewidth="-1" textureheight="8" class="eom-win__main__bracket eom-win__main__bracket--top-right" src="s2r://panorama/images/hud/bracket.vsvg" />
+						<Image texturewidth="-1" textureheight="8" class="eom-win__main__bracket eom-win__main__bracket--bottom-right" src="s2r://panorama/images/hud/bracket.vsvg" />
+						<Image texturewidth="-1" textureheight="8" class="eom-win__main__bracket eom-win__main__bracket--top-left" src="s2r://panorama/images/hud/bracket.vsvg" />
+						<Image texturewidth="-1" textureheight="8" class="eom-win__main__bracket eom-win__main__bracket--bottom-left" src="s2r://panorama/images/hud/bracket.vsvg" />
+					</Label>
+					<Panel id="id-eom-rank__bar-container">
+						<Panel id="id-eom-rank__bar--bg" class="eom-rank__bar" />
+						<Panel id="id-eom-rank__bar" class="eom-rank__bar">
+							<Panel id="id-eom-rank__lister" class="eom-rank__lister">
+								<Panel id="id-eom-rank__lister__line" class="eom-rank__lister__line" />
+								<Panel id="id-eom-rank__lister__items" class="eom-rank__lister__items" />
+							</Panel>
+						</Panel>
+						<Panel id="id-eom-rank-bar-white" class="eom-rank__bar--white" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="id-eom-new-reveal" class="eom-rank-new-reveal hidden">
+			<Image class="eom-rank-new-reveal__flag" src="s2r://panorama/images/ui_textures/rankup_flag_png.vtex" />
+			<ParticleScenePanel id="id-eom-new-reveal-flare" class="eom-rank-new-reveal__particle-flare" hittest="false" startActive="false" particleName="particles/ui/ui_gold_award_tier_1.vpcf" cameraOrigin="0 300 0" lookAt="0 0 0" fov="60" />
+			<Image class="eom-rank-new-reveal__flare-halo" src="s2r://panorama/images/ui_textures/rankup_flare_halo_png.vtex" />
+			<Image id="id-eom-new-reveal-image" class="eom-rank-new-reveal__image" src="s2r://panorama/images/icons/xp/level5_png.vtex" />
+		</Panel>
+	</CSGOEndOfMatchXpPanel>
+</root>

@@ -1,0 +1,23 @@
+.triplemonitorbg{
+
+  height:100%;
+  width:33.333%;
+}
+
+ .triplemonitorbg--left{
+
+  horizontal-align: left;
+
+
+  background-image: url( "s2r://panorama/images/backgrounds/background_triple_png.vtex");
+  background-size: 100% 100%;
+ }
+
+ .triplemonitorbg--right{
+
+  horizontal-align: right;
+
+
+  background-image: url( "s2r://panorama/images/backgrounds/background_triple_png.vtex");
+  background-size: 100% 100%;
+}
