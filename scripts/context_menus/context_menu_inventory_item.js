@@ -32,7 +32,7 @@ var ItemContextMenu = ( function (){
 		};
 
 		var hasEntries = false;
-		var lastButtonAdded = null;
+		                              
 	
 		for( var i = 0; i < validEntries.length; i++ )
 		{
@@ -41,7 +41,7 @@ var ItemContextMenu = ( function (){
 			if ( entry.AvailableForItem( id ) ) 
 			{
 				var elButton = $.CreatePanel( 'Button', elParent, 'ContextMenuItem' + i );
-				lastButtonAdded = elButton;
+				                              
 
 				var elLabel = $.CreatePanel( 'Label', elButton, '', { html: 'true' } );
 				var displayName = ''
@@ -59,12 +59,16 @@ var ItemContextMenu = ( function (){
 
 				hasEntries = true;
 
-				if( entry.style && populateFilterText === "(not found)" )
+				if( entry.style )
 				{
 					var strStyleToAdd = entry.style(id);
-					if ( strStyleToAdd !== '' )
+					if ( strStyleToAdd !== '' ) 
 					{
-						elButton.AddClass( strStyleToAdd );
+						if ( strStyleToAdd === 'BottomSeparator' && i !== ( validEntries.length - 1 ) ||
+							strStyleToAdd === 'TopSeparator' && i !== 0 ) 
+						{
+							elButton.AddClass( strStyleToAdd );
+						}
 					}
 				}
 
@@ -96,10 +100,10 @@ var ItemContextMenu = ( function (){
 			}
 		}
 
-		if ( lastButtonAdded )
-		{	                                                  
-			lastButtonAdded.RemoveClass( 'BottomSeparator' );
-		}
+		                         
+		    	                                                  
+		   	                                                 
+		    
 
 		                                              
 		if ( !hasEntries )

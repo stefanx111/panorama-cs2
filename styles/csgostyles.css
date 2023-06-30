@@ -1121,6 +1121,7 @@
   padding: 8px 0px;
   flow-children: down;
   width:fit-children;
+
   background-color: contextMenuBackground;
      opacity: 1;
   box-shadow: shadowOffset;
@@ -1136,9 +1137,11 @@
 
 
   horizontal-align: left;
-  max-width: 340px;
 
-  padding: 8px 16px;
+
+  width: 260px;
+
+  padding: 8px 14px;
   background-color: gradient( linear, 0% 0%, 100% 0%, from( #00000000 ), to( #00000000 ) );
  }
 
@@ -1166,11 +1169,11 @@
   horizontal-align: left;
   vertical-align: center;
   font-weight: medium;
-  font-size: 16px;
+  font-size: 14px;
   min-width: 100px;
 
   font-family: Stratum2 Light, "Arial Unicode MS";
-  max-height: 24px;
+  max-height: 32px;
 
   transition-property: brightness;
   transition-duration: 0.2s;
@@ -1199,7 +1202,7 @@
  SimpleContextMenu .ContextMenuBody Button:not(.NoAction):enabled:hover,.ContextMenuItem Button:not(.NoAction):enabled:hover{
 
 
-  background-color: gradient( linear, 0% 0%, 100% 0%, from( #00000080 ), to( #00000000 ) );
+  background-color:#00000080;
   sound: "UIPanorama.submenu_rollover";
  }
 

@@ -22,6 +22,7 @@
 		</snippet>
 		<snippet name="ItemPanel">
 			<Panel class="button-container">
+				<Label id="" text="#BuyMenu_NewUserExperience_Recommended" class="nux Hidden" />
 				<Button id="BuyButton" class="buywheel-wedge">
 					<Label class="buywheel-button__key keybind" id="WedgeKeybinding" text="X" />
 					<Label id="ItemName" class="buywheel-item__name  hud-colorize-wash" />

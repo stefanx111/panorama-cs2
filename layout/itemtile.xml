@@ -19,8 +19,12 @@
 		<Panel class="item-tile__rarity" id="JsRarity" />
 		<Label class="item-tile__recent hidden" id="JsRecent" text="#inv_session_prop_recent" />
 		<Panel class="item-tile__equipped">
+			<Panel id="ItemEquipped-noteam" class="item-tile__equipped__radiodot item-tile__equipped__radiodot--noteam hidden" />
 			<Panel id="ItemEquipped-ct" class="item-tile__equipped__radiodot item-tile__equipped__radiodot--ct hidden" />
 			<Panel id="ItemEquipped-t" class="item-tile__equipped__radiodot item-tile__equipped__radiodot--t hidden" />
+			<Panel id="FavoriteIcon-noteam" class="item-tile__equipped__favicon item-tile__equipped__favicon--noteam hidden" />
+			<Panel id="FavoriteIcon-ct" class="item-tile__equipped__favicon item-tile__equipped__favicon--ct hidden" />
+			<Panel id="FavoriteIcon-t" class="item-tile__equipped__favicon item-tile__equipped__favicon--t hidden" />
 		</Panel>
 		<Panel id="StickersOnWeapon" class="item-tile__stickers" />
 		<Panel class="item-tile__multi-select">

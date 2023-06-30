@@ -110,35 +110,49 @@ var ItemTile = ( function()
 
 	var _SetEquippedState = function( id )
 	{
-		var subSlot = ItemInfo.GetDefaultSlot( id );
+		var elNoteamDot = $.GetContextPanel().FindChildInLayoutFile( 'ItemEquipped-noteam' );
 		var elCtDot = $.GetContextPanel().FindChildInLayoutFile( 'ItemEquipped-ct' );
 		var elTDot = $.GetContextPanel().FindChildInLayoutFile( 'ItemEquipped-t' );
+		var elFavoriteIconNoteam = $.GetContextPanel().FindChildInLayoutFile( 'FavoriteIcon-noteam' );
+		var elFavoriteIconCt = $.GetContextPanel().FindChildInLayoutFile( 'FavoriteIcon-ct' );
+		var elFavoriteIconT = $.GetContextPanel().FindChildInLayoutFile( 'FavoriteIcon-t' );
 		elTDot.AddClass( 'hidden' );
 		elCtDot.AddClass( 'hidden' );
+		elNoteamDot.AddClass( 'hidden' );
 		elTDot.RemoveClass( 'item-tile__equipped__radiodot--filled' );
 		elCtDot.RemoveClass( 'item-tile__equipped__radiodot--filled' );
+		elNoteamDot.RemoveClass( 'item-tile__equipped__radiodot--filled' );
+		elFavoriteIconNoteam.SetHasClass( 'hidden', !InventoryAPI.ItemIsInFavorites( 'noteam', id ) );
+		elFavoriteIconCt.SetHasClass( 'hidden', !InventoryAPI.ItemIsInFavorites( 'ct', id ) );
+		elFavoriteIconT.SetHasClass( 'hidden', !InventoryAPI.ItemIsInFavorites( 't', id ) );
 
 		for ( var team of [ 't', 'ct', 'noteam' ] )
 		{
-			if ( !ItemInfo.IsShuffleEnabled( id, team ) || subSlot === "flair0" || subSlot === "spray0")
-			{
-				if ( ItemInfo.IsEquipped( id, team ) )
-				{
-					_SetEquipIcon( false, team );
-				}				
-			}
-			else if ( ItemInfo.IsShuffleEnabled( id, team ) && ItemInfo.IsItemInShuffleForTeam( id, team ) )
+			if ( _ItemIsInShuffle( id, team ) )
 			{
 				_SetEquipIcon( true, team );
+			}
+			else if ( ItemInfo.IsEquipped( id, team ) )
+			{
+				_SetEquipIcon( false, team );
 			}
 		}	
 	};
 
+	var _ItemIsInShuffle = function( id, team )
+	{
+		let slot = InventoryAPI.GetRawDefinitionKey( id, 'flexible_loadout_group' );
+		if ( [ 'secondary0', 'secondary', 'smg', 'rifle' ].includes( slot ) )
+		{
+			let itemDefIndex = InventoryAPI.GetItemDefinitionIndex( id );
+			slot = LoadoutAPI.GetSlotEquippedWithDefIndex( team, itemDefIndex );
+		}
+
+		return LoadoutAPI.IsShuffleEnabled( team, slot ) && InventoryAPI.ItemIsInFavorites( team, id );
+	};
+
 	var _SetEquipIcon = function( isShuffle, team )
 	{
-		if ( team === 'noteam' )
-			team = 'ct';                                            
-
 		var elCtDot = $.GetContextPanel().FindChildInLayoutFile( 'ItemEquipped-' + team );
 		
 		elCtDot.RemoveClass( 'hidden' );

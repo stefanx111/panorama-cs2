@@ -261,7 +261,39 @@
   wash-color: blueColor;
  }
 
- .item-tile__equipped__radiodot.hidden,.item-tile__recent.hidden{
+ .item-tile__equipped__favicon{
+
+  width: 16px;
+  height: 16px;
+  position: 0px 0px 0px;
+  vertical-align: center;
+  border-radius: 50%;
+  z-index: 1;
+  margin-right: 6px;
+  border: 1px solid white;
+  box-shadow: #00000025 0px 0px 2px 2px ;
+  -s2-mix-blend-mode: screen;
+
+  background-image: url("s2r://panorama/images/icons/ui/favorite_yes.vsvg");
+  background-img-opacity: 1;
+  background-size: 10px 10px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-color: None;
+ }
+
+ .item-tile__equipped__favicon--t{
+
+  wash-color: warningColor;
+ }
+
+ .item-tile__equipped__favicon--ct{
+
+  wash-color: blueColor;
+ }
+
+ .item-tile__equipped__radiodot.hidden,.item-tile__equipped__favicon.hidden,.item-tile__recent.hidden{
+
 
 
   visibility: collapse;

@@ -226,7 +226,7 @@
 						<Panel id="GameModeAlert" class="navbar-btn__notification-dot hidden" />
 					</RadioButton>
 					<Panel class="mainmenu-top-navbar__play_seperator visible-if-not-limitedbeta" />
-					<RadioButton id="casual" group="gamemodes" class="content-navbar__tabs__btn visible-if-not-limitedbeta">
+					<RadioButton id="casual" group="gamemodes" class="content-navbar__tabs__btn">
 						<Label text="#SFUI_GameModeCasual" />
 					</RadioButton>
 					<RadioButton id="deathmatch" group="gamemodes" class="content-navbar__tabs__btn">

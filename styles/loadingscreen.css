@@ -254,6 +254,7 @@
 
     flow-children: right;
     margin-top: 20px;
+    horizontal-align: center;
    }
     .loading-screen-content__info .loading-screen-content__titles .loading-screen-content__info__gamemode .loading-screen-content__info__modeicon{
 

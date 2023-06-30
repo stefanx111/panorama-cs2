@@ -1502,13 +1502,86 @@
    ;
    height:
            
-           100px
+           90px
    ;
-      saturation:
+   margin-bottom:
                   
-                  1
-      ;
+                  10px
+   ;
+   saturation:
+               
+               1
+   ;
  }
+   .button-container.nux-recommended:not(.buywheel-cant-buy) .nux{
+     opacity:
+              
+              1
+     ;
+   }
+   .button-container .nux{
+    vertical-align:
+                    
+                    center
+    ;
+    horizontal-align:
+                      
+                      left
+    ;
+    background-color:
+                      
+                      darkgreen
+    ;
+    font-size:
+               
+               10px
+    ;
+    color:
+           
+           white
+    ;
+    width:
+           
+           100%
+    ;
+    overflow:
+              
+              noclip
+    ;
+    text-align:
+                
+                left
+    ;
+    transform:
+               
+               rotateZ
+                      (
+                       -35deg
+                             )
+    ;
+    transform-origin:
+                      
+                      0%
+                         
+                         0%
+    ;
+    y:
+       
+       7px
+    ;
+    x:
+       
+       -7px
+    ;
+    z:
+       
+       1px
+    ;
+    padding-left:
+                  
+                  10px
+    ;
+   }
  .buywheel-wedge{
   width:
          
@@ -1601,10 +1674,6 @@
                                                                                                                               
                                                                                                                               )
   ;
-  margin-bottom:
-                 
-                 10px
-  ;
   border-radius:
                  
                  5px
@@ -1628,7 +1697,7 @@
                2.2
    ;
   }
-  .buywheel-wedge.buywheel-cant-buy{
+  .buywheel-cant-buy .buywheel-wedge{
    wash-color:
                
                none
@@ -1647,7 +1716,7 @@
                                            )
    ;
   }
-   .buywheel-wedge.buywheel-cant-buy .buywheel-item__icon{
+   .buywheel-cant-buy .buywheel-wedge .buywheel-item__icon{
     wash-color:
                 
                 rgb
@@ -1660,7 +1729,7 @@
                               )
     ;
    }
-   .buywheel-wedge.buywheel-cant-buy #ItemPrice,.buywheel-wedge.buywheel-cant-buy .buywheel-item__name{
+   .buywheel-cant-buy .buywheel-wedge #ItemPrice,.buywheel-cant-buy .buywheel-wedge .buywheel-item__name{
     wash-color:
                 
                 rgb
@@ -1677,7 +1746,7 @@
                  normal
     ;
    }
-   .buywheel-wedge.buywheel-cant-afford #ItemPrice{
+   .buywheel-cant-afford .buywheel-wedge #ItemPrice{
     wash-color:
                 
                 rgb
@@ -1690,7 +1759,7 @@
                                  )
     ;
    }
-  .buywheel-wedge.buywheel-already-own{
+  .buywheel-already-own .buywheel-wedge{
    border:
            
            1px
@@ -1700,7 +1769,7 @@
                      white
    ;
   }
-   .buywheel-wedge.wont-afford:not(:hover) .buywheel-item__price{
+   .wont-afford .buywheel-wedge:not(:hover) .buywheel-item__price{
     transition-duration:
                          
                          0.0s
@@ -1859,10 +1928,6 @@
                   
                   bottom
   ;
-  y:
-     
-     -12px
-  ;
  }
   .teammate-inventory-container .player-pip{
    width:
@@ -1899,7 +1964,7 @@
   ;
   margin-bottom:
                  
-                 15px
+                 5px
   ;
   margin-left:
                

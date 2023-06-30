@@ -300,6 +300,19 @@
     background-image: url("s2r://panorama/images/icons/ui/filter.vsvg");
    }
 
+   .loadout-column .loadout-slot .loadout-slot-shuffle-icon{
+
+    opacity: .8;
+    margin: 2px 0px 0px 0px;
+    width: 20px;
+    height: 20px;
+    background-size: 14px 14px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-image: url("s2r://panorama/images/icons/ui/random.vsvg");
+    horizontal-align: right;
+   }
+
 
    .loadout-column .loadout-slot.droptarget ItemImage{
 
@@ -515,6 +528,17 @@
       img-shadow: 0px 0px 6px 1.0 #00000044;
      }
 
+     .loadout-grid-container .loadout-team-select-btn .loadout-grid__row-slots .loadout-model-panel__slot .loadout-slot-shuffle-icon{
+
+      margin: 4px;
+      width: 16px;
+      height: 16px;
+      background-size: 16px 16px;
+      background-image: url("s2r://panorama/images/icons/ui/random.vsvg");
+      horizontal-align: right;
+      img-shadow: 0px 0px 6px 1.0 #00000044;
+     }
+
      .loadout-grid-container .loadout-team-select-btn .loadout-grid__row-slots .loadout-model-panel__slot:hover{
       background-color: rgba(205, 205, 205, 0.25);
       sound: "UIPanorama.inventory_item_rollover";
@@ -578,6 +602,11 @@
     wash-color: t-color;
    }
 
+   .loadout-grid-container .loadout-grid__slots__t .loadout-slot-shuffle-icon{
+
+    wash-color: t-color;
+   }
+
    .loadout-grid-container .loadout-grid__slots__t .loadout-column__title{
 
     color: ct-color;
@@ -626,6 +655,11 @@
    }
 
    .loadout-grid-container .loadout-grid__slots__ct .loadout-slot-filter-icon{
+
+    wash-color: ct-color;
+   }
+
+   .loadout-grid-container .loadout-grid__slots__ct .loadout-slot-shuffle-icon{
 
     wash-color: ct-color;
    }

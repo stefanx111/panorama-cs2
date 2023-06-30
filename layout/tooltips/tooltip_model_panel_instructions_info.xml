@@ -7,7 +7,7 @@
 	<Panel class="TestContents">
 		<Label text="Scene Panel - Debug Info Mode" />
 		<Label text="" />
-		<Label text="@panorama_3dpanel_debuginfo_X convars to turn elements on/off" />
+		<Label text="panorama_3dpanel_debuginfo_X convars to turn elements on/off" />
 		<Label text="" />
 		<Label text="[ - previous scene context" />
 		<Label text="] - next scene context" />
