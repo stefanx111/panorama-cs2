@@ -56,8 +56,12 @@ var TeamSelectMenu = ( function ()
 
 		m_scheduledHideWash = $.Schedule( 0.5, () =>
 		{
-			elFade.style.transitionDuration = "0.5s";
-			elFade.AddClass( "hidden" );
+			if ( elFade.IsValid() )
+			{
+				elFade.style.transitionDuration = "0.5s";
+				elFade.AddClass( "hidden" );
+			}
+			
 			m_scheduledHideWash = null;
 		} );
 

@@ -57,10 +57,10 @@
 						<Image id="JsEquipInfoBestWeapon" class="equipinfo__weapon" scaling="stretch-to-fit-preserve-aspect" />
 					</Panel>
 					<Panel class="equipinfo__row equipinfo__row--nades">
-						<Image id="JsNade-0" class="equipinfo__nade" scaling="stretch-to-fit-preserve-aspect" />
-						<Image id="JsNade-1" class="equipinfo__nade" scaling="stretch-to-fit-preserve-aspect" />
-						<Image id="JsNade-2" class="equipinfo__nade" scaling="stretch-to-fit-preserve-aspect" />
-						<Image id="JsNade-3" class="equipinfo__nade" scaling="stretch-to-fit-preserve-aspect" />
+						<Image id="JsNade-0" class="equipinfo__nade" scaling="stretch-to-fit-y-preserve-aspect" />
+						<Image id="JsNade-1" class="equipinfo__nade" scaling="stretch-to-fit-y-preserve-aspect" />
+						<Image id="JsNade-2" class="equipinfo__nade" scaling="stretch-to-fit-y-preserve-aspect" />
+						<Image id="JsNade-3" class="equipinfo__nade" scaling="stretch-to-fit-y-preserve-aspect" />
 					</Panel>
 					<Panel class="equipinfo__row equipinfo__row--armor">
 						<Panel>

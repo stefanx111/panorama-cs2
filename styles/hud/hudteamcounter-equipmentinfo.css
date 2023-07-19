@@ -126,13 +126,14 @@
 
   .equipinfo-root .equipinfo__row--nades{
    flow-children: right;
+   overflow: noclip;
   }
    .equipinfo-root .equipinfo__row--nades .equipinfo__nade{
-    height: 18px;
+    height: 16px;
     vertical-align: center;
-    min-width: 13px;
+    width: 13.5px;
+    overflow: noclip;
    }
-
 
 
   .equipinfo-root .equipinfo__row--armor{
