@@ -1,0 +1,111 @@
+
+ .premier-pickban{
+
+  width: 100%;
+  height: 100%;
+  vertical-align: center;
+  horizontal-align: center;
+  pre-transform-scale2d: 1;
+  transform: translateY( 0px );
+  min-width: 0px;
+  opacity: 1.0;
+  border-radius: 0px;
+  flow-children: down;
+  background-color: green;
+ }
+  .premier-pickban .premier-pickban__topbar{
+
+   height: 64px;
+   width: 100%;
+   background-color: blue;
+  }
+
+  .premier-pickban .premier-pickban__middle{
+
+   height: 672px;
+   width: 100%;
+   background-color: lightblue;
+   flow-children: down;
+  }
+
+  .premier-pickban .premier-pickban__bottom{
+
+   height: 100%;
+   width: 100%;
+   background-color: blue;
+  }
+
+
+ .premier-pickban__title{
+
+  flow-children: right;
+  vertical-align: center;
+  horizontal-align: center;
+ }
+  .premier-pickban__title .premier-pickban__title__clock{
+
+   margin-right: 8px;
+   width: 96px;
+   text-align: right;
+   color: White;
+  }
+
+
+
+
+
+
+
+ .premier-pickban__progress{
+
+  height: 48px;
+  background-color: blueviolet;
+  flow-children: right;
+  horizontal-align: center;
+ }
+  .premier-pickban__progress .premier-pickban__section{
+
+   flow-children: down;
+   vertical-align: bottom;
+   margin: 0px 2px;
+  }
+   .premier-pickban__progress .premier-pickban__section .premier-pickban__progress__section-name{
+
+    text-align: center;
+    horizontal-align: center;
+    letter-spacing: 5px;
+   }
+
+   .premier-pickban__progress .premier-pickban__section .premier-pickban__progress__bar-container{
+
+    width: 284px;
+    height: 8px;
+    background-color: black;
+   }
+    .premier-pickban__progress .premier-pickban__section .premier-pickban__progress__bar-container .premier-pickban__progress__bar-inner{
+
+     width: 20px;
+     height: 100%;
+     background-color: white;
+    }
+
+
+
+
+ .premier-pickban__maps{
+
+  height: 100%;
+  width: 866px;
+  background-color: green;
+ }
+
+ .premier-pickban__team{
+
+  height: 100%;
+  width: 288px;
+  background-color: lightgreen;
+ }
+  .premier-pickban__team.premier-pickban__team--result{
+
+   background-color: yellowgreen;
+}

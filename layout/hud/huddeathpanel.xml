@@ -35,13 +35,13 @@
 								</Panel>
 							</Panel>
 						</Panel>
-						<Panel class="DeathPanel__Damage Taken">
+						<Panel id="DamageTaken" class="DeathPanel__Damage Taken">
 							<ProgressBar id="ProgressDamageTaken" />
-							<Label id="DamageTaken" class="" html="true" text="#Panorama_DeathPanel_DamageTaken" />
+							<Label class="" html="true" text="#Panorama_DeathPanel_DamageTaken" />
 						</Panel>
-						<Panel class="DeathPanel__Damage Given">
+						<Panel id="DamageGiven" class="DeathPanel__Damage Given">
 							<ProgressBar id="ProgressDamageGiven" />
-							<Label id="DamageGiven" class="" html="true" text="#Panorama_DeathPanel_DamageGiven" />
+							<Label class="" html="true" text="#Panorama_DeathPanel_DamageGiven" />
 						</Panel>
 					</Panel>
 				</Panel>
@@ -49,7 +49,7 @@
 					<ItemImage id="WeaponImage" class="DeathPanel__Item" scaling="stretch-to-fit-preserve-aspect" />
 				</Panel>
 			</Panel>
-			<Panel class="DeathPanel_Nav_Container">
+			<Panel id="NavigationContainer" class="DeathPanel_Nav_Container">
 				<Label id="NavigationCancel" class="DeathPanel__Navigation" text="#Panorama_Death_Cancel_Replay" />
 				<Label id="NavigationSnapshot" class="DeathPanel__Navigation" text="#Panorama_Death_Snapshot" />
 				<Label id="NavigationReplay" class="DeathPanel__Navigation" html="true" text="#Panorama_HUD_Spectate_Navigation_Replay_Death" />

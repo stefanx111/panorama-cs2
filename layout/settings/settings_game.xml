@@ -45,14 +45,6 @@
 					<Label class="SettingsSectionTitleLabel" text="#settings_game_settings_section" />
 				</Panel>
 				<Panel class="top-bottom-flow full-width">
-					<Panel class="SettingsMenuDropdownContainer">
-						<Label text="#SFUI_Settings_Enable_Game_Instructor" class="half-width" />
-						<CSGOSettingsEnumDropDown class="PopupButton White" convar="gameinstructor_enable">
-							<Label text="#GameUI_Yes" id="enablegameinstructor0" value="1" />
-							<Label text="#GameUI_No" id="enablegameinstructor1" value="0" />
-						</CSGOSettingsEnumDropDown>
-					</Panel>
-					<Panel class="horizontal-separator" />
 					<TooltipPanel class="SettingsMenuDropdownContainer" tooltip="#SFUI_Settings_Match_Ping_Threshold_Info">
 						<CSGOSettingsSlider text="#SFUI_Settings_Match_Ping_Threshold" max="350" min="25" convar="mm_dedicated_search_maxping" />
 					</TooltipPanel>

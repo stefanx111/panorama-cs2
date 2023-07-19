@@ -265,6 +265,9 @@
 						<Button class="PopupButton" onactivate="OnPopupCustomLayoutWeaponUpdate()">
 							<Label text="New Weapon" />
 						</Button>
+						<Button class="PopupButton" onactivate="OnPopupCustomLayoutPremierPickBan()">
+							<Label text="Premier Map pick ban" />
+						</Button>
 						<Button class="PopupButton" onactivate="OnPopupCustomLayoutOpFull()">
 							<Label text="Operatation Fullscreen Launch" />
 						</Button>
@@ -1271,6 +1274,12 @@
 					</Button>
 					<Button id="ShowZooWinPanel opt2" class="FlatButton" onactivate="ShowHideWinPanel( true );ParticleControls.SACVpcfParticleSystem(&apos;#MVPParticleEffectPanel&apos;,&apos;particles/ui/hud/ui_mvp_winner_alt_a.vpcf&apos; );">
 						<Label text="Show MVP opt2" />
+					</Button>
+					<Button id="ShowZooWinPanel opt3" class="FlatButton" onactivate="ShowHideWinPanel( true );ParticleControls.SACVpcfParticleSystem(&apos;#MVPParticleEffectPanel&apos;,&apos;particles/ui/hud/ui_mvp_winner_alt_b.vpcf&apos; );">
+						<Label text="Show MVP opt3" />
+					</Button>
+					<Button id="ShowZooWinPanel opt4" class="FlatButton" onactivate="ShowHideWinPanel( true );ParticleControls.SACVpcfParticleSystem(&apos;#MVPParticleEffectPanel&apos;,&apos;particles/ui/hud/ui_mvp_winner_alt_c.vpcf&apos; );">
+						<Label text="Show MVP opt4" />
 					</Button>
 					<Button id="HideZooWinPanel" class="FlatButton" onactivate="ShowHideWinPanel( false );ParticleControls.StopAllChildrenParticlesImmediately($(&apos;#ControlsLibParticlesMVP&apos;));">
 						<Label text="Hide MVP" />

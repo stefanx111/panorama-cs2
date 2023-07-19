@@ -221,7 +221,7 @@
 						<Label text="#SFUI_GameModeCompetitive" />
 						<Panel id="GameModeAlert" class="navbar-btn__notification-dot hidden" />
 					</RadioButton>
-					<RadioButton id="scrimcomp2v2" group="gamemodes" class="content-navbar__tabs__btn visible-if-not-limitedbeta">
+					<RadioButton id="scrimcomp2v2" group="gamemodes" class="content-navbar__tabs__btn">
 						<Label text="#SFUI_GameModeScrimComp2v2" />
 						<Panel id="GameModeAlert" class="navbar-btn__notification-dot hidden" />
 					</RadioButton>
@@ -231,9 +231,6 @@
 					</RadioButton>
 					<RadioButton id="deathmatch" group="gamemodes" class="content-navbar__tabs__btn">
 						<Label text="#SFUI_Deathmatch" />
-					</RadioButton>
-					<RadioButton id="skirmish" group="gamemodes" class="content-navbar__tabs__btn visible-if-not-limitedbeta">
-						<Label text="#SFUI_GameModeSkirmish" />
 					</RadioButton>
 					<RadioButton id="cooperative" group="gamemodes" class="content-navbar__tabs__btn visible-if-not-limitedbeta">
 						<Label text="#SFUI_GameModeCooperative" onmouseover="UiToolkitAPI.ShowTextTooltip( &apos;cooperative&apos;, &apos;#PlayMenu_guardian_tooltip&apos; );" onmouseout="UiToolkitAPI.HideTextTooltip();" />

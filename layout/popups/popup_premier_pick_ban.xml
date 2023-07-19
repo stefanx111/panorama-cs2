@@ -1,0 +1,44 @@
+<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/gamestyles.vcss_c" />
+		<include src="s2r://panorama/styles/popups/popup_premier_pick_ban.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/popups/popup_premier_pick_ban.vts_c" />
+		<include src="s2r://panorama/scripts/util_gamemodeflags.vts_c" />
+	</scripts>
+	<snippets>
+		<snippet name="progress-section">
+			<Panel class="premier-pickban__section">
+				<Label class="premier-pickban__progress__section-name stratum-medium-condensed fontSize-l" text="Section Label" />
+				<Panel class="premier-pickban__progress__bar-container">
+					<Panel class="premier-pickban__progress__bar-inner" />
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<PopupCustomLayout class="premier-pickban PopupPanel" popupbackground="dim">
+		<Panel class="premier-pickban__topbar">
+			<Panel class="premier-pickban__title">
+				<Label class="premier-pickban__title__clock stratum-bold-mono fontSize-xl" text="99:99" />
+				<Label class="premier-pickban__title__text stratum-medium fontSize-xl" text="Explanation Text For Draft" />
+			</Panel>
+		</Panel>
+		<Panel class="premier-pickban__middle">
+			<Panel class="premier-pickban__progress">
+				<Frame snippet="progress-section" />
+				<Frame snippet="progress-section" />
+				<Frame snippet="progress-section" />
+				<Frame snippet="progress-section" />
+				<Frame snippet="progress-section" />
+			</Panel>
+			<Panel class="left-right-flow full-height horizontal-center">
+				<Panel class="premier-pickban__maps" />
+				<Panel class="premier-pickban__team" />
+				<Panel class="premier-pickban__team premier-pickban__team--result" />
+			</Panel>
+		</Panel>
+		<Panel class="premier-pickban__bottom" />
+	</PopupCustomLayout>
+</root>

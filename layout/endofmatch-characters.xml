@@ -22,10 +22,7 @@
 			</Button>
 		</snippet>
 		<snippet name="snippet-eom-chars__layout--scrimcomp2v2">
-			<Panel class="eom-chars__layout eom-chars__layout--scrimcomp2v2">
-				<Image id="id-eom-chars__layout__logo--ct" texturewidth="1024" textureheight="-1" class="eom-chars__layout__team-logo" />
-				<Image id="id-eom-chars__layout__logo--t" texturewidth="1024" textureheight="-1" class="eom-chars__layout__team-logo" />
-			</Panel>
+			<Panel class="eom-chars__layout eom-chars__layout--scrimcomp2v2" />
 		</snippet>
 		<snippet name="snippet-eom-chars__layout--classic">
 			<Panel id="jsLayoutClassic" class="eom-chars__layout eom-chars__layout--classic">

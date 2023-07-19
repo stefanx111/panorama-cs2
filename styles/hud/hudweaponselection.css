@@ -294,6 +294,12 @@
 
 
 
+ .gear-slot--3 .weapon-selection-item-icon-main,.gear-slot--4 .weapon-selection-item-icon-main{
+
+
+     transform: scale3d(0.7,0.7,1) translateY(6px);
+ }
+
 
  .csgo-hud__color-0.HUD--team--ct .hud-colorize-wash--hsv{            wash-color: hsv-transform(ct-color, WEAPONSELECTION_UNSELECTED_HSV_TRANSFORM);}
  .csgo-hud__color-0.HUD--team--terrorist .hud-colorize-wash--hsv{     wash-color: hsv-transform(t-color, WEAPONSELECTION_UNSELECTED_HSV_TRANSFORM);}
@@ -325,6 +331,12 @@
      transform: scale3d(0.9,0.9,1);
  }
 
+
+ .gear-slot--3 .weapon-selection-item--selected .weapon-selection-item-icon-main,.gear-slot--4 .weapon-selection-item--selected .weapon-selection-item-icon-main{
+
+
+     transform: scale3d(0.9,0.9,1) translateY(6px);
+ }
 
 
 
@@ -507,7 +519,7 @@
      horizontal-align:right;
      vertical-align:bottom;
      width: 500px;
-     height: 90px;
+     height: 84px;
  }
 
 
@@ -737,7 +749,7 @@
      vertical-align: center;
      horizontal-align: right;
      height: 40px;
-     position: -25px 5px 0px;
+     position: -25px 6px 0px;
      opacity: 0;
  }
 
