@@ -1,3 +1,4 @@
+"use strict";
 /// <reference path="csgo.d.ts" />
 function GetRankParticleSettings(nRank) {
     let sParticlelevel1 = 'particles/ui/status_levels/ui_status_level_1.vpcf';
@@ -8,52 +9,62 @@ function GetRankParticleSettings(nRank) {
     let sParticlelevel6 = 'particles/ui/status_levels/ui_status_level_6.vpcf';
     let sParticlelevel7 = 'particles/ui/status_levels/ui_status_level_7.vpcf';
     let sParticlelevel8 = 'particles/ui/status_levels/ui_status_level_8.vpcf';
+    //{ particleName: sParticlelevel0, cpNumber: 3, cpValue: [ 1, 0, 1 ], playEndcap: false },
     let aRank = [
-        [sParticlelevel1, 3, 0, 1, 1, false],
-        [sParticlelevel1, 3, 1, 1, 1, false],
-        [sParticlelevel1, 3, 2, 2, 1, false],
-        [sParticlelevel1, 3, 3, 3, 1, false],
-        [sParticlelevel1, 3, 4, 4, 1, false],
-        [sParticlelevel2, 3, 5, 5, 1, false],
-        [sParticlelevel2, 3, 1, 6, 1, false],
-        [sParticlelevel2, 3, 2, 7, 1, false],
-        [sParticlelevel2, 3, 3, 8, 1, false],
-        [sParticlelevel2, 3, 4, 9, 1, false],
-        [sParticlelevel2, 3, 5, 10, 1, false],
-        [sParticlelevel3, 3, 1, 11, 1, false],
-        [sParticlelevel3, 3, 2, 12, 1, false],
-        [sParticlelevel3, 3, 3, 13, 1, false],
-        [sParticlelevel3, 3, 4, 14, 1, false],
-        [sParticlelevel3, 3, 5, 15, 1, false],
-        [sParticlelevel4, 3, 1, 16, 1, false],
-        [sParticlelevel4, 3, 2, 17, 1, false],
-        [sParticlelevel4, 3, 3, 18, 1, false],
-        [sParticlelevel4, 3, 4, 19, 1, false],
-        [sParticlelevel4, 3, 5, 20, 1, false],
-        [sParticlelevel5, 3, 1, 21, 1, false],
-        [sParticlelevel5, 3, 2, 22, 1, false],
-        [sParticlelevel5, 3, 3, 23, 1, false],
-        [sParticlelevel5, 3, 4, 24, 1, false],
-        [sParticlelevel5, 3, 5, 25, 1, false],
-        [sParticlelevel6, 3, 1, 26, 1, false],
-        [sParticlelevel6, 3, 2, 27, 1, false],
-        [sParticlelevel6, 3, 3, 28, 1, false],
-        [sParticlelevel6, 3, 4, 29, 1, false],
-        [sParticlelevel6, 3, 5, 30, 1, false],
-        [sParticlelevel7, 3, 1, 31, 1, false],
-        [sParticlelevel7, 3, 2, 32, 1, false],
-        [sParticlelevel7, 3, 3, 33, 1, false],
-        [sParticlelevel7, 3, 4, 34, 1, false],
-        [sParticlelevel8, 3, 0, 35, 1, false],
-        [sParticlelevel8, 3, 1, 36, 1, false],
-        [sParticlelevel8, 3, 2, 37, 1, false],
-        [sParticlelevel8, 3, 3, 38, 1, false],
-        [sParticlelevel8, 3, 4, 39, 1, false],
-        [sParticlelevel8, 3, 5, 40, 1, false],
+        { particleName: sParticlelevel1, cpNumber: 3, cpValue: [0, 1, 1], playEndcap: false },
+        { particleName: sParticlelevel1, cpNumber: 3, cpValue: [1, 1, 1], playEndcap: false },
+        { particleName: sParticlelevel1, cpNumber: 3, cpValue: [2, 2, 1], playEndcap: false },
+        { particleName: sParticlelevel1, cpNumber: 3, cpValue: [3, 3, 1], playEndcap: false },
+        { particleName: sParticlelevel1, cpNumber: 3, cpValue: [4, 4, 1], playEndcap: false },
+        { particleName: sParticlelevel2, cpNumber: 3, cpValue: [5, 5, 1], playEndcap: false },
+        //5-10  
+        { particleName: sParticlelevel2, cpNumber: 3, cpValue: [1, 6, 1], playEndcap: false },
+        { particleName: sParticlelevel2, cpNumber: 3, cpValue: [2, 7, 1], playEndcap: false },
+        { particleName: sParticlelevel2, cpNumber: 3, cpValue: [3, 8, 1], playEndcap: false },
+        { particleName: sParticlelevel2, cpNumber: 3, cpValue: [4, 9, 1], playEndcap: false },
+        { particleName: sParticlelevel2, cpNumber: 3, cpValue: [5, 10, 1], playEndcap: false },
+        //10-20
+        { particleName: sParticlelevel3, cpNumber: 3, cpValue: [1, 11, 1], playEndcap: false },
+        { particleName: sParticlelevel3, cpNumber: 3, cpValue: [2, 12, 1], playEndcap: false },
+        { particleName: sParticlelevel3, cpNumber: 3, cpValue: [3, 13, 1], playEndcap: false },
+        { particleName: sParticlelevel3, cpNumber: 3, cpValue: [4, 14, 1], playEndcap: false },
+        { particleName: sParticlelevel3, cpNumber: 3, cpValue: [5, 15, 1], playEndcap: false },
+        //16-20
+        { particleName: sParticlelevel4, cpNumber: 3, cpValue: [1, 16, 1], playEndcap: false },
+        { particleName: sParticlelevel4, cpNumber: 3, cpValue: [2, 17, 1], playEndcap: false },
+        { particleName: sParticlelevel4, cpNumber: 3, cpValue: [3, 18, 1], playEndcap: false },
+        { particleName: sParticlelevel4, cpNumber: 3, cpValue: [4, 19, 1], playEndcap: false },
+        { particleName: sParticlelevel4, cpNumber: 3, cpValue: [5, 20, 1], playEndcap: false },
+        //21-25
+        { particleName: sParticlelevel5, cpNumber: 3, cpValue: [1, 21, 1], playEndcap: false },
+        { particleName: sParticlelevel5, cpNumber: 3, cpValue: [2, 22, 1], playEndcap: false },
+        { particleName: sParticlelevel5, cpNumber: 3, cpValue: [3, 23, 1], playEndcap: false },
+        { particleName: sParticlelevel5, cpNumber: 3, cpValue: [4, 24, 1], playEndcap: false },
+        { particleName: sParticlelevel5, cpNumber: 3, cpValue: [5, 25, 1], playEndcap: false },
+        //26-30
+        { particleName: sParticlelevel6, cpNumber: 3, cpValue: [1, 26, 1], playEndcap: false },
+        { particleName: sParticlelevel6, cpNumber: 3, cpValue: [2, 27, 1], playEndcap: false },
+        { particleName: sParticlelevel6, cpNumber: 3, cpValue: [3, 28, 1], playEndcap: false },
+        { particleName: sParticlelevel6, cpNumber: 3, cpValue: [4, 29, 1], playEndcap: false },
+        { particleName: sParticlelevel6, cpNumber: 3, cpValue: [5, 30, 1], playEndcap: false },
+        //31-34 
+        { particleName: sParticlelevel7, cpNumber: 3, cpValue: [1, 31, 1], playEndcap: false },
+        { particleName: sParticlelevel7, cpNumber: 3, cpValue: [2, 32, 1], playEndcap: false },
+        { particleName: sParticlelevel7, cpNumber: 3, cpValue: [3, 33, 1], playEndcap: false },
+        { particleName: sParticlelevel7, cpNumber: 3, cpValue: [4, 34, 1], playEndcap: false },
+        //35-40
+        { particleName: sParticlelevel8, cpNumber: 3, cpValue: [0, 35, 1], playEndcap: false },
+        { particleName: sParticlelevel8, cpNumber: 3, cpValue: [1, 36, 1], playEndcap: false },
+        { particleName: sParticlelevel8, cpNumber: 3, cpValue: [2, 37, 1], playEndcap: false },
+        { particleName: sParticlelevel8, cpNumber: 3, cpValue: [3, 38, 1], playEndcap: false },
+        { particleName: sParticlelevel8, cpNumber: 3, cpValue: [4, 39, 1], playEndcap: false },
+        { particleName: sParticlelevel8, cpNumber: 3, cpValue: [5, 40, 1], playEndcap: false },
     ];
     return aRank[nRank];
 }
-function GetSkillGroupSettings(nSkillGroup) {
+//type SkillGroupSetting_t = [string, number, number, number, number, boolean ];
+function GetSkillGroupSettings(nSkillGroup, SkillGroupType) {
+    let sParticlelevel0 = 'particles/ui/skillgroups/ui_skillgroup_1.vpcf';
     let sParticlelevel1 = 'particles/ui/skillgroups/ui_skillgroup_1.vpcf';
     let sParticlelevel2 = 'particles/ui/skillgroups/ui_skillgroup_2.vpcf';
     let sParticlelevel3 = 'particles/ui/skillgroups/ui_skillgroup_3.vpcf';
@@ -72,58 +83,139 @@ function GetSkillGroupSettings(nSkillGroup) {
     let sParticlelevel16 = 'particles/ui/skillgroups/ui_skillgroup_16.vpcf';
     let sParticlelevel17 = 'particles/ui/skillgroups/ui_skillgroup_17.vpcf';
     let sParticlelevel18 = 'particles/ui/skillgroups/ui_skillgroup_18.vpcf';
+    if (SkillGroupType === 'Wingman') {
+        sParticlelevel0 = 'particles/ui/skillgroups/ui_skillgroup_wingman_0.vpcf';
+        sParticlelevel1 = 'particles/ui/skillgroups/ui_skillgroup_wingman_1.vpcf';
+        sParticlelevel2 = 'particles/ui/skillgroups/ui_skillgroup_wingman_2.vpcf';
+        sParticlelevel3 = 'particles/ui/skillgroups/ui_skillgroup_wingman_3.vpcf';
+        sParticlelevel4 = 'particles/ui/skillgroups/ui_skillgroup_wingman_4.vpcf';
+        sParticlelevel5 = 'particles/ui/skillgroups/ui_skillgroup_wingman_5.vpcf';
+        sParticlelevel6 = 'particles/ui/skillgroups/ui_skillgroup_wingman_6.vpcf';
+        sParticlelevel7 = 'particles/ui/skillgroups/ui_skillgroup_wingman_7.vpcf';
+        sParticlelevel8 = 'particles/ui/skillgroups/ui_skillgroup_wingman_8.vpcf';
+        sParticlelevel9 = 'particles/ui/skillgroups/ui_skillgroup_wingman_9.vpcf';
+        sParticlelevel10 = 'particles/ui/skillgroups/ui_skillgroup_wingman_10.vpcf';
+        sParticlelevel11 = 'particles/ui/skillgroups/ui_skillgroup_wingman_11.vpcf';
+        sParticlelevel12 = 'particles/ui/skillgroups/ui_skillgroup_wingman_12.vpcf';
+        sParticlelevel13 = 'particles/ui/skillgroups/ui_skillgroup_wingman_13.vpcf';
+        sParticlelevel14 = 'particles/ui/skillgroups/ui_skillgroup_wingman_14.vpcf';
+        sParticlelevel15 = 'particles/ui/skillgroups/ui_skillgroup_wingman_15.vpcf';
+        sParticlelevel16 = 'particles/ui/skillgroups/ui_skillgroup_wingman_16.vpcf';
+        sParticlelevel17 = 'particles/ui/skillgroups/ui_skillgroup_wingman_17.vpcf';
+        sParticlelevel18 = 'particles/ui/skillgroups/ui_skillgroup_wingman_18.vpcf';
+    }
+    else if (SkillGroupType === 'Premier') {
+        sParticlelevel0 = 'particles/dev/empty.vpcf';
+        sParticlelevel1 = 'particles/dev/empty.vpcf';
+        sParticlelevel2 = 'particles/dev/empty.vpcf';
+        sParticlelevel3 = 'particles/dev/empty.vpcf';
+        sParticlelevel4 = 'particles/dev/empty.vpcf';
+        sParticlelevel5 = 'particles/dev/empty.vpcf';
+        sParticlelevel6 = 'particles/dev/empty.vpcf';
+        sParticlelevel7 = 'particles/dev/empty.vpcf';
+        sParticlelevel8 = 'particles/dev/empty.vpcf';
+        sParticlelevel9 = 'particles/dev/empty.vpcf';
+        sParticlelevel10 = 'particles/dev/empty.vpcf';
+        sParticlelevel11 = 'particles/dev/empty.vpcf';
+        sParticlelevel12 = 'particles/dev/empty.vpcf';
+        sParticlelevel13 = 'particles/dev/empty.vpcf';
+        sParticlelevel14 = 'particles/dev/empty.vpcf';
+        sParticlelevel15 = 'particles/dev/empty.vpcf';
+        sParticlelevel16 = 'particles/dev/empty.vpcf';
+        sParticlelevel17 = 'particles/dev/empty.vpcf';
+        sParticlelevel18 = 'particles/dev/empty.vpcf';
+    }
+    //{ particleName: sParticlelevel0, cpNumber: 3, cpValue: [ 1, 0, 1 ], playEndcap: false },
     let aSkillGroup = [
-        [sParticlelevel1, 3, 1, 0, 1, false],
-        [sParticlelevel1, 3, 1, 1, 1, false],
-        [sParticlelevel2, 3, 2, 2, 1, false],
-        [sParticlelevel3, 3, 3, 3, 1, false],
-        [sParticlelevel4, 3, 4, 4, 1, false],
-        [sParticlelevel5, 3, 5, 5, 1, false],
-        [sParticlelevel6, 3, 6, 6, 1, false],
-        [sParticlelevel7, 3, 7, 7, 1, false],
-        [sParticlelevel8, 3, 1, 8, 1, false],
-        [sParticlelevel9, 3, 2, 9, 1, false],
-        [sParticlelevel10, 3, 3, 10, 1, false],
-        [sParticlelevel11, 3, 4, 11, 1, false],
-        [sParticlelevel12, 3, 6, 12, 1, false],
-        [sParticlelevel13, 3, 6, 13, 1, false],
-        [sParticlelevel14, 3, 6, 14, 1, false],
-        [sParticlelevel15, 3, 6, 15, 1, false],
-        [sParticlelevel16, 3, 6, 16, 1, false],
-        [sParticlelevel17, 3, 6, 17, 1, false],
-        [sParticlelevel18, 3, 6, 18, 1, false],
-        [sParticlelevel18, 3, 6, 19, 1, false],
+        { particleName: sParticlelevel0, cpNumber: 3, cpValue: [1, 0, 1], playEndcap: false },
+        { particleName: sParticlelevel1, cpNumber: 3, cpValue: [1, 1, 1], playEndcap: false },
+        { particleName: sParticlelevel2, cpNumber: 3, cpValue: [2, 2, 1], playEndcap: false },
+        { particleName: sParticlelevel3, cpNumber: 3, cpValue: [3, 3, 1], playEndcap: false },
+        { particleName: sParticlelevel4, cpNumber: 3, cpValue: [4, 4, 1], playEndcap: false },
+        { particleName: sParticlelevel5, cpNumber: 3, cpValue: [5, 5, 1], playEndcap: false },
+        { particleName: sParticlelevel6, cpNumber: 3, cpValue: [6, 6, 1], playEndcap: false },
+        { particleName: sParticlelevel7, cpNumber: 3, cpValue: [7, 7, 1], playEndcap: false },
+        //particleName: cpNumber: cpValue: playEndcap: 
+        { particleName: sParticlelevel8, cpNumber: 3, cpValue: [1, 8, 1], playEndcap: false },
+        { particleName: sParticlelevel9, cpNumber: 3, cpValue: [2, 9, 1], playEndcap: false },
+        { particleName: sParticlelevel10, cpNumber: 3, cpValue: [3, 10, 1], playEndcap: false },
+        { particleName: sParticlelevel11, cpNumber: 3, cpValue: [4, 11, 1], playEndcap: false },
+        //particleName: cpNumber:playEndcap:
+        { particleName: sParticlelevel12, cpNumber: 3, cpValue: [6, 12, 1], playEndcap: false },
+        { particleName: sParticlelevel13, cpNumber: 3, cpValue: [6, 13, 1], playEndcap: false },
+        { particleName: sParticlelevel14, cpNumber: 3, cpValue: [6, 14, 1], playEndcap: false },
+        //particleName: cpNumber:cpValue: []playEndcap 
+        { particleName: sParticlelevel15, cpNumber: 3, cpValue: [6, 15, 1], playEndcap: false },
+        { particleName: sParticlelevel16, cpNumber: 3, cpValue: [6, 16, 1], playEndcap: false },
+        //particleName: cpNumber:cpValue: []playEndcap 
+        { particleName: sParticlelevel17, cpNumber: 3, cpValue: [6, 17, 1], playEndcap: false },
+        //particleName: cpNumber:cpValue: []playEndcap 
+        { particleName: sParticlelevel18, cpNumber: 3, cpValue: [6, 18, 1], playEndcap: false },
+        //particleName: cpNumber:cpValue: []playEndcap 
+        { particleName: sParticlelevel18, cpNumber: 3, cpValue: [6, 19, 1], playEndcap: false },
     ];
-    return aSkillGroup[nSkillGroup];
+    return aSkillGroup[Math.min(nSkillGroup, aSkillGroup.length - 1)];
 }
-function GetSkillGroupAmbientSettings(nSkillGroup) {
+function GetSkillGroupAmbientSettings(nSkillGroup, SkillGroupType) {
+    // These are dupes from GetRankParticleSettings for now with the expectation that they would be differnt particles
+    let sParticlelevel0 = 'particles/ui/skillgroups/ui_skillgroup_rear_1.vpcf';
     let sParticlelevel1 = 'particles/ui/skillgroups/ui_skillgroup_rear_1.vpcf';
     let sParticlelevel2 = 'particles/ui/skillgroups/ui_skillgroup_rear_2.vpcf';
     let sParticlelevel3 = 'particles/ui/skillgroups/ui_skillgroup_rear_3.vpcf';
     let sParticlelevel4 = 'particles/ui/skillgroups/ui_skillgroup_rear_4.vpcf';
     let sParticlelevel5 = 'particles/ui/skillgroups/ui_skillgroup_rear_5.vpcf';
+    let sParticlelevel6 = 'particles/ui/skillgroups/ui_skillgroup_rear_5.vpcf';
+    let sParticlelevel7 = 'particles/ui/skillgroups/ui_skillgroup_rear_5.vpcf';
+    let sParticlelevel8 = 'particles/ui/skillgroups/ui_skillgroup_rear_5.vpcf';
+    if (SkillGroupType === 'Wingman') {
+        sParticlelevel0 = 'particles/ui/skillgroups/ui_skillgroup_wingman_rear_1.vpcf';
+        sParticlelevel1 = 'particles/ui/skillgroups/ui_skillgroup_wingman_rear_1.vpcf';
+        sParticlelevel2 = 'particles/ui/skillgroups/ui_skillgroup_wingman_rear_2.vpcf';
+        sParticlelevel3 = 'particles/ui/skillgroups/ui_skillgroup_wingman_rear_3.vpcf';
+        sParticlelevel4 = 'particles/ui/skillgroups/ui_skillgroup_wingman_rear_4.vpcf';
+        sParticlelevel5 = 'particles/ui/skillgroups/ui_skillgroup_wingman_rear_5.vpcf';
+        sParticlelevel6 = 'particles/ui/skillgroups/ui_skillgroup_wingman_rear_5.vpcf';
+        sParticlelevel7 = 'particles/ui/skillgroups/ui_skillgroup_wingman_rear_5.vpcf';
+        sParticlelevel8 = 'particles/ui/skillgroups/ui_skillgroup_wingman_rear_5.vpcf';
+    }
+    else if (SkillGroupType === 'Premier') {
+        sParticlelevel0 = 'particles/dev/empty.vpcf';
+        sParticlelevel1 = 'particles/dev/empty.vpcf';
+        sParticlelevel2 = 'particles/dev/empty.vpcf';
+        sParticlelevel3 = 'particles/dev/empty.vpcf';
+        sParticlelevel4 = 'particles/dev/empty.vpcf';
+        sParticlelevel5 = 'particles/dev/empty.vpcf';
+        sParticlelevel6 = 'particles/dev/empty.vpcf';
+        sParticlelevel7 = 'particles/dev/empty.vpcf';
+        sParticlelevel8 = 'particles/dev/empty.vpcf';
+    }
     let aSkillGroup = [
-        [sParticlelevel1, 3, 1, 0, 1, false],
-        [sParticlelevel1, 3, 1, 1, 1, false],
-        [sParticlelevel1, 3, 2, 2, 1, false],
-        [sParticlelevel1, 3, 3, 3, 1, false],
-        [sParticlelevel1, 3, 4, 4, 1, false],
-        [sParticlelevel1, 3, 5, 5, 1, false],
-        [sParticlelevel1, 3, 6, 6, 1, false],
-        [sParticlelevel2, 3, 1, 7, 1, false],
-        [sParticlelevel2, 3, 2, 8, 1, false],
-        [sParticlelevel2, 3, 3, 9, 1, false],
-        [sParticlelevel3, 3, 4, 10, 1, false],
-        [sParticlelevel3, 3, 5, 11, 1, false],
-        [sParticlelevel4, 3, 1, 12, 1, false],
-        [sParticlelevel4, 3, 2, 13, 1, false],
-        [sParticlelevel4, 3, 3, 14, 1, false],
-        [sParticlelevel5, 3, 1, 15, 1, false],
-        [sParticlelevel5, 3, 2, 16, 1, false],
-        [sParticlelevel5, 3, 6, 17, 1, false],
-        [sParticlelevel5, 3, 1, 18, 1, false],
-        [sParticlelevel5, 3, 2, 19, 1, false],
+        { particleName: sParticlelevel0, cpNumber: 3, cpValue: [1, 0, 1], playEndcap: false },
+        { particleName: sParticlelevel1, cpNumber: 3, cpValue: [1, 1, 1], playEndcap: false },
+        { particleName: sParticlelevel1, cpNumber: 3, cpValue: [2, 2, 1], playEndcap: false },
+        { particleName: sParticlelevel1, cpNumber: 3, cpValue: [3, 3, 1], playEndcap: false },
+        { particleName: sParticlelevel1, cpNumber: 3, cpValue: [4, 4, 1], playEndcap: false },
+        { particleName: sParticlelevel1, cpNumber: 3, cpValue: [5, 5, 1], playEndcap: false },
+        { particleName: sParticlelevel1, cpNumber: 3, cpValue: [6, 6, 1], playEndcap: false },
+        // cpNumber:cpalue: [  ] playEndcap:
+        { particleName: sParticlelevel2, cpNumber: 3, cpValue: [1, 7, 1], playEndcap: false },
+        { particleName: sParticlelevel2, cpNumber: 3, cpValue: [2, 8, 1], playEndcap: false },
+        { particleName: sParticlelevel2, cpNumber: 3, cpValue: [3, 9, 1], playEndcap: false },
+        { particleName: sParticlelevel3, cpNumber: 3, cpValue: [4, 10, 1], playEndcap: false },
+        { particleName: sParticlelevel3, cpNumber: 3, cpValue: [5, 11, 1], playEndcap: false },
+        //cpNumber:cpalue: [  ] playEndcap:
+        { particleName: sParticlelevel4, cpNumber: 3, cpValue: [1, 12, 1], playEndcap: false },
+        { particleName: sParticlelevel4, cpNumber: 3, cpValue: [2, 13, 1], playEndcap: false },
+        { particleName: sParticlelevel4, cpNumber: 3, cpValue: [3, 14, 1], playEndcap: false },
+        // particleName: cpNumber:cpalue: [  ] playEndcap:
+        { particleName: sParticlelevel5, cpNumber: 3, cpValue: [1, 15, 1], playEndcap: false },
+        { particleName: sParticlelevel5, cpNumber: 3, cpValue: [2, 16, 1], playEndcap: false },
+        // cpNumber:cpalue: [  ] playEndcap:
+        { particleName: sParticlelevel5, cpNumber: 3, cpValue: [6, 17, 1], playEndcap: false },
+        // cpNumber:cpalue: [  ] playEndcap:
+        { particleName: sParticlelevel5, cpNumber: 3, cpValue: [1, 18, 1], playEndcap: false },
+        //cpNumber:cpalue: [  ] playEnd cap:
+        { particleName: sParticlelevel5, cpNumber: 3, cpValue: [2, 19, 1], playEndcap: false },
     ];
-    return aSkillGroup[nSkillGroup];
+    return aSkillGroup[Math.min(nSkillGroup, aSkillGroup.length - 1)];
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicmFua19za2lsbGdyb3VwX3BhcnRpY2xlcy5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbInJhbmtfc2tpbGxncm91cF9wYXJ0aWNsZXMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsa0NBQWtDO0FBT2xDLFNBQVMsdUJBQXVCLENBQUcsS0FBYTtJQUU1QyxJQUFJLGVBQWUsR0FBRyxtREFBbUQsQ0FBQztJQUMxRSxJQUFJLGVBQWUsR0FBRyxtREFBbUQsQ0FBQztJQUMxRSxJQUFJLGVBQWUsR0FBRyxtREFBbUQsQ0FBQztJQUMxRSxJQUFJLGVBQWUsR0FBRyxtREFBbUQsQ0FBQztJQUMxRSxJQUFJLGVBQWUsR0FBRyxtREFBbUQsQ0FBQztJQUMxRSxJQUFJLGVBQWUsR0FBRyxtREFBbUQsQ0FBQztJQUMxRSxJQUFJLGVBQWUsR0FBRyxtREFBbUQsQ0FBQztJQUMxRSxJQUFJLGVBQWUsR0FBRyxtREFBbUQsQ0FBQztJQUUxRSxJQUFJLEtBQUssR0FBK0Q7UUFDcEUsQ0FBRSxlQUFlLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLEtBQUssQ0FBRTtRQUN0QyxDQUFFLGVBQWUsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsS0FBSyxDQUFFO1FBQ3RDLENBQUUsZUFBZSxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxLQUFLLENBQUU7UUFDdEMsQ0FBRSxlQUFlLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLEtBQUssQ0FBRTtRQUN0QyxDQUFFLGVBQWUsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsS0FBSyxDQUFFO1FBQ3RDLENBQUUsZUFBZSxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxLQUFLLENBQUU7UUFFdEMsQ0FBRSxlQUFlLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLEtBQUssQ0FBRTtRQUN0QyxDQUFFLGVBQWUsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsS0FBSyxDQUFFO1FBQ3RDLENBQUUsZUFBZSxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxLQUFLLENBQUU7UUFDdEMsQ0FBRSxlQUFlLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLEtBQUssQ0FBRTtRQUN0QyxDQUFFLGVBQWUsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLEVBQUUsRUFBRSxDQUFDLEVBQUUsS0FBSyxDQUFFO1FBRXZDLENBQUUsZUFBZSxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsRUFBRSxFQUFFLENBQUMsRUFBRSxLQUFLLENBQUU7UUFDdkMsQ0FBRSxlQUFlLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxFQUFFLEVBQUUsQ0FBQyxFQUFFLEtBQUssQ0FBRTtRQUN2QyxDQUFFLGVBQWUsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLEVBQUUsRUFBRSxDQUFDLEVBQUUsS0FBSyxDQUFFO1FBQ3ZDLENBQUUsZUFBZSxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsRUFBRSxFQUFFLENBQUMsRUFBRSxLQUFLLENBQUU7UUFDdkMsQ0FBRSxlQUFlLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxFQUFFLEVBQUUsQ0FBQyxFQUFFLEtBQUssQ0FBRTtRQUV2QyxDQUFFLGVBQWUsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLEVBQUUsRUFBRSxDQUFDLEVBQUUsS0FBSyxDQUFFO1FBQ3ZDLENBQUUsZUFBZSxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsRUFBRSxFQUFFLENBQUMsRUFBRSxLQUFLLENBQUU7UUFDdkMsQ0FBRSxlQUFlLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxFQUFFLEVBQUUsQ0FBQyxFQUFFLEtBQUssQ0FBRTtRQUN2QyxDQUFFLGVBQWUsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLEVBQUUsRUFBRSxDQUFDLEVBQUUsS0FBSyxDQUFFO1FBQ3ZDLENBQUUsZUFBZSxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsRUFBRSxFQUFFLENBQUMsRUFBRSxLQUFLLENBQUU7UUFFdkMsQ0FBRSxlQUFlLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxFQUFFLEVBQUUsQ0FBQyxFQUFFLEtBQUssQ0FBRTtRQUN2QyxDQUFFLGVBQWUsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLEVBQUUsRUFBRSxDQUFDLEVBQUUsS0FBSyxDQUFFO1FBQ3ZDLENBQUUsZUFBZSxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsRUFBRSxFQUFFLENBQUMsRUFBRSxLQUFLLENBQUU7UUFDdkMsQ0FBRSxlQUFlLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxFQUFFLEVBQUUsQ0FBQyxFQUFFLEtBQUssQ0FBRTtRQUN2QyxDQUFFLGVBQWUsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLEVBQUUsRUFBRSxDQUFDLEVBQUUsS0FBSyxDQUFFO1FBRXZDLENBQUUsZUFBZSxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsRUFBRSxFQUFFLENBQUMsRUFBRSxLQUFLLENBQUU7UUFDdkMsQ0FBRSxlQUFlLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxFQUFFLEVBQUUsQ0FBQyxFQUFFLEtBQUssQ0FBRTtRQUN2QyxDQUFFLGVBQWUsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLEVBQUUsRUFBRSxDQUFDLEVBQUUsS0FBSyxDQUFFO1FBQ3ZDLENBQUUsZUFBZSxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsRUFBRSxFQUFFLENBQUMsRUFBRSxLQUFLLENBQUU7UUFDdkMsQ0FBRSxlQUFlLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxFQUFFLEVBQUUsQ0FBQyxFQUFFLEtBQUssQ0FBRTtRQUV2QyxDQUFFLGVBQWUsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFF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RUFBRSxLQUFLLENBQUU7UUFDdEMsQ0FBRSxlQUFlLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLEtBQUssQ0FBRTtRQUN0QyxDQUFFLGVBQWUsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsS0FBSyxDQUFFO1FBRXRDLENBQUUsZUFBZSxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxLQUFLLENBQUU7UUFDdEMsQ0FBRSxlQUFlLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLEtBQUssQ0FBRTtRQUN0QyxDQUFFLGdCQUFnQixFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsRUFBRSxFQUFFLENBQUMsRUFBRSxLQUFLLENBQUU7UUFDeEMsQ0FBRSxnQkFBZ0IsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLEVBQUUsRUFBRSxDQUFDLEVBQUUsS0FBSyxDQUFFO1FBRXhDLENBQUUsZ0JBQWdCLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxFQUFFLEVBQUUsQ0FBQyxFQUFFLEtBQUssQ0FBRTtRQUN4QyxDQUFFLGdCQUFnQixFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsRUFBRSxFQUFFLENBQUMsRUFBRSxLQUFLLENBQUU7UUFDeEMsQ0FBRSxnQkFBZ0IsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLEVBQUUsRUFBRSxDQUFDLEVBQUUsS0FBSyxDQUFFO1FBRXhDLENBQUUsZ0JBQWdCLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxFQUFFLEVBQUUsQ0FBQyxFQUFFLEtBQUssQ0FBRTtRQUN4QyxDQUFFLGdCQUFnQixFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsRUFBRSxFQUFFLENBQUMsRUFBRSxLQUFLLENBQUU7UUFFeEMsQ0FBRSxnQkFBZ0IsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLEVBQUUsRUFBRSxDQUFDLEVBQUUsS0FBSyxDQUFFO1FBRXhDLENBQUUsZ0JBQWdCLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxFQUFFLEVBQUUsQ0FBQyxFQUFFLEtBQUssQ0FBRTtRQUV4QyxDQUFFLGdCQUFnQixFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsRUFBRSxFQUFFLENBQUMsRUFBRSxLQUFLLENBQUU7S0FDM0MsQ0FBQztJQUNGLE9BQU8sV0FBVyxDQUFFLFdBQVcsQ0FBRSxDQUFDO0FBQ3RDLENBQUM7QUFFRCxTQUFTLDRCQUE0QixDQUFHLFdBQW1CO0lBR3ZELElBQUksZUFBZSxHQUFHLG9EQUFvRCxDQUFDO0lBQzNFLElBQUksZUFBZSxHQUFHLG9EQUFvRCxDQUFDO0lBQzNFLElBQUksZUFBZSxHQUFHLG9EQUFvRCxDQUFDO0lBQzNFLElBQUksZUFBZSxHQUFHLG9EQUFvRCxDQUFDO0lBQzNFLElBQUksZUFBZSxHQUFHLG9EQUFvRCxDQUFDO0lBRTNFLElBQUksV0FBVyxHQUErRDtRQUMxRSxDQUFFLGVBQWUsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsS0FBSyxDQUFFO1FBQ3RDLENBQUUsZUFBZSxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxLQUFLLENBQUU7UUFDdEMsQ0FBRSxlQUFlLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLEtBQUssQ0FBRTtRQUN0QyxDQUFFLGVBQWUsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsS0FBSyxDQUFFO1FBQ3RDLENBQUUsZUFBZSxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxLQUFLLENBQUU7UUFDdEMsQ0FBRSxlQUFlLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLEtBQUssQ0FBRTtRQUN0QyxDQUFFLGVBQWUsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsS0FBSyxDQUFFO1FBRXRDLENBQUUsZUFBZSxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxLQUFLLENBQUU7UUFDdEMsQ0FBRSxlQUFlLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLEtBQUssQ0FBRTtRQUN0QyxDQUFFLGVBQWUsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsS0FBSyxDQUFFO1FBQ3RDLENBQUUsZUFBZSxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsRUFBRSxFQUFFLENBQUMsRUFBRSxLQUFLLENBQUU7UUFDdkMsQ0FBRSxlQUFlLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxFQUFFLEVBQUUsQ0FBQyxFQUFFLEtBQUssQ0FBRTtRQUV2QyxDQUFFLGVBQWUsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLEVBQUUsRUFBRSxDQUFDLEVBQUUsS0FBSyxDQUFFO1FBQ3ZDLENBQUUsZUFBZSxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsRUFBRSxFQUFFLENBQUMsRUFBRSxLQUFLLENBQUU7UUFDdkMsQ0FBRSxlQUFlLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxFQUFFLEVBQUUsQ0FBQyxFQUFFLEtBQUssQ0FBRTtRQUV2QyxDQUFFLGVBQWUsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLEVBQUUsRUFBRSxDQUFDLEVBQUUsS0FBSyxDQUFFO1FBQ3ZDLENBQUUsZUFBZSxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsRUFBRSxFQUFFLENBQUMsRUFBRSxLQUFLLENBQUU7UUFFdkMsQ0FBRSxlQUFlLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxFQUFFLEVBQUUsQ0FBQyxFQUFFLEtBQUssQ0FBRTtRQUV2QyxDQUFFLGVBQWUsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLEVBQUUsRUFBRSxDQUFDLEVBQUUsS0FBSyxDQUFFO1FBRXZDLENBQUUsZUFBZSxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsRUFBRSxFQUFFLENBQUMsRUFBRSxLQUFLLENBQUU7S0FDMUMsQ0FBQztJQUNGLE9BQU8sV0FBVyxDQUFFLFdBQVcsQ0FBRSxDQUFDO0FBQ3RDLENBQUMifQ==

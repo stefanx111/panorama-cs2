@@ -9,6 +9,7 @@
 		<include src="s2r://panorama/scripts/common/formattext.vts_c" />
 		<include src="s2r://panorama/scripts/common/gamerules_constants.vts_c" />
 		<include src="s2r://panorama/scripts/mock_adapter.vts_c" />
+		<include src="s2r://panorama/scripts/rating_emblem.vts_c" />
 	</scripts>
 	<snippets>
 		<snippet name="snippet_sb-label-set-container">
@@ -452,13 +453,22 @@
 		</snippet>
 		<snippet name="stat--NAME-W-COMMENDS">
 			<Panel data-stat="name">
-				<Label id="name" html="true" class="sb-team-tint stratum-regular-condensed" text="{g:player_name:player_slot}" />
+				<Label id="name" html="true" class="sb-team-tint stratum-medium" text="{g:player_name:player_slot}" />
 				<Panel id="id-sb-name__nameicons" class="spectator-hidden">
-					<Image id="id-sb-skillgroup-image" class="hidden" src="" textureheight="22" texturewidth="55" />
+					<Frame id="jsRatingEmblem" api="gamestate" src="s2r://panorama/layout/rating_emblem.vxml_c" />
 					<Image id="id-sb-name__commendations__leader" class="hidden sb-team-tint" src="s2r://panorama/images/icons/ui/leader.vsvg" />
 					<Image id="id-sb-name__commendations__teacher" class="hidden sb-team-tint" src="s2r://panorama/images/icons/ui/teacher.vsvg" />
 					<Image id="id-sb-name__commendations__friendly" class="hidden sb-team-tint" src="s2r://panorama/images/icons/ui/smile.vsvg" />
 					<Image id="id-sb-name__musickit" class="hidden sb-team-tint" src="s2r://panorama/images/icons/ui/music_kit.vsvg" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="stat--NAME-PREMIER">
+			<Panel data-stat="name">
+				<Label id="name" html="true" class="sb-team-tint stratum-medium" text="{g:player_name:player_slot}" />
+				<Panel id="id-sb-name__nameicons" class="spectator-hidden">
+					<Image id="id-sb-name__musickit" class="hidden sb-team-tint" src="s2r://panorama/images/icons/ui/music_kit.vsvg" />
+					<Frame id="jsRatingEmblem" api="gamestate" fakedatatype="" src="s2r://panorama/layout/rating_emblem.vxml_c" />
 				</Panel>
 			</Panel>
 		</snippet>
@@ -467,7 +477,7 @@
 				<Label id="name" html="true" class="sb-team-tint stratum-medium" text="{g:player_name:player_slot}" />
 				<Panel id="id-sb-name__nameicons" class="spectator-hidden">
 					<Image id="id-sb-name__musickit" class="hidden sb-team-tint" src="s2r://panorama/images/icons/ui/music_kit.vsvg" />
-					<Image id="id-sb-skillgroup-image" class="hidden" src="" textureheight="22" texturewidth="55" />
+					<Frame id="jsRatingEmblem" api="gamestate" fakedatatype="" src="s2r://panorama/layout/rating_emblem.vxml_c" />
 				</Panel>
 			</Panel>
 		</snippet>
@@ -545,13 +555,13 @@
 				<Label id="label" class="sb-team-tint stratum-regular-mono" />
 			</Panel>
 		</snippet>
-		<snippet name="snippet_scoreboard-classic__row--teammatchmaking">
+		<snippet name="snippet_scoreboard-classic__row--premier">
 			<Panel class="sb-row" cachepaintcmdlist="true">
 				<Frame snippet="stat--STATUS" />
 				<Frame snippet="stat--PING" />
 				<Frame snippet="stat--FLAIR" />
 				<Frame snippet="stat--AVATAR" />
-				<Frame snippet="stat--NAME" />
+				<Frame snippet="stat--NAME-PREMIER" />
 				<Frame snippet="stat--MONEY" data-set="0" />
 				<Frame snippet="stat--KILLS" data-set="0" />
 				<Frame snippet="stat--DEATHS" data-set="0" />

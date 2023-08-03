@@ -97,6 +97,19 @@
 				</Panel>
 			</Panel>
 		</snippet>
+		<snippet name="MapSelectionContainer_premier">
+			<Panel class="map-selection-list-premier hidden">
+				<Panel class="left-right-flow" style="height: fill-parent-flow( 1.0 );">
+					<Panel class="premier-left">
+						<Frame id="jsParty" src="s2r://panorama/layout/leaderboard.vxml_c" lbtype="party" class="playmenu--premier__party" />
+						<Frame id="jsPremierMapWinRecord" class="premier-play-menu-mapwinrecord" src="s2r://panorama/layout/premier_mapwinrecord.vxml_c" />
+					</Panel>
+					<Panel class="premier-right">
+						<Frame id="jsLeaderboard" src="s2r://panorama/layout/leaderboard.vxml_c" lbtype="general" class="playmenu--premier__leaderboard" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
 		<snippet name="MapSelectionContainer_directchallenge">
 			<Panel class="map-selection-list-directchallenge hidden">
 				<Panel class="full-width left-right-flow top-padding-large" style="height: fill-parent-flow( 1.0 );">
@@ -217,6 +230,10 @@
 			</Panel>
 			<Panel id="id-navbar-tabs" class="content-navbar__tabs content-navbar__tabs--dark content-navbar__tabs--noflow">
 				<Panel id="GameModeSelectionRadios" class="left-right-flow vertical-center horizontal-center full-height">
+					<RadioButton id="premier" group="gamemodes" class="content-navbar__tabs__btn visible-if-not-limitedbeta">
+						<Label text="#SFUI_GameModePremier" />
+						<Panel id="GameModeAlert" class="navbar-btn__notification-dot hidden" />
+					</RadioButton>
 					<RadioButton id="competitive" group="gamemodes" class="content-navbar__tabs__btn">
 						<Label text="#SFUI_GameModeCompetitive" />
 						<Panel id="GameModeAlert" class="navbar-btn__notification-dot hidden" />
@@ -311,9 +328,6 @@
 								<Panel id="jsQuickSelectionSetsContainer" class="map-selection-list__quick-selection-sets__btns">
 									<RadioButton id="favorites" class="gamemode-setting-radiobutton preset-button" onactivate="PlayMenu.OnMapQuickSelect( &apos;favorites&apos; )" group="presets">
 										<Label text="#mg_quick_favorites" />
-									</RadioButton>
-									<RadioButton id="premier" class="gamemode-setting-radiobutton preset-button" onactivate="PlayMenu.OnMapQuickSelect( &apos;premier&apos; )" group="presets">
-										<Label text="#mg_quick_premier" />
 									</RadioButton>
 									<RadioButton id="activeduty" class="gamemode-setting-radiobutton preset-button" onactivate="PlayMenu.OnMapQuickSelect( &apos;activeduty&apos; )" group="presets">
 										<Label text="#mg_quick_activeduty" />

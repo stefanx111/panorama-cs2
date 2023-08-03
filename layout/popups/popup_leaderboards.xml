@@ -12,18 +12,24 @@
 	<snippets>
 		<snippet name="leaderboard-entry">
 			<Panel class="popup-leaderboard__list__row">
-				<Panel class="popup-leaderboard__list__column ">
-					<Panel class="popup-leaderboard__name-entry">
-						<Label id="popup-leaderboard-entry-position" text="" class="popup-leaderboard__list__column__title position" />
-						<CSGOAvatarImage id="popup-leaderboard-entry-avatar" class="popup-leaderboard__name-entry__avatar" />
-						<Label id="popup-leaderboard-entry-name" text="" class="popup-leaderboard__list__column__title" />
-					</Panel>
-				</Panel>
-				<Panel class="popup-leaderboard__list__column points">
-					<Label id="popup-leaderboard-entry-points" text=" " class="popup-leaderboard__list__column__title" />
-				</Panel>
 				<Panel class="popup-leaderboard__list__column rank">
-					<Label id="popup-leaderboard-entry-rank" text=" " class="popup-leaderboard__list__column__title" />
+					<Label text="{s:player-rank}" class="stratum-regular-condensed popup-leaderboard__list__column__title rank" />
+				</Panel>
+				<Panel class="popup-leaderboard__list__column name">
+					<CSGOAvatarImage id="popup-leaderboard-entry-avatar" class="popup-leaderboard__name-entry__avatar" />
+					<Label text="{s:player-name}" class="stratum-regular-condensed popup-leaderboard__list__column__title" />
+				</Panel>
+				<Panel class="popup-leaderboard__list__column wins">
+					<Label text="{s:player-wins}" class="stratum-regular-condensed popup-leaderboard__list__column__title" />
+				</Panel>
+				<Panel class="popup-leaderboard__list__column winrate">
+					<Label text="{s:player-winrate}" class="stratum-regular-condensed popup-leaderboard__list__column__title" />
+				</Panel>
+				<Panel class="popup-leaderboard__list__column percentile">
+					<Label text="{s:player-percentile}" class="stratum-regular-condensed popup-leaderboard__list__column__title" />
+				</Panel>
+				<Panel class="popup-leaderboard__list__column rating">
+					<Frame id="jsRatingEmblem" api="leaderboard" vfx="true" fakedatatype="" src="s2r://panorama/layout/rating_emblem.vxml_c" />
 				</Panel>
 			</Panel>
 		</snippet>
@@ -58,14 +64,23 @@
 			</Panel>
 			<Panel id="id-popup-leaderboard-list" class="popup-leaderboard__list hidden">
 				<Panel class="popup-leaderboard__list__row">
-					<Panel class="popup-leaderboard__list__column">
-						<Label text="#CSGO_Operation_Leaderboard_Pickem_Friends" class="popup-leaderboard__list__column__title faded" />
-					</Panel>
-					<Panel class="popup-leaderboard__list__column points">
-						<Label id="id-list-column-header-points" text="#CSGO_Operation_Leaderboard_Pickem_Points" class="popup-leaderboard__list__column__title faded" />
-					</Panel>
 					<Panel class="popup-leaderboard__list__column rank">
-						<Label text="#CSGO_Operation_Leaderboard_Pickem_Percent" class="popup-leaderboard__list__column__title faded" />
+						<Label text="#leaderboard_column_rank" class="stratum-regular-condensed popup-leaderboard__list__column__title faded" />
+					</Panel>
+					<Panel class="popup-leaderboard__list__column name">
+						<Label text="#leaderboard_column_name" class="stratum-regular-condensed popup-leaderboard__list__column__title faded" />
+					</Panel>
+					<Panel class="popup-leaderboard__list__column wins">
+						<Label text="#leaderboard_column_wins" class="stratum-regular-condensed popup-leaderboard__list__column__title faded" />
+					</Panel>
+					<Panel class="popup-leaderboard__list__column winrate">
+						<Label text="#leaderboard_column_winrate" class="stratum-regular-condensed popup-leaderboard__list__column__title faded" />
+					</Panel>
+					<Panel class="popup-leaderboard__list__column percentile">
+						<Label text="#leaderboard_column_percentile" class="stratum-regular-condensed popup-leaderboard__list__column__title faded" />
+					</Panel>
+					<Panel class="popup-leaderboard__list__column rating">
+						<Label text="#leaderboard_column_rating" class="stratum-regular-condensed popup-leaderboard__list__column__title faded" />
 					</Panel>
 				</Panel>
 				<Panel id="id-popup-leaderboard-entries" class="popup-leaderboard__entries-container" />

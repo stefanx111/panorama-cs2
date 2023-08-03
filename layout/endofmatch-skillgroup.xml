@@ -8,6 +8,8 @@
 	</styles>
 	<scripts>
 		<include src="s2r://panorama/scripts/common/sessionutil.vts_c" />
+		<include src="s2r://panorama/scripts/digitpanel.vts_c" />
+		<include src="s2r://panorama/scripts/rating_emblem.vts_c" />
 		<include src="s2r://panorama/scripts/endofmatch-skillgroup.vjs_c" />
 	</scripts>
 	<snippets>
@@ -57,6 +59,7 @@
 						<ParticleScenePanel id="id-eom-skillgroup-emblem--new__pfx--above" class="eom-skillgroup-emblem--new__pfx--above" hittest="true" startActive="false" particleName="" cameraOrigin="0 300 0" lookAt="0 0 0" fov="60" />
 					</Panel>
 				</Panel>
+				<Frame id="jsRatingEmblem" api="gamestate" end-of-match="true" vfx="true" src="s2r://panorama/layout/rating_emblem.vxml_c" />
 				<Panel class="eom-skillgroup__label-container">
 					<Panel class="left-right-flow">
 						<Label id="id-eom-skillgroup__current_wins" class="eom-skillgroup__info-label small wincount stratum-black" text="#XP_RankName_Display" />

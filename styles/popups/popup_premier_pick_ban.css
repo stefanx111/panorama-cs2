@@ -8,23 +8,37 @@
   pre-transform-scale2d: 1;
   transform: translateY( 0px );
   min-width: 0px;
-  opacity: 1.0;
   border-radius: 0px;
   flow-children: down;
-  background-color: green;
+  background-color:rgba(0, 0, 0, 0.50);
+  background-image: url( "s2r://panorama/images/backgrounds/linemap_png.vtex");
+  background-size: auto 60%;
+  background-img-opacity: .015;
+
+  opacity: 0;
+  transform: scale3d(1.2,1.2, 1);
+  visibility: collapse;
+
+  transition-property: opacity, transform;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in;
  }
   .premier-pickban .premier-pickban__topbar{
 
-   height: 64px;
-   width: 100%;
-   background-color: blue;
+   horizontal-align: center;
+
+   ignore-parent-flow: true;
+   transform:translateY( 128px);
+   padding: 8px 24px;
+   border-radius: 5px;
   }
 
   .premier-pickban .premier-pickban__middle{
 
-   height: 672px;
+   height: 100%;
    width: 100%;
-   background-color: lightblue;
+   background-color: gradient( linear, 0% 0%, 0% 100%, from(#000000d2), to( #00000000) );
+
    flow-children: down;
   }
 
@@ -35,31 +49,79 @@
    background-color: blue;
   }
 
+  .premier-pickban.show{
+
+   visibility: visible;
+   opacity: 1;
+   transform: scale3d(1, 1, 1);
+
+   transition-property: opacity, transform;
+   transition-duration: 0.2s;
+   transition-timing-function: ease-in;
+  }
+
 
  .premier-pickban__title{
 
   flow-children: right;
   vertical-align: center;
-  horizontal-align: center;
+  horizontal-align: left;
+  opacity: 1;
+  perspective: 1000px;
+  perspective-origin:  0% 0%;
  }
-  .premier-pickban__title .premier-pickban__title__clock{
+  .premier-pickban__title .premier-pickban__title__text{
 
-   margin-right: 8px;
-   width: 96px;
-   text-align: right;
-   color: White;
+   color: white;
+   text-align: left;
+   text-shadow:1px 1px 3px 2 rgba(0, 0, 0, 0.30);
+  }
+
+  .premier-pickban__title.premier-pickban__title--change{
+
+   animation-name: new-phase;
+   animation-duration: .5s;
+   animation-timing-function: ease-in-out;
+   animation-iteration-count: 1;
+   animation-fill-mode: forwards;
   }
 
 
+ .premier-pickban__title__text-red{
 
+  color: red;
+ }
 
+ .premier-pickban__title__text-green{
 
+  color: positiveColor;
+ }
 
+ @keyframes 'new-phase'{
+
+  0%{
+
+   opacity: 1;
+  }
+
+  1%{
+
+   transform: translateY ( 0px ) rotatex( 90deg);
+   opacity: 0;
+  }
+
+  100%{
+
+   brightness: 1;
+   transform: translateY ( 0px ) rotateX( 0deg);
+   opacity: 0;
+   opacity: 1;
+  }
+ }
 
  .premier-pickban__progress{
 
-  height: 48px;
-  background-color: blueviolet;
+  height: 96px;
   flow-children: right;
   horizontal-align: center;
  }
@@ -69,43 +131,689 @@
    vertical-align: bottom;
    margin: 0px 2px;
   }
-   .premier-pickban__progress .premier-pickban__section .premier-pickban__progress__section-name{
+   .premier-pickban__progress .premier-pickban__section .premier-pickban__progress__section-name,.premier-pickban__progress .premier-pickban__section .premier-pickban__progress__section-timer{
+
 
     text-align: center;
     horizontal-align: center;
     letter-spacing: 5px;
+    color: white;
+
+    transition-property: color-wash;
+    transition-duration: 1s;
+    transition-timing-function: ease-in-out;
    }
 
    .premier-pickban__progress .premier-pickban__section .premier-pickban__progress__bar-container{
 
     width: 284px;
-    height: 8px;
+    height: 16px;
     background-color: black;
+    transform-origin: 50% 100%;
+
+    transition-property: transform, color-wash;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-in-out;
    }
     .premier-pickban__progress .premier-pickban__section .premier-pickban__progress__bar-container .premier-pickban__progress__bar-inner{
 
-     width: 20px;
+     width: 0%;
      height: 100%;
      background-color: white;
+
+     transition-property: width;
+     transition-duration: 1s;
+     transition-timing-function: linear;
     }
 
 
 
 
- .premier-pickban__maps{
+    .premier-pickban__progress .premier-pickban__section.premier-pickban__progress--pre .premier-pickban__progress__section-timer{
+
+     opacity: 0;
+    }
+
+    .premier-pickban__progress .premier-pickban__section.premier-pickban__progress--pre .premier-pickban__progress__section-name,.premier-pickban__progress .premier-pickban__section.premier-pickban__progress--pre .premier-pickban__progress__bar-container{
+
+
+     wash-color: rgb(141, 141, 141);
+    }
+
+    .premier-pickban__progress .premier-pickban__section.premier-pickban__progress--pre .premier-pickban__progress__bar-container{
+
+     transform: scaleY(.25);
+    }
+
+
+
+
+    .premier-pickban__progress .premier-pickban__section.premier-pickban__progress--ban .premier-pickban__progress__section-timer{
+
+     opacity: 1;
+     text-shadow:0px 0px 8px 2 rgba(255, 255, 255, 0.30);
+    }
+
+    .premier-pickban__progress .premier-pickban__section.premier-pickban__progress--ban .premier-pickban__progress__bar-container{
+
+     wash-color: negativeColor;
+     transform: scaleY(1);
+    }
+
+
+
+
+    .premier-pickban__progress .premier-pickban__section.premier-pickban__progress--pick .premier-pickban__progress__section-timer{
+
+     opacity: 1;
+     text-shadow:0px 0px 8px 2 rgba(255, 255, 255, 0.30);
+    }
+
+    .premier-pickban__progress .premier-pickban__section.premier-pickban__progress--pick .premier-pickban__progress__bar-container{
+
+     wash-color: positiveColor;
+     transform: scaleY(1);
+    }
+
+
+
+
+    .premier-pickban__progress .premier-pickban__section.premier-pickban__progress--post .premier-pickban__progress__section-timer{
+
+     opacity: 0;
+    }
+
+    .premier-pickban__progress .premier-pickban__section.premier-pickban__progress--post .premier-pickban__progress__section-name,.premier-pickban__progress .premier-pickban__section.premier-pickban__progress--post .premier-pickban__progress__bar-container{
+
+
+     wash-color: rgb(66, 66, 66);
+    }
+
+    .premier-pickban__progress .premier-pickban__section.premier-pickban__progress--post .premier-pickban__progress__bar-container{
+
+     transform: scaleY(.25);
+    }
+
+
+
+
+
+
+
+  .premier-pickban-phase-0 .premier-pickban__maps,.premier-pickban-phase-1 .premier-pickban__maps{
+
+   opacity: 0;
+  }
+
+
+
+
+
+
+  .premier-pickban-phase-2 .premier-pickban__maps,.premier-pickban-phase-3 .premier-pickban__maps,.premier-pickban-phase-4 .premier-pickban__maps{
+
+   opacity: 1;
+   transform: scale3d(1, 1, 1);
+  }
+
+
+
+
+  .premier-pickban-phase-5 .premier-pickban__maps{
+
+   opacity: 0;
+  }
+
+  .premier-pickban-phase-5 .premier-pickban__team:not(.premier-pickban-phase-row){
+
+   opacity: 1;
+  }
+
+
+
+
+  .premier-pickban-phase-6 .premier-pickban__maps{
+
+   opacity: 0;
+  }
+
+  .premier-pickban-phase-6 .premier-pickban__team--result{
+
+   opacity: 1;
+  }
+
+
+ .premier-pickban-phase-row{
+
+  width: 1440px;
 
   height: 100%;
-  width: 866px;
-  background-color: green;
+  horizontal-align: center;
+  vertical-align: center;
+
+  transition-property: transform;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
  }
+
+ .premier-pickban__maps{
+
+
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  horizontal-align: center;
+  vertical-align: center;
+  transform: scale3d(.8, .8, 1);
+
+  transition-property: opacity, transform;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-in-out;
+ }
+
+
+
+ .premier-pickban__spider-bg{
+
+  horizontal-align: center;
+  vertical-align: center;
+
+  width: 500px;
+  height: width-percentage( 100%);
+ }
+
+
+
+
+
+   .your-turn .premier-pickban__topbar .premier-pickban__title__text{
+
+    color: white;
+    font-weight: bold;
+   }
+
+
 
  .premier-pickban__team{
 
   height: 100%;
-  width: 288px;
-  background-color: lightgreen;
+  width:100%;
+  horizontal-align: center;
+  opacity: 0;
+
+  transition-property: opacity;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-in-out;
  }
+
+  .premier-pickban__team .premier-pickban__team__map-image{
+
+   width: 100%;
+   height: 640px;
+
+
+   background-image: url("s2r://panorama/images/map_icons/screenshots/1080p/de_ancient_png.vtex");
+   opacity-mask: url( "s2r://panorama/images/masks/top-bottom-fade_png.vtex");
+   background-size: cover;
+   contrast: .9;
+   saturation: .8;
+   brightness: .5;
+  }
+
+
+  .premier-pickban__team .premier-pickban__team__map-texture{
+
+   width: 100%;
+   height: 640px;
+
+   background-image: url( "s2r://panorama/images/backgrounds/bluedots_large_png.vtex");
+   opacity-mask: url( "s2r://panorama/images/masks/top-bottom-fade-5_png.vtex");
+
+   background-size: auto auto;
+   background-img-opacity: .07;
+  }
+
+  .premier-pickban__team .premier-pickban__team__map-icon{
+
+   horizontal-align:center;
+   vertical-align: center;
+   img-shadow: 0px 0px 19px 7.0 #000000ac;
+  }
+
+
   .premier-pickban__team.premier-pickban__team--result{
 
-   background-color: yellowgreen;
+
+   opacity: 0;
+  }
+
+  .premier-pickban__team #id-team-vote-btn-0{
+
+   vertical-align: bottom;
+   flow-children: left;
+   margin: 40px 280px;
+
+   text-align: right;
+  }
+
+  .premier-pickban__team #id-team-vote-btn-1{
+
+   vertical-align: bottom;
+   horizontal-align: right;
+   margin: 40px 280px;
+  }
+
+  .premier-pickban__team .premier-pickban__agent{
+
+   height: 800px;
+   width: 300px;
+   margin: 0px 320px;
+   opacity-mask: url( "s2r://panorama/images/masks/top-bottom-fade-5_png.vtex");
+  }
+
+
+ .premier-pickban__map-btn{
+
+  flow-children: right;
+  width: 280px;
+  overflow:noclip;
+ }
+  .premier-pickban__map-btn .premier-pickban__map-btn-container{
+
+
+
+   overflow: noclip;
+  }
+   .premier-pickban__map-btn .premier-pickban__map-btn-container .TickBox{
+    visibility: collapse;
+   }
+
+   .premier-pickban__map-btn .premier-pickban__map-btn-container .premier-pickban__map-btn-bg{
+
+    width: 140px;
+    height: 140px;
+    border-radius: 10px;
+    border: 2px solid lightgrey;
+   }
+
+   .premier-pickban__map-btn .premier-pickban__map-btn-container .premier-pickban__map-btn__map-fade{
+
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: gradient( linear, 0% 100%, 0% 0%, from(#000000e7), to( #00000059) );
+
+    transition-property: brightness;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+   }
+
+   .premier-pickban__map-btn .premier-pickban__map-btn-container .premier-pickban__map-btn__label{
+
+    text-transform: uppercase;
+    text-align: center;
+    horizontal-align: center;
+    vertical-align: top;
+    margin-top: 10px;
+    text-shadow: 0px 0px 3px 2.0 rgba(0, 0, 0, 0.267);
+    position: 0px 0px 0px;
+   }
+
+   .premier-pickban__map-btn .premier-pickban__map-btn-container .premier-pickban__map-btn__vote-container{
+
+    width: 42px;
+    height: 42px;
+    horizontal-align: center;
+    vertical-align: center;
+    background-color: rgba(0, 0, 0, 0.733);
+    border: 2px dashed white;
+    border-radius: 6px;
+   }
+
+   .premier-pickban__map-btn .premier-pickban__map-btn-container .premier-pickban__map-btn__vote{
+
+    width: 100%;
+    height:  100%;
+    horizontal-align: center;
+   }
+
+   .premier-pickban__map-btn .premier-pickban__map-btn-container .premier-pickban__map-btn__result{
+
+    width: 48px;
+    height: 48px;
+    horizontal-align: center;
+    vertical-align: center;
+    background-image: none;
+    z-index:2;
+
+    opacity: 0;
+    transform: scale3d( 1.5, 1.5, 1);
+
+    transition-property: transform, opacity;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+   }
+
+   .premier-pickban__map-btn .premier-pickban__map-btn-container .premier-pickban__map-btn-status{
+
+    horizontal-align: center;
+    vertical-align: bottom;
+    text-align: center;
+    padding: 2px 6px;
+    background-color: negativeColor;
+    position: 0px 0px 0px;
+    border-radius: 6px;
+    overflow: noclip;
+
+    opacity: 0;
+    transform: translateY(0px);
+
+    transition-property: transform, opacity;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+   }
+
+
+
+    .premier-pickban__map-btn .premier-pickban__map-btn-container.premier-pickban-pick .premier-pickban__map-btn__result{
+
+     wash-color: positiveColor;
+     background-image: url("s2r://panorama/images/icons/ui/check.vsvg");
+     background-repeat: no-repeat;
+     background-size: 48px 48px;
+     opacity: 1;
+     transform: scale3d( 1, 1, 1);
+    }
+
+
+     .premier-pickban__map-btn .premier-pickban__map-btn-container.premier-pickban-pick:disabled .premier-pickban__map-btn-bg{
+
+      border: 2px solid positiveColor;
+     }
+
+
+
+
+
+    .premier-pickban__map-btn .premier-pickban__map-btn-container.premier-pickban-veto .premier-pickban__map-btn__result{
+
+     wash-color: negativeColor;
+     background-image: url("s2r://panorama/images/icons/ui/exit.vsvg");
+     background-repeat: no-repeat;
+     background-size: 48px 48px;
+     opacity: 1;
+     transform: scale3d( 1, 1, 1);
+    }
+
+
+     .premier-pickban__map-btn .premier-pickban__map-btn-container.premier-pickban-veto:disabled .premier-pickban__map-btn-bg{
+
+      border: 2px solid negativeColor;
+     }
+
+
+
+
+
+
+    .premier-pickban__map-btn .premier-pickban__map-btn-container:hover:not(:disabled) .premier-pickban__map-btn__map-image{
+
+     brightness: 2;
+     box-shadow: fill #000000ab 0px 0px 8px 1px;
+    }
+
+
+   .premier-pickban__map-btn .premier-pickban__map-btn-container:disabled{
+
+    wash-color:none;
+   }
+    .premier-pickban__map-btn .premier-pickban__map-btn-container:disabled .premier-pickban__map-btn-bg{
+
+     border: 2px solid rgb(87, 93, 95);
+    }
+
+    .premier-pickban__map-btn .premier-pickban__map-btn-container:disabled .premier-pickban__map-btn__map-fade{
+
+     background-color: rgba(0, 0, 0, .90);
+    }
+
+    .premier-pickban__map-btn .premier-pickban__map-btn-container:disabled .premier-pickban__map-btn__vote-container{
+
+     opacity: 0;
+    }
+
+    .premier-pickban__map-btn .premier-pickban__map-btn-container:disabled .premier-pickban__map-btn__label{
+
+     color: rgb(78, 78, 78);
+    }
+
+
+
+
+    .premier-pickban__map-btn .premier-pickban__map-btn-container.premier-pickban__map-btn__show-status .premier-pickban__map-btn-status{
+
+     opacity: 1;
+     transform: translateY(16px);
+
+     transition-property: transform, opacity;
+     transition-duration: 0.2s;
+     transition-timing-function: ease-in-out;
+    }
+
+
+
+
+    .premier-pickban__map-btn .premier-pickban__map-btn-container.is-team-pick .premier-pickban__map-btn-status{
+
+     background-color: green;
+    }
+
+
+   .premier-pickban__map-btn .premier-pickban__map-btn-container.premier-pickban__map-btn-winning--green{
+
+    background-color: positiveColor;
+   }
+
+
+  .premier-pickban__map-btn .premier-pickban__map-avatars-container{
+
+   flow-children: down;
+  }
+   .premier-pickban__map-btn .premier-pickban__map-avatars-container .premier-pickban__map-avatars__btn{
+
+    flow-children: right;
+   }
+
+   .premier-pickban__map-btn .premier-pickban__map-avatars-container .premier-pickban__map-avatars__label{
+
+    width: 100px;
+    height: 14px;
+    text-overflow: ellipsis;
+   }
+
+   .premier-pickban__map-btn .premier-pickban__map-avatars-container CSGOAvatarImage{
+
+    width:24px;
+    height:24px;
+    margin: 2px 4px;
+
+    transition-property: opacity;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-in-out;
+   }
+
+   .premier-pickban__map-btn .premier-pickban__map-avatars-container CSGOAvatarImage.hidden{
+
+    opacity: 0;
+   }
+
+   .premier-pickban__map-btn .premier-pickban__map-avatars-container CSGOAvatarImage.team-color{
+
+    border: 2px solid white;
+   }
+
+
+
+
+
+  .is-vote-phase.premier-pickban__map-btn-container:selected .premier-pickban__map-btn__vote{
+
+   wash-color: positiveColor;
+
+   background-image: url("s2r://panorama/images/icons/ui/check.vsvg");
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: 32px 32px;
+  }
+
+
+
+
+  .is-ban-phase.premier-pickban__map-btn-container:selected .premier-pickban__map-btn__vote{
+
+   wash-color: negativeColor;
+
+   background-image: url("s2r://panorama/images/icons/ui/exit.vsvg");
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: 32px 32px;
+  }
+
+
+ .map-draft-phase-button--pulse{
+
+  animation-name: draft-button-flash;
+  animation-duration: .25s;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+ }
+
+ @keyframes 'draft-button-flash'{
+
+  0%{
+
+   brightness: 1;
+   transform: scale3d( 1, 1, 1);
+  }
+
+  50%{
+
+   brightness: 6;
+   transform: scale3d( 1.02, 1.02, 1);
+  }
+
+     100%{
+
+   brightness: 1;
+   transform: scale3d( 1, 1, 1);
+     }
+ }
+
+ #id-map-vote-btn-0{
+
+  x: 78px;
+  y: 116px;
+  horizontal-align: center;
+ }
+
+ #id-map-vote-btn-1{
+
+  x: 342px;
+  y: 280px;
+  horizontal-align: center;
+ }
+
+ #id-map-vote-btn-2{
+
+  x: 400px;
+  y: 495px;
+  horizontal-align: center;
+ }
+
+ #id-map-vote-btn-3{
+
+  x: 194px;
+  y: 736px;
+  horizontal-align: center;
+ }
+
+ #id-map-vote-btn-4{
+
+  flow-children: left;
+  x: -188px;
+  y: 736px;
+  horizontal-align: center;
+ }
+  #id-map-vote-btn-4 .premier-pickban__map-avatars__btn{
+
+   flow-children: left;
+  }
+
+  #id-map-vote-btn-4 .premier-pickban__map-avatars__label{
+
+   horizontal-align: right;
+   text-align: right;
+  }
+
+
+ #id-map-vote-btn-5{
+
+  flow-children: left;
+  x: -390px;
+  y: 495px;
+  horizontal-align: center;
+ }
+  #id-map-vote-btn-5 .premier-pickban__map-avatars__btn{
+
+   flow-children: left;
+  }
+
+  #id-map-vote-btn-5 .premier-pickban__map-avatars__label{
+
+   horizontal-align: right;
+   text-align: right;
+  }
+
+
+ #id-map-vote-btn-6{
+
+  flow-children: left;
+  x: -180px;
+  y: 280px;
+  horizontal-align: center;
+ }
+  #id-map-vote-btn-6 .premier-pickban__map-avatars__btn{
+
+   flow-children: left;
+  }
+
+  #id-map-vote-btn-6 .premier-pickban__map-avatars__label{
+
+   horizontal-align: right;
+   text-align: right;
+  }
+
+
+ .Spinner{
+
+  height: 24px;
+  width: 24px;
+  vertical-align: center;
+ }
+
+ .premier-pickban__reflection{
+
+  transform: scale3d(1, -1, 1);
+  width: 100%;
+  height: 110px;
+  horizontal-align:center;
+
+
+  brightness: .2;
+  wash-color: rgba(0, 0, 0, 0.2);
+  opacity: .5;
+
+  blur:gaussian( 3, 3, 2);
+  opacity-mask: url( "s2r://panorama/images/masks/bottom-top-fade-2_png.vtex");
 }

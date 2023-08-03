@@ -9,8 +9,10 @@
 	</styles>
 	<scripts>
 		<include src="s2r://panorama/scripts/common/iteminfo.vts_c" />
+		<include src="s2r://panorama/scripts/mock_adapter.vts_c" />
 		<include src="s2r://panorama/scripts/controlslibrary.vts_c" />
 		<include src="s2r://panorama/scripts/particle_controls.vts_c" />
+		<include src="s2r://panorama/scripts/rating_emblem.vts_c" />
 	</scripts>
 	<snippets>
 		<snippet name="frame-snippet-example">
@@ -54,6 +56,9 @@
 				</RadioButton>
 				<RadioButton id="JsVanity" group="nav" onactivate="ControlsLibNavigateToTab(&apos;ControlsLibVanityPanel&apos;,&apos;JsVanity&apos;);">
 					<Label text="Vanity Map" />
+				</RadioButton>
+				<RadioButton id="JsCanvas" group="nav" onactivate="ControlsLibNavigateToTab(&apos;ControlsLibCanvasPanel&apos;,&apos;JsCanvas&apos;);">
+					<Label text="Canvas" />
 				</RadioButton>
 				<RadioButton id="JsControlOther" group="nav" onactivate="ControlsLibNavigateToTab(&apos;ControlsLibOther&apos;, &apos;JsControlOther&apos;)">
 					<Label text="Other" />
@@ -437,7 +442,7 @@
 							<Panel class="top-bottom-flow">
 								<Label class="fontSize-xxl" text="fontSize-xxl" />
 								<Label class="fontSize-xl" text="fontSize-xl" />
-								<Label class="fontSize-l" text="fontSize-l" />
+								<Label class="fontSize-m" text="fontSize-m" />
 								<Label class="fontSize-m" text="fontSize-m" />
 								<Label class="fontSize-s" text="fontSize-s" />
 								<Label class="fontSize-xs" text="fontSize-xs" />
@@ -707,6 +712,19 @@
 					</Panel>
 				</Panel>
 			</Panel>
+			<Panel id="ControlsLibCanvasPanel" class="ControlsLib" onload="">
+				<Panel class="left-right-flow">
+					<SpiderGraph id="SpiderGraph" class="spider-graph-example" />
+					<Panel class="top-bottom-flow">
+						<Button id="" class="FlatButton" onactivate="CtrlLib_CreateSpiderGraph();">
+							<Label id="" text="Generate" />
+						</Button>
+						<TextEntry id="SpiderGraphSpokes" class="FlatButton" text="5" />
+						<TextEntry id="SpiderGraphNumPolys" class="FlatButton" text="2" />
+						<TextEntry id="SpiderGraphNumGuidelines" class="FlatButton" text="5" />
+					</Panel>
+				</Panel>
+			</Panel>
 			<Panel id="ControlsLibOther" class="ControlsLib">
 				<Panel class="top-bottom-flow full-width vscroll">
 					<Button class="FlatButton" onactivate="GetRssFeed();">
@@ -725,11 +743,11 @@
 					<Label text="Label&apos;s text set dynamically in javascript: text will not update if &apos;count&apos; dialog variable is changing value." />
 					<Label id="DiagVarLabel" text="\tblah" />
 					<Panel id="DialogVarParentPanel" class="top-bottom-flow">
-						<Label class="fontSize-l Warning" text="Dialog Variable Parent Panel" />
+						<Label class="fontSize-m Warning" text="Dialog Variable Parent Panel" />
 						<TextEntry id="ParentDialogVarTextEntry" placeholder="Enter debug text here" />
 						<Label text="#ControlsLib_DiagVariableTest1" html="true" />
 						<Panel id="DialogVarChildPanel" class="top-bottom-flow">
-							<Label class="fontSize-l Warning" text="Dialog Variable Child Panel" />
+							<Label class="fontSize-m Warning" text="Dialog Variable Child Panel" />
 							<TextEntry id="ChildDialogVarTextEntry" placeholder="Enter debug text here" />
 							<Label text="#ControlsLib_DiagVariableTest1" html="true" />
 						</Panel>
@@ -764,7 +782,7 @@
 			</Panel>
 			<Panel id="ControlsLibSound" class="ControlsLib">
 				<Panel class="top-bottom-flow">
-					<Label class="fontSize-l" text="From CSS:" />
+					<Label class="fontSize-m" text="From CSS:" />
 					<Panel class="top-bottom-flow" style="padding-left: 50px;">
 						<Panel class="left-right-flow">
 							<Label class="Positive fontSize-m fontWeight-Bold" text="sound" />
@@ -784,7 +802,7 @@
 							</Button>
 						</Panel>
 					</Panel>
-					<Label class="fontSize-l" text="From javascript:" />
+					<Label class="fontSize-m" text="From javascript:" />
 					<Panel class="top-bottom-flow" style="padding-left: 50px;">
 						<Panel class="left-right-flow">
 							<Label text="By dispatching panorama event &apos;" />
@@ -810,14 +828,18 @@
 			</Panel>
 			<Panel id="ControlsLibPanels" class="ControlsLib" onload="InitPanels()">
 				<Panel class="top-bottom-flow vscroll">
-					<Label class="fontSize-l fontWeight-Bold" text="Panels created dynamically:" />
+					<Label class="fontSize-m fontWeight-Bold" text="Panels created dynamically:" />
 					<Panel id="ControlsLibPanelsDynParent" class="top-bottom-flow" style="padding: 30px;" />
-					<Label class="fontSize-l fontWeight-Bold" text="Custom panels registered with panorama from javascript:" />
+					<Label class="fontSize-m fontWeight-Bold" text="Custom panels registered with panorama from javascript:" />
 					<Panel id="ControlsLibPanelsJS" class="top-bottom-flow" style="padding: 30px;">
 						<ControlLibTestPanel />
 						<ControlLibTestPanel MyCustomProp="Set from xml" />
 					</Panel>
-					<Label class="fontSize-l fontWeight-Bold" text="Carousel test" />
+					<Label class="fontSize-m fontWeight-Bold" text="CS Rating" />
+					<Frame id="jsRatingEmblem1" api="mypersona" fakedatatype="Competitive" src="s2r://panorama/layout/rating_emblem.vxml_c" onactivate="RatingEmblem.SetXuid( $(&apos;#jsRatingEmblem1&apos;), -1)" onload="RatingEmblem.SetXuid( $(&apos;#jsRatingEmblem1&apos;), -1, &apos;Competitive&apos;)" />
+					<Frame id="jsRatingEmblem2" api="mypersona" fakedatatype="Wingman" src="s2r://panorama/layout/rating_emblem.vxml_c" onactivate="RatingEmblem.SetXuid( $(&apos;#jsRatingEmblem2&apos;), -1)" onload="RatingEmblem.SetXuid( $(&apos;#jsRatingEmblem2&apos;), -1, &apos;Wingman&apos;)" />
+					<Frame id="jsRatingEmblem3" api="mypersona" fakedatatype="Premier" vfx="true" src="s2r://panorama/layout/rating_emblem.vxml_c" onactivate="RatingEmblem.SetXuid( $(&apos;#jsRatingEmblem3&apos;), -1)" onload="RatingEmblem.SetXuid( $(&apos;#jsRatingEmblem3&apos;), -1, &apos;Premier&apos;)" />
+					<Label class="fontSize-m fontWeight-Bold" text="Carousel test" />
 					<Panel class="top-bottom-flow" style="padding: 30px;">
 						<CarouselNav carouselid="TestCarousel" />
 						<Carousel id="TestCarousel" panels-visible="3">
@@ -826,7 +848,7 @@
 							<Label class="TestCarouselItem" text="Panel 3" />
 						</Carousel>
 					</Panel>
-					<Label class="fontSize-l fontWeight-Bold" text="CSS selectors test cases" />
+					<Label class="fontSize-m fontWeight-Bold" text="CSS selectors test cases" />
 					<Label class="fontSize-m fontWeight-Bold" text="Press green panel to toggle &apos;CSSSelectorActive&apos; class -&gt; red border" />
 					<Panel class="left-right-flow" style="padding: 30px;">
 						<Panel id="TestCssNotSelectorId" class="TestCssNotSelector top-bottom-flow" onactivate="$( &apos;#TestCssNotSelectorId&apos; ).ToggleClass( &apos;CSSSelectorActive&apos; )">
@@ -840,7 +862,7 @@
 							<Label text=".TestCssNotSelector2:hover:not(.CSSSelectorActive) Label -&gt; white" />
 						</Panel>
 					</Panel>
-					<Label class="fontSize-l fontWeight-Bold" text="Image fallback:" />
+					<Label class="fontSize-m fontWeight-Bold" text="Image fallback:" />
 					<Panel class="top-bottom-flow" style="padding: 30px;">
 						<Panel class="left-right-flow">
 							<Label text="From xml, setting &apos;defaultsrc&apos; attribute on the Image panel" />
@@ -851,10 +873,10 @@
 							<Image id="ControlsLibPanelImageFallback" style="width: 100px;height: 100px;" />
 						</Panel>
 					</Panel>
-					<Label class="fontSize-l fontWeight-Bold" text="Frames:" />
+					<Label class="fontSize-m fontWeight-Bold" text="Frames:" />
 					<Frame src="s2r://panorama/layout/controlslibrary_frameexample.vxml_c" />
 					<Frame snippet="frame-snippet-example" />
-					<Label class="fontSize-l fontWeight-Bold" text="Persepective:" />
+					<Label class="fontSize-m fontWeight-Bold" text="Persepective:" />
 					<Panel class="top-bottom-flow" style="padding: 30px;">
 						<Panel class="TestCssPerspectiveParent">
 							<Panel class="TestCssPerspectiveChild" />
@@ -863,7 +885,7 @@
 							<ItemPreviewPanel id="Player1" class="ItemPreviewPanelLargeSpinningBorder" manifest="resource/ui/econ/itemmodelpanelcharweaponinspect.res" animgraphcharactermode="inventory-inspect" item="characters/models/ctm_sas/ctm_sas.vmdl" mouse_rotate="true" />
 						</Panel>
 					</Panel>
-					<Label class="fontSize-l fontWeight-Bold" text="box-shadow:" />
+					<Label class="fontSize-m fontWeight-Bold" text="box-shadow:" />
 					<Panel class="top-bottom-flow" style="padding: 30px;">
 						<Panel style="flow-children: right; padding: 20px; background-color: #444444;">
 							<Panel style="width: 75px; height: 75px; margin-right: 40px; background-color: #888888; box-shadow: #ff0000 -10px 0px 2px 0px;">
@@ -926,7 +948,7 @@
 							</Panel>
 						</Panel>
 					</Panel>
-					<Label class="fontSize-l fontWeight-Bold" text="Text Shadow Test" />
+					<Label class="fontSize-m fontWeight-Bold" text="Text Shadow Test" />
 					<Panel style="flow-children: right; padding: 30px; background-color: #444444;">
 						<Label text="Text" unlocalized="true" style="font-size: 36px; margin-right: 50px; color: #ffffff; text-shadow: 4px 4px 2px #000000;" />
 						<Label text="Text" unlocalized="true" style="font-size: 36px; margin-right: 50px; color: #ffffff; text-shadow: 14px 4px 2px #000000;" />
@@ -938,7 +960,7 @@
 						<Label text="Text" unlocalized="true" style="font-size: 36px; margin-right: 50px; color: #ffffff; text-shadow: 10px 10px 4px #000000;" />
 						<Label text="Text" unlocalized="true" style="font-size: 36px; margin-right: 50px; color: #ffffff; text-shadow: 10px 10px 10px #000000;" />
 					</Panel>
-					<Label class="fontSize-l fontWeight-Bold" text="Radial Clip:" />
+					<Label class="fontSize-m fontWeight-Bold" text="Radial Clip:" />
 					<Panel class="left-right-flow" style="padding: 30px;">
 						<Panel class="TestCssRadialClip" />
 						<Panel class="TestCssRadialClipAnimating" />
@@ -981,7 +1003,7 @@
 						<Label id="alphaedge_bk" text="Hello World\nAnimating opacity on Labels bkgnd" />
 					</Panel>
 					<Panel class="top-bottom-flow FillParentFlow">
-						<Label class="stratum-bold fontSize-l" text="BG Tiling tests\n" />
+						<Label class="stratum-bold fontSize-m" text="BG Tiling tests\n" />
 						<Label class="stratum-bold" text="overflow: noclip clip" />
 						<Panel class="bg-tiling-test1" />
 						<Label class="stratum-bold" text="overflow: noclip clip\nbackground-position: right" />
@@ -1002,7 +1024,7 @@
 							<Panel class="ControlsLibGradient3Stops" />
 							<Panel class="ControlsLibSolidFill" />
 						</Panel>
-						<Label class="fontSize-l" text="Ready for display test" style="padding-top:15px;" />
+						<Label class="fontSize-m" text="Ready for display test" style="padding-top:15px;" />
 						<Panel class="left-right-flow">
 							<Button class="FlatButton" onactivate="JSReadyReset();">
 								<Label text="Reset" />
@@ -1038,7 +1060,7 @@
 								<Panel class="ControlLibBugs__Row" />
 							</Panel>
 						</Panel>
-						<Label class="fontSize-l fontWeight-Bold" text="Clipped Translation Transitions Repaint Bug" style="padding-top:20px;" />
+						<Label class="fontSize-m fontWeight-Bold" text="Clipped Translation Transitions Repaint Bug" style="padding-top:20px;" />
 						<Label class="fontSize-m" text="Click start and keep mouse stationary over button.\nBug is that child and grandchild panels do not transition into view. \nBut they do appear as soon as mouse is moved forcing repaint." style="padding-top:10px;" />
 						<Panel class="left-right-flow">
 							<Button id="ControlsLibBugsTestTransition" class="FlatButton" onactivate="JSTestTransition();">
@@ -1269,16 +1291,16 @@
 					<Button id="StopParticles" class="FlatButton" onactivate="ParticleControls.StopAllChildrenParticlesImmediately($(&apos;#ControlsLibParticlesMVP&apos;));">
 						<Label text="Stop Particles" />
 					</Button>
-					<Button id="ShowZooWinPanel" class="FlatButton" onactivate="ShowHideWinPanel( true );ParticleControls.SACVpcfParticleSystem(&apos;#MVPParticleEffectPanel&apos;,&apos;particles/ui/hud/ui_mvp_winner.vpcf&apos;);">
+					<Button id="ShowZooWinPanel" class="FlatButton" onactivate="$(&apos;#MVPParticleEffectPanel&apos;).AddClass(&apos;UIMvpEffects_additive&apos;);ShowHideWinPanel( true );ParticleControls.SACVpcfParticleSystem(&apos;#MVPParticleEffectPanel&apos;,&apos;particles/ui/hud/ui_mvp_winner.vpcf&apos;);">
 						<Label text="Show MVP opt1" />
 					</Button>
-					<Button id="ShowZooWinPanel opt2" class="FlatButton" onactivate="ShowHideWinPanel( true );ParticleControls.SACVpcfParticleSystem(&apos;#MVPParticleEffectPanel&apos;,&apos;particles/ui/hud/ui_mvp_winner_alt_a.vpcf&apos; );">
+					<Button id="ShowZooWinPanel opt2" class="FlatButton" onactivate="$(&apos;#MVPParticleEffectPanel&apos;).AddClass(&apos;UIMvpEffects_additive&apos;);ShowHideWinPanel( true );ParticleControls.SACVpcfParticleSystem(&apos;#MVPParticleEffectPanel&apos;,&apos;particles/ui/hud/ui_mvp_winner_alt_a.vpcf&apos; );">
 						<Label text="Show MVP opt2" />
 					</Button>
-					<Button id="ShowZooWinPanel opt3" class="FlatButton" onactivate="ShowHideWinPanel( true );ParticleControls.SACVpcfParticleSystem(&apos;#MVPParticleEffectPanel&apos;,&apos;particles/ui/hud/ui_mvp_winner_alt_b.vpcf&apos; );">
+					<Button id="ShowZooWinPanel opt3" class="FlatButton" onactivate="$(&apos;#MVPParticleEffectPanel&apos;).AddClass(&apos;UIMvpEffects_additive&apos;);ShowHideWinPanel( true );ParticleControls.SACVpcfParticleSystem(&apos;#MVPParticleEffectPanel&apos;,&apos;particles/ui/hud/ui_mvp_winner_alt_b.vpcf&apos; );">
 						<Label text="Show MVP opt3" />
 					</Button>
-					<Button id="ShowZooWinPanel opt4" class="FlatButton" onactivate="ShowHideWinPanel( true );ParticleControls.SACVpcfParticleSystem(&apos;#MVPParticleEffectPanel&apos;,&apos;particles/ui/hud/ui_mvp_winner_alt_c.vpcf&apos; );">
+					<Button id="ShowZooWinPanel opt4" class="FlatButton" onactivate="$(&apos;#MVPParticleEffectPanel&apos;).RemoveClass(&apos;UIMvpEffects_additive&apos;);ShowHideWinPanel( true );ParticleControls.SACVpcfParticleSystem(&apos;#MVPParticleEffectPanel&apos;,&apos;particles/ui/hud/ui_mvp_winner_alt_c.vpcf&apos; );">
 						<Label text="Show MVP opt4" />
 					</Button>
 					<Button id="HideZooWinPanel" class="FlatButton" onactivate="ShowHideWinPanel( false );ParticleControls.StopAllChildrenParticlesImmediately($(&apos;#ControlsLibParticlesMVP&apos;));">

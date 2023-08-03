@@ -1,3 +1,4 @@
+"use strict";
 /// <reference path="csgo.d.ts" />
 /// <reference path="common/characteranims.ts" />
 /// <reference path="common/licenseutil.ts" />
@@ -7,12 +8,16 @@
 /// <reference path="avatar.ts" />
 /// <reference path="vanity_player_info.ts" />
 /// <reference path="particle_controls.ts" />
+//--------------------------------------------------------------------------------------------------
+// Header Tab navagation and xml loading
+//--------------------------------------------------------------------------------------------------
 var MainMenu = (function () {
     const _m_bPerfectWorld = (MyPersonaAPI.GetLauncherType() === "perfectworld");
     let _m_activeTab = null;
     let _m_sideBarElementContextMenuActive = false;
     const _m_elContentPanel = $('#JsMainMenuContent');
     let _m_playedInitalFadeUp = false;
+    // notification
     const _m_elNotificationsContainer = $('#NotificationsContainer');
     let _m_notificationSchedule = false;
     let _m_bVanityAnimationAlreadyStarted = false;
@@ -21,19 +26,25 @@ var MainMenu = (function () {
     const _m_NotificationBarColorClasses = [
         "NotificationRed", "NotificationYellow", "NotificationGreen", "NotificationLoggingOn"
     ];
+    // on show register events handlers
     let _m_LobbyPlayerUpdatedEventHandler = null;
     let _m_LobbyMatchmakingSessionUpdateEventHandler = null;
     let _m_LobbyForceRestartVanityEventHandler = null;
     let _m_LobbyMainMenuSwitchVanityEventHandler = null;
+    // 'UISceneFrameBoundary' register event handler
     let _m_UiSceneFrameBoundaryEventHandler = null;
     let _m_storePopupElement = null;
     let m_TournamentPickBanPopup = null;
     let _m_hOnEngineSoundSystemsRunningRegisterHandle = null;
     let _m_jobFetchTournamentData = null;
     const TOURNAMENT_FETCH_DELAY = 10;
+    // Update notification when xml is loaded
     const nNumNewSettings = UpdateSettingsMenuAlert();
     const m_MainMenuTopBarParticleFX = $('#MainMenuNavigateParticles');
+    //Create a Table of control point positions
+    //ParticleControls.InitMainMenuTopBar( m_MainMenuTopBarParticleFX );
     ParticleControls.UpdateMainMenuTopBar(m_MainMenuTopBarParticleFX, '');
+    let _m_bShownBefore = false;
     function UpdateSettingsMenuAlert() {
         let elNewSettingsAlert = $("#MainMenuSettingsAlert");
         if (elNewSettingsAlert) {
@@ -57,9 +68,27 @@ var MainMenu = (function () {
             _RegisterOnShowEvents();
             _UpdateBackgroundMap();
             _ShowUpdateWelcomePopup();
+            // CSGO_SOURCE2_PORT - TODO: find source2 mechanism for checking sound systems are running
+            /* CSGO_SOURCE2_UNSUPPORTED
+            if ( GameInterfaceAPI.GetEngineSoundSystemsRunning() )
+            CSGO_SOURCE2_UNSUPPORTED */
+            //{
+            // Only show this right after first fade up
+            //$.Msg( "Main menu : on init fade up, everything is ready" );
+            //_ShowOperationLaunchPopup();
+            //}
+            /* CSGO_SOURCE2_UNSUPPORTED
+            else
+            {
+                $.Msg( "Main menu : registering for EngineSoundSystemsRunning listener, sound systems and config not ready yet" );
+                _m_hOnEngineSoundSystemsRunningRegisterHandle = $.RegisterForUnhandledEvent( "PanoramaComponent_GameInterface_EngineSoundSystemsRunning", MainMenu.ShowOperationLaunchPopup );
+            }
+            CSGO_SOURCE2_UNSUPPORTED */
         }
     };
     function _FetchTournamentData() {
+        $.Msg("---- fetching tournament data");
+        // somehow we got called but a job is already pending. Abort.
         if (_m_jobFetchTournamentData)
             return;
         TournamentsAPI.RequestTournaments();
@@ -75,8 +104,11 @@ var MainMenu = (function () {
         }
     }
     const _UpdateBackgroundMap = function () {
+        // initialize from user preferences (filter func in C++ ensures valid movie name / China / etc.)
         let backgroundMap = GameInterfaceAPI.GetSettingString('ui_mainmenu_bkgnd_movie');
-        backgroundMap = !backgroundMap ? 'de_dust2_vanity' : 'de_' + backgroundMap + '_vanity';
+        // default to dust 2 is there is nothing set
+        backgroundMap = !backgroundMap ? 'de_dust2_vanity' : backgroundMap + '_vanity';
+        $.Msg('backgroundMap: ' + backgroundMap);
         let elMapPanel = $('#JsMainmenu_Vanity');
         if (!(elMapPanel && elMapPanel.IsValid())) {
             elMapPanel = $.CreatePanel('MapVanityPreviewPanel', $('#JsMainmenu_Vanity-Container'), 'JsMainmenu_Vanity', {
@@ -100,6 +132,7 @@ var MainMenu = (function () {
             elMapPanel.SwitchMap(backgroundMap);
             elMapPanel.Data().loadedMap = backgroundMap;
         }
+        // Extra lighting for de_nuke_vanity
         if (backgroundMap === 'de_nuke_vanity') {
             elMapPanel.FireEntityInput('main_light', 'SetBrightness', '2');
             elMapPanel.FireEntityInput('main_light', 'Enable');
@@ -110,6 +143,7 @@ var MainMenu = (function () {
     const _RegisterOnShowEvents = function () {
         if (!_m_LobbyMatchmakingSessionUpdateEventHandler && !GameStateAPI.IsLocalPlayerPlayingMatch()) {
             _m_LobbyMatchmakingSessionUpdateEventHandler = $.RegisterForUnhandledEvent("PanoramaComponent_Lobby_MatchmakingSessionUpdate", MainMenu.LobbyPlayerUpdated);
+            // _m_LobbyPlayerUpdatedEventHandler = $.RegisterForUnhandledEvent( "PanoramaComponent_Lobby_PlayerUpdated", MainMenu.LobbyPlayerUpdated );
             _m_LobbyPlayerUpdatedEventHandler = $.RegisterForUnhandledEvent("PanoramaComponent_PartyList_RebuildPartyList", MainMenu.LobbyPlayerUpdated);
             _m_LobbyForceRestartVanityEventHandler = $.RegisterForUnhandledEvent("ForceRestartVanity", MainMenu.ForceRestartVanity);
             _m_LobbyMainMenuSwitchVanityEventHandler = $.RegisterForUnhandledEvent("MainMenuSwitchVanity", MainMenu.SwitchVanity);
@@ -120,21 +154,40 @@ var MainMenu = (function () {
     };
     const _OnShowMainMenu = function () {
         $.DispatchEvent('PlayMainMenuMusic', true, true);
+        /* CSGO_SOURCE2_UNSUPPORTED
+        // Make the ambience sound on movies play
+        GameInterfaceAPI.SetSettingString( 'panorama_play_movie_ambient_sound', '1' );
+
+        // Set convars to play main menu dsp effects. These are overridden
+        // by the game engine when we enter a map.
+        GameInterfaceAPI.SetSettingString( 'dsp_room', '29' );
+        CSGO_SOURCE2_UNSUPPORTED */
+        //GameInterfaceAPI.SetSettingString( 'snd_soundmixer', 'MainMenu_Mix' );
         _RegisterOnShowEvents();
-        _m_bVanityAnimationAlreadyStarted = false;
+        _m_bVanityAnimationAlreadyStarted = false; // make sure we start main character animation
         _LobbyPlayerUpdated();
         _OnInitFadeUp();
+        // make sure play button is visible in the mainmenu
         $('#MainMenuNavBarPlay').SetHasClass('pausemenu-navbar__btn-small--hidden', false);
         _UpdateNotifications();
         _ShowWeaponUpdatePopup();
         _UpdateInventoryBtnAlert();
+        // Trigger one time processing
         _GcLogonNotificationReceived();
+        //Delete survival pausemenu end of match stats panel instance if it exists
         _DeleteSurvivalEndOfMatch();
+        //Delete pause menu mission panel
         _DeletePauseMenuMissionPanel();
+        //Should show new events tab alert on the the watch nav bar btn
         _ShowHideAlertForNewEventForWatchBtn();
+        //Show hide the unlocked competitive alert on play button
         _UpdateUnlockCompAlert();
         _FetchTournamentData();
         $('#MainMenuNavBarHome').checked = true;
+        if (_m_bShownBefore && GameTypesAPI.ShouldShowNewUserPopup()) {
+            _NewUser_ShowPopup();
+        }
+        _m_bShownBefore = true;
     };
     const _TournamentDraftUpdate = function () {
         if (!m_TournamentPickBanPopup || !m_TournamentPickBanPopup.IsValid()) {
@@ -147,8 +200,9 @@ var MainMenu = (function () {
             return;
         const strFatalError = MyPersonaAPI.GetClientLogonFatalError();
         if (strFatalError
-            && (strFatalError !== "ShowGameLicenseNoOnlineLicensePW")
-            && (strFatalError !== "ShowGameLicenseNoOnlineLicense")) {
+            && (strFatalError !== "ShowGameLicenseNoOnlineLicensePW") // special exception that doesn't show the dialog, but we need to display anti-addiction popup
+            && (strFatalError !== "ShowGameLicenseNoOnlineLicense") // special exception that doesn't show the dialog, but we need to display anti-addiction popup
+        ) {
             _m_bGcLogonNotificationReceivedOnce = true;
             if (strFatalError === "ShowGameLicenseNeedToLinkAccountsWithMoreInfo") {
                 UiToolkitAPI.ShowGenericPopupThreeOptionsBgStyle("#CSGO_Purchasable_Game_License_Short", "#SFUI_LoginLicenseAssist_PW_NeedToLinkAccounts_WW_hint", "", "#UI_Yes", function () { SteamOverlayAPI.OpenURL("https://community.csgo.com.cn/join/pwlink_csgo"); }, "#UI_No", function () { }, "#ShowFAQ", function () { _OnGcLogonNotificationReceived_ShowFaqCallback(); }, "dim");
@@ -160,8 +214,16 @@ var MainMenu = (function () {
                 _OnGcLogonNotificationReceived_ShowLicenseYesNoBox("#SFUI_LoginLicenseAssist_HasLicense_PW", "https://community.csgo.com.cn/join/pwlink_csgo?needlicense=1");
             }
             else if (strFatalError === "ShowGameLicenseNoOnlineLicensePW") {
+                // This handles a once on main menu notification from attempting to log in to GC,
+                // suppress the dialog in this case because user will be reminded every time they try
+                // to do anything for multiplayer
+                //// _OnGcLogonNotificationReceived_ShowLicenseYesNoBox( "#SFUI_LoginLicenseAssist_NoOnlineLicense_PW", "https://community.csgo.com.cn/join/pwlink_csgo" );
             }
             else if (strFatalError === "ShowGameLicenseNoOnlineLicense") {
+                // This handles a once on main menu notification from attempting to log in to GC,
+                // suppress the dialog in this case because user will be reminded every time they try
+                // to do anything for multiplayer
+                //// _OnGcLogonNotificationReceived_ShowLicenseYesNoBox( "#SFUI_LoginLicenseAssist_NoOnlineLicense", "https://store.steampowered.com/app/730/" );
             }
             else {
                 UiToolkitAPI.ShowGenericPopupOneOptionBgStyle("#SFUI_LoginPerfectWorld_Title_Error", strFatalError, "", "#GameUI_Quit", function () { GameInterfaceAPI.ConsoleCommand("quit"); }, "dim");
@@ -174,7 +236,7 @@ var MainMenu = (function () {
             const pszDialogTitle = "#SFUI_LoginPerfectWorld_Title_Info";
             let pszDialogMessageText = "#SFUI_LoginPerfectWorld_AntiAddiction1";
             let pszOverlayUrlToOpen = null;
-            if (nAntiAddictionTrackingState != 2) {
+            if (nAntiAddictionTrackingState != 2 /*k_EPerfectWorldAccountState_Addict*/) {
                 pszDialogMessageText = "#SFUI_LoginPerfectWorld_AntiAddiction2";
                 pszOverlayUrlToOpen = "https://community.csgo.com.cn/join/pwcompleteaccountinfo";
             }
@@ -190,27 +252,36 @@ var MainMenu = (function () {
     let _m_numGameMustExitNowForAntiAddictionHandled = 0;
     let _m_panelGameMustExitDialog = null;
     const _GameMustExitNowForAntiAddiction = function () {
+        // don't generate another dialog when a previous one is still displayed
         if (_m_panelGameMustExitDialog && _m_panelGameMustExitDialog.IsValid())
             return;
+        // don't generate more than a certain number of quit dialogs
         if (_m_numGameMustExitNowForAntiAddictionHandled >= 100)
             return;
         ++_m_numGameMustExitNowForAntiAddictionHandled;
+        // generate a dialog and remember a handle to it so that we could avoid generating more
         _m_panelGameMustExitDialog =
             UiToolkitAPI.ShowGenericPopupOneOptionBgStyle("#GameUI_QuitConfirmationTitle", "#UI_AntiAddiction_ExitGameNowMessage", "", "#GameUI_Quit", function () { GameInterfaceAPI.ConsoleCommand("quit"); }, "dim");
+        $.Msg("JS: Game Must Exit Now Dialog Displayed: " + _m_panelGameMustExitDialog);
     };
     const _OnGcLogonNotificationReceived_ShowLicenseYesNoBox = function (strTextMessage, pszOverlayUrlToOpen) {
         UiToolkitAPI.ShowGenericPopupTwoOptionsBgStyle("#CSGO_Purchasable_Game_License_Short", strTextMessage, "", "#UI_Yes", function () { SteamOverlayAPI.OpenURL(pszOverlayUrlToOpen); }, "#UI_No", function () { }, "dim");
     };
     const _OnGcLogonNotificationReceived_ShowFaqCallback = function () {
+        // Show the knowledgebase
         SteamOverlayAPI.OpenURL("https://support.steampowered.com/kb_article.php?ref=6026-IFKZ-7043&l=schinese");
+        // Show the message box again in case user gets lost in Steam Overlay
         _m_bGcLogonNotificationReceivedOnce = false;
         _GcLogonNotificationReceived();
     };
     const _OnHideMainMenu = function () {
+        $.Msg("[CSGO_MainMenu]", "Hide main menu");
         const vanityPanel = $('#JsMainmenu_Vanity');
         if (vanityPanel) {
             CharacterAnims.CancelScheduledAnim(vanityPanel);
         }
+        // We are hiding the main menu, so hide the content panel immediately.
+        // Otherwise the slide out anim plays the next time the main menu is shown.
         _m_elContentPanel.RemoveClass('mainmenu-content--animate');
         _m_elContentPanel.AddClass('mainmenu-content--offscreen');
         _CancelNotificationSchedule();
@@ -248,17 +319,30 @@ var MainMenu = (function () {
         const bTraining = elContextPanel.IsTraining();
         const bGotvSpectating = elContextPanel.IsGotvSpectating();
         const bIsCommunityServer = !_m_bPerfectWorld && MatchStatsAPI.IsConnectedToCommunityServer();
+        // only allow to queue while in game if I'm in a listen server by myself
+        // OFFLINE WARMUP: we removed the offline warmup feature, so don't show play button in pause menu for now
         $('#MainMenuNavBarPlay').SetHasClass('pausemenu-navbar__btn-small--hidden', true);
         $('#MainMenuNavBarSwitchTeams').SetHasClass('pausemenu-navbar__btn-small--hidden', (bTraining || bQueuedMatchmaking || bGotvSpectating));
-        $('#MainMenuNavBarVote').SetHasClass('pausemenu-navbar__btn-small--hidden', (bTraining || bGotvSpectating));
+        // Call vote option is only enables in multiplayer matches
+        // Training technically has to be a multiplayer match because scaleform only works in "gametime" and not "realtime"
+        // This means we can't make the training single player because it would cause us to "pause" which freezes all scaleform and hence breaks the game
+        $('#MainMenuNavBarVote').SetHasClass('pausemenu-navbar__btn-small--hidden', (bTraining || /*!bMultiplayer || */ bGotvSpectating));
+        // Report a community server is only enabled in community server and not GOTV Spectating
         $('#MainMenuNavBarReportServer').SetHasClass('pausemenu-navbar__btn-small--hidden', !bIsCommunityServer);
+        // Invoking server browser is only enabled if user is already playing on a community server
+        // $( '#MainMenuNavBarShowCommunityServerBrowser' )!.SetHasClass( 'pausemenu-navbar__btn-small--hidden', !bIsCommunityServer );
+        // If in Survival then update the end of match instance here
         _UpdateSurvivalEndOfMatchInstance();
+        // If on a mission then show the active mission
         _AddPauseMenuMissionPanel();
+        // Reset to Home
         _OnHomeButtonPressed();
     };
     const _OnHidePauseMenu = function () {
         $.GetContextPanel().RemoveClass('MainMenuRootPanel--PauseMenuMode');
+        //Delete pause menu mission panel
         _DeletePauseMenuMissionPanel();
+        // UiToolkitAPI.HideCustomLayoutTooltip( 'TooltipActiveMission' );
         _OnHomeButtonPressed();
     };
     const _BCheckTabCanBeOpenedRightNow = function (tab) {
@@ -271,10 +355,12 @@ var MainMenu = (function () {
         }
         if (tab === 'JsInventory' || tab === 'JsPlayerStats' || tab === 'JsLoadout') {
             if (!MyPersonaAPI.IsInventoryValid() || !MyPersonaAPI.IsConnectedToGC()) {
+                //No connection to GC so show a message
                 UiToolkitAPI.ShowGenericPopupOk($.Localize('#SFUI_SteamConnectionErrorTitle'), $.Localize('#SFUI_Steam_Error_LinkUnexpected'), '', function () { });
                 return false;
             }
         }
+        // Otherwise tabs can open
         return true;
     };
     const _CanOpenStatsPanel = function () {
@@ -294,23 +380,35 @@ var MainMenu = (function () {
         return true;
     };
     const _NavigateToTab = function (tab, XmlName) {
+        $.Msg("[CSGO_MainMenu]", 'tabToShow: ' + tab + ' XmlName = ' + XmlName);
         if (!_BCheckTabCanBeOpenedRightNow(tab)) {
             _OnHomeButtonPressed();
-            return;
+            return; // validate that tabs can be opened (GC connection / China free-to-play / etc.)
         }
         if (tab === 'JsPlayerStats' && !_CanOpenStatsPanel()) {
             return;
         }
         $.DispatchEvent('PlayMainMenuMusic', true, false);
+        // Turn off ambient sound on movies.
         GameInterfaceAPI.SetSettingString('panorama_play_movie_ambient_sound', '0');
+        // Check to see if tab to show exists.
+        // If not load the xml file.
         if (!$.GetContextPanel().FindChildInLayoutFile(tab)) {
             const newPanel = $.CreatePanel('Panel', _m_elContentPanel, tab);
+            /* 	CSGO_SOURCE2_UNSUPPORTED
+            newPanel.Data().elMainMenuRoot = $.GetContextPanel();
+            CSGO_SOURCE2_UNSUPPORTED */
+            $.Msg("[CSGO_MainMenu]", 'Created Panel with id: ' + newPanel.id);
             newPanel.BLoadLayout('file://{resources}/layout/' + XmlName + '.xml', false, false);
-            newPanel.SetReadyForDisplay(false);
+            newPanel.SetReadyForDisplay(false); // Start unready to received the first ready for display event
             newPanel.RegisterForReadyEvents(true);
+            // Handler that catches OnPropertyTransitionEndEvent event for this panel.
+            // Check if the panel is transparent then collapse it.
             $.RegisterEventHandler('PropertyTransitionEnd', newPanel, function (panel, propertyName) {
                 if (newPanel.id === panel.id && propertyName === 'opacity') {
+                    // Panel is visible and fully transparent
                     if (newPanel.visible === true && newPanel.BIsTransparent()) {
+                        // Set visibility to false and unload resources
                         newPanel.visible = false;
                         newPanel.SetReadyForDisplay(false);
                         return true;
@@ -323,7 +421,10 @@ var MainMenu = (function () {
             });
         }
         ParticleControls.UpdateMainMenuTopBar(m_MainMenuTopBarParticleFX, tab);
+        // If a we have a active tab and it is different from the selected tab hide it.
+        // Then show the selected tab
         if (_m_activeTab !== tab) {
+            //Trigger sound event for the new panel
             if (XmlName) {
                 let soundName = '';
                 if (XmlName === 'loadout_grid') {
@@ -334,16 +435,22 @@ var MainMenu = (function () {
                 }
                 $.DispatchEvent('CSGOPlaySoundEffect', soundName, 'MOUSE');
             }
+            // If the tab exists then hide it
             if (_m_activeTab) {
                 $.GetContextPanel().CancelDrag();
                 const panelToHide = $.GetContextPanel().FindChildInLayoutFile(_m_activeTab);
                 panelToHide.AddClass('mainmenu-content--hidden');
+                $.Msg("[CSGO_MainMenu]", 'HidePanel: ' + _m_activeTab);
             }
+            //Show selected tab
             _m_activeTab = tab;
             const activePanel = $.GetContextPanel().FindChildInLayoutFile(tab);
             activePanel.RemoveClass('mainmenu-content--hidden');
+            // Force a reload of any resources since we're about to display the panel
             activePanel.visible = true;
             activePanel.SetReadyForDisplay(true);
+            $.Msg("[CSGO_MainMenu]", 'ShowPanel: ' + _m_activeTab);
+            // pause main menu character anim/rendering	
             _PauseMainMenuCharacter();
         }
         _ShowContentPanel();
@@ -362,15 +469,18 @@ var MainMenu = (function () {
         _m_elContentPanel.AddClass('mainmenu-content--animate');
         _m_elContentPanel.AddClass('mainmenu-content--offscreen');
         $.GetContextPanel().RemoveClass("mainmenu-content--open");
+        // Uncheck the active button in the main menu navbar.
         const elActiveNavBarBtn = _GetActiveNavBarButton();
         if (elActiveNavBarBtn && elActiveNavBarBtn.id !== 'MainMenuNavBarHome') {
             elActiveNavBarBtn.checked = false;
         }
         _DimMainMenuBackground(true);
+        // If the tab exists then hide it
         if (_m_activeTab) {
             $.GetContextPanel().CancelDrag();
             const panelToHide = $.GetContextPanel().FindChildInLayoutFile(_m_activeTab);
             panelToHide.AddClass('mainmenu-content--hidden');
+            $.Msg("[CSGO_MainMenu]", 'HidePanel: ' + _m_activeTab);
         }
         _m_activeTab = '';
         _ShowNewsAndStore();
@@ -385,9 +495,13 @@ var MainMenu = (function () {
             }
         }
     };
+    //--------------------------------------------------------------------------------------------------
+    // Function called from top bar button presses
+    //--------------------------------------------------------------------------------------------------
     const _ShowHideNavDrawer = function () {
         UiToolkitAPI.ShowCustomLayoutPopup('', 'file://{resources}/layout/popups/popup_navdrawer.xml');
     };
+    // Sidebar expand and minimize
     const _ExpandSidebar = function (AutoClose = false) {
         const elSidebar = $('#JsMainMenuSidebar');
         if (elSidebar.BHasClass('mainmenu-sidebar--minimized')) {
@@ -402,9 +516,14 @@ var MainMenu = (function () {
         }
     };
     const _MinimizeSidebar = function () {
+        // #JsMainMenuContent being null implies this call to _MinimizeSidebar is due to onmouseout event
+        // being dispatched as part of panel being destroyed on game exit, so just return, otherwise js
+        // result is js exceptions 
         if (_m_elContentPanel == null) {
             return;
         }
+        // If a context menu that is opened from an element is the Sidebar
+        // then do not minimize the Sidebar.
         if (_m_sideBarElementContextMenuActive) {
             return;
         }
@@ -414,11 +533,18 @@ var MainMenu = (function () {
         }
         elSidebar.AddClass('mainmenu-sidebar--minimized');
         _SlideSearchPartyParticles(false);
+        //mainMenuContent.style.clip = 'rect( 0%, 100%, 100%, 0% );'
+        //$( '#JsPartyControls' ).style.clip = 'rect( 0%, 100%, 100%, 0% );'
         $.DispatchEvent('SidebarIsCollapsed', true);
         _DimMainMenuBackground(true);
     };
     const _OnSideBarElementContextMenuActive = function (bActive) {
+        // Store state of context menu, open or closed.
         _m_sideBarElementContextMenuActive = bActive;
+        // A context menu that is opened from an element is the Sidebar is now closed.
+        // We check to see if the curser is outside the bounds of the Sidebar.
+        // If it is then we minimze the sidebar.
+        // Needs a delayy after the context menu closes to check if the curser is over Sidebar.
         $.Schedule(0.25, () => {
             if (!$('#JsMainMenuSidebar').BHasHoverStyle())
                 _MinimizeSidebar();
@@ -433,9 +559,13 @@ var MainMenu = (function () {
         else
             $('#MainMenuBackground').AddClass('Dim');
     };
+    //--------------------------------------------------------------------------------------------------
+    // Icon buttons functions
+    //--------------------------------------------------------------------------------------------------
     function _OnHomeButtonPressed() {
         $.DispatchEvent('HideContentPanel');
         ParticleControls.UpdateMainMenuTopBar(m_MainMenuTopBarParticleFX, '');
+        // resume main menu character anim/rendering	
         const vanityPanel = $('#JsMainmenu_Vanity');
         if (vanityPanel) {
             vanityPanel.Pause();
@@ -449,27 +579,62 @@ var MainMenu = (function () {
         }, 'dim');
     }
     function QuitGame(msg) {
+        //$.Msg( "[CSGO_MainMenu]", 'QuitGame: You pressed ' + msg + '\n' );
         GameInterfaceAPI.ConsoleCommand('quit');
     }
+    //--------------------------------------------------------------------------------------------------
+    // Set up child panels
+    //--------------------------------------------------------------------------------------------------
     const _InitFriendsList = function () {
         const friendsList = $.CreatePanel('Panel', $.FindChildInContext('#mainmenu-sidebar__blur-target'), 'JsFriendsList');
         friendsList.BLoadLayout('file://{resources}/layout/friendslist.xml', false, false);
     };
     const _InitNewsAndStore = function () {
+        // Has MainMenuModeOnly style
         _AddStream();
+        // Has MainMenuModeOnly style
         const elNews = $.CreatePanel('Panel', $.FindChildInContext('#JsNewsContainer'), 'JsNewsPanel');
         elNews.BLoadLayout('file://{resources}/layout/mainmenu_news.xml', false, false);
+        // Has MainMenuModeOnly style
         const elLastMatch = $.CreatePanel('Panel', $.FindChildInContext('#JsNewsContainer'), 'JsLastMatch', {
             useglobalcontext: 'true'
         });
         elLastMatch.BLoadLayout('file://{resources}/layout/mainmenu_lastmatch.xml', false, false);
+        // Has MainMenuModeOnly style
         const elStore = $.CreatePanel('Panel', $.FindChildInContext('#JsNewsContainer'), 'JsStorePanel');
         elStore.BLoadLayout('file://{resources}/layout/mainmenu_store.xml', false, false);
+        // Has MainMenuModeOnly style
+        // START Disabled for shipping May 15th 2021 when we are turning off redemtions of tokens.
+        // const elOperationStoreBalanceReminder = $.CreatePanel( 'Panel', $.FindChildInContext( '#JsNewsContainer' ), 'JsOpBalance' );
+        // elOperationStoreBalanceReminder .BLoadLayout( 'file://{resources}/layout/mainmenu_operation_balance_reminder.xml', false, false );
+        // END
+        // $.FindChildInContext( '#JsNewsContainer' )!.OnPropertyTransitionEndEvent = function ( panelName, propertyName )
+        // {
+        //     if ( elNews.id === panelName && propertyName === 'opacity' )
+        //     {
+        //         // Panel is visible and fully transparent
+        //         if ( elNews.visible === true && elNews.BIsTransparent() )
+        //         {
+        //             // Set visibility to false and unload resources
+        //             elNews.visible = false;
+        //             elNews.SetReadyForDisplay( false );
+        //             return true;
+        //         }
+        //     }
+        //     return false;
+        // };
+        // toggle for featured panel
         const bFeaturedPanelIsActive = false;
         if (bFeaturedPanelIsActive) {
+            // mainmenu_tournament_pass_status.xm Not used here for 2021 Stokholm tournament
+            //_AddFeaturedPanel( 'mainmenu_tournament_pass_status.xml', 'JsTournamentPanel');
             _AddFeaturedPanel('operation/operation_mainmenu.xml', 'JsOperationPanel');
         }
+        // no strings in english for perfect world, therefore no watch notice panel
+        // if ( _m_bPerfectWorld )
+        // {
         _AddWatchNoticePanel();
+        // }
         _ShowNewsAndStore();
     };
     const _AddStream = function () {
@@ -485,6 +650,7 @@ var MainMenu = (function () {
         });
         elPanel.BLoadLayout(featuredXML, false, false);
         $.FindChildInContext('#JsNewsContainer').MoveChildBefore(elPanel, $.FindChildInContext('#JsNewsPanel'));
+        // Tell the children panel if they need to change thier styles to accommodate the featured panel.
         const overrideStyle = (featuredXML.indexOf('tournament') !== -1 || featuredXML.indexOf('operation') !== -1) ?
             '' :
             'news-panel-style-feature-panel-visible';
@@ -511,6 +677,11 @@ var MainMenu = (function () {
         if (elVanityButton) {
             elVanityButton.visible = true;
         }
+        // const elQuitutton = $.FindChildInContext( '#MainMenuNavBarQuit' );
+        // if ( elQuitutton )
+        // {
+        // 	elQuitutton.visible = true;
+        // }
         $.FindChildInContext('#JsStreamContainer').SetHasClass('hidden', false);
     };
     const _HideNewsAndStore = function () {
@@ -522,8 +693,15 @@ var MainMenu = (function () {
         if (elVanityButton) {
             elVanityButton.visible = false;
         }
+        // const elQuitutton = $.FindChildInContext( '#MainMenuNavBarQuit' );
+        // if ( elQuitutton )
+        // {
+        // 	elQuitutton.visible = false;
+        // }
         $.FindChildInContext('#JsStreamContainer').SetHasClass('hidden', true);
     };
+    // Set parnet news panel style to account for playing the stream
+    // Will shrink the news and hide the matchlister and featured
     const _OnSteamIsPlaying = function () {
         const elNewsContainer = $.FindChildInContext('#JsNewsContainer');
         if (elNewsContainer) {
@@ -534,6 +712,18 @@ var MainMenu = (function () {
         const elNewsContainer = $.FindChildInContext('#JsNewsContainer');
         if (elNewsContainer) {
             elNewsContainer.RemoveClass('mainmenu-news-container-stream-active');
+        }
+    };
+    //--------------------------------------------------------------------------------------------------
+    // Party searching particles
+    //--------------------------------------------------------------------------------------------------
+    const _UpdatePartySearchParticlesType = function (isPremier) {
+        let particle_container = $('#party-search-particles');
+        if (isPremier) {
+            particle_container.SetParticleNameAndRefresh("particles/ui/ui_mainmenu_active_search_gold.vpcf");
+        }
+        else {
+            particle_container.SetParticleNameAndRefresh("particles/ui/ui_mainmenu_active_search.vpcf");
         }
     };
     const _UpdatePartySearchSetControlPointParticles = function (cp, xpos, ypos, zpos) {
@@ -550,6 +740,11 @@ var MainMenu = (function () {
         let AddServerErrors = 0;
         var serverWarning = NewsAPI.GetCurrentActiveAlertForUser();
         var isWarning = serverWarning !== '' && serverWarning !== undefined ? true : false;
+        //Set the type of effect
+        //Gold for premier 
+        //Green for regular
+        let bAttemptPremierMode = GameInterfaceAPI.GetSettingString('ui_playsettings_mode_official') === 'premier';
+        _UpdatePartySearchParticlesType(bAttemptPremierMode);
         if (isWarning)
             AddServerErrors = 5;
         let strStatus = LobbyAPI.GetMatchmakingStatusString();
@@ -568,6 +763,7 @@ var MainMenu = (function () {
         if (numPlayersActuallyInParty > 0 && m_numPlayersActuallyInParty != numPlayersActuallyInParty) {
             m_numPlayersActuallyInParty = numPlayersActuallyInParty;
             let verticlSpread = 14 + (numPlayersActuallyInParty - 1) * 5 + AddServerErrors;
+            // ui_mainmenu_active_search.vpcf - Cp 1 ( VERTICAL SPREAD, LifeSpan Scale (0-3), SpeedMult ), Cp 2 ( Radius Scale, Alpha Scale , Desaturation Scale ), Cp 16 ( R, G, B )
             _UpdatePartySearchSetControlPointParticles(1, verticlSpread, .5, 1);
             _UpdatePartySearchSetControlPointParticles(2, 1, .25, 0);
             _UpdatePartySearchSetControlPointParticles(16, 15, 230, 15);
@@ -580,6 +776,9 @@ var MainMenu = (function () {
             particle_container.SetControlPoint(3, 1, 0, 0);
         }
     };
+    //--------------------------------------------------------------------------------------------------
+    // Setup player panel
+    //--------------------------------------------------------------------------------------------------
     const _ForceRestartVanity = function () {
         if (GameStateAPI.IsLocalPlayerPlayingMatch()) {
             return;
@@ -587,23 +786,51 @@ var MainMenu = (function () {
         _m_bVanityAnimationAlreadyStarted = false;
         _InitVanity();
     };
+    // set up a panel that approximates hovering over character model
     function _RigVanityHover(vanityPanel) {
+        // if ( !vanityPanel || !vanityPanel.IsValid() )
+        // 	return;
+        // const elHover = $( "#id-mainmenu-vanity-hover" );
+        // if ( !elHover || !elHover.IsValid )
+        // 	return;
+        // const OnMouseOver = function()
+        // {
+        // 	if ( $( '#VanityControls' ) )
+        // 	{
+        // 		$( '#VanityControls' ).AddClass( 'pulse-vanity-controls')
+        // 	}
+        // };
+        // const OnMouseOut = function()
+        // {
+        // 	if ( $( '#VanityControls' ) )
+        // 	{
+        // 		$( '#VanityControls' ).RemoveClass( 'pulse-vanity-controls')
+        // 	}
+        // };
+        // elHover.SetPanelEvent( 'onmouseover', OnMouseOver );
+        // elHover.SetPanelEvent( 'onmouseout', OnMouseOut );
     }
     let m_aDisplayLobbyVanityData = [];
     const _InitVanity = function () {
         if (MatchStatsAPI.GetUiExperienceType()) {
             return;
         }
+        $.Msg("[CSGO_MainMenu]", "_InitVanity: called");
         if (!MyPersonaAPI.IsInventoryValid()) {
+            $.Msg("[CSGO_MainMenu]", "_InitVanity: inventory not valid yet");
             return;
         }
         if (_m_bVanityAnimationAlreadyStarted) {
+            $.Msg("[CSGO_MainMenu]", "_InitVanity: vanity animation already started, not restarting");
             return;
         }
         const vanityPanel = $('#JsMainmenu_Vanity');
         if (!vanityPanel) {
+            $.Msg("[CSGO_MainMenu]", "_InitVanity: failed to find panel 'JsMainmenu_Vanity'");
             return;
         }
+        // Kick off animating character
+        $.Msg("[CSGO_MainMenu]", "_InitVanity: kicking off character animation");
         _m_bVanityAnimationAlreadyStarted = true;
         if (vanityPanel.BHasClass('hidden')) {
             vanityPanel.RemoveClass('hidden');
@@ -611,22 +838,29 @@ var MainMenu = (function () {
         _UpdateLocalPlayerVanity();
     };
     const _UpdateLocalPlayerVanity = function () {
+        // Force vanity settings to be processed and validated
         const oSettings = ItemInfo.GetOrUpdateVanityCharacterSettings();
+        // See if local player is in a lobby with more that one person
+        // then use the lobby position for them otherwise put them in the center 0 position
         const oLocalPlayer = m_aDisplayLobbyVanityData.filter(storedEntry => { return storedEntry.isLocalPlayer === true; });
         oSettings.playeridx = oLocalPlayer.length > 0 ? oLocalPlayer[0].playeridx : 0;
+        // stomp these settings
         oSettings.xuid = MyPersonaAPI.GetXuid();
         oSettings.isLocalPlayer = true;
+        // Apply vanity settings in the lobby metadata for showing 'self'
         _ApplyVanitySettingsToLobbyMetadata(oSettings);
         _UpdatePlayerVanityModel(oSettings);
         _CreatUpdateVanityInfo(oSettings);
     };
     const _ApplyVanitySettingsToLobbyMetadata = function (oSettings) {
+        // Push vanity settings into the lobby metadata
         PartyListAPI.SetLocalPlayerVanityPresence(oSettings.team, oSettings.charItemId, oSettings.glovesItemId, oSettings.loadoutSlot, oSettings.weaponItemId);
     };
     const _UpdatePlayerVanityModel = function (oSettings) {
         const vanityPanel = _UpdateBackgroundMap();
         vanityPanel.SetActiveCharacter(oSettings.playeridx);
         oSettings.panel = vanityPanel;
+        $.Msg("_InitVanity: successfully parsed vanity info: " + oSettings);
         CharacterAnims.PlayAnimsOnPanel(oSettings);
     };
     const _CreatUpdateVanityInfo = function (oSettings) {
@@ -659,6 +893,8 @@ var MainMenu = (function () {
                     vanity_data: PartyListAPI.GetPartyMemberVanity(xuid)
                 });
             }
+            $.Msg('NEW LOBBY_DATA' + JSON.stringify(aCurrentLobbyVanityData));
+            $.Msg('OLD DISPLAY_DATA' + JSON.stringify(m_aDisplayLobbyVanityData));
             _CompareLobbyPlayers(aCurrentLobbyVanityData);
         }
         else {
@@ -669,7 +905,9 @@ var MainMenu = (function () {
     const _CompareLobbyPlayers = function (aCurrentLobbyVanityData) {
         const maxSlots = 5;
         for (let i = 0; i < maxSlots; i++) {
+            // Makes sure we have data for the models before we update.
             if (aCurrentLobbyVanityData[i]) {
+                // If there is no data then make an object to hold it.
                 if (!m_aDisplayLobbyVanityData[i]) {
                     m_aDisplayLobbyVanityData[i] = {
                         xuid: "",
@@ -681,12 +919,15 @@ var MainMenu = (function () {
                 m_aDisplayLobbyVanityData[i].playeridx = aCurrentLobbyVanityData[i].playeridx;
                 m_aDisplayLobbyVanityData[i].isLocalPlayer = aCurrentLobbyVanityData[i].isLocalPlayer;
                 if (m_aDisplayLobbyVanityData[i].xuid !== aCurrentLobbyVanityData[i].xuid) {
+                    // Delete info when xuid changes
                     VanityPlayerInfo.DeleteVanityInfoPanel($.GetContextPanel().FindChildInLayoutFile('MainMenuVanityInfo'), aCurrentLobbyVanityData[i].playeridx);
                     if (aCurrentLobbyVanityData[i].isLocalPlayer) {
+                        // up date local player if thier position moves
                         _UpdateLocalPlayerVanity();
                     }
                 }
                 m_aDisplayLobbyVanityData[i].xuid = aCurrentLobbyVanityData[i].xuid;
+                // for all not local players update the vanity model only when the vanity date is different
                 if (m_aDisplayLobbyVanityData[i].vanity_data !== aCurrentLobbyVanityData[i].vanity_data) {
                     if (!aCurrentLobbyVanityData[i].isLocalPlayer && aCurrentLobbyVanityData[i].vanity_data) {
                         _UpdateVanityFromLobbyUpdate(aCurrentLobbyVanityData[i].vanity_data, aCurrentLobbyVanityData[i].playeridx, aCurrentLobbyVanityData[i].xuid);
@@ -700,15 +941,19 @@ var MainMenu = (function () {
                 delete m_aDisplayLobbyVanityData[i];
             }
         }
+        $.Msg('NEW DISPLAY_DATA' + JSON.stringify(m_aDisplayLobbyVanityData));
     };
     const _ClearLobbyPlayers = function () {
+        // no lobby members so clear any displayed data that we have
         m_aDisplayLobbyVanityData.forEach((element, index) => {
             _ClearLobbyVanityModel(index);
         });
+        $.Msg('DELETED DISPLAY_DATA' + JSON.stringify(m_aDisplayLobbyVanityData));
         m_aDisplayLobbyVanityData = [];
     };
     const _ClearLobbyVanityModel = function (index) {
         VanityPlayerInfo.DeleteVanityInfoPanel($.GetContextPanel().FindChildInLayoutFile('MainMenuVanityInfo'), index);
+        $.Msg('CLEAR VANITY MODEL INDEX: ' + index);
         $('#JsMainmenu_Vanity').SetActiveCharacter(index);
         $('#JsMainmenu_Vanity').RemoveCharacterModel();
     };
@@ -721,7 +966,7 @@ var MainMenu = (function () {
             glovesItemId: arrVanityInfo[2],
             loadoutSlot: arrVanityInfo[3],
             weaponItemId: arrVanityInfo[4],
-            playeridx: index
+            playeridx: index // since player model one is 0 the lobby models start at 1'
         };
         _UpdatePlayerVanityModel(oSettings);
     };
@@ -746,25 +991,29 @@ var MainMenu = (function () {
             }
         }
     };
+    // TODO: Update displayed player equipement for ourselves and partymembers 
     const _OnEquipSlotChanged = function () {
     };
     const _OpenPlayMenu = function () {
+        // Play menu is not accessible when in the game server
         if (MatchStatsAPI.GetUiExperienceType())
             return;
         _InsureSessionCreated();
         _NavigateToTab('JsPlay', 'mainmenu_play');
+        // pause main menu character anim/rendering	
         _PauseMainMenuCharacter();
-        $.DispatchEvent('OnOpenPlayMenu');
     };
     const _OpenWatchMenu = function () {
         _PauseMainMenuCharacter();
         _NavigateToTab('JsWatch', 'mainmenu_watch');
     };
     const _OpenInventory = function () {
+        // pause main menu character anim/rendering	
         _PauseMainMenuCharacter();
         _NavigateToTab('JsInventory', 'mainmenu_inventory');
     };
     const _OpenStatsMenu = function () {
+        // pause main menu character anim/rendering	
         _PauseMainMenuCharacter();
         _NavigateToTab('JsPlayerStats', 'mainmenu_playerstats');
     };
@@ -772,6 +1021,8 @@ var MainMenu = (function () {
         UiToolkitAPI.ShowCustomLayoutPopupParameters('', 'file://{resources}/layout/popups/popup_subscription_upsell.xml', '');
     };
     const _ShowLoadoutForItem = function (itemId) {
+        // If the loadout is not created, we will make it when we press the loadout button.
+        // Then refire the event after it is made
         if (!$.GetContextPanel().FindChildInLayoutFile('JsLoadout')) {
             $.DispatchEvent("Activated", $.GetContextPanel().FindChildInLayoutFile('MainMenuNavBarLoadout'), "mouse");
             $.DispatchEvent("ShowLoadoutForItem", itemId);
@@ -786,12 +1037,17 @@ var MainMenu = (function () {
         const tab = 'JsSettings';
         const XmlName = 'settings/settings';
         const newPanel = $.CreatePanel('Panel', _m_elContentPanel, tab);
+        $.Msg("[CSGO_MainMenu]", 'Created Panel with id: ' + newPanel.id);
         newPanel.BLoadLayout('file://{resources}/layout/' + XmlName + '.xml', false, false);
         newPanel.RegisterForReadyEvents(true);
         newPanel.AddClass('mainmenu-content--hidden');
+        // Handler that catches OnPropertyTransitionEndEvent event for this panel.
+        // Check if the panel is transparent then collapse it. 
         $.RegisterEventHandler('PropertyTransitionEnd', newPanel, function (panelName, propertyName) {
             if (newPanel.id === panelName && propertyName === 'opacity') {
+                // Panel is visible and fully transparent
                 if (newPanel.visible === true && newPanel.BIsTransparent()) {
+                    // Set visibility to false and unload resources
                     newPanel.visible = false;
                     newPanel.SetReadyForDisplay(false);
                     return true;
@@ -814,6 +1070,9 @@ var MainMenu = (function () {
         else
             GameInterfaceAPI.ConsoleCommand("gameui_hide");
     };
+    //--------------------------------------------------------------------------------------------------
+    // Update inventory 
+    //--------------------------------------------------------------------------------------------------
     const _InventoryUpdated = function () {
         _ForceRestartVanity();
         _UpdateInventoryBtnAlert();
@@ -821,9 +1080,17 @@ var MainMenu = (function () {
     };
     const _UpdateInventoryBtnAlert = function () {
         const aNewItems = AcknowledgeItems.GetItems();
+        // const aOperationItems = aNewItems.filter( item => 'quest_reward' === ItemInfo.GetItemPickUpMethod( item.id ) );
+        // Commenting out for operation 10 as its has a store and no rewards from gameplay
+        // When we show the main menu if we have any operation items that were rewarding from gameplay
+        // if ( aOperationItems.length > 0 && !GameStateAPI.IsConnectedOrConnectingToServer() )
+        // {
+        // 	_ShowAcknowledgePopup( '', '' );
+        // }
         const count = aNewItems.length;
         const elNavBar = $.GetContextPanel().FindChildInLayoutFile('MainMenuNavBarTop'), elAlert = elNavBar.FindChildInLayoutFile('MainMenuInvAlert');
         elAlert.SetDialogVariable("alert_value", count.toString());
+        // elAlert.FindChildInLayoutFile('MainMenuInvAlertText').text = count;
         elAlert.SetHasClass('hidden', count < 1);
     };
     const _OnInventoryInspect = function (id) {
@@ -842,12 +1109,14 @@ var MainMenu = (function () {
             UiToolkitAPI.UnregisterJSCallback(JsInspectCallback);
             JsInspectCallback = -1;
         }
+        $.Msg("[CSGO_MainMenu]", 'params: ' + params);
         const ParamsList = params.split(',');
         const keyId = ParamsList[0];
         const caseId = ParamsList[1];
         const storeId = ParamsList[2];
         const blurOperationPanel = ParamsList[3];
         const extrapopupfullscreenstyle = ParamsList[4];
+        // Anything after 3 id params for the callback is used for operation popup currently
         const aParamsForCallback = ParamsList.slice(5);
         const showMarketLinkDefault = _m_bPerfectWorld ? 'false' : 'true';
         JsInspectCallback = UiToolkitAPI.RegisterJSCallback(() => _OpenDecodeAfterInspect(keyId, caseId, storeId, extrapopupfullscreenstyle, aParamsForCallback));
@@ -862,6 +1131,9 @@ var MainMenu = (function () {
             '&' + 'callback=' + JsInspectCallback);
     };
     const _OpenDecodeAfterInspect = function (keyId, caseId, storeId, extrapopupfullscreenstyle, aParamsForCallback) {
+        // If you are coming from a decode panel when we are done with the inpsect we want to open that panel up again.
+        // Since these are pop ups we have closed the decode and will need to open it again.
+        // params andf key and case id
         const backtostoreiteminspectsettings = storeId ?
             '&' + 'asyncworkitemwarning=no' +
                 '&' + 'asyncforcehide=true' +
@@ -944,10 +1216,12 @@ var MainMenu = (function () {
         return null;
     }
     function _UpdatePopupnotification() {
+        // if there's no active popup notification, check if we should show one
         if (!_m_bHasPopupNotification) {
             const popupNotification = _GetPopupNotification();
             if (popupNotification != null) {
                 const elPopup = UiToolkitAPI.ShowGenericPopupOneOption(popupNotification.title, popupNotification.msg, popupNotification.color_class, '#SFUI_MainMenu_ConfirmBan', popupNotification.callback);
+                // We control labels for all of these, safe to use html
                 if (popupNotification.html)
                     elPopup.EnableHTML();
                 _m_bHasPopupNotification = true;
@@ -957,21 +1231,27 @@ var MainMenu = (function () {
     function _GetNotificationBarData() {
         const notification = { color_class: "", title: "", tooltip: "", link: "" };
         if (LicenseUtil.GetCurrentLicenseRestrictions() === false) {
+            //
+            // Establishing connection to GC spinner - only show it up if the user has no license problems
+            //
             const bIsConnectedToGC = MyPersonaAPI.IsConnectedToGC();
             $('#MainMenuInput').SetHasClass('GameClientConnectingToGC', !bIsConnectedToGC);
-            if (bIsConnectedToGC) {
+            if (bIsConnectedToGC) { // We are connected to GC, no need to track reconnection attempts
                 _m_tLastSeenDisconnectedFromGC = 0;
             }
-            else if (!_m_tLastSeenDisconnectedFromGC) {
-                _m_tLastSeenDisconnectedFromGC = +new Date();
+            else if (!_m_tLastSeenDisconnectedFromGC) { // We just got disconnected from GC, start tracking disconnection attempts
+                _m_tLastSeenDisconnectedFromGC = +new Date(); // current UTC timestamp in milliseconds (seconds * 1000)
             }
-            else if (Math.abs((+new Date()) - _m_tLastSeenDisconnectedFromGC) > 7000) {
+            else if (Math.abs((+new Date()) - _m_tLastSeenDisconnectedFromGC) > 7000) { // We have been disconnected for 7+ seconds
                 notification.color_class = "NotificationLoggingOn";
                 notification.title = $.Localize("#Store_Connecting_ToGc");
                 notification.tooltip = $.Localize("#Store_Connecting_ToGc_Tooltip");
                 return notification;
             }
         }
+        //
+        // VAC banned account warning
+        //
         const nIsVacBanned = MyPersonaAPI.IsVacBanned();
         if (nIsVacBanned != 0) {
             notification.color_class = "NotificationRed";
@@ -987,12 +1267,18 @@ var MainMenu = (function () {
             }
             return notification;
         }
+        //
+        // Game client out-of-date warning
+        //
         if (NewsAPI.IsNewClientAvailable()) {
             notification.color_class = "NotificationYellow";
             notification.title = $.Localize("#SFUI_MainMenu_Outofdate_Title");
             notification.tooltip = $.Localize("#SFUI_MainMenu_Outofdate_Body");
             return notification;
         }
+        //
+        // Cooldown countdown warning
+        //
         const nBanRemaining = CompetitiveMatchAPI.GetCooldownSecondsRemaining();
         if (nBanRemaining > 0) {
             notification.tooltip = CompetitiveMatchAPI.GetCooldownReason();
@@ -1009,6 +1295,8 @@ var MainMenu = (function () {
                 notification.title = $.Localize("#SFUI_MainMenu_Competitive_Ban_Title");
                 notification.color_class = "NotificationYellow";
             }
+            // add time to title if cooldown expires within 50 days (all permanent cooldowns have 60+ days and don't expire)
+            //if ( nBanRemaining <= 49*24*3600 )
             if (!CompetitiveMatchAPI.CooldownIsPermanent()) {
                 const title = notification.title;
                 if (CompetitiveMatchAPI.ShowFairPlayGuidelinesForCooldown()) {
@@ -1022,10 +1310,12 @@ var MainMenu = (function () {
     }
     function _UpdateNotificationBar() {
         const notification = _GetNotificationBarData();
+        // update color bar
         _m_NotificationBarColorClasses.forEach(function (strColorClass) {
             const bVisibleColor = notification && notification.color_class;
             _m_elNotificationsContainer.SetHasClass(strColorClass, !!bVisibleColor);
         });
+        // setup new notification
         if (notification !== null) {
             if (notification.link) {
                 const btnClickableLink = $.FindChildInContext('#ClickableLinkButton');
@@ -1042,9 +1332,12 @@ var MainMenu = (function () {
         _UpdatePopupnotification();
         _UpdateNotificationBar();
     };
+    //--------------------------------------------------------------------------------------------------
+    // Acknowledge popup
+    //--------------------------------------------------------------------------------------------------
     let _m_acknowledgePopupHandler = null;
     const _ShowAcknowledgePopup = function (type = '', itemid = '') {
-        if (type === 'xpgrant') {
+        if (type === 'xpgrant') { // Custom message when player used 'xpgrant' item
             UiToolkitAPI.ShowCustomLayoutPopupParameters('', 'file://{resources}/layout/popups/popup_acknowledge_xpgrant.xml', 'none');
             $.DispatchEvent('CSGOPlaySoundEffect', 'UIPanorama.inventory_new_item', 'MOUSE');
             return;
@@ -1070,6 +1363,7 @@ var MainMenu = (function () {
     };
     const _ShowVote = function () {
         const contextMenuPanel = UiToolkitAPI.ShowCustomLayoutContextMenuParametersDismissEvent('MainMenuNavBarVote', '', 'file://{resources}/layout/context_menus/context_menu_vote.xml', '', function () {
+            // FIXME: do we need dismiss event? 
         });
         contextMenuPanel.AddClass("ContextMenu_NoArrow");
     };
@@ -1095,22 +1389,53 @@ var MainMenu = (function () {
             '&' + 'okcmd=' + strOkCmd);
     };
     const _ShowWeaponUpdatePopup = function () {
-        return;
+        return; // end of August 2018, MP5 announcement has done its job
         const setVersionTo = '1';
         const currentVersion = GameInterfaceAPI.GetSettingString('ui_popup_weaponupdate_version');
         if (currentVersion !== setVersionTo) {
+            /* CSGO_SOURCE2_UNSUPPORTED
+                        // this is for the MP5
+                        $.Schedule( 1.75, showMp5Popup );
+            
+                        function showMp5Popup ()
+                        {
+                            const defIndex = 23;
+                            UiToolkitAPI.ShowCustomLayoutPopupParameters(
+                                '',
+                                'file://{resources}/layout/popups/popup_weapon_update.xml',
+                                'defindex=' + defIndex +
+                                '&' + 'uisettingversion=' + setVersionTo,
+                                'none'
+                            );
+                        }
+            CSGO_SOURCE2_UNSUPPORTED */
         }
     };
     const _ShowOperationLaunchPopup = function () {
         if (_m_hOnEngineSoundSystemsRunningRegisterHandle) {
+            $.Msg("Main menu : unregistering from EngineSoundSystemsRunning listener - safe to check config");
             $.UnregisterForUnhandledEvent("PanoramaComponent_GameInterface_EngineSoundSystemsRunning", _m_hOnEngineSoundSystemsRunningRegisterHandle);
             _m_hOnEngineSoundSystemsRunningRegisterHandle = null;
         }
-        const setVersionTo = '2109';
-        GameInterfaceAPI.SetSettingString('ui_popup_weaponupdate_version', setVersionTo);
+        // return; // end of March 2021, operation announcement movie has done it's job, using it for Premier Upsell
+        const setVersionTo = '2109'; // Year '21, Month 09, must be numeric
+        // CSGO_SOURCE2_PORT disable operation fang video for now
+        /* CSGO_SOURCE2_UNSUPPORTED
+                const currentVersion = GameInterfaceAPI.GetSettingString( 'ui_popup_weaponupdate_version' );
+                if ( currentVersion !== setVersionTo )
+                {
+                    UiToolkitAPI.ShowCustomLayoutPopupParameters(
+                        '',
+                        'file://{resources}/layout/popups/popup_operation_launch.xml',
+                        'uisettingversion=' + setVersionTo,
+                        'none'
+                    );
+                }
+        CSGO_SOURCE2_UNSUPPORTED */
+        GameInterfaceAPI.SetSettingString('ui_popup_weaponupdate_version', setVersionTo); // CSGO_SOURCE2_PORT always set version to 2
     };
     const _ShowUpdateWelcomePopup = function () {
-        const setVersionTo = '2303';
+        const setVersionTo = '2303'; // Year '23, Month 03, must be numeric
         const currentVersion = GameInterfaceAPI.GetSettingString('ui_popup_weaponupdate_version');
         if (currentVersion !== setVersionTo) {
             UiToolkitAPI.ShowCustomLayoutPopupParameters('', 'file://{resources}/layout/popups/popup_welcome_launch.xml', 'uisettingversion=' + setVersionTo);
@@ -1125,9 +1450,13 @@ var MainMenu = (function () {
     const _ShowTournamentStore = function () {
         UiToolkitAPI.ShowCustomLayoutPopupParameters('', 'file://{resources}/layout/popups/popup_tournament_store.xml', '');
     };
+    //--------------------------------------------------------------------------------------------------
+    // Mission in Pause menu 
+    //--------------------------------------------------------------------------------------------------
     function _AddPauseMenuMissionPanel() {
         let elPanel = null;
         const missionId = GameStateAPI.GetActiveQuestID();
+        $.Msg('GameStateAPI.GetActiveQuestID(): ' + missionId);
         const oGameState = GameStateAPI.GetTimeDataJSO();
         if (!$.GetContextPanel().FindChildInLayoutFile('JsActiveMission') && missionId && oGameState && oGameState.gamephase !== 5) {
             elPanel = $.CreatePanel('Panel', $('#JsActiveMissionPanel'), 'JsActiveMission');
@@ -1149,14 +1478,30 @@ var MainMenu = (function () {
     const _SlideSearchPartyParticles = function (bSlidout) {
         let particle_container = $('#party-search-particles');
         particle_container.SetHasClass("mainmenu-party-search-particle--slide-out", bSlidout);
+        //Dirty Cp 3
         particle_container.SetControlPoint(3, 0, 0, 0);
         particle_container.SetControlPoint(3, 1, 0, 0);
     };
+    //--------------------------------------------------------------------------------------------------
+    // Survival End Of Match instance in Pause menu 
+    //--------------------------------------------------------------------------------------------------
     const _ResetSurvivalEndOfMatch = function () {
         _DeleteSurvivalEndOfMatch();
         function CreateEndOfMatchPanel() {
             const elPanel = $('#PauseMenuSurvivalEndOfMatch');
             if (!elPanel) {
+                /* CSGO_SOURCE2_UNSUPPORTED
+                elPanel = $.CreatePanel(
+                    'CSGOSurvivalEndOfMatch',
+                    $( '#MainMenuBackground' ),
+                    'PauseMenuSurvivalEndOfMatch',
+                    {
+                        class: 'PauseMenuModeOnly'
+                    }
+                );
+
+                elPanel.SetAttributeString( 'pausemenu', 'true' );
+                */
             }
             _UpdateSurvivalEndOfMatchInstance();
         }
@@ -1175,11 +1520,20 @@ var MainMenu = (function () {
         }
     }
     const _ShowHideAlertForNewEventForWatchBtn = function () {
+        //const btn = $.GetContextPanel().FindChildInLayoutFile( 'MainMenuNavBarWatch' );
+        //const alert = btn.FindChildInLayoutFile( 'MainMenuWatchAlert' );
+        //
+        //const showAlert = GameInterfaceAPI.GetSettingString( 'ui_new_events_alert_seen' );
+        //const shouldHide = showAlert === '0' ? false : true;
+        //
+        //alert.SetHasClass( 'hidden', shouldHide );
     };
     const _WatchBtnPressedUpdateAlert = function () {
+        // GameInterfaceAPI.SetSettingString( 'ui_new_events_alert_seen', '1' );
         _ShowHideAlertForNewEventForWatchBtn();
     };
     const _StatsBtnPressedUpdateAlert = function () {
+        // GameInterfaceAPI.SetSettingString( 'ui_new_events_alert_seen', '1' );
         _ShowHideAlertForNewEventForWatchBtn();
     };
     const _UpdateUnlockCompAlert = function () {
@@ -1205,8 +1559,10 @@ var MainMenu = (function () {
         let teamName = ((team == '2') ? 't' : 'ct');
         $.DispatchEvent("ShowLoadoutForItem", LoadoutAPI.GetItemID(teamName, 'customplayer'));
     }
+    //--------------------------------------------------------------------------------------------------
     function _OnGoToCharacterLoadoutPressed() {
         if (!MyPersonaAPI.IsInventoryValid() || !MyPersonaAPI.IsConnectedToGC()) {
+            //No connection to GC so show a message
             UiToolkitAPI.ShowGenericPopupOk($.Localize('#SFUI_SteamConnectionErrorTitle'), $.Localize('#SFUI_Steam_Error_LinkUnexpected'), '', function () { });
             return;
         }
@@ -1222,6 +1578,73 @@ var MainMenu = (function () {
             }
         }
     }
+    function _OnPlayButtonPressed() {
+        if (GameTypesAPI.ShouldForceNewUserTraining()) {
+            $.DispatchEvent('OpenPlayMenu');
+            $.Schedule(0.1, _NewUser_TrainingMatch);
+        }
+        else if (GameTypesAPI.ShouldShowNewUserPopup()) {
+            // Show the home screen behind the popup.
+            _OnHomeButtonPressed();
+            _NewUser_ShowPopup();
+        }
+        else {
+            $.DispatchEvent('OpenPlayMenu');
+        }
+    }
+    function _NewUser_ShowPopup() {
+        UiToolkitAPI.ShowGenericPopupThreeOptions('#PlayMenu_NewUser_title', '#PlayMenu_NewUser_text', '', '#PlayMenu_NewUser_casual', function () {
+            GameTypesAPI.DisableNewUserExperience();
+            $.DispatchEvent('OpenPlayMenu');
+            $.Schedule(0.1, _NewUser_CasualMatchmaking);
+        }, '#PlayMenu_NewUser_training', function () {
+            $.DispatchEvent('OpenPlayMenu');
+            $.Schedule(0.1, _NewUser_TrainingMatch);
+        }, '#PlayMenu_NewUser_other', function () {
+            GameTypesAPI.DisableNewUserExperience();
+            $.DispatchEvent('OpenPlayMenu');
+        });
+    }
+    function _NewUser_TrainingMatch() {
+        const settings = {
+            update: {
+                Options: {
+                    action: 'custommatch',
+                    server: 'listen',
+                },
+                Game: {
+                    mode: 'new_user_training',
+                    type: 'classic',
+                    mapgroupname: 'mg_de_dust2',
+                    map: 'de_dust2'
+                }
+            },
+            delete: {}
+        };
+        LobbyAPI.UpdateSessionSettings(settings);
+        LobbyAPI.StartMatchmaking('', '', '', '');
+    }
+    ;
+    function _NewUser_CasualMatchmaking() {
+        const settings = {
+            update: {
+                Options: {
+                    action: 'custommatch',
+                    server: 'official',
+                },
+                Game: {
+                    mode: 'casual',
+                    type: 'classic',
+                    mapgroupname: 'mg_dust247',
+                    map: 'de_dust2'
+                }
+            },
+            delete: {}
+        };
+        LobbyAPI.UpdateSessionSettings(settings);
+        LobbyAPI.StartMatchmaking('', '', '', '');
+    }
+    ;
     return {
         OnInitFadeUp: _OnInitFadeUp,
         OnShowMainMenu: _OnShowMainMenu,
@@ -1283,9 +1706,13 @@ var MainMenu = (function () {
         OpenSubscriptionUpsell: _OpenSubscriptionUpsell,
         UpdateUnlockCompAlert: _UpdateUnlockCompAlert,
         PlayerActivityVoice: _PlayerActivityVoice,
-        CheckConnection: _CheckConnection
+        CheckConnection: _CheckConnection,
+        OnPlayButtonPressed: _OnPlayButtonPressed,
     };
 })();
+//--------------------------------------------------------------------------------------------------
+// Entry point called when panel is created
+//--------------------------------------------------------------------------------------------------
 (function () {
     $.LogChannel("CSGO_MainMenu", "LV_DEFAULT", "#aaff80");
     $.RegisterForUnhandledEvent('HideContentPanel', MainMenu.OnHideContentPanel);
@@ -1311,6 +1738,14 @@ var MainMenu = (function () {
     $.RegisterForUnhandledEvent("PanoramaComponent_TournamentMatch_DraftUpdate", MainMenu.TournamentDraftUpdate);
     $.RegisterForUnhandledEvent('ShowLoadoutForItem', MainMenu.ShowLoadoutForItem);
     $.RegisterForUnhandledEvent('ShowAcknowledgePopup', MainMenu.ShowAcknowledgePopup);
+    /* CSGO_SOURCE2_UNSUPPORTED
+    $.RegisterForUnhandledEvent( 'ShowStoreStatusPanel', MainMenu.ShowStoreStatusPanel );
+    $.RegisterForUnhandledEvent( 'HideStoreStatusPanel', MainMenu.HideStoreStatusPanel );
+
+    $.RegisterForUnhandledEvent( 'ShowVoteContextMenu', MainMenu.ShowVote );
+    $.RegisterForUnhandledEvent( 'ShowTournamentStore', MainMenu.ShowTournamentStore );
+    CSGO_SOURCE2_UNSUPPORTED */
+    //	$.RegisterForUnhandledEvent( 'OnMapConfigLoaded', MainMenu.ResetSurvivalEndOfMatch );
     $.RegisterForUnhandledEvent('UnloadLoadingScreenAndReinit', MainMenu.ResetSurvivalEndOfMatch);
     $.RegisterForUnhandledEvent('MainMenu_OnGoToCharacterLoadoutPressed', MainMenu.OnGoToCharacterLoadoutPressed);
     $.RegisterForUnhandledEvent("PanoramaComponent_EmbeddedStream_VideoPlaying", MainMenu.OnSteamIsPlaying);
@@ -1323,9 +1758,9 @@ var MainMenu = (function () {
     $.RegisterForUnhandledEvent('PanoramaComponent_MyPersona_UpdateConnectionToGC', MainMenu.CheckConnection);
     MainMenu.MinimizeSidebar();
     MainMenu.InitVanity();
+    // MainMenu.PreloadSettings(); // <vitaliy 2023-03-17> -- we must load options much later when cloud configs were fully processed
     MainMenu.MinimizeSidebar();
     MainMenu.InitFriendsList();
     MainMenu.InitNewsAndStore();
     $.RegisterForUnhandledEvent('CSGOMainMenuEscapeKeyPressed', MainMenu.OnEscapeKeyPressed);
 })();
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFpbm1lbnUuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJtYWlubWVudS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxrQ0FBa0M7QUFDbEMsaURBQWlEO0FBQ2pELDhDQUE4QztBQUM5QyxvREFBb0Q7QUFDcEQseURBQXlEO0FBQ3pELG1DQUFtQztBQUNuQyxrQ0FBa0M7QUFDbEMsOENBQThDO0FBQzlDLDZDQUE2QztBQU03QyxJQUFJLFFBQVEsR0FBRyxDQUFFO0lBRWhCLE1BQU0sZ0JBQWdCLEdBQUcsQ0FBRSxZQUFZLENBQUMsZUFBZSxFQUFFLEtBQUssY0FBYyxDQUFFLENBQUM7SUFDL0UsSUFBSSxZQUFZLEdBQWtCLElBQUksQ0FBQztJQUN2QyxJQUFJLGtDQUFrQyxHQUFHLEtBQUssQ0FBQztJQUMvQyxNQUFNLGlCQUFpQixHQUFHLENBQUMsQ0FBRSxvQkFBb0IsQ0FBRyxDQUFDO0lBQ3JELElBQUkscUJBQXFCLEdBQUcsS0FBSyxDQUFDO0lBR2xDLE1BQU0sMkJBQTJCLEdBQUcsQ0FBQyxDQUFFLHlCQUF5QixDQUFHLENBQUM7SUFDcEUsSUFBSSx1QkFBdUIsR0FBbUIsS0FBSyxDQUFDO0lBQ3BELElBQUksaUNBQWlDLEdBQUcsS0FBSyxDQUFDO0lBQzlDLElBQUksd0JBQXdCLEdBQUcsS0FBSyxDQUFDO0lBQ3JDLElBQUksOEJBQThCLEdBQUcsQ0FBQyxDQUFDO0lBQ3ZDLE1BQU0sOEJBQThCLEdBQUc7UUFDdEMsaUJBQWlCLEVBQUUsb0JBQW9CLEVBQUUsbUJBQW1CLEVBQUUsdUJBQXVCO0tBQ3JGLENBQUM7SUFHRixJQUFJLGlDQUFpQyxHQUFrQixJQUFJLENBQUM7SUFDNUQsSUFBSSw0Q0FBNEMsR0FBa0IsSUFBSSxDQUFDO0lBQ3ZFLElBQUksc0NBQXNDLEdBQWtCLElBQUksQ0FBQztJQUNqRSxJQUFJLHdDQUF3QyxHQUFrQixJQUFJLENBQUM7SUFFbkUsSUFBSSxtQ0FBbUMsR0FBa0IsSUFBSSxDQUFDO0lBRTlELElB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

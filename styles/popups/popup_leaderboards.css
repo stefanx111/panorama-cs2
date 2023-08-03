@@ -104,7 +104,7 @@
  .popup-leaderboard__list__column{
 
   width: fill-parent-flow( 6 );
-  height: 52px;
+  height: 40px;
   margin-right:2px;
  }
 
@@ -118,14 +118,23 @@
   background-color: rgba(245, 245, 245, 0.05);
  }
 
- .popup-leaderboard__list__column.points{
+ .popup-leaderboard__list__column.rating{
 
-  width: fill-parent-flow( 2 );
+  width: 60px;
  }
+  .popup-leaderboard__list__column.rating .rating-root{
+   horizontal-align: center;
+   vertical-align: center;
+  }
+
 
  .popup-leaderboard__list__column.rank{
 
   width: fill-parent-flow( 2 );
+ }
+
+ .popup-leaderboard__list__column.name{
+  flow-children: right;
  }
 
  .hide-global-rank .popup-leaderboard__list__column.rank{
@@ -136,7 +145,6 @@
  .popup-leaderboard__list__column__title{
 
   padding-left: 8px;
-  font-family: Stratum2, 'Arial Unicode MS';
   font-weight: medium;
  }
 
@@ -145,7 +153,7 @@
   opacity: .5;
  }
 
- .popup-leaderboard__list__column__title.position{
+ .popup-leaderboard__list__column__title.rank{
 
   width: 42px;
   font-weight: light;

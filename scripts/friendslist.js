@@ -659,7 +659,7 @@ var friendsList = (function() {
 
 	var _ShowMatchAcceptPopUp = function( map )
 	{
-		var popup = UiToolkitAPI.ShowGlobalCustomLayoutPopupParameters( '', 'file://{resources}/layout/popups/popup_accept_match.xml', 'map_and_isreconnect=' + map + ',false' );
+		var popup = UiToolkitAPI.ShowCustomLayoutPopupParameters( '', 'file://{resources}/layout/popups/popup_accept_match.xml', 'map_and_isreconnect=' + map + ',false' );
 		$.DispatchEvent( "ShowAcceptPopup", popup );
 	};
 

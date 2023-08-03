@@ -5,40 +5,86 @@
 		<include src="s2r://panorama/styles/popups/popup_premier_pick_ban.vcss_c" />
 	</styles>
 	<scripts>
-		<include src="s2r://panorama/scripts/popups/popup_premier_pick_ban.vts_c" />
 		<include src="s2r://panorama/scripts/util_gamemodeflags.vts_c" />
 	</scripts>
 	<snippets>
 		<snippet name="progress-section">
-			<Panel class="premier-pickban__section">
-				<Label class="premier-pickban__progress__section-name stratum-medium-condensed fontSize-l" text="Section Label" />
+			<Panel class="premier-pickban__section premier-pickban__progress--pre">
+				<Label class="premier-pickban__progress__section-timer stratum-medium-condensed fontSize-xl" text="{s:section-time}" />
+				<Label class="premier-pickban__progress__section-name stratum-medium-condensed fontSize-m" text="{s:section-label}" />
 				<Panel class="premier-pickban__progress__bar-container">
-					<Panel class="premier-pickban__progress__bar-inner" />
+					<Panel id="id-team-phase-bar-inner" class="premier-pickban__progress__bar-inner" />
 				</Panel>
 			</Panel>
 		</snippet>
+		<snippet name="vote-button">
+			<Panel class="premier-pickban__map-btn" hittest="false">
+				<ToggleButton id="id-pickban-btn" class="premier-pickban__map-btn-container">
+					<Panel id="id-pickban-map-btn-bg" class="premier-pickban__map-btn-bg">
+						<Panel class="premier-pickban__map-btn__map-fade" />
+						<Panel class="premier-pickban__map-btn__result" />
+						<Panel class="premier-pickban__map-btn__vote-container">
+							<Panel class="premier-pickban__map-btn__vote" />
+						</Panel>
+						<Label class="premier-pickban__map-btn__label stratum-medium-condensed fontSize-ml" text="{s:map-name}" />
+					</Panel>
+					<Label class="premier-pickban__map-btn-status stratum-medium-condensed fontSize-l" text="{s:status}" />
+				</ToggleButton>
+				<Panel id="id-pickban-btn-avatars" class="premier-pickban__map-avatars-container" hittest="false" hittestchildren="false" />
+			</Panel>
+		</snippet>
+		<snippet name="small-avatar">
+			<Panel class="premier-pickban__map-avatars__btn">
+				<Panel>
+					<Panel class="avatar-image__default" />
+					<CSGOAvatarImage id="JsAvatarImage" class="avatar-image__icon" />
+				</Panel>
+				<Label class="premier-pickban__map-avatars__label stratum-regular fontSize-s" text="{s:teammate_name}" />
+			</Panel>
+		</snippet>
 	</snippets>
-	<PopupCustomLayout class="premier-pickban PopupPanel" popupbackground="dim">
-		<Panel class="premier-pickban__topbar">
-			<Panel class="premier-pickban__title">
-				<Label class="premier-pickban__title__clock stratum-bold-mono fontSize-xl" text="99:99" />
-				<Label class="premier-pickban__title__text stratum-medium fontSize-xl" text="Explanation Text For Draft" />
-			</Panel>
-		</Panel>
+	<PopupCustomLayout class="premier-pickban PopupPanel" popupbackground="blur" hittest="true">
 		<Panel class="premier-pickban__middle">
-			<Panel class="premier-pickban__progress">
-				<Frame snippet="progress-section" />
-				<Frame snippet="progress-section" />
-				<Frame snippet="progress-section" />
-				<Frame snippet="progress-section" />
-				<Frame snippet="progress-section" />
+			<Panel id="id-team-vote-phasebar-container" class="premier-pickban__progress">
+				<Frame id="id-team-vote-phasebar-2" snippet="progress-section" data-phase="2" />
+				<Frame id="id-team-vote-phasebar-3" snippet="progress-section" data-phase="3" />
+				<Frame id="id-team-vote-phasebar-4" snippet="progress-section" data-phase="4" />
+				<Frame id="id-team-vote-phasebar-5" snippet="progress-section" data-phase="5" />
+				<Frame id="id-team-vote-phasebar-6" snippet="progress-section" data-phase="6" />
 			</Panel>
-			<Panel class="left-right-flow full-height horizontal-center">
-				<Panel class="premier-pickban__maps" />
-				<Panel class="premier-pickban__team" />
-				<Panel class="premier-pickban__team premier-pickban__team--result" />
+			<Panel class="premier-pickban-phase-row">
+				<Panel id="id-pick-vote-maps" class="premier-pickban__maps">
+					<Image class="premier-pickban__spider-bg" src="s2r://panorama/images/backgrounds/premier_spider.vsvg" />
+					<Panel id="id-team-vote-btns-container" class="full-height full-width overflow-noclip">
+						<Frame id="id-map-vote-btn-0" snippet="vote-button" />
+						<Frame id="id-map-vote-btn-1" snippet="vote-button" />
+						<Frame id="id-map-vote-btn-2" snippet="vote-button" />
+						<Frame id="id-map-vote-btn-3" snippet="vote-button" />
+						<Frame id="id-map-vote-btn-4" snippet="vote-button" />
+						<Frame id="id-map-vote-btn-5" snippet="vote-button" />
+						<Frame id="id-map-vote-btn-6" snippet="vote-button" />
+					</Panel>
+				</Panel>
+				<Panel class="premier-pickban__team">
+					<Panel class="vertical-center horizontal-center full-width full-height">
+						<Panel id="id-team-vote-map-image" class="premier-pickban__team__map-image" />
+						<Panel class="premier-pickban__team__map-texture" />
+						<Image id="id-team-vote-map-icon" class="premier-pickban__team__map-icon" textureheight="220" texturewidth="-1" src="s2r://panorama/images/map_icons/map_icon_de_dust2.vsvg" />
+						<MapPlayerPreviewPanel id="id-team-vote-agent-ct" class="premier-pickban__agent" map="ui/buy_menu" camera="cam_loadoutmenu_ct" require-composition-layer="true" playermodel="characters/models/ctm_fbi/ctm_fbi.vmdl" playername="vanity_character" animgraphcharactermode="buy-menu" player="true" mouse_rotate="false" sync_spawn_addons="true" transparent-background="true" pin-fov="vertical" />
+						<MapPlayerPreviewPanel id="id-team-vote-agent-t" class="premier-pickban__agent horizontal-align-right" map="ui/buy_menu" camera="cam_loadoutmenu_ct" require-composition-layer="true" playermodel="characters/models/ctm_fbi/ctm_fbi.vmdl" playername="vanity_character" animgraphcharactermode="buy-menu" player="true" mouse_rotate="false" sync_spawn_addons="true" transparent-background="true" pin-fov="vertical" />
+						<Frame id="id-team-vote-btn-0" snippet="vote-button" data-type="team" />
+						<Frame id="id-team-vote-btn-1" snippet="vote-button" data-type="team" />
+					</Panel>
+					<Panel class="premier-pickban__team premier-pickban__team--result" />
+				</Panel>
+				<Image id="id-team-vote-reflection" class="premier-pickban__reflection" />
+			</Panel>
+			<Panel id="id-team-vote-topbar-container" class="premier-pickban__topbar">
+				<Panel id="id-team-vote-title" class="premier-pickban__title">
+					<Panel id="id-team-vote-title-spinner" class="Spinner right-margin-medium" />
+					<Label id="id-team-vote-title-phase" html="true" class="premier-pickban__title__text stratum-medium fontSize-xl" text="{s:title-text}" />
+				</Panel>
 			</Panel>
 		</Panel>
-		<Panel class="premier-pickban__bottom" />
 	</PopupCustomLayout>
 </root>

@@ -43,7 +43,6 @@
 
  .UIMvpEffectsContainer{
 
-  -s2-mix-blend-mode: additive;
      width: 1024px;
   height: 200px;
      horizontal-align: center;
@@ -51,6 +50,11 @@
      opacity: 1;
   margin-top: -100px;
   z-index: 1;
+ }
+
+ .UIMvpEffects_additive{
+
+  -s2-mix-blend-mode: additive;
  }
 
  .UIMVP{

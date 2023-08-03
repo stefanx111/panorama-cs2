@@ -1,5 +1,8 @@
+"use strict";
 /// <reference path="csgo.d.ts" />
 /// <reference path="common/iteminfo.ts" />
+/// <reference path="rating_emblem.ts" />
+// pass game accessors through here to be able to inject dummy data in test cases
 var MockAdapter = (function () {
     const k_GetMatchEndWinDataJSO = "k_GetMatchEndWinDataJSO";
     const k_GetScoreDataJSO = "k_GetScoreDataJSO";
@@ -66,26 +69,61 @@ var MockAdapter = (function () {
     const k_GetCooperativePlayerTeamName = "k_GetCooperativePlayerTeamName";
     const k_GetAllPlayersMatchDataJSO = "k_GetAllPlayersMatchDataJSO";
     const k_GetPlayerCharacterItemID = "k_GetPlayerCharacterItemID";
-    const k_GetFauxItemIDFromDefAndPaintIndex = "GetFauxItemIDFromDefAndPaintIndex";
-    let _m_mockData = undefined;
+    const k_GetFauxItemIDFromDefAndPaintIndex = "k_GetFauxItemIDFromDefAndPaintIndex";
+    const k_GetPlayerCompetitiveRankType = "k_GetPlayerCompetitiveRankType";
+    const k_bSkillgroupDataReady = "k_bSkillgroupDataReady";
+    const k_GetPipRankCount = "k_GetPipRankCount";
+    var _m_mockData = _GetMockData();
+    function _msg(msg) {
+        $.Msg('MockAdapter: ' + msg);
+    }
+    function _GetRootPanel() {
+        let parent = $.GetContextPanel().GetParent();
+        let newParent;
+        while (newParent = parent.GetParent())
+            parent = newParent;
+        return parent;
+    }
     function _SetMockData(dummydata) {
-        _m_mockData = dummydata;
+        let elRoot = _GetRootPanel();
+        elRoot.Data().m_mockData = dummydata;
     }
     function _GetMockData() {
-        return _m_mockData;
+        let elRoot = _GetRootPanel();
+        if (!elRoot.Data().hasOwnProperty('m_mockData'))
+            return undefined;
+        else
+            return elRoot.Data().m_mockData;
+    }
+    function _GetMockTables() {
+        let elRoot = _GetRootPanel();
+        if (!elRoot.Data().hasOwnProperty('m_mockTables'))
+            return undefined;
+        else
+            return elRoot.Data().m_mockTables;
+    }
+    function _AddTable(name, table) {
+        let elRoot = _GetRootPanel();
+        if (!elRoot.Data().hasOwnProperty('m_mockTables'))
+            elRoot.Data().m_mockTables = {};
+        elRoot.Data().m_mockTables[name] = table;
     }
     function FindMockTable(key) {
+        //	_msg( 'looking for ' + String(key) );
         const arrTablesInUse = _m_mockData.split(',');
         for (let group of arrTablesInUse) {
-            if (MOCK_TABLE.hasOwnProperty(group) && MOCK_TABLE[group].hasOwnProperty(key)) {
-                return MOCK_TABLE[group];
+            let mockTables = _GetMockTables();
+            if (mockTables && mockTables.hasOwnProperty(group) && mockTables[group].hasOwnProperty(key)) {
+                //	_msg( 'found ' + String( key ) + ' in ' + String( group ) );
+                return mockTables[group];
             }
         }
-        if (MOCK_TABLE['defaults'].hasOwnProperty(key)) {
-            return MOCK_TABLE['defaults'];
-        }
-        else
-            return undefined;
+        // if ( MOCK_TABLE[ 'defaults' ]!.hasOwnProperty( key ) )
+        // {
+        // 	return MOCK_TABLE[ 'defaults' ];
+        // }
+        // else
+        return undefined;
     }
     function _APIAccessor(val, key, xuid = -1) {
         if (!_m_mockData) {
@@ -96,12 +134,18 @@ var MockAdapter = (function () {
             return val;
         }
         let tableVal;
+        // is this a table with per player data?
         if (xuid !== -1 && table[key].hasOwnProperty(xuid)) {
             tableVal = table[key][xuid];
+        }
+        else if (xuid !== -1 && !table[key].hasOwnProperty(xuid)) // xuid isn't in the table, just take the first entry
+         {
+            tableVal = table[key][0];
         }
         else {
             tableVal = table[key];
         }
+        // if the entry is a function, evaluate the function
         if (tableVal && typeof tableVal === "function") {
             return tableVal(xuid);
         }
@@ -110,12 +154,14 @@ var MockAdapter = (function () {
         }
     }
     const _getLoadoutWeapons = function (team) {
+        //	$.Msg( '_getLoadoutWeapons' );
         const list = [];
         const slotStrings = LoadoutAPI.GetLoadoutSlotNames(false);
         const slots = JSON.parse(slotStrings);
         slots.forEach(slot => {
             const itemId = LoadoutAPI.GetItemID(team, slot);
             const bIsWeapon = ItemInfo.IsWeapon(itemId);
+            //$.Msg( ItemInfo.GetName( itemId ) + " " + bIsWeapon );
             if (bIsWeapon) {
                 list.push(itemId);
             }
@@ -123,6 +169,7 @@ var MockAdapter = (function () {
         return list;
     };
     function _GetRandomWeaponFromLoadout() {
+        //	return "17293822569102704672";
         const team = (_m_mockData.search('team_ct') !== -1) ? 'ct' : 't';
         const list = _getLoadoutWeapons(team);
         return list[_r(0, list.length)];
@@ -358,10 +405,1277 @@ var MockAdapter = (function () {
             ],
         ];
         const random = _r(0, 2);
+        // for ( const i = 0; i < 50; i++ )
+        // {
+        // 	$.Msg( _r( 0, 2 ) );
+        // }
         return (models[teamnum][random]);
     }
-    const MOCK_TABLE = {};
+    let MOCK_TABLE = {
+        //DEVONLY{
+        "defaults": {
+            k_GetTeamClanName: {
+                TERRORIST: "Terrorists",
+                CT: "Counter-Terrorists"
+            },
+            k_GetMapBSPName: "de_mirage",
+            k_GetMatchEndWinDataJSO: {
+                "text": "#Scoreboard_Final_Won",
+                "winning_team_number": 2,
+                "losing_team_number": 3,
+                "winning_player": "0"
+            },
+            k_GetLocalPlayerXuid: "1",
+            k_GetTeamLogoImagePath: "/icons/ct_logo.svg",
+            k_GetPlayerItemCT: "characters/models/ctm_st6_constiantd.vmdl",
+            k_GetPlayerItemTerrorist: "characters/models/tm_balkan/tm_balkan_constiante.vmdl",
+            k_IsPlayerConnected: true,
+            k_IsFakePlayer: false,
+            k_GetTimeDataJSO: {
+                "gamephase": 5,
+                "has_halftime": false,
+                "maxrounds": 1,
+                "maxrounds_overtime": 6,
+                "maxrounds_this_period": 1,
+                "first_round_this_period": 1,
+                "last_round_this_period": 1,
+                "overtime": 0,
+                "roundtime": 135,
+                "maptime": 0,
+                "roundtime_remaining": 131,
+                "roundtime_elapsed": 3,
+                "maptime_remaining": -1,
+                "maptime_elapsed": 45,
+                "rounds_remaining": -1,
+                "rounds_played": 2,
+                "num_wins_to_clinch": 1,
+                "num_wins_to_clinch_this_period": 1,
+                "can_clinch": 1,
+                "time": 953
+            },
+            k_GetPlayerSlot: {
+                "1": "1",
+                "3": "3",
+                "5": "5",
+                "7": "7",
+                "9": "9",
+                "2": "2",
+                "4": "4",
+                "6": "6",
+                "8": "8",
+                "10": "10",
+                "11": "11",
+                "13": "13",
+                "15": "15",
+                "17": "17",
+                "19": "19",
+                "12": "12",
+                "14": "14",
+                "16": "16",
+                "18": "18",
+                "20": "20"
+            },
+            k_GetPlayerStatus: 0,
+            k_GetPlayerDataJSO: {
+                "CT": {
+                    "1": "1",
+                    "3": "3",
+                    "5": "5",
+                    "7": "7",
+                    "9": "9",
+                    "11": "11",
+                    "13": "13",
+                    "15": "15",
+                    "17": "17",
+                    "19": "19"
+                },
+                "TERRORIST": {
+                    "2": "2",
+                    "4": "4",
+                    "6": "6",
+                    "8": "8",
+                    "10": "10",
+                    "12": "12",
+                    "14": "14",
+                    "16": "16",
+                    "18": "18",
+                    "20": "20"
+                }
+            },
+            k_GetPlayerTeamName: {
+                "1": "CT",
+                "3": "CT",
+                "5": "CT",
+                "7": "CT",
+                "9": "CT",
+                "11": "CT",
+                "13": "CT",
+                "15": "CT",
+                "17": "CT",
+                "19": "CT",
+                "2": "TERRORIST",
+                "4": "TERRORIST",
+                "6": "TERRORIST",
+                "8": "TERRORIST",
+                "10": "TERRORIST",
+                "12": "TERRORIST",
+                "14": "TERRORIST",
+                "16": "TERRORIST",
+                "18": "TERRORIST",
+                "20": "TERRORIST"
+            },
+            k_GetPlayerTeamNumber: {
+                "1": 3,
+                "3": 3,
+                "5": 3,
+                "7": 3,
+                "9": 3,
+                "11": 3,
+                "13": 3,
+                "15": 3,
+                "17": 3,
+                "19": 3,
+                "2": 2,
+                "4": 2,
+                "6": 2,
+                "8": 2,
+                "10": 2,
+                "12": 2,
+                "14": 2,
+                "16": 2,
+                "18": 2,
+                "20": 2
+            },
+            k_GetPlayerName: {
+                "1": "apple appleappleappleapple",
+                "3": "banana bananabananabanana",
+                "5": "pear pearpearpearpearpear",
+                "7": "durian durianduriandurian",
+                "9": "grape",
+                "2": "kiwi",
+                "4": "melon",
+                "6": "strawberry",
+                "8": "kumquat",
+                "10": "orange",
+                "11": "apple2",
+                "13": "banana2",
+                "15": "pear2",
+                "17": "durian2",
+                "19": "grape2",
+                "12": "kiwi2",
+                "14": "melon2",
+                "16": "strawberry2",
+                "18": "kumquat2",
+                "20": "orange2",
+            },
+            k_GetPlayerActiveWeaponItemId: _GetRandomWeaponFromLoadout,
+            k_GetPlayerModel: {
+                "1": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "3": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "5": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "7": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "9": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "2": _GetRandomPlayerModel.bind(undefined, 't'),
+                "4": _GetRandomPlayerModel.bind(undefined, 't'),
+                "6": _GetRandomPlayerModel.bind(undefined, 't'),
+                "8": _GetRandomPlayerModel.bind(undefined, 't'),
+                "10": _GetRandomPlayerModel.bind(undefined, 't'),
+                "11": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "13": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "15": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "17": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "19": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "12": _GetRandomPlayerModel.bind(undefined, 't'),
+                "14": _GetRandomPlayerModel.bind(undefined, 't'),
+                "16": _GetRandomPlayerModel.bind(undefined, 't'),
+                "18": _GetRandomPlayerModel.bind(undefined, 't'),
+                "20": _GetRandomPlayerModel.bind(undefined, 't'),
+            },
+            k_GetPlayerColor: {
+                "1": "",
+                "3": "",
+                "5": "",
+                "7": "",
+                "9": "",
+                "2": "",
+                "4": "",
+                "6": "",
+                "8": "",
+                "10": "",
+                "11": "",
+                "13": "",
+                "15": "",
+                "17": "",
+                "19": "",
+                "12": "",
+                "14": "",
+                "16": "",
+                "18": "",
+                "20": "", //"255 155 37",
+            },
+            k_GetPlayerStatsJSO: {
+                "1": _GetRandomPlayerStatsJSO,
+                "3": _GetRandomPlayerStatsJSO,
+                "5": _GetRandomPlayerStatsJSO,
+                "7": _GetRandomPlayerStatsJSO,
+                "9": _GetRandomPlayerStatsJSO,
+                "2": _GetRandomPlayerStatsJSO,
+                "4": _GetRandomPlayerStatsJSO,
+                "6": _GetRandomPlayerStatsJSO,
+                "8": _GetRandomPlayerStatsJSO,
+                "10": _GetRandomPlayerStatsJSO,
+                "11": _GetRandomPlayerStatsJSO,
+                "13": _GetRandomPlayerStatsJSO,
+                "15": _GetRandomPlayerStatsJSO,
+                "17": _GetRandomPlayerStatsJSO,
+                "19": _GetRandomPlayerStatsJSO,
+                "12": _GetRandomPlayerStatsJSO,
+                "14": _GetRandomPlayerStatsJSO,
+                "16": _GetRandomPlayerStatsJSO,
+                "18": _GetRandomPlayerStatsJSO,
+                "20": _GetRandomPlayerStatsJSO,
+            },
+            k_GetPlayerMVPs: {
+                "1": _r(),
+                "3": _r(),
+                "5": _r(),
+                "7": _r(),
+                "9": _r(),
+                "2": _r(),
+                "4": _r(),
+                "6": _r(),
+                "8": _r(),
+                "10": _r(),
+                "11": _r(),
+                "13": _r(),
+                "15": _r(),
+                "17": _r(),
+                "19": _r(),
+                "12": _r(),
+                "14": _r(),
+                "16": _r(),
+                "18": _r(),
+                "20": _r(),
+            },
+            k_GetPlayerScore: {
+                "1": _r(),
+                "3": _r(),
+                "5": _r(),
+                "7": _r(),
+                "9": _r(),
+                "2": _r(),
+                "4": _r(),
+                "6": _r(),
+                "8": _r(),
+                "10": _r(),
+                "11": _r(),
+                "13": _r(),
+                "15": _r(),
+                "17": _r(),
+                "19": _r(),
+                "12": _r(),
+                "14": _r(),
+                "16": _r(),
+                "18": _r(),
+                "20": _r(),
+            },
+            k_GetPlayerAssists: {
+                "1": _r(),
+                "3": _r(),
+                "5": _r(),
+                "7": _r(),
+                "9": _r(),
+                "2": _r(),
+                "4": _r(),
+                "6": _r(),
+                "8": _r(),
+                "10": _r(),
+                "11": _r(),
+                "13": _r(),
+                "15": _r(),
+                "17": _r(),
+                "19": _r(),
+                "12": _r(),
+                "14": _r(),
+                "16": _r(),
+                "18": _r(),
+                "20": _r(),
+            },
+            k_GetPlayerDeaths: {
+                "1": _r(),
+                "3": _r(),
+                "5": _r(),
+                "7": _r(),
+                "9": _r(),
+                "2": _r(),
+                "4": _r(),
+                "6": _r(),
+                "8": _r(),
+                "10": _r(),
+                "11": _r(),
+                "13": _r(),
+                "15": _r(),
+                "17": _r(),
+                "19": _r(),
+                "12": _r(),
+                "14": _r(),
+                "16": _r(),
+                "18": _r(),
+                "20": _r(),
+            },
+            k_AccoladesJSO: _GetRandomAccolades(),
+            k_GetAllPlayersMatchDataJSO: {
+                allplayerdata: [
+                    {
+                        entindex: "1",
+                        isbot: true,
+                        xuid: "1",
+                        name: "Miller",
+                        teamnumber: 2,
+                        nomination: {
+                            eaccolade: "9",
+                            value: "102",
+                            position: "2"
+                        },
+                        items: [
+                            { itemid: _InternalGetFauxItemId(_GetRandomModelDefIndex(2), 0), defindex: _GetRandomModelDefIndex(2) },
+                            { itemid: "17293822569102704644", defindex: "4" }
+                        ]
+                    },
+                    {
+                        entindex: "2", isbot: true, xuid: "2", name: "Nate", teamnumber: 3, nomination: { eaccolade: "5", value: "0", position: "1" },
+                        items: [
+                            { itemid: _InternalGetFauxItemId(_GetRandomModelDefIndex(3), 0), defindex: _GetRandomModelDefIndex(3) },
+                            { itemid: "17293822569102704644", defindex: "4" }
+                        ]
+                    },
+                    {
+                        entindex: "3",
+                        isbot: true,
+                        xuid: "3",
+                        name: "Steve",
+                        teamnumber: 2,
+                        nomination: {
+                            eaccolade: "33",
+                            value: "5",
+                            position: "1"
+                        },
+                        items: [
+                            { itemid: _InternalGetFauxItemId(5504, 0), defindex: "5504" },
+                            { itemid: "17293822569102704699", defindex: "59", paintindex: "0", rarity: "0", quality: "0", stickers: [], origin: "4294967295", }
+                        ]
+                    },
+                    { entindex: "5", isbot: true, xuid: "4", name: "Mark", teamnumber: 3, nomination: { eaccolade: "24", value: "1", position: "2" }, },
+                    {
+                        entindex: "6",
+                        isbot: true,
+                        xuid: "5",
+                        name: "Colin",
+                        teamnumber: 2,
+                        nomination: {
+                            eaccolade: "11",
+                            value: "23",
+                            position: "1"
+                        },
+                        items: [
+                            { itemid: _InternalGetFauxItemId(5106, 0), defindex: "5106" },
+                            { itemid: _InternalGetFauxItemId(9, 736), defindex: "5029", paintindex: "0", rarity: "1", quality: "0", stickers: [], origin: "4294967295", },
+                            { itemid: "17293822569102704682", defindex: "42", paintindex: "0", rarity: "0", quality: "0", stickers: [], origin: "4294967295", }
+                        ]
+                    },
+                    { entindex: "7", isbot: true, xuid: "6", name: "Will", teamnumber: 3, nomination: { eaccolade: "24", value: "1", position: "2" }, },
+                    {
+                        entindex: "8",
+                        isbot: true,
+                        xuid: "7",
+                        name: "Jason",
+                        teamnumber: 2,
+                        nomination: {
+                            eaccolade: "38",
+                            value: "11",
+                            position: "2"
+                        },
+                        items: [
+                            { itemid: _InternalGetFauxItemId(5503, 0), defindex: "5503" },
+                            { itemid: _InternalGetFauxItemId(28, 763), defindex: "", paintindex: "0", rarity: "1", quality: "0", stickers: [], origin: "4294967295", },
+                        ]
+                    },
+                    { entindex: "9", isbot: true, xuid: "8", name: "Doug", teamnumber: 3, nomination: { eaccolade: "4", value: "0", position: "1" }, },
+                    {
+                        entindex: "10",
+                        isbot: true,
+                        xuid: "9",
+                        name: "Adam",
+                        teamnumber: 2,
+                        nomination: {
+                            eaccolade: "10",
+                            value: "8",
+                            position: "1"
+                        },
+                        items: [
+                            { itemid: _InternalGetFauxItemId(5502, 0), defindex: "5502" },
+                            { itemid: _InternalGetFauxItemId(518, 38), defindex: "5028", paintindex: "0", rarity: "1", quality: "0", stickers: [], origin: "4294967295", },
+                        ]
+                    },
+                    { entindex: "11", isbot: true, xuid: "10", name: "Mike", teamnumber: 3, nomination: { eaccolade: "3", value: "0", position: "1" }, },
+                    { entindex: "12", isbot: true, xuid: "11", name: "Mike", teamnumber: 2, nomination: { eaccolade: "3", value: "0", position: "1" }, },
+                    { entindex: "13", isbot: true, xuid: "12", name: "Mike", teamnumber: 3, nomination: { eaccolade: "3", value: "0", position: "1" }, },
+                    { entindex: "14", isbot: true, xuid: "13", name: "Mike", teamnumber: 2, nomination: { eaccolade: "3", value: "0", position: "1" }, },
+                    { entindex: "15", isbot: true, xuid: "14", name: "Mike", teamnumber: 3, nomination: { eaccolade: "3", value: "0", position: "1" }, },
+                    { entindex: "16", isbot: true, xuid: "15", name: "Mike", teamnumber: 2, nomination: { eaccolade: "3", value: "0", position: "1" }, },
+                    { entindex: "17", isbot: true, xuid: "16", name: "Mike", teamnumber: 3, nomination: { eaccolade: "3", value: "0", position: "1" }, },
+                    { entindex: "18", isbot: true, xuid: "17", name: "Mike", teamnumber: 2, nomination: { eaccolade: "3", value: "0", position: "1" }, },
+                    { entindex: "19", isbot: true, xuid: "18", name: "Mike", teamnumber: 3, nomination: { eaccolade: "3", value: "0", position: "1" }, },
+                    { entindex: "20", isbot: true, xuid: "19", name: "Mike", teamnumber: 2, nomination: { eaccolade: "3", value: "0", position: "1" }, },
+                    { entindex: "21", isbot: true, xuid: "20", name: "Mike", teamnumber: 3, nomination: { eaccolade: "3", value: "0", position: "1" }, },
+                ],
+                scene: 5,
+            }
+        },
+        "char_balkan": {
+            k_GetPlayerModel: {
+                "1": "characters/models/tm_balkan/tm_balkan_constianth.vmdl",
+                "3": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "5": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "7": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "9": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "2": "characters/models/tm_balkan/tm_balkan_constianth.vmdl",
+                "4": _GetRandomPlayerModel.bind(undefined, 't'),
+                "6": _GetRandomPlayerModel.bind(undefined, 't'),
+                "8": _GetRandomPlayerModel.bind(undefined, 't'),
+                "10": _GetRandomPlayerModel.bind(undefined, 't'),
+                "11": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "13": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "15": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "17": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "19": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "12": _GetRandomPlayerModel.bind(undefined, 't'),
+                "14": _GetRandomPlayerModel.bind(undefined, 't'),
+                "16": _GetRandomPlayerModel.bind(undefined, 't'),
+                "18": _GetRandomPlayerModel.bind(undefined, 't'),
+                "20": _GetRandomPlayerModel.bind(undefined, 't'),
+            },
+            k_GetCharacterDefaultCheerByXuid: {
+                "1": "punching",
+                "3": "",
+                "5": "",
+                "7": "",
+                "9": "",
+                "2": "punching",
+                "4": "",
+                "6": "",
+                "8": "",
+                "10": "",
+                "11": "",
+                "13": "",
+                "15": "",
+                "17": "",
+                "19": "",
+                "12": "",
+                "14": "",
+                "16": "",
+                "18": "",
+                "20": "",
+            },
+        },
+        "char_elite": {
+            k_GetPlayerModel: {
+                "1": "characters/models/tm_leet/tm_leet_constiantf.vmdl",
+                "3": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "5": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "7": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "9": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "2": "characters/models/tm_leet/tm_leet_constiantf.vmdl",
+                "4": _GetRandomPlayerModel.bind(undefined, 't'),
+                "6": _GetRandomPlayerModel.bind(undefined, 't'),
+                "8": _GetRandomPlayerModel.bind(undefined, 't'),
+                "10": _GetRandomPlayerModel.bind(undefined, 't'),
+                "11": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "13": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "15": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "17": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "19": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "12": _GetRandomPlayerModel.bind(undefined, 't'),
+                "14": _GetRandomPlayerModel.bind(undefined, 't'),
+                "16": _GetRandomPlayerModel.bind(undefined, 't'),
+                "18": _GetRandomPlayerModel.bind(undefined, 't'),
+                "20": _GetRandomPlayerModel.bind(undefined, 't'),
+            },
+            k_GetCharacterDefaultCheerByXuid: {
+                "1": "swagger",
+                "3": "",
+                "5": "",
+                "7": "",
+                "9": "",
+                "2": "swagger",
+                "4": "",
+                "6": "",
+                "8": "",
+                "10": "",
+                "11": "",
+                "13": "",
+                "15": "",
+                "17": "",
+                "19": "",
+                "12": "",
+                "14": "",
+                "16": "",
+                "18": "",
+                "20": "",
+            },
+        },
+        "char_fbi": {
+            k_GetPlayerModel: {
+                "1": "characters/models/ctm_fbi/ctm_fbi_constiantb.vmdl",
+                "3": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "5": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "7": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "9": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "2": "characters/models/ctm_fbi/ctm_fbi_constiantb.vmdl",
+                "4": _GetRandomPlayerModel.bind(undefined, 't'),
+                "6": _GetRandomPlayerModel.bind(undefined, 't'),
+                "8": _GetRandomPlayerModel.bind(undefined, 't'),
+                "10": _GetRandomPlayerModel.bind(undefined, 't'),
+                "11": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "13": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "15": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "17": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "19": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "12": _GetRandomPlayerModel.bind(undefined, 't'),
+                "14": _GetRandomPlayerModel.bind(undefined, 't'),
+                "16": _GetRandomPlayerModel.bind(undefined, 't'),
+                "18": _GetRandomPlayerModel.bind(undefined, 't'),
+                "20": _GetRandomPlayerModel.bind(undefined, 't'),
+            },
+            k_GetCharacterDefaultCheerByXuid: {
+                "1": "stretch",
+                "3": "",
+                "5": "",
+                "7": "",
+                "9": "",
+                "2": "stretch",
+                "4": "",
+                "6": "",
+                "8": "",
+                "10": "",
+                "11": "",
+                "13": "",
+                "15": "",
+                "17": "",
+                "19": "",
+                "12": "",
+                "14": "",
+                "16": "",
+                "18": "",
+                "20": "",
+            },
+        },
+        "char_st6": {
+            k_GetPlayerModel: {
+                "1": "characters/models/ctm_st6_constianti.vmdl",
+                "3": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "5": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "7": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "9": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "2": "characters/models/ctm_st6_constianti.vmdl",
+                "4": _GetRandomPlayerModel.bind(undefined, 't'),
+                "6": _GetRandomPlayerModel.bind(undefined, 't'),
+                "8": _GetRandomPlayerModel.bind(undefined, 't'),
+                "10": _GetRandomPlayerModel.bind(undefined, 't'),
+                "11": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "13": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "15": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "17": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "19": _GetRandomPlayerModel.bind(undefined, 'ct'),
+                "12": _GetRandomPlayerModel.bind(undefined, 't'),
+                "14": _GetRandomPlayerModel.bind(undefined, 't'),
+                "16": _GetRandomPlayerModel.bind(undefined, 't'),
+                "18": _GetRandomPlayerModel.bind(undefined, 't'),
+                "20": _GetRandomPlayerModel.bind(undefined, 't'),
+            },
+            k_GetCharacterDefaultCheerByXuid: {
+                "1": "dropdown",
+                "3": "",
+                "5": "",
+                "7": "",
+                "9": "",
+                "2": "dropdown",
+                "4": "",
+                "6": "",
+                "8": "",
+                "10": "",
+                "11": "",
+                "13": "",
+                "15": "",
+                "17": "",
+                "19": "",
+                "12": "",
+                "14": "",
+                "16": "",
+                "18": "",
+                "20": "",
+            },
+        },
+        "team_ct": {
+            k_GetLocalPlayerXuid: "2",
+        },
+        "team_t": {
+            k_GetLocalPlayerXuid: "1",
+        },
+        "vs5ct": {
+            k_GetLocalPlayerXuid: "1",
+            k_GetGameModeInternalName: "competitive",
+        },
+        "vs5t": {
+            k_GetLocalPlayerXuid: "2",
+            k_GetGameModeInternalName: "competitive",
+        },
+        "vs2ct": {
+            k_GetLocalPlayerXuid: "1",
+            k_GetGameModeInternalName: "cooperative",
+        },
+        "vs2t": {
+            k_GetLocalPlayerXuid: "2",
+            k_GetGameModeInternalName: "cooperative",
+        },
+        "mode_wingman": {
+            k_GetGameModeInternalName: "scrimcomp2v2",
+            k_GetGameModeName: "wingman",
+            k_GetTeamLivingPlayerCount: 2,
+            k_GetPlayerDataJSO: {
+                "CT": {
+                    "1": "1",
+                    "3": "3",
+                },
+                "TERRORIST": {
+                    "2": "2",
+                    "4": "4",
+                }
+            },
+            k_GetMatchEndWinDataJSO: {
+                "text": "#Scoreboard_Final_Won",
+                "winning_team_number": 3,
+                "losing_team_number": 2,
+                "winning_player": "0"
+            },
+            k_GetScoreDataJSO: {
+                "teamdata": {
+                    "Unassigned": {
+                        "team_name": "Unassigned",
+                        "team_number": 0,
+                        "clan_id": 0,
+                        "clan_name": "Unassigned",
+                        "flag": "",
+                        "logo": "",
+                        "score": 0,
+                        "score_1h": 0,
+                        "score_2h": 0,
+                        "map_victories": 0
+                    },
+                    "Spectator": {
+                        "team_name": "Spectator",
+                        "team_number": 1,
+                        "clan_id": 0,
+                        "clan_name": "SPECTATORS",
+                        "flag": "",
+                        "logo": "",
+                        "score": 0,
+                        "score_1h": 0,
+                        "score_2h": 0,
+                        "map_victories": 0
+                    },
+                    "TERRORIST": {
+                        "team_name": "TERRORIST",
+                        "team_number": 2,
+                        "clan_id": 0,
+                        "clan_name": "TERRORISTS",
+                        "flag": "",
+                        "logo": "",
+                        "score": 0,
+                        "score_1h": 0,
+                        "score_2h": 0,
+                        "map_victories": 0
+                    },
+                    "CT": {
+                        "team_name": "CT",
+                        "team_number": 3,
+                        "clan_id": 20,
+                        "clan_name": "VALVE",
+                        "flag": "",
+                        "logo": "",
+                        "score": 1,
+                        "score_1h": 1,
+                        "score_2h": 0,
+                        "map_victories": 0
+                    },
+                },
+                "rounddata": {
+                    "1": {
+                        "round": 1,
+                        "result": "t_win_elimination",
+                        "players_alive_CT": 0,
+                        "players_alive_TERRORIST": 1
+                    },
+                },
+            },
+            k_GetTimeDataJSO: {
+                "gamephase": 5,
+                "has_halftime": false,
+                "maxrounds": 1,
+                "maxrounds_overtime": 6,
+                "maxrounds_this_period": 1,
+                "first_round_this_period": 1,
+                "last_round_this_period": 1,
+                "overtime": 0,
+                "roundtime": 135,
+                "maptime": 0,
+                "roundtime_remaining": 131,
+                "roundtime_elapsed": 3,
+                "maptime_remaining": -1,
+                "maptime_elapsed": 45,
+                "rounds_remaining": -1,
+                "rounds_played": 2,
+                "num_wins_to_clinch": 1,
+                "num_wins_to_clinch_this_period": 1,
+                "can_clinch": 1,
+                "time": 953
+            },
+        },
+        "mode_guardian": {
+            k_GetLocalPlayerXuid: "2",
+            k_GetGameModeInternalName: "cooperative",
+            k_GetGameModeName: "cooperative",
+            k_GetCooperativePlayerTeamName: "ct",
+            k_GetTeamLivingPlayerCount: 2,
+            k_GetPlayerDataJSO: {
+                "CT": {
+                    "1": "1",
+                    "3": "3",
+                },
+                "TERRORIST": {
+                    "2": "2",
+                    "4": "4",
+                }
+            },
+            k_GetMatchEndWinDataJSO: {
+                "text": "#Scoreboard_Final_Won",
+                "winning_team_number": 3,
+                "losing_team_number": 2,
+                "winning_player": "0"
+            },
+            k_GetScoreDataJSO: {
+                "teamdata": {
+                    "Unassigned": {
+                        "team_name": "Unassigned",
+                        "team_number": 0,
+                        "clan_id": 0,
+                        "clan_name": "Unassigned",
+                        "flag": "",
+                        "logo": "",
+                        "score": 0,
+                        "score_1h": 0,
+                        "score_2h": 0,
+                        "map_victories": 0
+                    },
+                    "Spectator": {
+                        "team_name": "Spectator",
+                        "team_number": 1,
+                        "clan_id": 0,
+                        "clan_name": "SPECTATORS",
+                        "flag": "",
+                        "logo": "",
+                        "score": 0,
+                        "score_1h": 0,
+                        "score_2h": 0,
+                        "map_victories": 0
+                    },
+                    "TERRORIST": {
+                        "team_name": "TERRORIST",
+                        "team_number": 2,
+                        "clan_id": 0,
+                        "clan_name": "TERRORISTS",
+                        "flag": "",
+                        "logo": "",
+                        "score": 0,
+                        "score_1h": 0,
+                        "score_2h": 0,
+                        "map_victories": 0
+                    },
+                    "CT": {
+                        "team_name": "CT",
+                        "team_number": 3,
+                        "clan_id": 20,
+                        "clan_name": "VALVE",
+                        "flag": "",
+                        "logo": "",
+                        "score": 1,
+                        "score_1h": 1,
+                        "score_2h": 0,
+                        "map_victories": 0
+                    },
+                },
+                "rounddata": {
+                    "1": {
+                        "round": 1,
+                        "result": "t_win_elimination",
+                        "players_alive_CT": 0,
+                        "players_alive_TERRORIST": 1
+                    },
+                },
+            },
+            k_GetTimeDataJSO: {
+                "gamephase": 5,
+                "has_halftime": false,
+                "maxrounds": 1,
+                "maxrounds_overtime": 6,
+                "maxrounds_this_period": 1,
+                "first_round_this_period": 1,
+                "last_round_this_period": 1,
+                "overtime": 0,
+                "roundtime": 135,
+                "maptime": 0,
+                "roundtime_remaining": 131,
+                "roundtime_elapsed": 3,
+                "maptime_remaining": -1,
+                "maptime_elapsed": 45,
+                "rounds_remaining": -1,
+                "rounds_played": 2,
+                "num_wins_to_clinch": 1,
+                "num_wins_to_clinch_this_period": 1,
+                "can_clinch": 1,
+                "time": 953
+            },
+        },
+        "mode_comp": {
+            k_GetGameModeInternalName: "competitive",
+            k_GetGameModeName: "competitive",
+            k_GetTeamLivingPlayerCount: 5,
+            k_GetPlayerDataJSO: {
+                "CT": {
+                    "1": "1",
+                    "3": "3",
+                    "5": "5",
+                    "7": "7",
+                    "9": "9"
+                },
+                "TERRORIST": {
+                    "2": "2",
+                    "4": "4",
+                    "6": "6",
+                    "8": "8",
+                    "10": "10"
+                }
+            },
+            k_GetMatchEndWinDataJSO: {
+                "text": "#Scoreboard_Final_Won",
+                "winning_team_number": 2,
+                "losing_team_number": 3,
+                "winning_player": "0"
+            },
+            k_GetScoreDataJSO: {
+                "teamdata": {
+                    "Unassigned": {
+                        "team_name": "Unassigned",
+                        "team_number": 0,
+                        "clan_id": 0,
+                        "clan_name": "Unassigned",
+                        "flag": "",
+                        "logo": "",
+                        "score": 0,
+                        "score_1h": 0,
+                        "score_2h": 0,
+                        "map_victories": 0
+                    },
+                    "Spectator": {
+                        "team_name": "Spectator",
+                        "team_number": 1,
+                        "clan_id": 0,
+                        "clan_name": "SPECTATORS",
+                        "flag": "",
+                        "logo": "",
+                        "score": 0,
+                        "score_1h": 0,
+                        "score_2h": 0,
+                        "map_victories": 0
+                    },
+                    "TERRORIST": {
+                        "team_name": "TERRORIST",
+                        "team_number": 2,
+                        "clan_id": 0,
+                        "clan_name": "TERRORISTS",
+                        "flag": "",
+                        "logo": "",
+                        "score": 0,
+                        "score_1h": 0,
+                        "score_2h": 0,
+                        "map_victories": 0
+                    },
+                    "CT": {
+                        "team_name": "CT",
+                        "team_number": 3,
+                        "clan_id": 20,
+                        "clan_name": "VALVE",
+                        "flag": "",
+                        "logo": "",
+                        "score": 1,
+                        "score_1h": 1,
+                        "score_2h": 0,
+                        "map_victories": 0
+                    },
+                },
+                "rounddata": {
+                    "1": {
+                        "round": 1,
+                        "result": "t_win_elimination",
+                        "players_alive_CT": 0,
+                        "players_alive_TERRORIST": 1
+                    },
+                },
+            },
+            k_GetTimeDataJSO: {
+                "gamephase": 5,
+                "has_halftime": false,
+                "maxrounds": 1,
+                "maxrounds_overtime": 6,
+                "maxrounds_this_period": 1,
+                "first_round_this_period": 1,
+                "last_round_this_period": 1,
+                "overtime": 0,
+                "roundtime": 135,
+                "maptime": 0,
+                "roundtime_remaining": 131,
+                "roundtime_elapsed": 3,
+                "maptime_remaining": -1,
+                "maptime_elapsed": 45,
+                "rounds_remaining": -1,
+                "rounds_played": 2,
+                "num_wins_to_clinch": 1,
+                "num_wins_to_clinch_this_period": 1,
+                "can_clinch": 1,
+                "time": 953
+            },
+            k_GetPlayerColor: {
+                "1": "#F8F62D",
+                "3": "#A119F0",
+                "5": "#00B562",
+                "7": "#5CA8FF",
+                "9": "#FF9B25",
+                "2": "#F8F62D",
+                "4": "#A119F0",
+                "6": "#00B562",
+                "8": "#5CA8FF",
+                "10": "#FF9B25", //"255 155 37",
+            }
+        },
+        "mode_cas": {
+            k_GetGameModeInternalName: "casual",
+            k_GetGameModeName: "casual",
+            k_GetTeamLivingPlayerCount: 10,
+            k_GetMatchEndWinDataJSO: {
+                "text": "#Scoreboard_Final_Won",
+                "winning_team_number": 3,
+                "losing_team_number": 2,
+                "winning_player": "0"
+            },
+            k_GetScoreDataJSO: {
+                "teamdata": {
+                    "Unassigned": {
+                        "team_name": "Unassigned",
+                        "team_number": 0,
+                        "clan_id": 0,
+                        "clan_name": "Unassigned",
+                        "flag": "",
+                        "logo": "",
+                        "score": 0,
+                        "score_1h": 0,
+                        "score_2h": 0,
+                        "map_victories": 0
+                    },
+                    "Spectator": {
+                        "team_name": "Spectator",
+                        "team_number": 1,
+                        "clan_id": 0,
+                        "clan_name": "SPECTATORS",
+                        "flag": "",
+                        "logo": "",
+                        "score": 0,
+                        "score_1h": 0,
+                        "score_2h": 0,
+                        "map_victories": 0
+                    },
+                    "TERRORIST": {
+                        "team_name": "TERRORIST",
+                        "team_number": 2,
+                        "clan_id": 0,
+                        "clan_name": "TERRORISTS",
+                        "flag": "",
+                        "logo": "",
+                        "score": 12,
+                        "score_1h": 8,
+                        "score_2h": 4,
+                        "map_victories": 0
+                    },
+                    "CT": {
+                        "team_name": "CT",
+                        "team_number": 3,
+                        "clan_id": 20,
+                        "clan_name": "VALVE",
+                        "flag": "",
+                        "logo": "",
+                        "score": 16,
+                        "score_1h": 7,
+                        "score_2h": 9,
+                        "map_victories": 0
+                    },
+                },
+                "rounddata": {
+                    "1": {
+                        "round": 1,
+                        "result": "t_win_elimination",
+                        "players_alive_CT": 0,
+                        "players_alive_TERRORIST": 1
+                    },
+                },
+            },
+            k_GetTimeDataJSO: {
+                "gamephase": 5,
+                "has_halftime": false,
+                "maxrounds": 16,
+                "maxrounds_overtime": 6,
+                "maxrounds_this_period": 1,
+                "first_round_this_period": 1,
+                "last_round_this_period": 1,
+                "overtime": 0,
+                "roundtime": 135,
+                "maptime": 0,
+                "roundtime_remaining": 131,
+                "roundtime_elapsed": 3,
+                "maptime_remaining": -1,
+                "maptime_elapsed": 45,
+                "rounds_remaining": -1,
+                "rounds_played": 28,
+                "num_wins_to_clinch": 1,
+                "num_wins_to_clinch_this_period": 1,
+                "can_clinch": 1,
+                "time": 953
+            },
+        },
+        // ARMS RACE
+        "mode_armsrace": {
+            k_GetGameModeInternalName: "gungameprogressive",
+            k_GetGameModeName: "Arms Race",
+            k_GetTeamLivingPlayerCount: 20,
+            k_GetPlayerDataJSO: {
+                "CT": {
+                    "1": "1",
+                    "3": "3",
+                    "5": "5",
+                    "7": "7",
+                    "9": "9",
+                    "11": "11",
+                    "13": "13",
+                    "15": "15",
+                    "17": "17",
+                    "19": "19"
+                },
+                "TERRORIST": {
+                    "2": "2",
+                    "4": "4",
+                    "6": "6",
+                    "8": "8",
+                    "10": "10",
+                    "12": "12",
+                    "14": "14",
+                    "16": "16",
+                    "18": "18",
+                    "20": "20"
+                }
+            },
+            k_GetMatchEndWinDataJSO: {
+                "text": "#Scoreboard_GG_The_Winner",
+                "winning_team_number": 3,
+                "losing_team_number": 0,
+                "winning_player": "76561197960423941"
+            },
+            k_GetScoreDataJSO: {
+                "teamdata": {
+                    "Unassigned": {
+                        "team_name": "Unassigned",
+                        "team_number": 0,
+                        "clan_id": 0,
+                        "clan_name": "Unassigned",
+                        "flag": "",
+                        "logo": "",
+                        "score": 0,
+                        "map_victories": 0
+                    },
+                    "Spectator": {
+                        "team_name": "Spectator",
+                        "team_number": 1,
+                        "clan_id": 0,
+                        "clan_name": "SPECTATORS",
+                        "flag": "",
+                        "logo": "",
+                        "score": 0,
+                        "map_victories": 0
+                    },
+                    "TERRORIST": {
+                        "team_name": "TERRORIST",
+                        "team_number": 2,
+                        "clan_id": 0,
+                        "clan_name": "TERRORISTS",
+                        "flag": "",
+                        "logo": "",
+                        "score": 0,
+                        "map_victories": 0
+                    },
+                    "CT": {
+                        "team_name": "CT",
+                        "team_number": 3,
+                        "clan_id": 0,
+                        "clan_name": "COUNTER-TERRORISTS",
+                        "flag": "",
+                        "logo": "",
+                        "score": 0,
+                        "map_victories": 0
+                    }
+                },
+                "rounddata": {}
+            },
+            k_GetTimeDataJSO: {
+                "gamephase": 0,
+                "has_halftime": false,
+                "maxrounds": 10,
+                "maxrounds_overtime": 6,
+                "maxrounds_this_period": 10,
+                "first_round_this_period": 1,
+                "last_round_this_period": 10,
+                "overtime": 0,
+                "roundtime": 1800,
+                "maptime": 30,
+                "roundtime_remaining": 1798,
+                "roundtime_elapsed": 1,
+                "maptime_remaining": 1798,
+                "maptime_elapsed": 1,
+                "rounds_remaining": 10,
+                "rounds_played": 0,
+                "num_wins_to_clinch": -1,
+                "num_wins_to_clinch_this_period": 6,
+                "can_clinch": 0,
+                "time": 30
+                // Key for game Phase
+                // GAMEPHASE_WARMUP_ROUND                0
+                // GAMEPHASE_PLAYING_STANDARD            1
+                // GAMEPHASE_PLAYING_FIRST_HALF          2
+                // GAMEPHASE_PLAYING_SECOND_HALF         3
+                // GAMEPHASE_HALFTIME                    4
+                // GAMEPHASE_MATCH_ENDED                 5
+            },
+        },
+        "RANK_up": {
+            k_XpDataJSO: _GetRandomXP,
+        },
+        "SKILLGROUP_up": {
+            k_SkillgroupDataJSO: _GetRandomSkillGroup,
+        },
+        "DROPS": {
+            k_DropListJSO: {
+                "0": {
+                    "item_id": "17221764975064776756",
+                    "owner_xuid": "148618791998203739",
+                    "display_time": 3.5,
+                    "faux_item_id": "17293822569125249033",
+                    "owner_team": 3,
+                    "rarity": 1,
+                    "is_local": 1,
+                    "reason": 0
+                },
+                "1": {
+                    "item_id": "17221764975064776755",
+                    "owner_xuid": "148618791998203739",
+                    "display_time": 3.5,
+                    "faux_item_id": "17293822569125249033",
+                    "owner_team": 3,
+                    "rarity": 1,
+                    "is_local": 1,
+                    "reason": 0
+                },
+                "2": {
+                    "item_id": "17221764975064776759",
+                    "owner_xuid": "148618791998203739",
+                    "display_time": 2,
+                    "faux_item_id": "17293822569125249033",
+                    "owner_team": 2,
+                    "rarity": 3,
+                    "is_local": 1,
+                    "reason": 0
+                },
+                "3": {
+                    "item_id": "17221764975064776753",
+                    "owner_xuid": "148618791998203739",
+                    "display_time": 1,
+                    "faux_item_id": "17293822569125249033",
+                    "owner_team": 2,
+                    "rarity": 3,
+                    "is_local": 1,
+                    "reason": 0
+                },
+                "4": {
+                    "item_id": "17221764975064776757",
+                    "owner_xuid": "148618791998203739",
+                    "display_time": 0.5,
+                    "faux_item_id": "17293822569125249033",
+                    "owner_team": 2,
+                    "rarity": 5,
+                    "is_local": 1,
+                    "reason": 0
+                },
+            },
+        },
+        "VOTING": {
+            k_NextMatchVotingData: {
+                "votes_to_succeed": 4,
+                "voting_done": 0,
+                "voting_winner": -1,
+                "voting_options": {
+                    "0": {
+                        "type": "map",
+                        "name": "de_mirage",
+                        "votes": 0
+                    },
+                    "1": {
+                        "type": "map",
+                        "name": "de_inferno",
+                        "votes": 1
+                    },
+                    "2": {
+                        "type": "map",
+                        "name": "de_overpass",
+                        "votes": 2
+                    },
+                    "3": {
+                        "type": "map",
+                        "name": "de_nuke",
+                        "votes": 3
+                    },
+                    "4": {
+                        "type": "map",
+                        "name": "de_train",
+                        "votes": 4
+                    },
+                    "5": {
+                        "type": "map",
+                        "name": "de_cache",
+                        "votes": 0
+                    },
+                },
+            },
+        },
+        //}DEVONLY	
+    };
+    /* Public interface */
     return {
+        AddTable: _AddTable,
         GetMatchEndWinDataJSO: function _APIGetMatchEndWinDataJSO() { return _APIAccessor(GameStateAPI.GetMatchEndWinDataJSO(), k_GetMatchEndWinDataJSO); },
         GetScoreDataJSO: function _GetScoreDataJSO() { return _APIAccessor(GameStateAPI.GetScoreDataJSO(), k_GetScoreDataJSO); },
         GetPlayerName: function _GetPlayerName(xuid) { return _APIAccessor(GameStateAPI.GetPlayerName(xuid), k_GetPlayerName, xuid); },
@@ -418,6 +1732,7 @@ var MockAdapter = (function () {
         GetPlayerAssists: function _GetPlayerAssists(xuid) { return _APIAccessor(GameStateAPI.GetPlayerAssists(xuid), k_GetPlayerAssists, xuid); },
         GetPlayerDeaths: function _GetPlayerDeaths(xuid) { return _APIAccessor(GameStateAPI.GetPlayerDeaths(xuid), k_GetPlayerDeaths, xuid); },
         GetPlayerPing: function _GetPlayerPing(xuid) { return _APIAccessor(GameStateAPI.GetPlayerPing(xuid), k_GetPlayerPing, xuid); },
+        // GetMusicIDForPlayer: function _GetMusicIDForPlayer ( xuid: string ) { return _APIAccessor( InventoryAPI.GetMusicIDForPlayer( xuid ), k_GetMusicIDForPlayer, xuid ); },
         GetPlayerColor: function _GetPlayerColor(xuid) { return _APIAccessor(GameStateAPI.GetPlayerColor(xuid), k_GetPlayerColor, xuid); },
         HasCommunicationAbuseMute: function _HasCommunicationAbuseMute(xuid) { return _APIAccessor(GameStateAPI.HasCommunicationAbuseMute(xuid), k_HasCommunicationAbuseMute); },
         IsSelectedPlayerMuted: function _IsSelectedPlayerMuted(xuid) { return _APIAccessor(GameStateAPI.IsSelectedPlayerMuted(xuid), k_IsSelectedPlayerMuted); },
@@ -430,15 +1745,21 @@ var MockAdapter = (function () {
         GetPlayerGungameLevel: function _GetPlayerGungameLevel(xuid) { return _APIAccessor(GameStateAPI.GetPlayerGungameLevel(xuid), k_GetPlayerGungameLevel, xuid); },
         GetPlayerItemCT: function _GetPlayerItemCT(panel) { return _APIAccessor(panel.GetPlayerItemCT(), k_GetPlayerItemCT); },
         GetPlayerItemTerrorist: function _GetPlayerItemTerrorist(panel) { return _APIAccessor(panel.GetPlayerItemTerrorist(), k_GetPlayerItemTerrorist); },
+        // AccoladesJSO: function _AccoladesJSO ( panel ) { return _APIAccessor( panel.AccoladesJSO, k_AccoladesJSO ); },
         GetCharacterDefaultCheerByXuid: function _GetCharacterDefaultCheerByXuid(xuid) { return _APIAccessor(GameStateAPI.GetCharacterDefaultCheerByXuid(xuid), k_GetCharacterDefaultCheerByXuid, xuid); },
         GetCooperativePlayerTeamName: function _GetCooperativePlayerTeamName() { return _APIAccessor(GameStateAPI.GetCooperativePlayerTeamName(), k_GetCooperativePlayerTeamName); },
         GetAllPlayersMatchDataJSO: function _GetAllPlayersMatchDataJSO() { return _APIAccessor(GameStateAPI.GetAllPlayersMatchDataJSO(), k_GetAllPlayersMatchDataJSO); },
         GetPlayerCharacterItemID: function _GetPlayerCharacterItemID(xuid) { return _APIAccessor(GameStateAPI.GetPlayerCharacterItemID(xuid), k_GetPlayerCharacterItemID); },
         GetFauxItemIDFromDefAndPaintIndex: function _GetFauxItemIDFromDefAndPaintIndex(defindex, paintid) { return _APIAccessor(InventoryAPI.GetFauxItemIDFromDefAndPaintIndex(defindex, paintid), k_GetFauxItemIDFromDefAndPaintIndex); },
+        GetPlayerCompetitiveRankType: function _GetPlayerCompetitiveRankType(xuid) { return _APIAccessor(GameStateAPI.GetPlayerCompetitiveRankType(xuid), k_GetPlayerCompetitiveRankType, xuid); },
+        bSkillgroupDataReady: function _bSkillgroupDataReady(panel) { return _APIAccessor(panel.bSkillgroupDataReady, k_bSkillgroupDataReady); },
+        GetPipRankCount: function _GetPipRankCount(type) { return _APIAccessor(MyPersonaAPI.GetPipRankCount(type), k_GetPipRankCount); },
         SetMockData: _SetMockData,
         GetMockData: _GetMockData,
     };
 })();
+//--------------------------------------------------------------------------------------------------
+// Entry point called when panel is created
+//--------------------------------------------------------------------------------------------------
 (function () {
 })();
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibW9ja19hZGFwdGVyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsibW9ja19hZGFwdGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLGtDQUFrQztBQUNsQywyQ0FBMkM7QUFJM0MsSUFBSSxXQUFXLEdBQUcsQ0FBRTtJQUduQixNQUFNLHVCQUF1QixHQUFHLHlCQUF5QixDQUFDO0lBQzFELE1BQU0saUJBQWlCLEdBQUcsbUJBQW1CLENBQUM7SUFDOUMsTUFBTSxlQUFlLEdBQUcsaUJBQWlCLENBQUM7SUFDMUMsTUFBTSxjQUFjLEdBQUcsZ0JBQWdCLENBQUM7SUFDeEMsTUFBTSxXQUFXLEdBQUcsYUFBYSxDQUFDO0lBQ2xDLE1BQU0seUJBQXlCLEdBQUcsMkJBQTJCLENBQUM7SUFDOUQsTUFBTSxpQkFBaUIsR0FBRyxtQkFBbUIsQ0FBQztJQUM5QyxNQUFNLG1CQUFtQixHQUFHLHFCQUFxQixDQUFDO0lBQ2xELE1BQU0sYUFBYSxHQUFHLGVBQWUsQ0FBQztJQUN0QyxNQUFNLGdCQUFnQixHQUFHLGtCQUFrQixDQUFDO0lBQzVDLE1BQU0scUJBQXFCLEdBQUcsdUJBQXVCLENBQUM7SUFDdEQsTUFBTSxtQkFBbUIsR0FBRyxxQkFBcUIsQ0FBQztJQUNsRCxNQUFNLGtCQUFrQixHQUFHLG9CQUFvQixDQUFDO0lBQ2hELE1BQU0sbUJBQW1CLEdBQUcscUJBQXFCLENBQUM7SUFDbEQsTUFBTSxlQUFlLEdBQUcsaUJBQWlCLENBQUM7SUFDMUMsTUFBTSxZQUFZLEdBQUcsY0FBYyxDQUFDO0lBQ3BDLE1BQU0seUJBQXlCLEdBQUcsMkJBQTJCLENBQUM7SUFDOUQsTUFBTSxzQkFBc0IsR0FBRyx3QkFBd0IsQ0FBQztJQUN4RCxNQUFNLGVBQWUsR0FBRyxpQkFBaUIsQ0FBQztJQUMxQyxNQUFNLG1CQUFtQixHQUFHLHFCQUFxQixDQUFDO0lBQ2xELE1BQU0scUJBQXFCLEdBQUcsdUJBQXVCLENBQUM7SUFDdEQsTUFBTSwyQkFBMkIsR0FBRyw2QkFB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

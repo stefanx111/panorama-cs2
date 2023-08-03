@@ -10,8 +10,11 @@
 		<include src="s2r://panorama/scripts/util_gamemodeflags.vts_c" />
 		<include src="s2r://panorama/scripts/common/formattext.vts_c" />
 		<include src="s2r://panorama/scripts/common/sessionutil.vts_c" />
+		<include src="s2r://panorama/scripts/common/iteminfo.vts_c" />
+		<include src="s2r://panorama/scripts/common/characteranims.vts_c" />
 		<include src="s2r://panorama/scripts/common/teamcolor.vts_c" />
 		<include src="s2r://panorama/scripts/avatar.vts_c" />
+		<include src="s2r://panorama/scripts/popups/popup_premier_pick_ban.vts_c" />
 		<include src="s2r://panorama/scripts/popups/popup_accept_match.vts_c" />
 	</scripts>
 	<snippets>
@@ -29,7 +32,7 @@
 			</Panel>
 		</snippet>
 	</snippets>
-	<PopupCustomLayout class="accept-match Hidden" popupbackground="dim" onload="PopupAcceptMatch.Init();" oncancel="">
+	<PopupCustomLayout class="accept-match Hidden" popupbackground="blur" onload="PopupAcceptMatch.Init();" oncancel="">
 		<Panel class="chat-panel-outer">
 			<Panel id="id-accept-match-chat-container" class="chat-panel" />
 		</Panel>
@@ -83,5 +86,6 @@
 				</Panel>
 			</Panel>
 		</Panel>
+		<Frame id="id-premier-pick-ban" class="" src="s2r://panorama/layout/popups/popup_premier_pick_ban.vxml_c" />
 	</PopupCustomLayout>
 </root>

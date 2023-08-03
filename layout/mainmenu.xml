@@ -102,7 +102,7 @@
 								<Frame id="MainMenuInvAlert" class="hidden" src="s2r://panorama/layout/btn_alert.vxml_c" />
 								<Label class="mainmenu-top-navbar__radio-btn__label stratum-regular-condensed" text="#CSGO_MainMenu_Loadout" />
 							</RadioButton>
-							<RadioButton id="MainMenuNavBarPlay" class="mainmenu-top-navbar__radio-btn mainmenu-top-navbar__radio-btn--play" group="NavBar" onactivate="$.DispatchEvent(&apos;OpenPlayMenu&apos;);">
+							<RadioButton id="MainMenuNavBarPlay" class="mainmenu-top-navbar__radio-btn mainmenu-top-navbar__radio-btn--play" group="NavBar" onactivate="MainMenu.OnPlayButtonPressed()">
 								<Panel class="mainmenu-top-navbar__play_seperator visible-if-not-limitedbeta" />
 								<Frame id="MainMenuPlayAlert" class="hidden" src="s2r://panorama/layout/btn_alert.vxml_c" />
 								<Panel class="full-height horizontal-center left-right-flow horizontal-center">

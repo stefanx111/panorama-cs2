@@ -7,7 +7,10 @@ var EOM_Skillgroup = (function () {
 	var _m_pauseBeforeEnd = 1.5;
 	var _m_cP = $.GetContextPanel();
 
-	const DEBUG_SKILLGROUP = false;
+	function _msg ( msg )
+	{
+		                                  
+	}
 
                                                      
 
@@ -24,116 +27,126 @@ var EOM_Skillgroup = (function () {
 		if ( !_m_cP || !_m_cP.IsValid() )
 			return;
 
-		if ( !DEBUG_SKILLGROUP )
-		{
-			if ( !_m_cP.bSkillgroupDataReady && !MockAdapter.GetMockData() )
-			{
-				return false;
-			}
+		_Reset();
 
-			if( MyPersonaAPI.GetElevatedState() !== 'elevated' )
-			{
-				return false;
-			}
+		function _msg ( text )
+		{
+			                                          
 		}
+
+
+		if ( !MockAdapter.bSkillgroupDataReady( _m_cP ) )
+		{
+			return false;
+		}	
+
+		if( MyPersonaAPI.GetElevatedState() !== 'elevated' )
+		{
+			return false;
+		}
+		
 
 		var oSkillgroupData = MockAdapter.SkillgroupDataJSO( _m_cP );
 
-		if ( DEBUG_SKILLGROUP )
-		{
-			function _r ( min = 0, max = 1000 )
-			{
-				return Math.ceil( Math.random() * ( ( max - min ) + min ) );
-			};
-
-			const oldrank = _r( 0, 18 );
-
-			oSkillgroupData = {
-				"old_rank": oldrank,
-				"new_rank": oldrank+1,                               
-				"num_wins": _r( 10, 1000 )
-			};
-
-		}
-
-		var compWins = oSkillgroupData[ "num_wins" ];
-		var oldRank = oSkillgroupData[ "old_rank" ];
-		var newRank = oSkillgroupData[ "new_rank" ];
-		var currentRank = oldRank < newRank ? newRank : oldRank;
-		var mode = GameStateAPI.GetGameModeInternalName( true );
-
 		var oData = {
-			currentRank: newRank,
-			compWins: compWins,
+			currentRank: oSkillgroupData[ "new_rank" ],
+			compWins: oSkillgroupData[ "num_wins" ],
 
-			oldRank: oldRank,
+			oldRank: oSkillgroupData[ "old_rank" ],
 			oldRanklInfo: '',
 			oldRankDesc: '',
 			oldImage: '',
 
-			newRank: newRank,
+			newRank: oSkillgroupData[ "new_rank" ],
 			newRanklInfo: '',
 			newRankDesc: '',
 			newImage: '',			
 			
-			mode: mode,
+			mode: MockAdapter.GetPlayerCompetitiveRankType( MockAdapter.GetLocalPlayerXuid() ),
 			model: ''
 		};
 
+		var currentRank = Math.max( Number(oData.newRank), Number(oData.oldRank) );
 		var winsNeededForRank = SessionUtil.GetNumWinsNeededForRank( oData.mode );
+		var matchesNeeded = winsNeededForRank - oData.compWins;
 
-		if ( DEBUG_SKILLGROUP )
-		{
-			winsNeededForRank = 0;
-			mode = 'competitive';
+		_m_cP.SetDialogVariable( 'eom_mode', $.Localize( '#SFUI_GameMode' + oData.mode ) );
 
-		}
-
-		_m_cP.SetDialogVariable( 'eom_mode', MockAdapter.GetGameModeName( true ) );
-
-		if ( oData.mode === 'survival' && currentRank < 1 )
-		{	                                                
-
-			oData.oldRanklInfo = $.Localize( '#eom-skillgroup-needed-dzgames', _m_cP );
-			oData.oldImage = 'file://{images}/icons/skillgroups/dangerzone0.svg';
-		}
-		else if ( currentRank < 1 && compWins >= winsNeededForRank )
+		if ( currentRank < 1 && matchesNeeded > 0 )
 		{	
 			                                              
 
-			var modePrefix = ( oData.mode === 'scrimcomp2v2' ) ? 'wingman' : ( ( oData.mode === 'survival' ) ? 'dangerzone' : 'skillgroup' );
-			
-			oData.oldRanklInfo = $.Localize( '#eom-skillgroup-expired', _m_cP );
-			oData.oldImage = 'file://{images}/icons/skillgroups/'+modePrefix+'_expired.svg';
+			switch ( oData.mode )
+			{
+				case 'Wingman':
+				case 'Competitive':
+
+					var modePrefix = ( oData.mode === 'Wingman' ) ? 'wingman' : 'skillgroup';
+					
+					oData.oldRanklInfo = $.Localize( '#eom-skillgroup-expired', _m_cP );
+					oData.oldImage = 'file://{images}/icons/skillgroups/' + modePrefix + '_expired.svg';
+					
+					break;
+				
+				case 'Premier':
+					break;
+			}
 		}
 		else if ( currentRank < 1 )
 		{
 			                                   
-			var matchesNeeded = winsNeededForRank - compWins;
 			_m_cP.SetDialogVariableInt( 'num_matches', matchesNeeded );
 			var winNeededString = ( matchesNeeded === 1 ) ? '#eom-skillgroup-needed-win' : '#eom-skillgroup-needed-wins';
 
-			var modePrefix = ( oData.mode === 'scrimcomp2v2' ) ? 'wingman' : ( ( oData.mode === 'survival' ) ? 'dangerzone' : 'skillgroup' );
+			switch ( oData.mode )
+			{
+				case 'Wingman':
+				case 'Competitive':
+			
+					var modePrefix = ( oData.mode === 'Wingman' ) ? 'wingman' : 'skillgroup';
 
-			oData.oldRanklInfo = $.Localize( winNeededString, _m_cP );
-			oData.oldImage = 'file://{images}/icons/skillgroups/'+modePrefix+'0.svg';
+					oData.oldRanklInfo = $.Localize( winNeededString, _m_cP );
+					oData.oldImage = 'file://{images}/icons/skillgroups/' + modePrefix + '0.svg';
+
+					break;
+				
+				case 'Premier':
+					break;
+			}
 		}
 		else if ( currentRank >= 1 )
 		{
-			                         
-			var modePrefix = ( oData.mode === 'scrimcomp2v2' ) ? 'skillgroup_wingman' : ( ( oData.mode === 'survival' ) ? 'skillgroup_dangerzone' : 'skillgroup' );
-			oData.oldImage = 'file://{images}/icons/skillgroups/'+modePrefix + oldRank + '.svg';
-			oData.oldRanklInfo = $.Localize( ( oData.mode === 'survival' ) ? '#skillgroup_' + oldRank + 'dangerzone' : '#RankName_' + oldRank );
-			oData.oldRankDesc = $.Localize( '#eom-skillgroup-name', _m_cP );
-
-			if ( oldRank < newRank )                             
+			switch ( oData.mode )
 			{
-				oData.newImage = 'file://{images}/icons/skillgroups/' + modePrefix + newRank + '.svg';
-				oData.newRanklInfo = $.Localize( ( oData.mode === 'survival' ) ? '#skillgroup_' + newRank + 'dangerzone' : '#RankName_' + newRank );
-				oData.newRankDesc = $.Localize( '#eom-skillgroup-name', _m_cP );
+				case 'Wingman':
+				case 'Competitive':
 
-				_m_pauseBeforeEnd = 3.0;
-				_LoadAndShowNewRankReveal( oData );
+					                         
+					var modePrefix = ( oData.mode === 'Wingman' ) ? 'wingman' : 'skillgroup';
+					oData.oldImage = 'file://{images}/icons/skillgroups/' + modePrefix + oData.oldRank + '.svg';
+					oData.oldRanklInfo = $.Localize( '#RankName_' + oData.oldRank );
+					oData.oldRankDesc = $.Localize( '#eom-skillgroup-name', _m_cP );
+
+					if ( oData.oldRank < oData.newRank )                             
+					{
+						oData.newImage = 'file://{images}/icons/skillgroups/' + modePrefix + oData.newRank + '.svg';
+						oData.newRanklInfo = $.Localize( '#RankName_' + oData.newRank );
+						oData.newRankDesc = $.Localize( '#eom-skillgroup-name', _m_cP );
+
+						_m_pauseBeforeEnd = 3.0;
+						_LoadAndShowNewRankReveal( oData );
+					}
+					
+					break;
+				
+				case 'Premier':
+					if ( oData.oldRank < oData.newRank )                             
+					{
+						_m_pauseBeforeEnd = 3.0;
+						_LoadAndShowNewRankReveal( oData );
+					}
+					
+					break;
 			}
 		}
 
@@ -154,25 +167,66 @@ var EOM_Skillgroup = (function () {
 
 		if ( !_m_cP || !_m_cP.IsValid() )
 			return;
-
-		_m_cP.FindChildInLayoutFile( 'id-eom-skillgroup-emblem--new__image' ).SetImage( oData.newImage );
-		_m_cP.FindChildInLayoutFile( 'id-eom-skillgroup-emblem' ).AddClass( "uprank-anim" );
+	
+		if ( oData.mode === 'Competitive' || oData.mode === 'Wingman' )
+		{
+			_m_cP.FindChildInLayoutFile( 'id-eom-skillgroup-emblem--new__image' ).SetImage( oData.newImage );
+			_m_cP.FindChildInLayoutFile( 'id-eom-skillgroup-emblem' ).AddClass( "uprank-anim" );
 		
-		_m_cP.FindChildInLayoutFile( "id-eom-skillgroup__current__label" ).text = oData.newRanklInfo;
+			_m_cP.FindChildInLayoutFile( "id-eom-skillgroup__current__label" ).text = oData.newRanklInfo;
+		
+			let elParticleFlare = _m_cP.FindChildInLayoutFile( 'id-eom-skillgroup-emblem--new__pfx--above' );
+			let aParticleSettings = GetSkillGroupSettings( oData.newRank, oData.mode );
+			                                                                                                  
+			elParticleFlare.SetParticleNameAndRefresh( aParticleSettings.particleName );
+			elParticleFlare.SetControlPoint( aParticleSettings.cpNumber, aParticleSettings.cpValue[0], aParticleSettings.cpValue[ 1 ], 1);
+			elParticleFlare.StartParticles();
 
-		let elParticleFlare = _m_cP.FindChildInLayoutFile( 'id-eom-skillgroup-emblem--new__pfx--above' );
-		let aParticleSettings = GetSkillGroupSettings( oData.newRank );
-		elParticleFlare.SetParticleNameAndRefresh( aParticleSettings[ 0 ] );
-		elParticleFlare.SetControlPoint( aParticleSettings[ 1 ], aParticleSettings[ 2 ], aParticleSettings[ 3 ], 1);
-		elParticleFlare.StartParticles();
-
-		let elParticleAmb = _m_cP.FindChildInLayoutFile( 'id-eom-skillgroup-emblem--new__pfx--below' );
-		let aParticleAmbSettings = GetSkillGroupAmbientSettings( oData.newRank );
-		elParticleAmb.SetParticleNameAndRefresh( aParticleAmbSettings[ 0 ] );
-		elParticleAmb.SetControlPoint( aParticleAmbSettings[ 1 ], aParticleAmbSettings[ 2 ], aParticleAmbSettings[ 3 ], 1 );
-		elParticleAmb.StartParticles();
+			let elParticleAmb = _m_cP.FindChildInLayoutFile( 'id-eom-skillgroup-emblem--new__pfx--below' );
+			let aParticleAmbSettings = GetSkillGroupAmbientSettings( oData.newRank, oData.mode );
+			elParticleAmb.SetParticleNameAndRefresh( aParticleAmbSettings.particleName );
+			elParticleAmb.SetControlPoint( aParticleAmbSettings.cpNumber, aParticleAmbSettings.cpValue[0], aParticleAmbSettings.cpValue[1], 1 );	
+			elParticleAmb.StartParticles();
+		}
+		else if ( oData.mode === 'Premier' )
+		{
+			let elEmblem = _m_cP.FindChildInLayoutFile( 'jsRatingEmblem' );
+			RatingEmblem.SetXuid( elEmblem, MockAdapter.GetLocalPlayerXuid(), '', oData.newRank );
+		}
 
 		$.DispatchEvent( 'CSGOPlaySoundEffect', 'UIPanorama.XP.NewSkillGroup', 'MOUSE' );
+	}
+
+
+	function _Reset ()
+	{
+		var elDesc = _m_cP.FindChildInLayoutFile( "id-eom-skillgroup__current_wins_desc" );
+		elDesc.text = '';		
+
+		_m_cP.FindChildInLayoutFile( "id-eom-skillgroup__current_wins" ).text = '';
+		_m_cP.FindChildInLayoutFile( "id-eom-skillgroup__current__label" ).text = '';
+
+		var elRankDesc = _m_cP.FindChildInLayoutFile( "id-eom-skillgroup__current__title" );
+		elRankDesc.AddClass( 'hidden' );
+		elRankDesc.text = '';
+
+		var elImage = _m_cP.FindChildInLayoutFile( "id-eom-skillgroup-emblem--current__image" );
+		elImage.AddClass( 'hidden' );
+		elImage.SetImage( '' );
+
+		_m_cP.FindChildInLayoutFile( 'id-eom-skillgroup-emblem--new__image' ).SetImage( '' );
+		_m_cP.FindChildInLayoutFile( 'id-eom-skillgroup-emblem' ).RemoveClass( "uprank-anim" );
+
+		_m_cP.FindChildInLayoutFile( "id-eom-skillgroup__current__label" ).text = '';
+
+		_m_cP.RemoveClass( 'eom-skillgroup-show' );
+
+		let elParticleFlare = _m_cP.FindChildInLayoutFile( 'id-eom-skillgroup-emblem--new__pfx--above' );
+		elParticleFlare.StopParticlesImmediately( true );
+
+		let elParticleAmb = _m_cP.FindChildInLayoutFile( 'id-eom-skillgroup-emblem--new__pfx--below' );
+		elParticleAmb.StopParticlesImmediately( true );
+
 	}
 
 	function _FilloutRankData ( oData )
@@ -192,21 +246,33 @@ var EOM_Skillgroup = (function () {
 			elRankDesc.text = oData.oldRankDesc;
 		}
 
-		var elImage = _m_cP.FindChildInLayoutFile( "id-eom-skillgroup-emblem--current__image" );
-		elImage.RemoveClass( 'hidden' );
-		elImage.SetImage( oData.oldImage );
+		if ( oData.mode === 'Competitive' || oData.mode === 'Wingman' )
+		{
 
-		let elParticleFlare = _m_cP.FindChildInLayoutFile( 'id-eom-skillgroup--current__pfx--above' );
-		let aParticleSettings = GetSkillGroupSettings( oData.oldRank );
-		elParticleFlare.SetParticleNameAndRefresh( aParticleSettings[ 0 ] );
-		elParticleFlare.SetControlPoint( aParticleSettings[ 1 ], aParticleSettings[ 2 ], aParticleSettings[ 3 ], 0);
-		elParticleFlare.StartParticles();
+			var elImage = _m_cP.FindChildInLayoutFile( "id-eom-skillgroup-emblem--current__image" );
+			elImage.RemoveClass( 'hidden' );
+			elImage.SetImage( oData.oldImage );
 
-		let elParticleAmb = _m_cP.FindChildInLayoutFile( 'id-eom-skillgroup--current__pfx--below' );
-		let aParticleAmbSettings = GetSkillGroupAmbientSettings( oData.oldRank );
-		elParticleAmb.SetParticleNameAndRefresh( aParticleAmbSettings[ 0 ] );
-		elParticleAmb.SetControlPoint( aParticleAmbSettings[ 1 ], aParticleAmbSettings[ 2 ], aParticleAmbSettings[ 3 ], 0 );
-		elParticleAmb.StartParticles();
+			let elParticleFlare = _m_cP.FindChildInLayoutFile( 'id-eom-skillgroup--current__pfx--above' );
+			let aParticleSettings = GetSkillGroupSettings( oData.oldRank, oData.mode );
+			elParticleFlare.SetParticleNameAndRefresh( aParticleSettings.particleName );
+			elParticleFlare.SetControlPoint( aParticleSettings.cpNumber, aParticleSettings.cpValue[0], aParticleSettings.cpValue[1], 0 );
+			elParticleFlare.StartParticles();
+
+			let elParticleAmb = _m_cP.FindChildInLayoutFile( 'id-eom-skillgroup--current__pfx--below' );
+			let aParticleAmbSettings = GetSkillGroupAmbientSettings( oData.oldRank, oData.mode );
+			elParticleAmb.SetParticleNameAndRefresh( aParticleAmbSettings.particleName );
+			elParticleAmb.SetControlPoint( aParticleAmbSettings.cpNumber, aParticleAmbSettings.cpValue[0], aParticleAmbSettings.cpValue[1], 0 );
+			elParticleAmb.StartParticles();
+		}
+		else if ( oData.mode === 'Premier' )
+		{
+			let elEmblem = _m_cP.FindChildInLayoutFile( 'jsRatingEmblem' );
+			RatingEmblem.SetXuid( elEmblem, MockAdapter.GetLocalPlayerXuid(), '', oData.oldRank );
+		}
+ 
+
+		
 	}
 
 	                                                         
@@ -216,12 +282,6 @@ var EOM_Skillgroup = (function () {
 	function _Start() 
 	{
 
-		if ( MockAdapter.GetMockData() && !MockAdapter.GetMockData().includes( 'SKILLGROUP' ) )
-		{
-			_End();
-			return;
-		}
-		
 		if ( _DisplayMe() )
 		{
 			EndOfMatch.SwitchToPanel( 'eom-skillgroup' );

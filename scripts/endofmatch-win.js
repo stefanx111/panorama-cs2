@@ -134,7 +134,7 @@ var EOM_Win = ( function () {
 	{
 		                              
 
-		if ( MockAdapter.GetMockData() && !MockAdapter.GetMockData().includes( 'WIN' ) )
+		if ( MockAdapter.GetMockData() && !MockAdapter.GetMockData().includes( 'EOM_WIN' ) )
 		{
 			_End();
 			return;

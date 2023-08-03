@@ -825,10 +825,10 @@
 
  #dashedtest{
   margin: 50px;
-  border: 5px dashed #4d7cff;
+  border: 10px dashed #4d7cff;
 
 
-  width: 400px;
+  width: 200px;
   height: 160px;
   background-color: grey;
  }
@@ -836,14 +836,16 @@
 
  #dashedtest2{
   margin: 50px;
-  border: 10px solid black;
+  border: 10px dashed black;
 
-
-  width: 500px;
+  width: 300px;
   height: 300px;
   background-color: grey;
   border-radius: 150px;
+  border-top-left-radius: 200px 200px;
+  border-top-right-radius: 50px 50px;
  }
+
 
 
  #BlurTest3{
@@ -1424,4 +1426,10 @@
   width: 100%;
   height: 100%;
   flow-children: right-wrap;
+ }
+
+ .spider-graph-example{
+
+  width: 530px;
+  height: 570px;
 }

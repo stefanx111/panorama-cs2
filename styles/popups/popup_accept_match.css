@@ -23,6 +23,16 @@
   vertical-align: center;
   margin-top: 20%;
   box-shadow: none;
+
+  transition-property: opacity, transform;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in;
+ }
+
+ .accept-match-container.hide{
+
+  opacity: 0;
+  transform: scale3d(.8,.8, 1);
  }
 
  .accept-match-warning{

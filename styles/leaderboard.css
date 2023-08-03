@@ -1,0 +1,284 @@
+.PopupPanel{
+
+  width: 400px;
+  height: 820px;
+}
+
+ .leaderboard-root{
+   padding: 12px;
+ }
+
+
+ .leaderboard-title-bar{
+
+  width: 100%;
+  height: fit-children;
+ }
+  .leaderboard-title-bar Label{
+   text-align: center;
+   font-size: 22px;
+  }
+
+
+
+ .leaderboard-nav__dropdown__menuclass,.leaderboard-navbar DropDown,.leaderboard-nav__dropdown__menuclass Label{
+
+
+
+  width: 150px;
+  font-family: Stratum2 Condensed, Arial;
+ }
+
+ .leaderboard-navbar{
+
+  width: 100%;
+  margin-bottom: 12px;
+ }
+
+  .leaderboard-navbar .leaderboard-title-bar__label{
+
+    font-size: 26px;
+    margin-left: 0px;
+    ignore-parent-flow: true;
+    horizontal-align: left;
+    color: ct-color;
+  }
+
+  .leaderboard-navbar DropDown{
+
+   margin: 0px;
+   margin-right: 12px;
+  }
+   .leaderboard-navbar DropDown Label{
+    padding: 0px 6px;
+    vertical-align: center;
+    horizontal-align: center;
+    color: white;
+   }
+
+
+  .leaderboard-navbar .DropDownChild{
+   font-family: Stratum2 Condensed, Arial;
+   font-size: 16px;
+   width: 100%;
+  }
+
+
+ .content-navbar__tabs{
+  height: fit-children;
+ }
+  .content-navbar__tabs .leaderboard-tab{
+   width: fill-parent-flow(1);
+  }
+   .content-navbar__tabs .leaderboard-tab Label{
+    width: 100%;
+    text-align: center;
+    margin: 0px;
+
+    border: 1px solid gray;
+    margin: 1px;
+   }
+
+   .content-navbar__tabs .leaderboard-tab:selected{
+    background-color: #4f4f4f;
+   }
+
+
+
+
+
+
+ #id-leaderboard-refresh-button.IconButton Image{
+
+  wash-color: #CCCCCC;
+ }
+
+ #id-leaderboard-refresh-button{
+
+  horizontal-align: right;
+ }
+
+ .leaderboard_embedded #id-leaderboard-refresh-button{
+
+  visibility: visible;
+ }
+
+ .leaderboard__contents{
+
+  vertical-align: top;
+  horizontal-align: center;
+  width: 100%;
+
+  margin-bottom: 10px;
+  flow-children: down;
+ }
+
+ .leaderboard__status{
+
+  vertical-align: center;
+  horizontal-align: center;
+  height: fill-parent-flow( .9 );
+ }
+
+ .leaderboard__tabs{
+
+  flow-children: right;
+ }
+
+ .leaderboard__contents .content-navbar{
+
+  padding: 0px 48px;
+ }
+
+ .leaderboard__list{
+
+  width: 100%;
+  flow-children: down;
+ }
+
+ .leaderboard__entries-container{
+
+  width: 100%;
+  flow-children: down;
+  overflow: clip scroll;
+ }
+
+ .leaderboard__list__row{
+
+  flow-children: right;
+  width: 100%;
+  margin-bottom: 2px;
+
+  transition-property: transform, brightness;
+  transition-duration: 0.20s;
+  transition-timing-function: ease-in-out;
+ }
+
+ .leaderboard__list__row:hover:not(.no-hover){
+
+  brightness: 2;
+
+
+  background-color: #555555;
+
+  transition-property: transform, brightness;
+  transition-duration: 0.20s;
+  transition-timing-function: ease-in-out;
+ }
+
+ .leaderboard__list__column{
+
+  width: fill-parent-flow( 6 );
+  height: 30px;
+  margin-right:2px;
+ }
+
+ .background{
+
+  background-color: rgba(0, 0, 0, 0.25);
+ }
+
+ .local-player .leaderboard__list__column{
+
+  background-color: rgba(245, 245, 245, 0.05);
+ }
+
+
+
+
+  .leaderboard__list__column.rank{
+   width: 50px;
+  }
+   .leaderboard__list__column.rank .leaderboard_cell{
+     horizontal-align: right;
+   }
+
+
+  .leaderboard__list__column.name{
+   flow-children: right;
+   width: fill-parent-flow(1);
+  }
+
+  .leaderboard__list__column.wins{
+   width: 40px;
+  }
+   .leaderboard__list__column.wins .leaderboard_cell{
+    horizontal-align: right;
+   }
+
+
+  .leaderboard__list__column.winrate{
+   width: 60px;
+  }
+   .leaderboard__list__column.winrate .leaderboard_cell{
+    horizontal-align: right;
+   }
+
+
+  .leaderboard__list__column.globalpct{
+   width: 60px;
+  }
+   .leaderboard__list__column.globalpct .leaderboard_cell{
+    horizontal-align: right;
+   }
+
+
+  .leaderboard__list__column.rating{
+   width: 80px;
+  }
+    .leaderboard__list__column.rating .rating-root{
+      horizontal-align: center;
+      vertical-align: center;
+    }
+
+
+
+ .leaderboard_cell{
+
+  font-size: 14px;
+
+  padding-right: 4px;
+  padding-left: 4px;
+  font-family: Stratum2 Regular Monodigit;
+ }
+
+ .header .leaderboard_cell{
+  font-size: 18px;
+  padding-left: 0px;
+  horizontal-align: center;
+  font-family: Stratum2 Condensed;
+ }
+
+ .leaderboard_cell.faded{
+
+  opacity: .5;
+ }
+
+
+ .leaderboard__status.hidden,.leaderboard__list.hidden,#id-leaderboard-navbar.hidden{
+
+
+
+  visibility: collapse;
+  opacity: 0;
+ }
+
+ .leaderboard__name-entry{
+
+  flow-children: right;
+  padding-left: 8px;
+  vertical-align: center;
+ }
+
+ #leaderboard-entry-name{
+
+  width: 300px;
+  text-overflow: shrink;
+  height: 24px;
+ }
+
+ .leaderboard__name-entry__avatar{
+
+  width: 24px;
+  height: 24px;
+}

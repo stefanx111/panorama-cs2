@@ -223,7 +223,7 @@ var SettingsMenu = ( function () {
 		if ( g_PromotedSettings.filter( setting => setting.start_date <= now && setting.end_date > now ).length == 0 )
 			$( '#PromotedSettingsRadio' ).visible = false;
 
-		SettingsMenu.NavigateToTab( 'GameSettings' );
+		SettingsMenu.NavigateToTab( 'VideoSettings' );
 	}
 
 	MyPersonaAPI.RequestAccountPrivacySettings();

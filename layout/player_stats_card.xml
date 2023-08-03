@@ -4,7 +4,9 @@
 		<include src="s2r://panorama/styles/csgostyles.vcss_c" />
 		<include src="s2r://panorama/styles/player_stats_card.vcss_c" />
 	</styles>
-	<scripts />
+	<scripts>
+		<include src="s2r://panorama/scripts/rating_emblem.vts_c" />
+	</scripts>
 	<snippets>
 		<snippet name="snippet-banner-classic">
 			<Panel class="banner-classic">
@@ -23,7 +25,7 @@
 						<Label class="desc hsp colorize-teammate-color stratum-light-condensed" text="#playercardstats_hsp_title" />
 					</Panel>
 					<Panel class="emblem--skillgroup">
-						<Image id="jsSkillgroupImage" textureheight="100" texturewidth="-1" src="" />
+						<Frame id="jsRatingEmblem" api="gamestate" vfx="true" fakedatatype="" src="s2r://panorama/layout/rating_emblem.vxml_c" />
 					</Panel>
 				</Panel>
 			</Panel>

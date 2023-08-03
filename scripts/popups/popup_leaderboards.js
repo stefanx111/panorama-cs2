@@ -39,7 +39,7 @@ var PopupLeaderboards = ( function()
 		var strPointsTitle = $.GetContextPanel().GetAttributeString( 'points-title', '' );
 		if ( strPointsTitle !== '' )
 		{
-			$.GetContextPanel().FindChildInLayoutFile( 'id-list-column-header-points' ).text = $.Localize( strPointsTitle );
+	  		                                                                                                                
 		}
 	};
 
@@ -164,12 +164,21 @@ var PopupLeaderboards = ( function()
 		for ( var i = 0; i < count; i++ )
 		{
 			var xuid = LeaderboardsAPI.GetEntryXuidByIndex( type, i );
-			var score = LeaderboardsAPI.GetEntryScoreByIndex( type, i );
-			var rank = LeaderboardsAPI.GetEntryGlobalPctByIndex( type, i );
+			var score = LeaderboardsAPI.GetEntryScoreByIndex( type, i );             
+			var globalpct = LeaderboardsAPI.GetEntryGlobalPctByIndex( type, i );              
 
-			                                                                                            
-			                                                                     
-			score = score.toString().replace(/\B(?=(\d{3})+(?!\d))/g, strThousandsSeparator);
+			var detailsHandle = LeaderboardsAPI.GetEntryDetailsHandleByIndex( type, i );              
+
+			var MatchesWon = LeaderboardsAPI.GetDetailsMatchEntryStat( detailsHandle, 'MatchesWon' );
+			var MatchesTied = LeaderboardsAPI.GetDetailsMatchEntryStat( detailsHandle, 'MatchesTied' );
+			var MatchesLost = LeaderboardsAPI.GetDetailsMatchEntryStat( detailsHandle, 'MatchesLost' );
+			var RankWindowStats = LeaderboardsAPI.GetDetailsMatchEntryStat( detailsHandle, 'RankWindowStats' );
+
+			let windowStats = MatchDraftAPI.DecodePackedWindowStats( 1, RankWindowStats );
+
+			                                                         
+
+			let winRate = MatchesWon * 100.00 / ( MatchesWon + MatchesTied + MatchesLost );
 
 			var elEntry = $.CreatePanel( "Panel", elParent, xuid );
 			elEntry.BLoadLayoutSnippet( "leaderboard-entry" );
@@ -177,10 +186,14 @@ var PopupLeaderboards = ( function()
 			elEntry.FindChildInLayoutFile('popup-leaderboard-entry-avatar').PopulateFromSteamID(xuid);
 			_AddOpenPlayerCardAction( elEntry, xuid );
 
-			elEntry.FindChildInLayoutFile( 'popup-leaderboard-entry-name' ).text = FriendsListAPI.GetFriendName( xuid );
-			elEntry.FindChildInLayoutFile( 'popup-leaderboard-entry-points' ).text = score;
-			elEntry.FindChildInLayoutFile( 'popup-leaderboard-entry-rank' ).text = rank + '%';
-			elEntry.FindChildInLayoutFile( 'popup-leaderboard-entry-position' ).text = i + 1;
+			let elRatingEmblem = elEntry.FindChildTraverse( 'jsRatingEmblem' );
+			RatingEmblem.SetXuid( elRatingEmblem, null, score );
+			
+			elEntry.SetDialogVariable( 'player-rank', i + 1 );
+			elEntry.SetDialogVariable( 'player-name', FriendsListAPI.GetFriendName(xuid) );
+			elEntry.SetDialogVariable( 'player-wins', MatchesWon );
+			elEntry.SetDialogVariable( 'player-winrate', winRate.toFixed( 2 ) + '%' );
+			elEntry.SetDialogVariable( 'player-percentile', globalpct.toFixed( 2 ) + '%' );
 
 			var children = elEntry.FindChildrenWithClassTraverse( 'popup-leaderboard__list__column' );
 			
