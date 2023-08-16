@@ -1,11 +1,14 @@
-<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<!-- xml reconstructed by Source 2 Viewer 5.0.0.0 - https://valveresourceformat.github.io -->
 <root>
 	<styles>
 		<include src="s2r://panorama/styles/csgostyles.vcss_c" />
 		<include src="s2r://panorama/styles/teamintromenu.vcss_c" />
 	</styles>
 	<scripts>
+		<include src="s2r://panorama/scripts/mock_adapter.vts_c" />
 		<include src="s2r://panorama/scripts/common/async.vts_c" />
+		<include src="s2r://panorama/scripts/common/sessionutil.vts_c" />
+		<include src="s2r://panorama/scripts/rating_emblem.vts_c" />
 		<include src="s2r://panorama/scripts/teamintromenu.vts_c" />
 	</scripts>
 	<snippets>
@@ -17,6 +20,26 @@
 		</snippet>
 	</snippets>
 	<CSGOTeamIntroMenu class="teamintro-root">
+		<Panel id="JsTeamIntroStakes" class="matchstakes-container">
+			<Panel id="jsIntroTie" class="matchstakes tie">
+				<Panel class="matchstakes__banner">
+					<Label text="#team-intro-stakes-tie" />
+				</Panel>
+				<Frame src="s2r://panorama/layout/rating_emblem.vxml_c" />
+			</Panel>
+			<Panel id="jsIntroLoss" class="matchstakes loss">
+				<Panel class="matchstakes__banner">
+					<Label text="#team-intro-stakes-loss" />
+				</Panel>
+				<Frame src="s2r://panorama/layout/rating_emblem.vxml_c" />
+			</Panel>
+			<Panel id="jsIntroWin" class="matchstakes win">
+				<Panel class="matchstakes__banner">
+					<Label text="#team-intro-stakes-win" />
+				</Panel>
+				<Frame src="s2r://panorama/layout/rating_emblem.vxml_c" />
+			</Panel>
+		</Panel>
 		<Panel id="TeamIntroHeader" class="team-intro-header hidden">
 			<Image id="TeamIntroIcon" class="team-intro-icon" />
 			<Label id="TeamIntroHalfLabel" class="team-intro-half-label" />

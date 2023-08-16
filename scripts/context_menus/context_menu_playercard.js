@@ -58,7 +58,7 @@ var contextmenuPlayerCard = ( function (){
 			name: 'join',
 			icon: 'JoinPlayer',
 			AvailableForItem: function ( id ) {
-				if( FriendsListAPI.IsFriendJoinable( id ))
+				if ( FriendsListAPI.IsFriendJoinable( id ) )
 				{
 					if ( GameStateAPI.IsPlayerConnected( id ) )
 						return false;
@@ -83,7 +83,8 @@ var contextmenuPlayerCard = ( function (){
 		{
 			name: 'watch',
 			icon: 'watch_tv',
-			AvailableForItem: function ( id ) {
+			AvailableForItem: function ( id )
+			{
 				return !GameStateAPI.IsLocalPlayerPlayingMatch() &&
 					FriendsListAPI.IsFriendWatchable( id ) &&
 					!GameStateAPI.IsPlayerConnected( id );
@@ -96,7 +97,8 @@ var contextmenuPlayerCard = ( function (){
 		{
 			name: 'steamprofile',
 			icon: 'profile',
-			AvailableForItem: function ( id ) {
+			AvailableForItem: function ( id )
+			{
 				return 	MyPersonaAPI.GetLauncherType() !== "perfectworld";
 				
 			},
@@ -132,7 +134,8 @@ var contextmenuPlayerCard = ( function (){
 			                                                              
 			name: 'leave_lobby',
 			icon: 'leave',
-			AvailableForItem: function ( id ) {
+			AvailableForItem: function ( id )
+			{
 				if( !GameStateAPI.IsLocalPlayerPlayingMatch() && _IsSelf( id ) && LobbyAPI.IsSessionActive() )
 				{
 					var party = LobbyAPI.GetSessionSettings().members;
@@ -149,7 +152,8 @@ var contextmenuPlayerCard = ( function (){
 		{
 			name: 'message',
 			icon: 'message',
-			AvailableForItem: function ( id ) {	                                                                                           
+			AvailableForItem: function ( id )
+			{	                                                                                           
 				return !_IsSelf( id );                                                                   
 			},
 			OnSelected:  function ( id ) {
@@ -160,9 +164,9 @@ var contextmenuPlayerCard = ( function (){
 		{
 			name: 'trade',
 			icon: 'trade',
-			AvailableForItem: function ( id ) {
+			AvailableForItem: function ( id )
+			{
 				return FriendsListAPI.GetFriendRelationship( id ) === "friend";
-
 			},
 			OnSelected:  function ( id ) {
 				SteamOverlayAPI.StartTradeWithUser( id );
@@ -190,7 +194,8 @@ var contextmenuPlayerCard = ( function (){
 		{
 			name: 'friendaccept',
 			icon: 'friendaccept',
-			AvailableForItem: function ( id ) {
+			AvailableForItem: function ( id )
+			{
 				return FriendsListAPI.GetFriendStatusBucket( id ) === 'AwaitingLocalAccept';
 			},
 			OnSelected:  function ( id ) {
@@ -201,7 +206,8 @@ var contextmenuPlayerCard = ( function (){
 		{
 			name: 'friendignore',
 			icon: 'friendignore',
-			AvailableForItem: function ( id ) {
+			AvailableForItem: function ( id )
+			{
 				return FriendsListAPI.GetFriendStatusBucket( id ) === 'AwaitingLocalAccept';
 			},
 			OnSelected:  function ( id ) {
@@ -212,7 +218,8 @@ var contextmenuPlayerCard = ( function (){
 		{
 			name: 'cancelinvite',
 			icon: 'friendignore',
-			AvailableForItem: function ( id ) {
+			AvailableForItem: function ( id )
+			{
 				return FriendsListAPI.GetFriendStatusBucket( id ) === 'AwaitingRemoteAccept';
 			},
 			OnSelected:  function ( id ) {
@@ -241,7 +248,8 @@ var contextmenuPlayerCard = ( function (){
 		{
 			name: 'request',
 			icon: 'addplayer',
-			AvailableForItem: function ( id ) {
+			AvailableForItem: function ( id )
+			{
 				var status = FriendsListAPI.GetFriendStatusBucket( id );
 				var isRequest = status === 'AwaitingRemoteAccept' || status === 'AwaitingLocalAccept';
 				
@@ -271,7 +279,8 @@ var contextmenuPlayerCard = ( function (){
 		{
 			name: 'changecolor',
 			icon: 'colorwheel',
-			AvailableForItem: function ( id ) {
+			AvailableForItem: function ( id )
+			{
 				return !GameStateAPI.IsLocalPlayerPlayingMatch() &&
 					LobbyAPI.IsSessionActive() &&
 					_IsSelf( id );
@@ -326,7 +335,8 @@ var contextmenuPlayerCard = ( function (){
 		{
 			name: 'commend',
 			icon: 'smile',
-			AvailableForItem: function ( id ) {
+			AvailableForItem: function ( id )
+			{
 				return ( GameStateAPI.IsLocalPlayerPlayingMatch() || GameStateAPI.GetGameModeInternalName( false ) === "survival" ) &&
 					!_IsSelf( id ) &&
 					GameStateAPI.IsPlayerConnected( id );
@@ -377,7 +387,8 @@ var contextmenuPlayerCard = ( function (){
 		{
 			name: 'copycrosshair',
 			icon: 'crosshair',
-			AvailableForItem: function ( id ) {
+			AvailableForItem: function ( id )
+			{
 				return GameStateAPI.IsLocalPlayerPlayingMatch() && 
 					!_IsSelf( id ) && 
 					GameStateAPI.IsPlayerConnected( id );
@@ -415,22 +426,33 @@ var contextmenuPlayerCard = ( function (){
 	var _GetContextMenuEnteries = function ()
 	{
 		$.CreatePanel('Panel', $.GetContextPanel(), '', { class: 'context-menu-playercard-seperator' } );
-		var elContextMenuBtns = $.CreatePanel('Panel', $.GetContextPanel(), 'JsContextMenuPlayercardBtns', { class: 'context-menu-playercard-btns' } );
+		var elContextMenuBtnsParent = $.CreatePanel( 'Panel', $.GetContextPanel(), '', { class: 'context-menu-playercard-btns' } );
 
 		var items = [];
 		var xuid = $.GetContextPanel().GetAttributeString( "xuid", "(not found)" );
 		var type = $.GetContextPanel().GetAttributeString( "type", "" );
 
-		elContextMenuBtns.xuid = xuid;                                                                     
+		let count = 0;
+		let rowCount = 0;
+		let elContextMenuBtns;
 
-		_ContextMenus.forEach( function( entry ) {
+		_ContextMenus.forEach( function( entry, index) {
 			if ( entry.AvailableForItem( xuid )) 
-			{
-				                                                   
-				
+			{	
 				                                     
-
 				var elEntryBtn;
+				count = count === 5 ? 0 : count;
+				if ( count === 0 )
+				{
+					elContextMenuBtns = $.GetContextPanel().FindChildInLayoutFile( 'id_playercard-button-row' + rowCount );
+
+					if ( !elContextMenuBtns )
+					{
+						elContextMenuBtns = $.CreatePanel( 'Panel', elContextMenuBtnsParent, 'id_playercard-button-row' + rowCount, { class: 'context-menu-playercard-btns__container' } );
+						elContextMenuBtns.xuid = xuid;                                                                     
+						rowCount++;
+					}
+				}
 
 				if ( 'xml' in entry )                                 
 				{
@@ -449,6 +471,8 @@ var contextmenuPlayerCard = ( function (){
 					} );
 
 					$.CreatePanel( 'Image', elEntryBtn, entry.name, { src: 'file://{images}/icons/ui/' + entry.icon + '.svg' } );
+					let label = $.CreatePanel( 'Label', elEntryBtn, entry.name +'-label' );
+					label.text = $.Localize( '#tooltip_short_' + entry.name );
 
 					elEntryBtn.SetPanelEvent( 'onactivate', entry.OnSelected.bind( this, xuid, type ) );
 
@@ -464,14 +488,10 @@ var contextmenuPlayerCard = ( function (){
 					}
 					
 					elEntryBtn.SetPanelEvent('onmouseover', OnMouseOver );
-					elEntryBtn.SetPanelEvent('onmouseout', OnMouseOut );
-
+					elEntryBtn.SetPanelEvent( 'onmouseout', OnMouseOut );
 				}
-
-
-
-
-
+				
+				count++;
 				              
 					                                           
 					                                                           
@@ -479,8 +499,6 @@ var contextmenuPlayerCard = ( function (){
 				     
 			}
 		});
-
-		
 	};
 
 	return {

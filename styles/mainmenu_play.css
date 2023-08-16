@@ -81,7 +81,7 @@
  .map-selection-list-premier{
 
   flow-children: none;
-  width: fit-children;
+  width: 100%;
  }
 
  .map-selection-list--workshop .map-selection-btn{
@@ -812,14 +812,16 @@
   transition-timing-function: ease-in-out;
  }
 
- .competitive:not(.directchallenge) #id-gamemode-flag-competitive{
 
-  height: fit-children;
 
-  transition-property: height, opacity, position;
-  transition-duration: 0.2s;
-  transition-timing-function: ease-in-out;
- }
+
+
+
+
+
+
+
+
 
  .gamemode-settings-sidebar__options{
 
@@ -2248,11 +2250,7 @@
   horizontal-align: right;
   flow-children: down;
 
-
-
-  box-shadow: shadowOffset;
   padding-bottom: 16px;
-  border: 1px solid rgb(65, 65, 65);
  }
 
  .playmenu--premier__leaderboard{
@@ -2262,11 +2260,7 @@
   horizontal-align: right;
   flow-children: down;
 
-
-
-  box-shadow: shadowOffset;
   padding-bottom: 16px;
-  border: 1px solid rgb(65, 65, 65);
  }
 
 
@@ -2279,17 +2273,26 @@
   vertical-align: center;
  }
 
- .premier-right{
-  padding: 5px;
-   width: 570px;
-  flow-children: down;
- }
 
- .premier-left{
+ .premier-side{
 
-  padding: 5px;
-  width: 570px;
+
+  width: 50%;
   height: 100%;
-  horizontal-align: left;
-   flow-children: down;
+ }
+   .premier-side .premier-inner{
+    width: 570px;
+    flow-children: down;
+   }
+    .premier-side .premier-inner.right{
+     horizontal-align:left;
+    }
+
+    .premier-side .premier-inner.left{
+     horizontal-align: right;
+    }
+
+
+   .premier-side.right{
+    background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(0,0,0,0.4)), to (rgba(0,0,0, 0)));
 }

@@ -9,82 +9,86 @@
  }
 
 
- .leaderboard-title-bar{
-
-  width: 100%;
-  height: fit-children;
- }
-  .leaderboard-title-bar Label{
-   text-align: center;
-   font-size: 22px;
-  }
+ #jsToggleSelf Label,.leaderboard-navbar Label{
 
 
-
- .leaderboard-nav__dropdown__menuclass,.leaderboard-navbar DropDown,.leaderboard-nav__dropdown__menuclass Label{
-
-
-
-  width: 150px;
+  width: 120px;
   font-family: Stratum2 Condensed, Arial;
+  margin: 0px;
+  margin-right: 12px;
+  color: white;
+  padding: 8px 8px;
+  font-size: 16px;
  }
 
- .leaderboard-navbar{
+ .nav.content-navbar__tabs__dropdown{
 
-  width: 100%;
-  margin-bottom: 12px;
+  width:150px;
+  margin-left: 10px;
  }
 
-  .leaderboard-navbar .leaderboard-title-bar__label{
 
-    font-size: 26px;
-    margin-left: 0px;
-    ignore-parent-flow: true;
-    horizontal-align: left;
-    color: ct-color;
+ #jsToggleSelf Label{
+  width: fit-children;
+ }
+
+
+ .leaderboard-header{
+
+  flow-children: down;
+ }
+  .leaderboard-header .leaderboard-navbar{
+
+   width: 100%;
+   margin-bottom: 12px;
   }
-
-  .leaderboard-navbar DropDown{
-
-   margin: 0px;
-   margin-right: 12px;
-  }
-   .leaderboard-navbar DropDown Label{
-    padding: 0px 6px;
-    vertical-align: center;
-    horizontal-align: center;
+   .leaderboard-header .leaderboard-navbar Label{
     color: white;
    }
+    .leaderboard-header .leaderboard-navbar Label.local-player-relevance{
+     wash-color: yellow;
+    }
 
 
-  .leaderboard-navbar .DropDownChild{
-   font-family: Stratum2 Condensed, Arial;
-   font-size: 16px;
-   width: 100%;
-  }
+   .leaderboard-header .leaderboard-navbar #jsToggleSelf{
 
 
- .content-navbar__tabs{
-  height: fit-children;
+
+    horizontal-align:left;
+    padding-left: 5px;
+    padding-right: 5px;
+   }
+    .leaderboard-header .leaderboard-navbar #jsToggleSelf .TickBox{
+     margin: 0px;
+     width: 20px;
+     height: width-percentage(100%);
+
+     background-size: 20px;
+    }
+
+
+
+
+
+ .leaderboard-title-bar__label{
+
+  width: 1000px;
+  height: 32px;
+  vertical-align: top;
+
+  font-size: 22px;
+  font-family: Stratum2 Medium Italic;
+  text-transform: uppercase;
+  margin-left: 0px;
+  horizontal-align: left;
+  color: white;
+
+  padding-top: 4px;
+  padding-left: 26px;
+
+  background-image: url("s2r://panorama/images/icons/ui/premier_title_bg.vsvg");
+  background-size: 100% 100%;
  }
-  .content-navbar__tabs .leaderboard-tab{
-   width: fill-parent-flow(1);
-  }
-   .content-navbar__tabs .leaderboard-tab Label{
-    width: 100%;
-    text-align: center;
-    margin: 0px;
-
-    border: 1px solid gray;
-    margin: 1px;
-   }
-
-   .content-navbar__tabs .leaderboard-tab:selected{
-    background-color: #4f4f4f;
-   }
-
-
-
 
 
 
@@ -147,7 +151,7 @@
 
   flow-children: right;
   width: 100%;
-  margin-bottom: 2px;
+
 
   transition-property: transform, brightness;
   transition-duration: 0.20s;
@@ -178,10 +182,13 @@
   background-color: rgba(0, 0, 0, 0.25);
  }
 
- .local-player .leaderboard__list__column{
+ .local-player.leaderboard__list__row{
 
-  background-color: rgba(245, 245, 245, 0.05);
+  background-color: rgba(252, 255, 87, 0.164);
  }
+  .local-player.leaderboard__list__row Label{
+   color:white;
+  }
 
 
 
@@ -200,7 +207,7 @@
   }
 
   .leaderboard__list__column.wins{
-   width: 40px;
+   width: 50px;
   }
    .leaderboard__list__column.wins .leaderboard_cell{
     horizontal-align: right;
@@ -208,17 +215,17 @@
 
 
   .leaderboard__list__column.winrate{
-   width: 60px;
+   width: 70px;
   }
    .leaderboard__list__column.winrate .leaderboard_cell{
     horizontal-align: right;
    }
 
 
-  .leaderboard__list__column.globalpct{
-   width: 60px;
+  .leaderboard__list__column.rankpct{
+   width: 50px;
   }
-   .leaderboard__list__column.globalpct .leaderboard_cell{
+   .leaderboard__list__column.rankpct .leaderboard_cell{
     horizontal-align: right;
    }
 
@@ -233,13 +240,16 @@
 
 
 
+
  .leaderboard_cell{
 
   font-size: 14px;
 
-  padding-right: 4px;
-  padding-left: 4px;
+  padding-right: 8px;
+  padding-left: 8px;
   font-family: Stratum2 Regular Monodigit;
+
+  text-align:right;
  }
 
  .header .leaderboard_cell{

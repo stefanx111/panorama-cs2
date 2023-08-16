@@ -1,4 +1,4 @@
-<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<!-- xml reconstructed by Source 2 Viewer 5.0.0.0 - https://valveresourceformat.github.io -->
 <root>
 	<styles>
 		<include src="s2r://panorama/styles/csgostyles.vcss_c" />
@@ -468,7 +468,7 @@
 				<Label id="name" html="true" class="sb-team-tint stratum-medium" text="{g:player_name:player_slot}" />
 				<Panel id="id-sb-name__nameicons" class="spectator-hidden">
 					<Image id="id-sb-name__musickit" class="hidden sb-team-tint" src="s2r://panorama/images/icons/ui/music_kit.vsvg" />
-					<Frame id="jsRatingEmblem" api="gamestate" fakedatatype="" src="s2r://panorama/layout/rating_emblem.vxml_c" />
+					<Frame id="jsRatingEmblem" src="s2r://panorama/layout/rating_emblem.vxml_c" />
 				</Panel>
 			</Panel>
 		</snippet>
@@ -477,7 +477,7 @@
 				<Label id="name" html="true" class="sb-team-tint stratum-medium" text="{g:player_name:player_slot}" />
 				<Panel id="id-sb-name__nameicons" class="spectator-hidden">
 					<Image id="id-sb-name__musickit" class="hidden sb-team-tint" src="s2r://panorama/images/icons/ui/music_kit.vsvg" />
-					<Frame id="jsRatingEmblem" api="gamestate" fakedatatype="" src="s2r://panorama/layout/rating_emblem.vxml_c" />
+					<Frame id="jsRatingEmblem" api="gamestate" src="s2r://panorama/layout/rating_emblem.vxml_c" />
 				</Panel>
 			</Panel>
 		</snippet>

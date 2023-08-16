@@ -1,4 +1,4 @@
-<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<!-- xml reconstructed by Source 2 Viewer 5.0.0.0 - https://valveresourceformat.github.io -->
 <root>
 	<styles>
 		<include src="s2r://panorama/styles/csgostyles.vcss_c" />
@@ -7,6 +7,7 @@
 	<scripts>
 		<include src="s2r://panorama/scripts/common/teamcolor.vts_c" />
 		<include src="s2r://panorama/scripts/common/sessionutil.vts_c" />
+		<include src="s2r://panorama/scripts/rating_emblem.vts_c" />
 	</scripts>
 	<Panel hittest="false" hittestchildren="true" useglobalcontext="true">
 		<Panel id="vanity-info-container" class="vanity-info-container" hittest="true">
@@ -20,11 +21,11 @@
 					</Panel>
 				</Panel>
 			</Panel>
-			<Panel id="vanity-skillgroup-container" class="vanity-info-skill-group-container">
-				<Image id="vanity-skillgroup-icon" class="vanity-info-skillgroup-icon" texturewidth="64" textureheight="-1" />
-				<Panel class="vanity-info-skill-group-label-container">
-					<Label id="vanity-skillgroup-label" class="left-margin stratum-font fontSize-sm fontWeight-Normal vertical-center vanity-info-name" />
+			<Panel id="vanity-rating-container" class="vanity-info-skill-group-container">
+				<Panel class="vanity-rating__icon-container">
+					<Frame src="s2r://panorama/layout/rating_emblem.vxml_c" />
 				</Panel>
+				<Label id="JsPlayerSkillLabel" class="vanity-info-skill-group-label-container left-margin stratum-font fontSize-sm fontWeight-Normal vertical-center vanity-info-name" text="{s:rating-text}" />
 			</Panel>
 			<Panel id="vanity-xp-container" class="vanity-info-xp-bar-container">
 				<Panel class="vanity-info-xp-container">

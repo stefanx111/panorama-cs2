@@ -318,10 +318,9 @@ var EOM_Rank = (function () {
 
 				var elParticleEffect = elNew.FindChildInLayoutFile( 'id-eom-new-reveal-flare' );
 				var aParticleSettings = GetRankParticleSettings( newRank );
-				                                                                                         
-				
-				elParticleEffect.SetParticleNameAndRefresh( aParticleSettings[ 0 ] );
-				elParticleEffect.SetControlPoint( aParticleSettings[ 1 ], aParticleSettings[ 2 ], aParticleSettings[ 3 ], aParticleSettings[ 4 ] );
+				                                                                                                  
+				elParticleEffect.SetParticleNameAndRefresh( aParticleSettings.particleName );
+				elParticleEffect.SetControlPoint( aParticleSettings.cpNumber, aParticleSettings.cpValue[ 0 ], aParticleSettings.cpValue[ 1 ], aParticleSettings.cpValue[ 2 ] );
 				elParticleEffect.StartParticles();
 			}, 3 );
 
@@ -376,7 +375,8 @@ var EOM_Rank = (function () {
 		{
 			EndOfMatch.SwitchToPanel( 'eom-rank' );
 			EndOfMatch.StartDisplayTimer( _m_pauseBeforeEnd );
-			
+			                                                                                   
+			                                                     
 			$.Schedule( _m_pauseBeforeEnd, _End );
 		}
 		else

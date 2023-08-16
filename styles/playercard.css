@@ -96,14 +96,15 @@
  .player-card__text,.player-card-row__name .player-card__text{
 
 
-  max-height: 24px;
+  max-height: 32px;
   padding-right: 1px;
-  font-size: 20px;
+  font-size: 28px;
   text-overflow: ellipsis;
   font-weight: Bold;
   text-shadow:2px 2px 2px #000000;
   color: white;
-  font-family: stratum2Font;
+  margin-left: 8px;
+
   overflow: clip;
  }
 
@@ -165,12 +166,13 @@
 
   visibility: visible;
   height: fit-children;
-  max-height: 132px;
+  max-height: 48px;
   width: fit-children;
   vertical-align: middle;
   horizontal-align: left;
   flow-children: right;
   margin-left: 24px;
+  margin-bottom: 16px;
  }
 
  .player-card-commendations-icon{
@@ -178,24 +180,46 @@
   opacity: 1;
   visibility: visible;
   flow-children: right;
+  vertical-align: center;
   width: fit-children;
-  margin: 16px;
-  wash-color: baseText;
+  margin: 12px;
+ }
+
+ #JsPlayerPrime.player-card-commendations-icon{
+
+  margin: 0px 16px 0px 4px;
  }
 
  .player-card-commendations Image{
 
   width: height-percentage( 100% );
-  height: 18px;
+  height: 24px;
+  wash-color: rgb(143, 143, 143);
+ }
+
+
+ #JsPlayerPrime Image{
+
+  width: height-percentage( 100% );
+  height: 40px;
+ }
+
+ #JsPlayerPrime Label{
+
+  margin-left: 40px;
+  font-size: 16px;
+  color: white;
  }
 
  .player-card-commendations Label{
 
   font-size: 14px;
-  vertical-align: top;
+  vertical-align: center;
   margin-left: 4px;
   color: white;
  }
+
+
 
 
 
@@ -440,6 +464,13 @@
 
   visibility: visible;
  }
+
+
+
+ .player-card-rating__icon-container{
+  margin: 0px 18px 0px 8px;
+ }
+
 
 
 

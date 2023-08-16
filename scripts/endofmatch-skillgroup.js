@@ -190,8 +190,18 @@ var EOM_Skillgroup = (function () {
 		}
 		else if ( oData.mode === 'Premier' )
 		{
-			let elEmblem = _m_cP.FindChildInLayoutFile( 'jsRatingEmblem' );
-			RatingEmblem.SetXuid( elEmblem, MockAdapter.GetLocalPlayerXuid(), '', oData.newRank );
+
+			let options =
+			{
+				root_panel: _m_cP.FindChildInLayoutFile( 'jsRatingEmblem' ),
+				xuid: MockAdapter.GetLocalPlayerXuid(),
+				leaderboard_details: { score: oData.newRank, matchesWon: oData.compWins },
+				api: 'gamestate',
+				do_fx: false,
+				presentation: 'digital'
+			};
+
+			RatingEmblem.SetXuid( options );
 		}
 
 		$.DispatchEvent( 'CSGOPlaySoundEffect', 'UIPanorama.XP.NewSkillGroup', 'MOUSE' );
@@ -267,8 +277,17 @@ var EOM_Skillgroup = (function () {
 		}
 		else if ( oData.mode === 'Premier' )
 		{
-			let elEmblem = _m_cP.FindChildInLayoutFile( 'jsRatingEmblem' );
-			RatingEmblem.SetXuid( elEmblem, MockAdapter.GetLocalPlayerXuid(), '', oData.oldRank );
+			let options =
+			{
+				root_panel: _m_cP.FindChildInLayoutFile( 'jsRatingEmblem' ),
+				xuid: MockAdapter.GetLocalPlayerXuid(),
+				leaderboard_details: { score: oData.oldRank, matchesWon: oData.compWins },
+				api: 'gamestate',
+				do_fx: false,
+				presentation: 'digital'
+			};
+
+			RatingEmblem.SetXuid( options );
 		}
  
 

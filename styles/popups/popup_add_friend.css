@@ -19,6 +19,11 @@
   text-transform: uppercase;
  }
 
+ .popup-addfriend-entry.any-case TextEntry{
+
+  text-transform: none;
+ }
+
  .popup-addfriend-icon{
 
   vertical-align: center;

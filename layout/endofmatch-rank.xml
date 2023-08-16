@@ -1,4 +1,4 @@
-<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<!-- xml reconstructed by Source 2 Viewer 5.0.0.0 - https://valveresourceformat.github.io -->
 <root>
 	<styles>
 		<include src="s2r://panorama/styles/csgostyles.vcss_c" />
@@ -8,6 +8,7 @@
 	</styles>
 	<scripts>
 		<include src="s2r://panorama/scripts/rank_skillgroup_particles.vts_c" />
+		<include src="s2r://panorama/scripts/particle_controls.vts_c" />
 		<include src="s2r://panorama/scripts/endofmatch-rank.vjs_c" />
 	</scripts>
 	<snippets>

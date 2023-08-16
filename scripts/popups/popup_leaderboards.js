@@ -165,7 +165,7 @@ var PopupLeaderboards = ( function()
 		{
 			var xuid = LeaderboardsAPI.GetEntryXuidByIndex( type, i );
 			var score = LeaderboardsAPI.GetEntryScoreByIndex( type, i );             
-			var globalpct = LeaderboardsAPI.GetEntryGlobalPctByIndex( type, i );              
+			var rankpct = LeaderboardsAPI.GetEntryGlobalPctByIndex( type, i );              
 
 			var detailsHandle = LeaderboardsAPI.GetEntryDetailsHandleByIndex( type, i );              
 
@@ -193,7 +193,7 @@ var PopupLeaderboards = ( function()
 			elEntry.SetDialogVariable( 'player-name', FriendsListAPI.GetFriendName(xuid) );
 			elEntry.SetDialogVariable( 'player-wins', MatchesWon );
 			elEntry.SetDialogVariable( 'player-winrate', winRate.toFixed( 2 ) + '%' );
-			elEntry.SetDialogVariable( 'player-percentile', globalpct.toFixed( 2 ) + '%' );
+			elEntry.SetDialogVariable( 'player-percentile', rankpct.toFixed( 2 ) + '%' );
 
 			var children = elEntry.FindChildrenWithClassTraverse( 'popup-leaderboard__list__column' );
 			

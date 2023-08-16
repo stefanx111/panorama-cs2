@@ -1,4 +1,4 @@
-<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<!-- xml reconstructed by Source 2 Viewer 5.0.0.0 - https://valveresourceformat.github.io -->
 <root>
 	<styles>
 		<include src="s2r://panorama/styles/csgostyles.vcss_c" />
@@ -6,10 +6,11 @@
 		<include src="s2r://panorama/styles/playercard.vcss_c" />
 	</styles>
 	<scripts>
+		<include src="s2r://panorama/scripts/rating_emblem.vts_c" />
 		<include src="s2r://panorama/scripts/common/teamcolor.vts_c" />
 		<include src="s2r://panorama/scripts/common/sessionutil.vts_c" />
 		<include src="s2r://panorama/scripts/avatar.vts_c" />
-		<include src="s2r://panorama/scripts/playercard.vjs_c" />
+		<include src="s2r://panorama/scripts/playercard.vts_c" />
 	</scripts>
 	<snippets>
 		<snippet name="PlayerCardSkillGroup">
@@ -18,7 +19,15 @@
 					<Image id="JsPlayerSkillIcon" class="player-card-skillgroup__icon" src="s2r://panorama/images/icons/skillgroups/skillgroup_none.vsvg" textureheight="-1" texturewidth="128" scaling="stretch-to-fit-preserve-aspect" style="tooltip-position: bottom;" />
 					<Image class="player-card-nonprime__lock" textureheight="12" texturewidth="-1" src="s2r://panorama/images/icons/ui/locked.vsvg" />
 				</Panel>
-				<Label id="JsPlayerSkillLabel" class="player-card__text-subtitle player-card__text-subtitle--multiline" text="" />
+				<Label id="JsPlayerSkillLabel" class="player-card__text-subtitle player-card__text-subtitle--multiline stratum-medium" text="" />
+			</Panel>
+		</snippet>
+		<snippet name="PlayerCardRatingEmblem">
+			<Panel class="player-card-skillgroup player-card-border hidden">
+				<Panel class="player-card-rating__icon-container">
+					<Frame src="s2r://panorama/layout/rating_emblem.vxml_c" />
+				</Panel>
+				<Label id="JsPlayerSkillLabel" class="player-card__text-subtitle player-card__text-subtitle--multiline stratum-medium" text="{s:rating-text}" />
 			</Panel>
 		</snippet>
 	</snippets>
@@ -33,7 +42,7 @@
 				<Panel class="full-width">
 					<Panel id="JsPlayerCardTop" class="player-card-row">
 						<Panel id="JsPlayerCardName" class="player-card-row__name">
-							<Label id="JsPlayerName" class="player-card__text" text="" />
+							<Label id="JsPlayerName" class="player-card__text stratum-regular-condensed" text="" />
 							<Panel id="FlairCarouselAndControls" class="playercard-flair-carousel-container">
 								<Carousel id="FlairCarousel" class="playercard-flair-carousel" panels-visible="1" hittest="false" />
 								<CarouselNav carouselid="FlairCarousel" />
@@ -45,7 +54,7 @@
 					<Image class="player-card-team__icon" id="JsTeamIcon" src="" />
 					<Panel class="player-card-team__text">
 						<Label id="JsTeamLabel" class="player-card__text-subtitle" text="" />
-						<Label id="JsTournamentLabel" class="player-card__text-subtitle player-card__text-subtitle--light" text="" />
+						<Label id="JsTournamentLabel" class="player-card__text-subtitle player-card__text-subtitle--light stratum-medium" text="" />
 					</Panel>
 				</Panel>
 				<Panel id="JsPlayerCardPrimeUpsell" class="player-card-prime-upsell-container">
@@ -74,7 +83,7 @@
 						<Image class="player-card-nonprime__lock" textureheight="12" texturewidth="-1" src="s2r://panorama/images/icons/ui/locked.vsvg" />
 					</Panel>
 					<Panel class="player-card-xp__name-bar">
-						<Label id="JsPlayerRankName" class="player-card__text-subtitle" text="#XP_RankName_Display" />
+						<Label id="JsPlayerRankName" class="player-card__text-subtitle stratum-medium" text="#XP_RankName_Display" />
 						<Panel class="player-card-xpbar">
 							<Panel class="player-card-xpbar__bar" />
 							<Panel id="JsPlayerXpBarInner" class="player-card-xpbar__bar--inner" />
@@ -90,20 +99,20 @@
 				<Panel id="JsPlayerCommendations" class="player-card-commendations-container player-card-border hidden">
 					<Panel class="player-card-commendations">
 						<Panel id="JsPlayerPrime" class="player-card-commendations-icon" onmouseover="UiToolkitAPI.ShowTextTooltip( &apos;JsPlayerPrimeImg&apos;, &apos;#tooltip_prime&apos; );" onmouseout="UiToolkitAPI.HideTextTooltip();">
-							<Image id="JsPlayerPrimeImg" style="tooltip-position: bottom;" src="s2r://panorama/images/icons/ui/prime.vsvg" />
-							<Label id="JsCommendLabel" text=" " />
+							<Image id="JsPlayerPrimeImg" style="tooltip-position: bottom;" textureheight="40" src="s2r://panorama/images/icons/ui/prime.vsvg" />
+							<Label id="JsCommendLabel" class="player-card__text-subtitle stratum-medium" text="#SFUI_Elevated_Status_enabled" />
 						</Panel>
 						<Panel id="JsPlayerfriendly" class="player-card-commendations-icon" onmouseover="UiToolkitAPI.ShowTextTooltip( &apos;JsPlayerfriendlyImg&apos;, &apos;#tooltip_friendly&apos; );" onmouseout="UiToolkitAPI.HideTextTooltip();">
 							<Image id="JsPlayerfriendlyImg" style="tooltip-position: bottom;" src="s2r://panorama/images/icons/ui/smile.vsvg" />
-							<Label id="JsCommendLabel" text="" />
+							<Label id="JsCommendLabel" class="stratum-regular-tf" text="" />
 						</Panel>
 						<Panel id="JsPlayerteaching" class="player-card-commendations-icon" onmouseover="UiToolkitAPI.ShowTextTooltip( &apos;JsPlayerteachingImg&apos;, &apos;#tooltip_teaching&apos; );" onmouseout="UiToolkitAPI.HideTextTooltip();">
 							<Image id="JsPlayerteachingImg" style="tooltip-position: bottom;" src="s2r://panorama/images/icons/ui/teacher.vsvg" />
-							<Label id="JsCommendLabel" text="" />
+							<Label id="JsCommendLabel" class="stratum-regular-tf" text="" />
 						</Panel>
 						<Panel id="JsPlayerleader" class="player-card-commendations-icon" onmouseover="UiToolkitAPI.ShowTextTooltip( &apos;JsPlayerleaderImg&apos;, &apos;#tooltip_leader&apos; );" onmouseout="UiToolkitAPI.HideTextTooltip();">
 							<Image id="JsPlayerleaderImg" style="tooltip-position: bottom;" src="s2r://panorama/images/icons/ui/leader.vsvg" />
-							<Label id="JsCommendLabel" text="" />
+							<Label id="JsCommendLabel" class="stratum-regular-tf" text="" />
 						</Panel>
 					</Panel>
 				</Panel>

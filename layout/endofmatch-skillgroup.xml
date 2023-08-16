@@ -1,4 +1,4 @@
-<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<!-- xml reconstructed by Source 2 Viewer 5.0.0.0 - https://valveresourceformat.github.io -->
 <root>
 	<styles>
 		<include src="s2r://panorama/styles/csgostyles.vcss_c" />
@@ -49,17 +49,17 @@
 			<Panel class="eom-skillgroup-data__container">
 				<Panel id="id-eom-skillgroup-emblem" class="eom-skillgroup-emblem">
 					<Panel id="id-eom-skillgroup-emblem--current" class="eom-skillgroup-emblem--current">
-						<ParticleScenePanel id="id-eom-skillgroup--current__pfx--below" hittest="true" startActive="false" particleName="particles/ui/skillgroups/ui_skillgroup_rear_1.vpcf" cameraOrigin="0 300 0" lookAt="0 0 0" fov="60" />
+						<ParticleScenePanel id="id-eom-skillgroup--current__pfx--below" hittest="true" startActive="false" particleName="particles/dev/empty.vpcf" cameraOrigin="0 300 0" lookAt="0 0 0" fov="60" />
 						<Image id="id-eom-skillgroup-emblem--current__image" textureheight="76" texturewidth="-1" src="s2r://panorama/images/icons/skillgroups/skillgroup0.vsvg" />
-						<ParticleScenePanel id="id-eom-skillgroup--current__pfx--above" hittest="true" startActive="false" particleName="particles/ui/skillgroups/ui_skillgroup_rear_1.vpcf" cameraOrigin="0 300 0" lookAt="0 0 0" fov="60" />
+						<ParticleScenePanel id="id-eom-skillgroup--current__pfx--above" hittest="true" startActive="false" particleName="particles/dev/empty.vpcf" cameraOrigin="0 300 0" lookAt="0 0 0" fov="60" />
 					</Panel>
 					<Panel id="id-eom-skillgroup-emblem--new" class="eom-skillgroup-emblem--new">
-						<ParticleScenePanel id="id-eom-skillgroup-emblem--new__pfx--below" class="eom-skillgroup-emblem--new__pfx--below" hittest="true" startActive="false" particleName="particles/ui/skillgroups/ui_skillgroup_rear_1.vpcf" cameraOrigin="0 300 0" lookAt="0 0 0" fov="60" />
+						<ParticleScenePanel id="id-eom-skillgroup-emblem--new__pfx--below" class="eom-skillgroup-emblem--new__pfx--below" hittest="true" startActive="false" particleName="particles/dev/empty.vpcf" cameraOrigin="0 300 0" lookAt="0 0 0" fov="60" />
 						<Image id="id-eom-skillgroup-emblem--new__image" textureheight="76" texturewidth="-1" src="s2r://panorama/images/icons/skillgroups/skillgroup2.vsvg" />
 						<ParticleScenePanel id="id-eom-skillgroup-emblem--new__pfx--above" class="eom-skillgroup-emblem--new__pfx--above" hittest="true" startActive="false" particleName="" cameraOrigin="0 300 0" lookAt="0 0 0" fov="60" />
 					</Panel>
 				</Panel>
-				<Frame id="jsRatingEmblem" api="gamestate" end-of-match="true" vfx="true" src="s2r://panorama/layout/rating_emblem.vxml_c" />
+				<Frame id="jsRatingEmblem" src="s2r://panorama/layout/rating_emblem.vxml_c" />
 				<Panel class="eom-skillgroup__label-container">
 					<Panel class="left-right-flow">
 						<Label id="id-eom-skillgroup__current_wins" class="eom-skillgroup__info-label small wincount stratum-black" text="#XP_RankName_Display" />

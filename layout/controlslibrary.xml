@@ -1,4 +1,4 @@
-<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<!-- xml reconstructed by Source 2 Viewer 5.0.0.0 - https://valveresourceformat.github.io -->
 <root>
 	<styles>
 		<include src="s2r://panorama/styles/csgostyles.vcss_c" />
@@ -12,6 +12,7 @@
 		<include src="s2r://panorama/scripts/mock_adapter.vts_c" />
 		<include src="s2r://panorama/scripts/controlslibrary.vts_c" />
 		<include src="s2r://panorama/scripts/particle_controls.vts_c" />
+		<include src="s2r://panorama/scripts/common/sessionutil.vts_c" />
 		<include src="s2r://panorama/scripts/rating_emblem.vts_c" />
 	</scripts>
 	<snippets>
@@ -836,9 +837,9 @@
 						<ControlLibTestPanel MyCustomProp="Set from xml" />
 					</Panel>
 					<Label class="fontSize-m fontWeight-Bold" text="CS Rating" />
-					<Frame id="jsRatingEmblem1" api="mypersona" fakedatatype="Competitive" src="s2r://panorama/layout/rating_emblem.vxml_c" onactivate="RatingEmblem.SetXuid( $(&apos;#jsRatingEmblem1&apos;), -1)" onload="RatingEmblem.SetXuid( $(&apos;#jsRatingEmblem1&apos;), -1, &apos;Competitive&apos;)" />
-					<Frame id="jsRatingEmblem2" api="mypersona" fakedatatype="Wingman" src="s2r://panorama/layout/rating_emblem.vxml_c" onactivate="RatingEmblem.SetXuid( $(&apos;#jsRatingEmblem2&apos;), -1)" onload="RatingEmblem.SetXuid( $(&apos;#jsRatingEmblem2&apos;), -1, &apos;Wingman&apos;)" />
-					<Frame id="jsRatingEmblem3" api="mypersona" fakedatatype="Premier" vfx="true" src="s2r://panorama/layout/rating_emblem.vxml_c" onactivate="RatingEmblem.SetXuid( $(&apos;#jsRatingEmblem3&apos;), -1)" onload="RatingEmblem.SetXuid( $(&apos;#jsRatingEmblem3&apos;), -1, &apos;Premier&apos;)" />
+					<Frame id="jsRatingEmblem1" src="s2r://panorama/layout/rating_emblem.vxml_c" onactivate="RatingEmblem.SetXuid( {root_panel:$(&apos;#jsRatingEmblem1&apos;), xuid:-1, api:&apos;fakeData&apos;, rating_type:&apos;Premier&apos;})" onload="RatingEmblem.SetXuid( {elPanel:$(&apos;#jsRatingEmblem1&apos;), xuid:-1, api:&apos;fakeData&apos;, rating_type:&apos;Premier&apos;})" />
+					<Frame id="jsRatingEmblem2" src="s2r://panorama/layout/rating_emblem.vxml_c" onactivate="RatingEmblem.SetXuid( {root_panel:$(&apos;#jsRatingEmblem2&apos;), xuid:-1, api:&apos;fakeData&apos;, rating_type:&apos;Competitive&apos;})" onload="RatingEmblem.SetXuid( {elPanel:$(&apos;#jsRatingEmblem2&apos;), xuid:-1, api:&apos;fakeData&apos;, rating_type:&apos;Competitive&apos;})" />
+					<Frame id="jsRatingEmblem3" vfx="true" src="s2r://panorama/layout/rating_emblem.vxml_c" onactivate="RatingEmblem.SetXuid( {root_panel:$(&apos;#jsRatingEmblem3&apos;), xuid:-1, api:&apos;fakeData&apos;, rating_type:&apos;Wingman&apos;})" onload="RatingEmblem.SetXuid( {elPanel:$(&apos;#jsRatingEmblem3&apos;), xuid:-1, api:&apos;fakeData&apos;, rating_type:&apos;Wingman&apos;})" />
 					<Label class="fontSize-m fontWeight-Bold" text="Carousel test" />
 					<Panel class="top-bottom-flow" style="padding: 30px;">
 						<CarouselNav carouselid="TestCarousel" />

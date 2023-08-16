@@ -1,4 +1,4 @@
-<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<!-- xml reconstructed by Source 2 Viewer 5.0.0.0 - https://valveresourceformat.github.io -->
 <root>
 	<styles>
 		<include src="s2r://panorama/styles/csgostyles.vcss_c" />
@@ -25,7 +25,7 @@
 						<Label class="desc hsp colorize-teammate-color stratum-light-condensed" text="#playercardstats_hsp_title" />
 					</Panel>
 					<Panel class="emblem--skillgroup">
-						<Frame id="jsRatingEmblem" api="gamestate" vfx="true" fakedatatype="" src="s2r://panorama/layout/rating_emblem.vxml_c" />
+						<Frame id="jsRatingEmblem" src="s2r://panorama/layout/rating_emblem.vxml_c" />
 					</Panel>
 				</Panel>
 			</Panel>

@@ -1,4 +1,4 @@
-<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<!-- xml reconstructed by Source 2 Viewer 5.0.0.0 - https://valveresourceformat.github.io -->
 <root>
 	<styles>
 		<include src="s2r://panorama/styles/csgostyles.vcss_c" />
@@ -6,6 +6,7 @@
 		<include src="s2r://panorama/styles/leaderboard.vcss_c" />
 	</styles>
 	<scripts>
+		<include src="s2r://panorama/scripts/common/sessionutil.vts_c" />
 		<include src="s2r://panorama/scripts/leaderboard.vts_c" />
 		<include src="s2r://panorama/scripts/rating_emblem.vts_c" />
 		<include src="s2r://panorama/scripts/common/teamcolor.vts_c" />
@@ -15,6 +16,9 @@
 			<Button class="leaderboard__list__row">
 				<Panel class="leaderboard__list__column rank">
 					<Label text="{s:player-rank}" class="stratum-regular leaderboard_cell rank" />
+				</Panel>
+				<Panel class="leaderboard__list__column rating">
+					<Frame id="jsRatingEmblem" src="s2r://panorama/layout/rating_emblem.vxml_c" />
 				</Panel>
 				<Panel class="leaderboard__list__column name">
 					<CSGOAvatarImage id="leaderboard-entry-avatar" class="leaderboard__name-entry__avatar" />
@@ -26,37 +30,24 @@
 				<Panel class="leaderboard__list__column winrate">
 					<Label text="{s:player-winrate}" class="stratum-regular leaderboard_cell" />
 				</Panel>
-				<Panel class="leaderboard__list__column globalpct">
+				<Panel class="leaderboard__list__column rankpct">
 					<Label text="{s:player-percentile}" class="stratum-regular leaderboard_cell" />
 				</Panel>
-				<Panel class="leaderboard__list__column rating">
-					<Frame id="jsRatingEmblem" api="leaderboard" vfx="true" fakedatatype="" src="s2r://panorama/layout/rating_emblem.vxml_c" />
-				</Panel>
 			</Button>
-		</snippet>
-		<snippet name="leaderboard-tab">
-			<RadioButton group="LeaderboardNavBar" class="leaderboard-tab">
-				<Label id="leaderboard-tab-label" class="stratum-regular-condensed" text="{s:leaderboard-tab-label}" />
-			</RadioButton>
 		</snippet>
 	</snippets>
 	<Panel class="leaderboard-root">
 		<Panel class="leaderboard__contents">
-			<Panel id="id-leaderboard-navbar" class="leaderboard-navbar">
-				<Label html="true" class="leaderboard-title-bar__label stratum-regular-condensed" text="{s:leaderboard-title}" onactivate="Leaderboard.Init();" />
-				<Panel class="left-right-flow horizontal-align-right">
-					<DropDown class="" id="jsNavLocation" menuclass="leaderboard-nav__dropdown__menuclass" oninputsubmit="">
-						<Label text="Global" id="ControllibDropdown1" value="1" />
-						<Label text="North America" id="ControllibDropdown2" value="2" />
-						<Label text="United States" id="ControllibDropdown3" value="3" />
-						<Label text="Friends" id="ControllibDropdown5" value="4" />
-					</DropDown>
-					<DropDown class="" id="jsNavSeason" menuclass="leaderboard-nav__dropdown__menuclass" oninputsubmit="">
-						<Label text="Limited Test" id="ControllibDropdown1" value="1" />
-						<Label text="2023 Fall" id="ControllibDropdown2" value="2" />
-						<Label text="2024 Spring" id="ControllibDropdown3" value="3" />
-						<Label text="2024 Fall" id="ControllibDropdown4" value="4" />
-					</DropDown>
+			<Panel class="leaderboard-header">
+				<Label html="true" class="leaderboard-title-bar__label" text="{s:leaderboard-title}" onactivate="Leaderboard.Init();" />
+				<Panel id="id-leaderboard-navbar" class="leaderboard-navbar">
+					<ToggleButton class="nav PopupButton" id="jsToggleSelf" menuclass="leaderboard-nav__dropdown__menuclass" onactivate="Leaderboard.UpdateLeaderboard()">
+						<Label text="#leaderboard_goto_self" />
+					</ToggleButton>
+					<Panel class="left-right-flow horizontal-align-right">
+						<DropDown class="nav content-navbar__tabs__dropdown" id="jsNavSeason" menuclass="leaderboard-nav__dropdown__menuclass" oninputsubmit="Leaderboard.UpdateLeaderboard()" />
+						<DropDown class="nav content-navbar__tabs__dropdown" id="jsNavLocation" menuclass="leaderboard-nav__dropdown__menuclass" oninputsubmit="Leaderboard.UpdateLeaderboard()" />
+					</Panel>
 				</Panel>
 			</Panel>
 			<Panel id="id-leaderboard-loading" class="leaderboard__status hidden">
@@ -76,6 +67,9 @@
 					<Panel class="leaderboard__list__column rank">
 						<Label text="#leaderboard_column_rank" class="stratum-regular-condensed leaderboard_cell faded" />
 					</Panel>
+					<Panel class="leaderboard__list__column rating">
+						<Label text="#leaderboard_column_rating" class="stratum-regular-condensed leaderboard_cell faded" />
+					</Panel>
 					<Panel class="leaderboard__list__column name">
 						<Label text="#leaderboard_column_name" class="stratum-regular-condensed leaderboard_cell faded" />
 					</Panel>
@@ -85,11 +79,8 @@
 					<Panel class="leaderboard__list__column winrate">
 						<Label text="#leaderboard_column_winrate" class="stratum-regular-condensed leaderboard_cell faded" />
 					</Panel>
-					<Panel class="leaderboard__list__column globalpct">
+					<Panel class="leaderboard__list__column rankpct">
 						<Label text="#leaderboard_column_percentile" class="stratum-regular-condensed leaderboard_cell faded" />
-					</Panel>
-					<Panel class="leaderboard__list__column rating">
-						<Label text="#leaderboard_column_rating" class="stratum-regular-condensed leaderboard_cell faded" />
 					</Panel>
 				</Button>
 				<Panel id="id-leaderboard-entries" class="leaderboard__entries-container" />

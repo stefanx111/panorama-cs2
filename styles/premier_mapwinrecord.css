@@ -2,25 +2,14 @@
  .mapwinrecord-root{
   padding: 12px;
   padding-bottom: 0px;
-  box-shadow: shadowOffset;
-
-  border: 1px solid rgb(65, 65, 65);
- } .mapwinrecord-root .mapwinrecord-title-bar__label{
-
-     font-size: 26px;
-     margin-left: 0px;
-     ignore-parent-flow: true;
-     horizontal-align: left;
-     vertical-align: top;
-     color: ct-color;
-   }
+ }
 
 
  .mapwinrecord__graph{
   horizontal-align: center;
   vertical-align: bottom;
 
-  width: 500px;
+  width: 450px;
   height: width-percentage( 100%);
  }
 

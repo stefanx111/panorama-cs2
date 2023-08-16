@@ -1,4 +1,4 @@
-<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<!-- xml reconstructed by Source 2 Viewer 5.0.0.0 - https://valveresourceformat.github.io -->
 <root>
 	<styles>
 		<include src="s2r://panorama/styles/csgostyles.vcss_c" />
@@ -99,13 +99,17 @@
 		</snippet>
 		<snippet name="MapSelectionContainer_premier">
 			<Panel class="map-selection-list-premier hidden">
-				<Panel class="left-right-flow" style="height: fill-parent-flow( 1.0 );">
-					<Panel class="premier-left">
-						<Frame id="jsParty" src="s2r://panorama/layout/leaderboard.vxml_c" lbtype="party" class="playmenu--premier__party" />
-						<Frame id="jsPremierMapWinRecord" class="premier-play-menu-mapwinrecord" src="s2r://panorama/layout/premier_mapwinrecord.vxml_c" />
+				<Panel class="left-right-flow no-lock" style="height: fill-parent-flow( 1.0 ); width: 100%;">
+					<Panel class="premier-side left">
+						<Panel class="premier-inner left">
+							<Frame id="jsParty" src="s2r://panorama/layout/leaderboard.vxml_c" lbtype="party" class="playmenu--premier__party" />
+							<Frame id="jsPremierMapWinRecord" class="premier-play-menu-mapwinrecord" src="s2r://panorama/layout/premier_mapwinrecord.vxml_c" />
+						</Panel>
 					</Panel>
-					<Panel class="premier-right">
-						<Frame id="jsLeaderboard" src="s2r://panorama/layout/leaderboard.vxml_c" lbtype="general" class="playmenu--premier__leaderboard" />
+					<Panel class="premier-side right">
+						<Panel class="premier-inner right">
+							<Frame id="jsLeaderboard" src="s2r://panorama/layout/leaderboard.vxml_c" lbtype="general" class="playmenu--premier__leaderboard" />
+						</Panel>
 					</Panel>
 				</Panel>
 			</Panel>
@@ -256,7 +260,7 @@
 						<Label text="#SFUI_GameModeCoopMission" onmouseover="UiToolkitAPI.ShowTextTooltip( &apos;coopmission&apos;, &apos;#PlayMenu_guardian_tooltip&apos; );" onmouseout="UiToolkitAPI.HideTextTooltip();" />
 					</RadioButton>
 					<Panel class="mainmenu-top-navbar__play_seperator visible-if-not-limitedbeta" />
-					<RadioButton id="JsDirectChallengeBtn" data-type="competitive" group="gamemodes" class="content-navbar__tabs__btn">
+					<RadioButton id="JsDirectChallengeBtn" data-type="competitive" group="gamemodes" class="content-navbar__tabs__btn visible-if-not-limitedbeta">
 						<Label text="#DirectChallenge_btn" />
 					</RadioButton>
 				</Panel>
