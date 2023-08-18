@@ -57,20 +57,34 @@
  .map-selection-btn--vote:selected{
 
   border: 2px solid white;
-  box-shadow: white 3px 0px 6px 0px;
+  box-shadow: white 0px 0px 6px 0px;
  }
 
- .map-selection-info__map-name{
 
-  margin: 0px 6px 0px 6px;
-  font-family: Stratum2;
-  font-weight: bold;
-  font-size: 17px;
-  color: white;
 
-  vertical-align: bottom;
-  horizontal-align: center;
- }
+  RadioButton.map-selection-btn--vote Label{
+
+   margin: 0px 4px 0px 4px;
+   font-size: 16px;
+   color: white;
+
+   vertical-align: bottom;
+   horizontal-align: center;
+  }
+
+
+
+
+  RadioButton.map-selection-btn--vote .map-selection-item-countLabel{
+
+   margin: 0px 4px 0px 4px;
+   font-size: 32px;
+   color: white;
+
+   vertical-align: bottom;
+   horizontal-align: center;
+  }
+
 
  .map-selection-btn:enabled:Hover .map-selection-btn__screenshot{
 

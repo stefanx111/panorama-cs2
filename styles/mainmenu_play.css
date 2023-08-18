@@ -67,6 +67,20 @@
   overflow: clip;
  }
 
+  .map-selection-list--official-competitive .map-selection-btn__groupmap-icons,.map-selection-list--official-casual .map-selection-btn__groupmap-icons,.map-selection-list--official-deathmatch .map-selection-btn__groupmap-icons,.map-selection-list--official-scrimcomp2v2 .map-selection-btn__groupmap-icons,.map-selection-list--official-skirmish .map-selection-btn__groupmap-icons,.map-selection-list--listen-competitive .map-selection-btn__groupmap-icons,.map-selection-list--listen-scrimcomp2v2 .map-selection-btn__groupmap-icons,.map-selection-list--listen-skirmish .map-selection-btn__groupmap-icons,.map-selection-list--listen-casual .map-selection-btn__groupmap-icons,.map-selection-list--listen-deathmatch .map-selection-btn__groupmap-icons{
+
+   width: fit-children;
+   height: fit-children;
+   horizontal-align: middle;
+   vertical-align: center;
+  }
+   .map-selection-list--official-competitive .map-selection-btn__groupmap-icons .map-selection-btn__map-icon,.map-selection-list--official-casual .map-selection-btn__groupmap-icons .map-selection-btn__map-icon,.map-selection-list--official-deathmatch .map-selection-btn__groupmap-icons .map-selection-btn__map-icon,.map-selection-list--official-scrimcomp2v2 .map-selection-btn__groupmap-icons .map-selection-btn__map-icon,.map-selection-list--official-skirmish .map-selection-btn__groupmap-icons .map-selection-btn__map-icon,.map-selection-list--listen-competitive .map-selection-btn__groupmap-icons .map-selection-btn__map-icon,.map-selection-list--listen-scrimcomp2v2 .map-selection-btn__groupmap-icons .map-selection-btn__map-icon,.map-selection-list--listen-skirmish .map-selection-btn__groupmap-icons .map-selection-btn__map-icon,.map-selection-list--listen-casual .map-selection-btn__groupmap-icons .map-selection-btn__map-icon,.map-selection-list--listen-deathmatch .map-selection-btn__groupmap-icons .map-selection-btn__map-icon{
+
+    vertical-align: top;
+   }
+
+
+
   .map-selection-list--official-competitive .map-selection-btn,.map-selection-list--official-casual .map-selection-btn,.map-selection-list--official-deathmatch .map-selection-btn,.map-selection-list--official-scrimcomp2v2 .map-selection-btn,.map-selection-list--official-skirmish .map-selection-btn,.map-selection-list--listen-competitive .map-selection-btn,.map-selection-list--listen-scrimcomp2v2 .map-selection-btn,.map-selection-list--listen-skirmish .map-selection-btn,.map-selection-list--listen-casual .map-selection-btn,.map-selection-list--listen-deathmatch .map-selection-btn{
 
    width: fill-parent-flow(1);
@@ -76,6 +90,51 @@
    margin: 0px 8px;
    vertical-align: center;
   }
+
+
+ .map-selection-list--official-deathmatch,.map-selection-list--official-casual{
+
+
+  width: 90%;
+ }.map-selection-list--official-deathmatch .map-selection-btn__groupmap-icons,.map-selection-list--official-casual .map-selection-btn__groupmap-icons{
+
+   width: 510px;
+   vertical-align:center;
+   height: 70%;
+  }
+
+  .map-selection-list--official-deathmatch .map-selection-btn__map-icon,.map-selection-list--official-casual .map-selection-btn__map-icon{
+
+   width: 150px;
+   height: 150px;
+   horizontal-align: right;
+  }
+
+
+ .map-selection-list--listen-scrimcomp2v2{
+
+  width: 90%;
+ }
+
+ .map-selection-list--listen-deathmatch,.map-selection-list--listen-competitive,.map-selection-list--listen-casual{
+
+
+
+  flow-children: right-wrap;
+  width: 100%;
+
+  margin-left: 8%;
+  margin-top: 8px;
+  margin-bottom: 8px;
+ }
+  .map-selection-list--listen-deathmatch .map-selection-btn,.map-selection-list--listen-competitive .map-selection-btn,.map-selection-list--listen-casual .map-selection-btn{
+
+   margin: 8px 8px;
+   width: 16%;
+   height: 48%;
+   vertical-align: top;
+  }
+
 
 
  .map-selection-list-premier{
@@ -1188,18 +1247,6 @@
   height: 64px;
  }
 
- .map-selection-btn__groupmap-icons{
-
-  width: fit-children;
-  height: fit-children;
-  horizontal-align: middle;
-  vertical-align: center;
- }
-  .map-selection-btn__groupmap-icons .map-selection-btn__map-icon{
-
-   vertical-align: top;
-  }
-
 
 
  .map-selection-btn__groupmap-icons.map-selection-btn__groupmap-icons-2x{
@@ -1228,8 +1275,8 @@
 
  .map-selection-btn--full .map-selection-btn__map-icon{
 
-  width: 256px;
-  height: 256px;
+  width: 200px;
+  height: 200px;
   vertical-align: center;
  }
 
