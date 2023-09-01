@@ -76,21 +76,21 @@
 					<Label class="SettingsSectionTitleLabel" text="#settings_music_section" />
 				</Panel>
 				<Panel class="top-bottom-flow full-width">
-					<CSGOSettingsSlider text="#SFUI_Settings_Menu_Music_Volume" max="1.0" min="0" audiogain="true" percentage="true" convar="snd_menumusic_volume" />
+					<CSGOSettingsSlider text="#SFUI_Settings_Menu_Music_Volume" eventname="MatchStart" max="1.0" min="0" audiogain="true" percentage="true" convar="snd_menumusic_volume" />
 					<Panel class="horizontal-separator" />
-					<CSGOSettingsSlider text="#SFUI_Settings_Start_Round_Music_Volume" max="1.0" min="0" audiogain="true" percentage="true" convar="snd_roundstart_volume" />
+					<CSGOSettingsSlider text="#SFUI_Settings_Start_Round_Music_Volume" eventname="StartRound" max="1.0" min="0" audiogain="true" percentage="true" convar="snd_roundstart_volume" />
 					<Panel class="horizontal-separator" />
-					<CSGOSettingsSlider text="#SFUI_Settings_Action_Round_Music_Volume" max="1.0" min="0" audiogain="true" percentage="true" convar="snd_roundaction_volume" />
+					<CSGOSettingsSlider text="#SFUI_Settings_Action_Round_Music_Volume" eventname="StartAction" max="1.0" min="0" audiogain="true" percentage="true" convar="snd_roundaction_volume" />
 					<Panel class="horizontal-separator" />
-					<CSGOSettingsSlider text="#SFUI_Settings_End_Round_Music_Volume" max="1.0" min="0" audiogain="true" percentage="true" convar="snd_roundend_volume" />
+					<CSGOSettingsSlider text="#SFUI_Settings_End_Round_Music_Volume" eventname="WonRound" max="1.0" min="0" audiogain="true" percentage="true" convar="snd_roundend_volume" />
 					<Panel class="horizontal-separator" />
-					<CSGOSettingsSlider text="#SFUI_Settings_MVP_Music_Volume" max="1.0" min="0" audiogain="true" percentage="true" convar="snd_mvp_volume" />
+					<CSGOSettingsSlider text="#SFUI_Settings_MVP_Music_Volume" eventname="MVPAnthem" max="1.0" min="0" audiogain="true" percentage="true" convar="snd_mvp_volume" />
 					<Panel class="horizontal-separator" />
-					<CSGOSettingsSlider text="#SFUI_Settings_Map_Objective_Music_Volume" max="1.0" min="0" audiogain="true" percentage="true" convar="snd_mapobjective_volume" constrainrange="true" />
+					<CSGOSettingsSlider text="#SFUI_Settings_Map_Objective_Music_Volume" eventname="BombPlanted" max="1.0" min="0" audiogain="true" percentage="true" convar="snd_mapobjective_volume" constrainrange="true" />
 					<Panel class="horizontal-separator" />
-					<CSGOSettingsSlider text="#SFUI_Settings_Ten_Second_Warning_Music_Volume" max="1.0" min="0" audiogain="true" percentage="true" convar="snd_tensecondwarning_volume" constrainrange="true" />
+					<CSGOSettingsSlider text="#SFUI_Settings_Ten_Second_Warning_Music_Volume" eventname="TenSecCount" max="1.0" min="0" audiogain="true" percentage="true" convar="snd_tensecondwarning_volume" constrainrange="true" />
 					<Panel class="horizontal-separator" />
-					<CSGOSettingsSlider text="#SFUI_Settings_Death_Camera_Music_Volume" max="1.0" min="0" audiogain="true" percentage="true" convar="snd_deathcamera_volume" constrainrange="true" />
+					<CSGOSettingsSlider text="#SFUI_Settings_Death_Camera_Music_Volume" eventname="DeathCam" max="1.0" min="0" audiogain="true" percentage="true" convar="snd_deathcamera_volume" constrainrange="true" />
 					<Panel class="horizontal-separator" />
 					<Panel class="SettingsMenuDropdownContainer">
 						<Label text="#SFUI_Settings_Mute_MVP_Live_Players" />

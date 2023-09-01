@@ -60,17 +60,48 @@
  @define chromebg-y: -25px;
 
 
- .hud-bottom-row-background--left{
-     horizontal-align: left;
-     vertical-align: bottom;
-     width: 100%;
-     height: chromebg-height;
-     y: chromebg-y;
- }
 
- .buymenu .buymenu-money .hud-bottom-row-background--left{
-     world-blur: none;
- }
+
+     .buymenu CSGOMoneyPanel .hud-bottom-row-background--left{
+         world-blur: none;
+     }
+
+     .buymenu CSGOMoneyPanel.money__in-buy-zone .steam-button-glyph,.buymenu CSGOMoneyPanel.money__in-buy-zone .money-text-buy-icon{
+
+     opacity: 0;
+     }
+
+     .buymenu #buymenu-info-money{
+
+         height: 30px;
+         vertical-align: center;
+         horizontal-align: left;
+         margin-top: 4px;
+     }
+         .buymenu #buymenu-info-money .digitpanel-container{
+
+             height: 30px;
+         }
+             .buymenu #buymenu-info-money .digitpanel-container Label{
+                 width: 11px;
+
+                 font-size: 24px;
+                 font-weight: medium;
+             }
+
+
+
+         .buymenu #buymenu-info-money .money-text-bg{
+             height: fit-children;
+         }
+
+         .buymenu #buymenu-info-money .money-text{
+             y: 0px;
+         }
+
+
+
+
 
 
  .money{
@@ -122,12 +153,6 @@
 
 
      opacity: 1;
- }
-
- .buymenu .buymenu-money CSGOMoneyPanel.money__in-buy-zone .steam-button-glyph,.buymenu .buymenu-money .money__in-buy-zone .money-text-buy-icon{
-
-
-     opacity: 0;
  }
 
  .money-text-explorebonus-icon{

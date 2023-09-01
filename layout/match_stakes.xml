@@ -1,0 +1,41 @@
+<!-- xml reconstructed by Source 2 Viewer 5.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/csgostyles.vcss_c" />
+		<include src="s2r://panorama/styles/match_stakes.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/mock_adapter.vts_c" />
+		<include src="s2r://panorama/scripts/common/sessionutil.vts_c" />
+		<include src="s2r://panorama/scripts/rating_emblem.vts_c" />
+		<include src="s2r://panorama/scripts/match_stakes.vts_c" />
+	</scripts>
+	<snippets>
+		<snippet name="parallelogram-bg">
+			<Panel class="matchstakes-background">
+				<Panel class="left-end" texturewidth="-1" textureheight="40" />
+				<Panel class="background-middle" />
+				<Panel class="right-end" texturewidth="-1" textureheight="40" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="matchstakes-container">
+		<Frame snippet="parallelogram-bg" />
+		<Panel class="matchstakes-foreground">
+			<Panel id="jsMatchStakesWin" class="matchstakes win">
+				<Label class="stratum-bold-italic left-margin" text="#team-intro-stakes-win" />
+				<Label class="stratum-black-italic right-margin fontSize-s horizontal-align-right text-align-right matchstakes-label-title-width" text="#team-intro-stakes-win-title" />
+			</Panel>
+			<Frame class="matchstakes-emblem" src="s2r://panorama/layout/rating_emblem.vxml_c" />
+			<Panel id="jsMatchStakesLoss" class="matchstakes loss">
+				<Label class="stratum-black-italic left-margin-medium fontSize-s matchstakes-label-title-width" text="#team-intro-stakes-loss-title" />
+				<Label class="stratum-medium-italic stratum-bold-italic horizontal-align-right text-align-right right-margin-medium" text="#team-intro-stakes-loss" />
+			</Panel>
+		</Panel>
+		<Panel class="matchstakes-intro-text">
+			<Frame snippet="parallelogram-bg" class="matchstakes-background-promo" />
+			<ParticleScenePanel id="jsMatchStakes_pfx" class="matchstakes-pfx" style="-s2-mix-blend-mode:screen;" startActive="true" particleName="particles/dev/empty.vpcf" cameraOrigin="0 140 0" lookAt="0 0 0" fov="35" />
+			<Label text="{s:introtext}" />
+		</Panel>
+	</Panel>
+</root>

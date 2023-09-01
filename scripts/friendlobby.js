@@ -175,7 +175,7 @@ var friendLobby = ( function (){
 				else
 				{
 					elJoinBtn.enabled = true;
-					tooltipText = $.Localize( ( lobbyType === 'invited' ) ? 'tooltip_Join' : 'tooltip_join_public_lobby' );
+					tooltipText = $.Localize( ( lobbyType === 'invited' ) ? '#tooltip_Join' : '#tooltip_join_public_lobby' );
 					
 					var onActivate = function ( lobbyLeaderXuid )
 					{

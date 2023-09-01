@@ -938,11 +938,16 @@ var matchInfo = ( function() {
         Helper_FillTeamStats( 1 );
         elParentPanel.teamsFilled = true;
 
+        var rawModeName = MatchInfoAPI.GetMatchMode( elParentPanel.matchId );
         var rawMapName = MatchInfoAPI.GetMatchMap( elParentPanel.matchId );
         var mapStringPrefix = '#SFUI_Map_';
         var mapName = $.Localize( mapStringPrefix + rawMapName );
         if ( mapName === mapStringPrefix + rawMapName ) mapName = rawMapName;
         elParentPanel.SetDialogVariable( 'map_name', mapName );
+
+          
+                   
+          
         var elMatchMapIcon = elParentPanel.FindChildTraverse( "id-mi-map-icon" );
 
         var setDefaultMapImage = function ( mapIcon )
@@ -956,6 +961,25 @@ var matchInfo = ( function() {
             elMatchMapIcon.SetImage( "file://{images}/map_icons/map_icon_"+rawMapName+".svg" );
         }
 
+          
+                    
+          
+        var elMatchModeIcon = elParentPanel.FindChildTraverse( "id-mi-mode-icon" );
+
+        var setDefaultModeImage = function ( mapIcon )
+        {
+            mapIcon.SetImage( "file://{images}/icons/ui/competitive.vsvg" );
+        }
+
+        if ( elMatchModeIcon )
+        {
+            $.RegisterEventHandler( 'ImageFailedLoad', elMatchModeIcon, setDefaultModeImage.bind( undefined, elMatchModeIcon ) );
+            elMatchModeIcon.SetImage( "file://{images}/icons/ui/" + rawModeName + ".svg" );
+        }
+
+          
+                                
+          
         var matchDuration = MatchInfoAPI.GetMatchDuration( elParentPanel.matchId );
         matchDuration = Math.max( Math.floor( matchDuration / 60 ), 1 );
         elParentPanel.SetDialogVariable( 'duration', FormatText.FormatPluralLoc( '#CSGO_Watch_Minute:p', matchDuration ) );
@@ -1043,7 +1067,11 @@ var matchInfo = ( function() {
             for ( var i = 0; i < TEAMSIZE; i++ )
             {   
                 var playerXuid = MatchInfoAPI.GetMatchPlayerXuidByIndexForTeam( elParentPanel.matchId, teamId, i );
-                var elPlayerRow = $.CreatePanel( 'Panel', elTeam, 'id-player-' + playerXuid );
+                var elPlayerRow = $.CreatePanel('Panel', elTeam, 'id-player-' + playerXuid);
+                if ( !playerXuid )
+                {
+                    elTeam.AddClass( 'with-empty-rows' );
+                }
                 elPlayerRow.playerXuid = playerXuid;
                 elPlayerRow.teamId = teamId;
                 if ( elParentPanel.matchListDescriptor != 'live' )
@@ -1119,7 +1147,7 @@ var matchInfo = ( function() {
 			elStatContainter.AddClass( 'sb-row__cell--' + PLAYERSTATS[p] );
 			elStatContainter.AddClass( 'matchinfo-scoreboard-header-stat-cell' );
             var elStatLabel = $.CreatePanel( 'Label', elStatContainter, PLAYERSTATS[p] );
-            elStatLabel.text = $.Localize( '#Scoreboard_' + PLAYERSTATS[p] );
+            elStatLabel.text = $.Localize( '#Scoreboard_' + PLAYERSTATS[p] + '_header' );
         }
 
         $.RegisterEventHandler( 'PropertyTransitionEnd', elParentPanel, _OnFadeOutEnd.bind( undefined, elParentPanel ) );

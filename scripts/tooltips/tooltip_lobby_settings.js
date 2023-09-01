@@ -157,7 +157,7 @@ var TooltipLobby = ( function ()
 	{
 		var elRankedText = $.GetContextPanel().FindChildInLayoutFile( 'LobbyTooltipRanked' );
 
-		if ( !isLocalPlayerPrime || !SessionUtil.DoesGameModeHavePrimeQueue( m_GameSettings.mode ) || !MyPersonaAPI.GetBetaType().includes( 'fullversion' ))
+		if ( !isLocalPlayerPrime || !SessionUtil.DoesGameModeHavePrimeQueue( m_GameSettings.mode ) )
 		{
 			elRankedText.GetParent().visible = false;
 			return

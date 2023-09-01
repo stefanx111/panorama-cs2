@@ -290,23 +290,6 @@
 						<CSGOSettingsSlider text="#SFUI_Settings_Spec_InterpCameraSpeed" max="0.4" min="0.05" displayprecision="2" convar="cl_obs_interp_pos_rate" />
 					</TooltipPanel>
 					<Panel class="horizontal-separator" />
-					<TooltipPanel class="SettingsMenuDropdownContainer" tooltip="#SFUI_Settings_DisableCamermanWithUserControl_Info">
-						<Label text="#SFUI_Settings_DisableCamermanWithUserControl" class="half-width" />
-						<CSGOSettingsEnumDropDown disabled="true" class="PopupButton White" convar="spec_cameraman_disable_with_user_control">
-							<Label text="#GameUI_Yes" value="1" id="disablecamwithusercontrol0" />
-							<Label text="#GameUI_No" value="0" id="disablecamwithusercontrol1" />
-						</CSGOSettingsEnumDropDown>
-					</TooltipPanel>
-					<Panel class="horizontal-separator" />
-					<TooltipPanel class="SettingsMenuDropdownContainer" tooltip="#SFUI_Settings_FollowGrenadeKey_Info">
-						<Label text="#SFUI_Settings_FollowGrenadeKey" class="half-width" />
-						<CSGOSettingsEnumDropDown class="PopupButton White" convar="cl_spec_follow_grenade_key">
-							<Label text="#SFUI_Settings_FollowGrenade_LeftAlt" value="0" id="followgrenadekey0" />
-							<Label text="#SFUI_Settings_FollowGrenade_LeftShift" value="1" id="followgrenadekey1" />
-							<Label text="#SFUI_Settings_FollowGrenade_ReloadKey" value="2" id="followgrenadekey2" />
-						</CSGOSettingsEnumDropDown>
-					</TooltipPanel>
-					<Panel class="horizontal-separator" />
 					<TooltipPanel class="SettingsMenuDropdownContainer" tooltip="#SFUI_Settings_EnableAutomaticDeathcamReplay_Info">
 						<Label text="#SFUI_Settings_EnableAutomaticDeathcamReplay" class="half-width" />
 						<CSGOSettingsEnumDropDown class="PopupButton White" convar="spec_replay_autostart">
@@ -345,13 +328,13 @@
 						</CSGOSettingsEnumDropDown>
 					</Panel>
 					<Panel class="horizontal-separator" />
-					<Panel class="SettingsMenuDropdownContainer">
+					<TooltipPanel id="FiddleWithSilencers" class="SettingsMenuDropdownContainer" tooltip="#Cstrike_Fiddle_With_Silencers_Desc">
 						<Label text="#Cstrike_Fiddle_With_Silencers" class="half-width" />
 						<CSGOSettingsEnumDropDown class="PopupButton White" convar="cl_silencer_mode">
 							<Label text="#SFUI_WeaponSpecial" value="1" id="fiddlewithsilencers1" />
 							<Label text="#SFUI_Settings_Disabled" value="0" id="fiddlewithsilencers0" />
 						</CSGOSettingsEnumDropDown>
-					</Panel>
+					</TooltipPanel>
 					<Panel class="horizontal-separator" />
 					<Panel class="SettingsMenuDropdownContainer">
 						<Label text="#SFUI_Settings_ViewmodelPos" class="half-width" />
@@ -377,14 +360,6 @@
 							<Label text="#GameUI_No" value="0" id="openbuywithuse1" />
 						</CSGOSettingsEnumDropDown>
 					</Panel>
-					<Panel class="horizontal-separator" />
-					<TooltipPanel class="SettingsMenuDropdownContainer" tooltip="#SFUI_Open_Buy_menu_mousecentering_Info">
-						<Label text="#SFUI_Open_Buy_menu_mousecentering" class="half-width" />
-						<CSGOSettingsEnumDropDown class="PopupButton White" convar="cl_buywheel_nomousecentering">
-							<Label text="#SFUI_Open_Buy_menu_mousecentering_Wheel" value="0" id="buynomousecentering0" />
-							<Label text="#SFUI_Open_Buy_menu_mousecentering_Screen" value="1" id="buynomousecentering1" />
-						</CSGOSettingsEnumDropDown>
-					</TooltipPanel>
 					<Panel class="horizontal-separator" />
 					<TooltipPanel class="SettingsMenuDropdownContainer" tooltip="#SFUI_Open_Buy_menu_numberpurchasing_Info">
 						<Label text="#SFUI_Open_Buy_menu_numberpurchasing" class="half-width" />
@@ -566,8 +541,8 @@
 				</Panel>
 			</Panel>
 		</Panel>
-		<Panel class="content-controls-actions-bar">
-			<Button id="SettingsRestoreKbMouse" class="PopupButton White" onactivate="SettingsMenuShared.ShowConfirmReset( SettingsMenuShared.ResetControls, &apos;#settings_reset_confirm_game_desc&apos; );" onmouseover="UiToolkitAPI.ShowTextTooltip( &apos;SettingsRestoreKbMouse&apos;, &apos;#tooltip_reset_defaults&apos; );" onmouseout="UiToolkitAPI.HideTextTooltip();">
+		<Panel class="content-controls-actions-bar left-right-flow horizontal-align-right">
+			<Button id="SettingsRestoreGame" class="PopupButton White" onactivate="SettingsMenuShared.ShowConfirmReset( SettingsMenuShared.ResetControls, &apos;#settings_reset_confirm_game_desc&apos; );" onmouseover="UiToolkitAPI.ShowTextTooltip( &apos;SettingsRestoreGame&apos;, &apos;#tooltip_reset_defaults&apos; );" onmouseout="UiToolkitAPI.HideTextTooltip();">
 				<Image id="PermissionsSettingsImg" texturewidth="-1" textureheight="28" src="s2r://panorama/images/icons/ui/recent.vsvg" />
 				<Label text="#settings_reset" />
 			</Button>

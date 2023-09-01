@@ -75,7 +75,7 @@
   height: 48px;
   vertical-align: top;
   horizontal-align: right;
-  margin: 10px;
+  margin: 15px;
  }
  #jsFlairImage{
   height: 90%;
@@ -87,7 +87,7 @@
 
  .card__banner{
   width: 22%;
-  height: 55%;
+  height: 50%;
 
   horizontal-align: left;
   vertical-align: top;
@@ -115,8 +115,8 @@
     flow-children: down;
 
     horizontal-align: center;
-    vertical-align: center;
    }
+
 
 
 
@@ -174,28 +174,6 @@
     }
 
 
-   .card__banner .banner__stat-container .emblem--skillgroup{
-    horizontal-align: center;
-    margin-top: 10px;
-
-    opacity: 0;
-    brightness: 10;
-
-    transform: scale3d( 0.85, 0.85, 1);
-
-    overflow: noclip;
-   }
-
-   .show-skillgroup .card__banner .banner__stat-container .emblem--skillgroup{
-
-    opacity: 1;
-    brightness: 1;
-
-    animation-name: skillgroup-pulse;
-    animation-duration: 1s;
-    animation-timing-function: ease-in-out;
-   }
-
 
 
  .card__main{
@@ -208,8 +186,8 @@
    border-radius: 50%;
    horizontal-align: center;
    vertical-align: center;
-   margin-top: -50px;
-   margin-left: 28px;
+   margin-top: -70px;
+   margin-left: 50px;
 
    border: 1px solid #505050;
   }
@@ -222,6 +200,32 @@
 
 
 
+
+
+
+
+  .card__main .emblem--skillgroup{
+   horizontal-align: center;
+   vertical-align: center;
+
+   margin-top: 60px;
+
+   opacity: 0;
+   brightness: 10;
+
+
+
+   overflow: noclip;
+  }
+   .show-skillgroup .card__main .emblem--skillgroup{
+
+    opacity: 1;
+    brightness: 1;
+
+    animation-name: skillgroup-pulse;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+   }
 
 
 

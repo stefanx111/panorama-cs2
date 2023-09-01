@@ -1,6 +1,7 @@
 
  @define direct-challenge-color: rgb(71, 179, 230);
  @define play-settings-width: 240px;
+ @define prime-panel-right-left-margin: 64px;
 
 
 
@@ -98,9 +99,9 @@
   width: 90%;
  }.map-selection-list--official-deathmatch .map-selection-btn__groupmap-icons,.map-selection-list--official-casual .map-selection-btn__groupmap-icons{
 
-   width: 510px;
+   width: 855px;
    vertical-align:center;
-   height: 70%;
+   height: 50%;
   }
 
   .map-selection-list--official-deathmatch .map-selection-btn__map-icon,.map-selection-list--official-casual .map-selection-btn__map-icon{
@@ -2291,33 +2292,45 @@
 
  .playmenu--premier__party{
 
-  width: 100%;
+  width: 570px;
   height: 275px;
+  margin-top: 32px;
 
   horizontal-align: right;
   flow-children: down;
+  margin-right: prime-panel-right-left-margin;
 
   padding-bottom: 16px;
  }
 
  .playmenu--premier__leaderboard{
 
-  width: 100%;
+  width: 570px;
   height: fill-parent-flow(1);
-  horizontal-align: right;
+  horizontal-align: left;
   flow-children: down;
 
   padding-bottom: 16px;
+  margin-top: 32px;
+  margin-left: prime-panel-right-left-margin;
  }
-
 
  .premier-play-menu-mapwinrecord{
 
   margin-top: 12px;
   width: 575px;
   height: fill-parent-flow(1);
-  horizontal-align: center;
+  horizontal-align: right;
   vertical-align: center;
+  margin-right: prime-panel-right-left-margin;
+ }
+
+ .AspectRatio4x3 .playmenu--premier__party,.AspectRatio4x3 .premier-play-menu-mapwinrecord,.AspectRatio4x3 .playmenu--premier__leaderboard{
+
+
+
+  margin-right: 0px;
+  margin-left: 0px;
  }
 
 
@@ -2328,8 +2341,7 @@
   height: 100%;
  }
    .premier-side .premier-inner{
-    width: 570px;
-    flow-children: down;
+    width: 100%;
    }
     .premier-side .premier-inner.right{
      horizontal-align:left;
@@ -2337,9 +2349,80 @@
 
     .premier-side .premier-inner.left{
      horizontal-align: right;
+     flow-children: down;
     }
 
 
    .premier-side.right{
     background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(0,0,0,0.4)), to (rgba(0,0,0, 0)));
+   }
+
+
+
+
+
+
+
+  .premier-side #lbNameButton{
+
+
+   vertical-align: top;
+   horizontal-align: left;
+   margin-left: 97px;
+
+
+
+
+
+
+
+
+
+
+
+
+
+   margin-right: 20px;
+  }
+   .AspectRatio4x3 .premier-side #lbNameButton{
+    margin-left:
+                 
+                 32px
+    ;
+   }
+   .premier-side #lbNameButton Label{
+    text-transform:
+                    
+                    none
+    ;
+    font-size:
+               
+               22px
+    ;
+    margin:
+            
+            5px
+    ;
+    font-weight:
+                 
+                 normal
+    ;
+   }
+   .premier-side #lbNameButton.submitted{
+    wash-color:
+               rgb
+                  (
+                   165,
+                        
+                        165,
+                             
+                             0
+                              )
+    ;
+   }
+   .premier-side #lbNameButton.approved{
+    wash-color:
+                
+                white
+    ;
 }

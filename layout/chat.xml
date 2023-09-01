@@ -53,7 +53,7 @@
 				<Panel class="top-bottom-flow full-width">
 					<Panel id="ChatLinesContainer" class="chat-container__lines" />
 					<Panel class="chat-container__input-container">
-						<TextEntry id="ChatInput" class="chat-container__input" maxchars="1024" placeholder="#party_chat_placeholder" />
+						<TextEntry id="ChatInput" class="chat-container__input" maxchars="768" placeholder="#party_chat_placeholder" />
 					</Panel>
 					<Button id="ChatCloseButton" class="chat-container__close">
 						<Image class="chat-container__close__icon" src="s2r://panorama/images/icons/ui/expand.vsvg" />

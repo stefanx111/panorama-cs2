@@ -39,14 +39,19 @@
 	<Panel class="leaderboard-root">
 		<Panel class="leaderboard__contents">
 			<Panel class="leaderboard-header">
-				<Label html="true" class="leaderboard-title-bar__label" text="{s:leaderboard-title}" onactivate="Leaderboard.Init();" />
+				<Label html="true" class="leaderboard-title-bar__label" text="{s:leaderboard-title}" />
 				<Panel id="id-leaderboard-navbar" class="leaderboard-navbar">
-					<ToggleButton class="nav PopupButton" id="jsToggleSelf" menuclass="leaderboard-nav__dropdown__menuclass" onactivate="Leaderboard.UpdateLeaderboard()">
-						<Label text="#leaderboard_goto_self" />
-					</ToggleButton>
+					<Panel class="left-right-flow horizontal-align-left">
+						<Button class="nav PopupButton" id="jsGoToTop" menuclass="leaderboard-nav__dropdown__menuclass" onactivate="Leaderboard.GoToTop()">
+							<Label text="#leaderboard_goto_top" />
+						</Button>
+						<Button class="nav PopupButton" id="jsGoToMe" menuclass="leaderboard-nav__dropdown__menuclass" onactivate="Leaderboard.GoToSelf()">
+							<Label text="#leaderboard_goto_self" />
+						</Button>
+					</Panel>
 					<Panel class="left-right-flow horizontal-align-right">
-						<DropDown class="nav content-navbar__tabs__dropdown" id="jsNavSeason" menuclass="leaderboard-nav__dropdown__menuclass" oninputsubmit="Leaderboard.UpdateLeaderboard()" />
-						<DropDown class="nav content-navbar__tabs__dropdown" id="jsNavLocation" menuclass="leaderboard-nav__dropdown__menuclass" oninputsubmit="Leaderboard.UpdateLeaderboard()" />
+						<DropDown class="nav content-navbar__tabs__dropdown" id="jsNavSeason" menuclass="leaderboard-nav__dropdown__menuclass Width-150" oninputsubmit="Leaderboard.OnLeaderboardChange()" />
+						<DropDown class="nav content-navbar__tabs__dropdown visible-if-not-perfectworld" id="jsNavLocation" menuclass="leaderboard-nav__dropdown__menuclass Width-150" oninputsubmit="Leaderboard.OnLeaderboardChange()" />
 					</Panel>
 				</Panel>
 			</Panel>
@@ -83,7 +88,7 @@
 						<Label text="#leaderboard_column_percentile" class="stratum-regular-condensed leaderboard_cell faded" />
 					</Panel>
 				</Button>
-				<Panel id="id-leaderboard-entries" class="leaderboard__entries-container" />
+				<JSDelayLoadList id="id-leaderboard-entries" class="leaderboard__entries-container" itemwidth="716px" itemheight="30px" />
 			</Panel>
 		</Panel>
 	</Panel>

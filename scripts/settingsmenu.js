@@ -106,6 +106,14 @@ var SettingsMenu = ( function () {
 				                                            
 				jumpButtons.Children()[ 0 ].checked = true;
 			}
+			const newSettings = PromotedSettingsUtil.GetUnacknowledgedPromotedSettings();
+			newSettings.forEach( setting => {
+				const el = newPanel.FindChildTraverse( setting.id );
+				if ( el )
+				{
+					el.AddClass( "setting-is-new" );
+				}
+			} )
         }
 
                                                                                   
@@ -170,6 +178,7 @@ var SettingsMenu = ( function () {
 	{
 	                                   
 	GameInterfaceAPI.ConsoleCommand( "host_writeconfig" );
+	InventoryAPI.StopItemPreviewMusic();
 	}
 
 	var _NavigateToSetting = function ( tab, id )
@@ -178,6 +187,7 @@ var SettingsMenu = ( function () {
 		$.DispatchEvent( "Activated", $( "#" + tabInfo[ tab ].radioid ), "mouse" );
 		SettingsMenuShared.ScrollToId( id );                     
 	}
+
 	var _NavigateToSettingPanel = function( tab, p )
 	{
 		$.DispatchEvent( "Activated", $( "#" + tabInfo[ tab ].radioid ), "mouse" );

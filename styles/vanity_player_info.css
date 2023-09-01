@@ -6,11 +6,25 @@
 
 
 
+     padding: 0px 4px 8px 4px;
+     background-color: blurBackgroundColor;
      horizontal-align: center_nopixelsnap;
   vertical-align: center_nopixelsnap;
      flow-children: down;
      horizontal-align: center;
      vertical-align: bottom;
+
+     transition-property: background-color;
+     transition-duration: .2s;
+     transition-timing-function: ease-in-out;
+ }
+
+ .vanity-info-seperator{
+
+     height: 1px;
+     width: 80%;
+     background-color: rgba(255, 255, 255, 0.171);
+     horizontal-align: center;
  }
 
 
@@ -29,9 +43,10 @@
 
 
      transform-origin: 50% 100%;
+     flow-children: down;
 
      x:-256px;
-     y: 100px;
+     y: 150px;
      transform: translate3d( -512px, -256px, 0px );
  }
 
@@ -79,8 +94,8 @@
 
      width: 28px;
      height: 28px;
-     margin-left: 34px;
-     transform: translateY(6px);
+     horizontal-align: center;
+
      wash-color: gold;
  }
 
@@ -91,9 +106,12 @@
 
  .vanity-info-name{
 
-     max-height: 18px;
-     width: 100%;
+     max-height: 24px;
+     max-width: 212px;
      color: white;
+
+      horizontal-align:center;
+
      opacity-mask: url( "s2r://panorama/images/masks/fade-right_png.vtex");
 
      transition-property: color;
@@ -104,6 +122,9 @@
  .vanity-info-avatar-container{
 
      height: fit-children;
+     transform: translateX(-6px);
+     ui-scale:80%;
+     padding-top: 5px;
      width: fit-children;
  }
 
@@ -112,16 +133,12 @@
 
      flow-children: down;
 
-     width: right-section;
+
      vertical-align: center;
      height: 64px 
      padding: 0px 8px 0px 0px
      ;
-     transition-property: background-color;
-     transition-duration: .2s;
-     transition-timing-function: ease-in-out;
  }
-
  .no-valid-xp .vanity-info-name-xp-container{
 
      flow-children: none;
@@ -133,24 +150,22 @@
      width: 100%;
  }
 
- .vanity-info-xp-icon,.vanity-info-prime-icon{
-
-
-     height:32px;
-     width: 32px;
-     img-shadow: 1px 1px 4px #000000;
- }
-
  .vanity-info-xp-icon{
 
-     margin: 0px 16px 0px 16px;
+     height:38px;
+     width: 38px;
+     horizontal-align: center;
+     img-shadow: 1px 1px 4px #000000;
  }
 
  .vanity-info-prime-icon{
 
      img-shadow: none;
-     padding: 4px;
-     margin-right: 8px;
+     horizontal-align: center;
+     height:22px;
+     width: 22px;
+     margin-right: 4px;
+
 
      transition-property: wash-color;
      transition-duration: .2s;
@@ -161,18 +176,9 @@
 
 
      flow-children: down;
-     margin-left: 16px;
-     margin-top: 0px;
-
-
-     transition-property: background-color;
-     transition-duration: .2s;
-     transition-timing-function: ease-in-out;
- }
-
- .vanity-info-xp-bar-container{
-
-     margin-top: 2px;
+     margin-top: 4px;
+     margin-bottom: 10px;
+     horizontal-align: center;
  }
 
  .no-valid-xp .vanity-info-xp-container,.no-valid-xp .vanity-info-xp-bar{
@@ -184,27 +190,23 @@
  .vanity-info-xp-bar{
 
      height: 3px;
-     width: 236px;
+     width: 64px;
      background-color: #000000d3;
  }
 
  .vanity-info-xp-bar--inner{
 
      height: 8px;
-     width: 236px;
+     width: 64px;
      background-color: gradient( linear, 0% 0%, 100% 0%, from ( #2084b9 ), to( #5DC6FF ));
  }
 
  .vanity-info-skill-group-container{
 
-
-     margin-left: 16px;
+     margin-top: 10px;
      flow-children: right;
+     horizontal-align:center;
      height: 26px;
-
-     transition-property: background-color;
-     transition-duration: .2s;
-     transition-timing-function: ease-in-out;
  }
 
  .no-valid-rank .vanity-info-skill-group-container,.is-not-leader .vanity-info-crown-icon{
@@ -224,10 +226,6 @@
 
      width: right-section;
      height: 100%;
-
-     transition-property: background-color;
-     transition-duration: .2s;
-     transition-timing-function: ease-in-out;
  }
 
  .vanity-rank-name{
@@ -245,17 +243,10 @@
  }
 
 
- .vanity-info-skill-group-container,.vanity-info-xp-bar-container{
 
+ .vanity-info-container:hover{
 
-     transform: translateY( -10px);
- }
-
- .vanity-info-container:hover .vanity-info-name-container,.vanity-info-container:hover .vanity-info-xp-bar-container,.vanity-info-container:hover .vanity-info-skill-group-container{
-
-
-
-     background-color: gradient( linear, 0% 0%, 100% 0%, from( #ffffff22 ), to( #ffffff00));
+     background-color: rgba(255, 255, 255, 0.15);
 
      transition-property: background-color;
      transition-duration: .2s;

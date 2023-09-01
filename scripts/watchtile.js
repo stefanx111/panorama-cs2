@@ -76,6 +76,7 @@ var watchTile = ( function() {
 		bPlayerParticipated = _multiresult.bPlayerParticipated;
 		myTeam = _multiresult.myTeam;
 
+        var rawModeName = MatchInfoAPI.GetMatchMode( elTile.matchId );
         var mapName = MatchInfoAPI.GetMatchMap( elTile.matchId );
 
 		                                                                                                                                                    
@@ -107,7 +108,8 @@ var watchTile = ( function() {
         }
 
         var elMatchMapLabel = elTile.FindChildInLayoutFile('mapname');
-		var elMatchMapIcon = elTile.FindChildInLayoutFile('mapicon');
+        var elMatchMapIcon = elTile.FindChildInLayoutFile( 'mapicon' );
+        var elMatchModeIcon = elTile.FindChildInLayoutFile( 'modeicon' );
 		var elSkillGroupImg = elTile.FindChildInLayoutFile( 'skillgroup' );
         var elScore0Label = elTile.FindChildInLayoutFile('score_team0');
         var elVsLabel = elTile.FindChildInLayoutFile( 'vs' );
@@ -260,6 +262,17 @@ var watchTile = ( function() {
             elMatchMapIcon.SetImage( "file://{images}/map_icons/map_icon_"+mapName+".svg" );
 		}
 		
+        var setDefaultModeImage = function ( mapIcon )
+        {
+            mapIcon.SetImage( "file://{images}/icons/ui/competitive.vsvg" );
+        }
+
+        if ( elMatchModeIcon )
+        {
+            $.RegisterEventHandler( 'ImageFailedLoad', elMatchModeIcon, setDefaultModeImage.bind( undefined, elMatchModeIcon ) );
+            elMatchModeIcon.SetImage( "file://{images}/icons/ui/" + rawModeName + ".svg" );
+        }
+
 		if ( elSkillGroupImg )
 		{
 			var skillgroup = MatchInfoAPI.GetMatchSkillGroup( elTile.matchId );

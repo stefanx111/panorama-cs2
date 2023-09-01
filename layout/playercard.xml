@@ -27,7 +27,9 @@
 				<Panel class="player-card-rating__icon-container">
 					<Frame src="s2r://panorama/layout/rating_emblem.vxml_c" />
 				</Panel>
-				<Label id="JsPlayerSkillLabel" class="player-card__text-subtitle player-card__text-subtitle--multiline stratum-medium" text="{s:rating-text}" />
+				<Panel class="player-card-rating__labels">
+					<Label id="jsRatingText" class="player-card__text-subtitle player-card__text-subtitle--multiline stratum-medium" text="{s:rating-text}" html="true" />
+				</Panel>
 			</Panel>
 		</snippet>
 	</snippets>

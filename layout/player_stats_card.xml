@@ -24,9 +24,6 @@
 						<Label class="value hsp sliding-panel stratum-bold-condensed" text="#playercardstats_hsp_value" />
 						<Label class="desc hsp colorize-teammate-color stratum-light-condensed" text="#playercardstats_hsp_title" />
 					</Panel>
-					<Panel class="emblem--skillgroup">
-						<Frame id="jsRatingEmblem" src="s2r://panorama/layout/rating_emblem.vxml_c" />
-					</Panel>
 				</Panel>
 			</Panel>
 		</snippet>
@@ -62,13 +59,13 @@
 		<Panel class="card__inset">
 			<Panel id="JsCardBG" class="card__bg" />
 			<Panel class="card__border colorize-teammate-color" />
-			<Panel class="emblem--flair">
-				<Image id="jsFlairImage" textureheight="-1" texturewidth="48" src="" />
-			</Panel>
 			<Panel class="card__contents">
 				<Panel id="JsCardMain" class="card__main">
 					<Panel class="card__avatar-container">
 						<CSGOAvatarImage id="jsAvatar" class="card__avatar" texturewidth="-1" textureheight="32" />
+					</Panel>
+					<Panel class="emblem--skillgroup">
+						<Frame id="jsRatingEmblem" src="s2r://panorama/layout/rating_emblem.vxml_c" />
 					</Panel>
 					<Panel class="card__main__lower">
 						<Panel class="card__player-name sliding-panel">
@@ -81,6 +78,9 @@
 						</Panel>
 					</Panel>
 				</Panel>
+			</Panel>
+			<Panel class="emblem--flair">
+				<Image id="jsFlairImage" textureheight="-1" texturewidth="48" src="" />
 			</Panel>
 		</Panel>
 	</Panel>

@@ -30,10 +30,10 @@
  }
 
 
+ #MainMenuVanityParent{
 
-
-
-
+  blur: mipmapgaussian( 4, 4, 3 );
+ }
 
 
  CSGOMainMenu.PopupBackgroundBlur #MainMenuCore{
@@ -1751,8 +1751,19 @@
 
  .settings-notification.has-new-settings{
 
-  visibility: visible;
+
+
+
+
+  visibility: collapse;
  }
+
+ .setting-is-new Label{
+
+  brightness: 1.2;
+  font-weight: bold;
+ }
+
  .fairplay-link{
   text-decoration: underline;
  }

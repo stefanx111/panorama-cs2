@@ -28,6 +28,7 @@ var SettingsMenuPromoted = ( function() {
 				}
 			}
 		}
+		
 	}
 
 	function _Init()

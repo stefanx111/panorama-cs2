@@ -7,7 +7,8 @@
 	<CSGOHudVote hittest="false" class="hud-vote">
 		<Panel class="hud-vote-header vote-header-callvote">
 			<Image id="VoteHeaderIcon" class="hud-vote-header__icon" src="s2r://panorama/images/icons/ui/competitive.vsvg" />
-			<Label class="hud-vote-header__label" text="#Panorama_Vote_Header" />
+			<Label class="hud-vote-header__label hud-vote-type-req--regular" text="#Panorama_Vote_Header" />
+			<Label class="hud-vote-header__label hud-vote-type-req--auto-instant-surrender" text="#Panorama_Vote_Header_AutoInstantSurrender" />
 		</Panel>
 		<Panel class="hud-vote-header vote-header-passed">
 			<Image id="VoteHeaderIcon" class="hud-vote-header__icon" src="s2r://panorama/images/icons/ui/checkbox.vsvg" />
@@ -18,7 +19,8 @@
 			<Label class="hud-vote-header__label" text="#Panorama_Vote_Failed" html="true" />
 		</Panel>
 		<Panel class="hud-vote-body">
-			<Label id="VoteDescLabel" class="hud-vote-body__label" html="true" />
+			<Label id="VoteDescLabel" class="hud-vote-body__label hud-vote-type-req--regular" html="true" />
+			<Label class="hud-vote-body__label hud-vote-type-req--auto-instant-surrender" html="true" text="#Panorama_Vote_Text_AutoInstantSurrender" />
 			<Panel class="hud-vote-boxes">
 				<Panel class="hud-vote-yesbox">
 					<Image src="s2r://panorama/images/icons/ui/checkbox.vsvg" />

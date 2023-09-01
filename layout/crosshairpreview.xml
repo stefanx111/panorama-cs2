@@ -24,6 +24,11 @@
 					<Label text="#settings_reset" />
 				</Button>
 			</TooltipPanel>
+			<TooltipPanel id="ImportCSGOPanel" class="xhair-ctrl-btn hide" tooltip="#GameUI_Xhair_ImportCSGO_Tooltip">
+				<Button id="ImportCSGOButton">
+					<Label text="#GameUI_Xhair_ImportCSGO" />
+				</Button>
+			</TooltipPanel>
 		</Panel>
 		<Panel class="horizontal-align-left left-right-flow dynamic-xhair-buttons">
 			<TooltipPanel class="xhair-ctrl-btn" tooltip="#GameUI_Xhair_Moving_Tooltip">

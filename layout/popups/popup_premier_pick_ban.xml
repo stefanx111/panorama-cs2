@@ -39,12 +39,22 @@
 					<Panel class="avatar-image__default" />
 					<CSGOAvatarImage id="JsAvatarImage" class="avatar-image__icon" />
 				</Panel>
-				<Label class="premier-pickban__map-avatars__label stratum-regular" text="{s:teammate_name}" />
+				<Frame class="vertical-align-center" src="s2r://panorama/layout/rating_emblem.vxml_c" />
+				<Label class="premier-pickban__map-avatars__label stratum-regular-tf" text="{s:teammate_name}" />
+			</Panel>
+		</snippet>
+		<snippet name="small-avatar-opponent">
+			<Panel class="premier-pickban__map-avatars__btn">
+				<Panel id="id-avatar-party-line" />
+				<Panel>
+					<Image id="id-avatar-opponent-avatar" class="premier-pickban__map-opponent-avatar" src="s2r://panorama/images/avatars/avatar_sub_01_psd.vtex" />
+				</Panel>
+				<Frame class="vertical-align-center" src="s2r://panorama/layout/rating_emblem.vxml_c" />
 			</Panel>
 		</snippet>
 	</snippets>
 	<PopupCustomLayout class="premier-pickban PopupPanel" popupbackground="blur" hittest="true">
-		<Panel class="premier-pickban__middle">
+		<Panel id="id-team-vote-middle" class="premier-pickban__middle">
 			<Panel id="id-team-vote-phasebar-container" class="premier-pickban__progress">
 				<Frame id="id-team-vote-phasebar-2" snippet="progress-section" data-phase="2" />
 				<Frame id="id-team-vote-phasebar-3" snippet="progress-section" data-phase="3" />
@@ -67,7 +77,7 @@
 					<Panel class="premier-pickban__team premier-pickban__team--result" />
 				</Panel>
 				<Panel id="id-pick-vote-maps" class="premier-pickban__maps">
-					<Image class="premier-pickban__spider-bg" src="s2r://panorama/images/backgrounds/premier_spider.vsvg" />
+					<SpiderGraph id="id-team-vote-spider-graph" class="premier-pickban__spider-bg" require-composition-layer="true" oncanvaslayout="PremierPickBan.DrawGraphBackground();" />
 					<Panel id="id-team-vote-btns-container" class="full-height full-width overflow-noclip">
 						<Frame id="id-map-vote-btn-0" snippet="vote-button" />
 						<Image id="id-map-vote-btn-ref-0" class="premier-pickban__reflection premier-pickban__reflection__map-btn" />
@@ -87,18 +97,25 @@
 				</Panel>
 				<Image id="id-team-vote-map-icon" class="premier-pickban__team__map-icon" textureheight="220" texturewidth="-1" src="" />
 				<Image id="id-team-vote-reflection" class="premier-pickban__reflection" />
-				<Panel class="premier-pickban__players">
-					<Panel class="top-bottom-flow right-margin">
-						<Label class="stratum-light-condensed fontSize-l" text="#matchdraft_your_team" />
+				<Panel class="premier-pickban__players" hittest="false">
+					<Panel class="top-bottom-flow">
+						<Panel class="left-right-flow">
+							<Image class="vertical-center right-margin" src="s2r://panorama/images/icons/ui/spidergraph_key.vsvg" textureheight="18" texturewidth="-1" />
+							<Label class="stratum-regular-condensed fontSize-l" text="#matchdraft_your_team" />
+						</Panel>
 						<Panel id="id-team-vote-team-teammates" class="premier-pickban__teammates" />
 					</Panel>
-					<Panel class="top-bottom-flow">
-						<Label class="stratum-light-condensed fontSize-l" text="#matchdraft_opponent_team" />
+					<Panel class="top-bottom-flow horizontal-align-right">
+						<Panel class="left-right-flow premier-pickban__opponents">
+							<Image class="vertical-center right-margin" src="s2r://panorama/images/icons/ui/spidergraph_key.vsvg" textureheight="18" texturewidth="-1" />
+							<Label class="stratum-regular-condensed fontSize-l" text="#matchdraft_opponent_team" />
+						</Panel>
 						<Panel id="id-team-vote-team-opponent" class="premier-pickban__teammates" />
 					</Panel>
 				</Panel>
 			</Panel>
-			<Panel id="id-team-vote-topbar-container" class="premier-pickban__topbar">
+			<CSGOChat id="PartyChat" />
+			<Panel id="id-team-vote-topbar-container" class="premier-pickban__topbar full-width" hittest="false" hittestchildren="false">
 				<Panel id="id-team-vote-title" class="premier-pickban__title">
 					<Panel id="id-team-vote-title-spinner" class="Spinner right-margin-medium" />
 					<Label id="id-team-vote-title-phase" html="true" class="premier-pickban__title__text stratum-medium fontSize-xl" text="{s:title-text}" />

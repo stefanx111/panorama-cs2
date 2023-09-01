@@ -14,12 +14,6 @@
   transition-timing-function: ease-in-out;
  }
 
- .accept-match .chat-panel-outer{
-
-  padding-right: 0px;
-  width: fit-children;
- }
-
  .chat-panel-outer.hidden{
 
   opacity: 0;
@@ -119,8 +113,7 @@
   transition-timing-function: ease-in-out;
  }
 
- .chat-container:hover .chat-panel-blur,.accept-match .chat-panel-blur{
-
+ .chat-container:hover .chat-panel-blur{
 
   opacity: 1;
  }
@@ -148,12 +141,10 @@
   transition-timing-function: ease-in-out;
  }
 
+ .premier-pickban .chat-panel-blur{
 
- .accept-match .chat-panel-blur{
-
-  background-color: rgb(39, 46, 51);
+  background-color: gradient( linear, 0% 120%, 0% 0%, from(rgba(0, 0, 0, 0.589)), to( rgba(48, 57, 63, 0) ) );
  }
-
 
  .chat-open .chat-panel-blur{
 
@@ -319,7 +310,8 @@
  .chat-container__input{
 
   visibility: collapse;
-  font-size: 18px;
+  font-size: 16px;
+  font-family: Stratum2 TF, "Arial Unicode MS";
   width: 100%;
   color: White;
   padding-left: 8px;
@@ -337,7 +329,8 @@
   transition-property: opacity;
   transition-duration: 0.2s;
   color: rgb(184, 181, 181);
-  font-size: 18px;
+  font-family: Stratum2 TF, "Arial Unicode MS";
+  font-size: 16px;
  }
 
  TextEntry.chat-container__input.HasInput #PlaceholderText{
@@ -378,6 +371,12 @@
   visibility: visible;
  }
 
+
+ .premier-pickban .chat-container.chat-open .chat-container__close{
+
+  visibility: collapse;
+ }
+
  .chat-container__close__icon{
 
   horizontal-align: center;
@@ -404,4 +403,14 @@
  CSGOAvatarImage{
 
   visibility: collapse;
+ }
+
+ TextEntry{
+
+  height: 32px;
+ }
+
+ TextEntry.{
+
+  height: 32px;
 }

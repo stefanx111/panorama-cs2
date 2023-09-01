@@ -111,6 +111,7 @@
 			<Panel class="mi-sb__container">
 				<Panel id="Scoreboard" class="mi-sb-main">
 					<Panel id="meta" class="mi-sb-meta">
+						<Image id="id-mi-mode-icon" class="mi-meta__map-icon" texturewidth="80" textureheight="-1" />
 						<Image id="id-mi-map-icon" class="mi-meta__map-icon" texturewidth="80" textureheight="-1" />
 						<Panel class="mi-meta__labels">
 							<Panel class="top-bottom-flow">

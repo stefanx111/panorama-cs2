@@ -12,10 +12,10 @@
  #jsToggleSelf Label,.leaderboard-navbar Label{
 
 
-  width: 120px;
+
   font-family: Stratum2 Condensed, Arial;
   margin: 0px;
-  margin-right: 12px;
+
   color: white;
   padding: 8px 8px;
   font-size: 16px;
@@ -48,6 +48,10 @@
     .leaderboard-header .leaderboard-navbar Label.local-player-relevance{
      wash-color: yellow;
     }
+
+
+
+
 
 
    .leaderboard-header .leaderboard-navbar #jsToggleSelf{
@@ -91,22 +95,6 @@
  }
 
 
-
- #id-leaderboard-refresh-button.IconButton Image{
-
-  wash-color: #CCCCCC;
- }
-
- #id-leaderboard-refresh-button{
-
-  horizontal-align: right;
- }
-
- .leaderboard_embedded #id-leaderboard-refresh-button{
-
-  visibility: visible;
- }
-
  .leaderboard__contents{
 
   vertical-align: top;
@@ -147,11 +135,15 @@
   overflow: clip scroll;
  }
 
+ .leaderboard__entries-container,.header{
+
+   padding-right: 24px;
+ }
+
  .leaderboard__list__row{
 
   flow-children: right;
   width: 100%;
-
 
   transition-property: transform, brightness;
   transition-duration: 0.20s;
@@ -168,6 +160,8 @@
   transition-property: transform, brightness;
   transition-duration: 0.20s;
   transition-timing-function: ease-in-out;
+
+  sound: "UIPanorama.sidemenu_rollover";
  }
 
  .leaderboard__list__column{
@@ -182,12 +176,12 @@
   background-color: rgba(0, 0, 0, 0.25);
  }
 
- .local-player.leaderboard__list__row{
 
-  background-color: rgba(252, 255, 87, 0.164);
- }
+
+
+
   .local-player.leaderboard__list__row Label{
-   color:white;
+   color:gold;
   }
 
 
@@ -250,6 +244,9 @@
   font-family: Stratum2 Regular Monodigit;
 
   text-align:right;
+  max-height: 20px;
+  text-overflow: ellipsis;
+  vertical-align:center;
  }
 
  .header .leaderboard_cell{

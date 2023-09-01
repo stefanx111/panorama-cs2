@@ -8,14 +8,22 @@ var Chat = ( function ()
 {
 	
 	var m_isContentPanelOpen = false;
-	var m_ChatPanel = $( "#PartyChat" );
-	var m_OriginalParent = m_ChatPanel.GetParent();                                                                                                               
+
+	                
+	let m_isChatType = $.GetContextPanel().GetParent().id === "id-team-vote-middle" ? true : false;
 	
 	function _Init() 
 	{
-
 		var elInput = $( '#ChatInput' );
 		elInput.SetPanelEvent( 'oninputsubmit', Chat.ChatTextSubmitted );
+		                                         
+		                                                               
+
+		if ( m_isChatType )
+		{
+			_OpenChat();
+			return;
+		}
 
 		var elOpenChat = $.GetContextPanel().FindChildInLayoutFile( 'ChatContainer' );
 		elOpenChat.SetPanelEvent( "onactivate", function ()
@@ -77,7 +85,14 @@ var Chat = ( function ()
 
 	function _ChatTextSubmitted()
 	{
-		$.GetContextPanel().SubmitChatText();
+		if ( m_isChatType )
+		{
+			MatchDraftAPI.ActionPregameChat( $( '#ChatInput' ).text, false );
+		}
+		else
+		{
+			$.GetContextPanel().SubmitChatText();
+		}
 
 		$( '#ChatInput' ).text = "";
 	}
@@ -105,7 +120,6 @@ var Chat = ( function ()
 
 	function _SessionUpdate( status )
 	{
-		
 		var elChat = $.GetContextPanel().FindChildInLayoutFile( 'ChatPanelContainer' );
 
 		if ( status === 'closed' )
@@ -120,16 +134,20 @@ var Chat = ( function ()
 			var numPlayersActuallyInParty = PartyListAPI.GetCount();
 			var networkSetting = PartyListAPI.GetPartySessionSetting( "system/network" );
 			
-			elChat.SetHasClass( 'hidden', ( networkSetting !== 'LIVE' ) );
+			elChat.SetHasClass( 'hidden', ( networkSetting !== 'LIVE' && !m_isChatType ) );
 
-			if ( networkSetting !== 'LIVE' )
+			if ( networkSetting !== 'LIVE' && !m_isChatType)
 			{
 				_Close();
 			}
 
 			var elPlaceholder = $.GetContextPanel().FindChildInLayoutFile( 'PlaceholderText' );
 
-			if ( numPlayersActuallyInParty > 1 )
+			if ( m_isChatType )
+			{
+				elPlaceholder.text = $.Localize( '#party_chat_placeholder_pickban' );
+			}
+			else if ( numPlayersActuallyInParty > 1 )
 			{
 				elPlaceholder.text = $.Localize( '#party_chat_placeholder' );
 			}
@@ -180,36 +198,7 @@ var Chat = ( function ()
 		_SetClosedHeight();
 	};
 
-	var _OnShowAcceptPopup = function( popup )
-	{
-		                                                                             
-		                                                                                      
-		                                                                                           
-		$.GetContextPanel().style.clip = 'rect( 0%,  100%, 100%, 0% );'
 
-		var elChatContainer = $( '#ChatContainer' );
-		
-		                                                                           
-		                                                                             
-		                                                 
-		if ( elChatContainer.BHasClass( "chat-open" ) )
-		{
-			$( "#ChatInput" ).SetFocus();
-			$( "#ChatInput" ).activationenabled = true;
-		}
-	};
-
-	var _OnCloseAcceptPopup = function() 
-	{
-		m_ChatPanel.SetParent( m_OriginalParent );
-		var elPreviousPeer = m_OriginalParent.FindChild( 'JsMainMenuSidebar' );
-		m_OriginalParent.MoveChildAfter( m_ChatPanel, elPreviousPeer );
-
-		                                                                                      
-		                                        
-		m_ChatPanel.style.y = '0px';
-		_Init();
-	};
 
 	return {
 		Init 					: _Init,
@@ -221,9 +210,7 @@ var Chat = ( function ()
 		OnHideContentPanel: _OnHideContentPanel,
 		OnShowContentPanel: _OnShowContentPanel,
 		Close 					: _Close,
-		OnShowAcceptPopup: _OnShowAcceptPopup,
-		OnCloseAcceptPopup : _OnCloseAcceptPopup
-	 };
+	};
 })();
 
                                                                                                     
@@ -238,8 +225,6 @@ var Chat = ( function ()
 	$.RegisterForUnhandledEvent( 'SidebarIsCollapsed', Chat.OnSideBarHover );
 	$.RegisterForUnhandledEvent( 'HideContentPanel', Chat.OnHideContentPanel );
 	$.RegisterForUnhandledEvent( 'ShowContentPanel', Chat.OnShowContentPanel );
-	$.RegisterForUnhandledEvent( 'ShowAcceptPopup', Chat.OnShowAcceptPopup );
-	$.RegisterForUnhandledEvent( 'CloseAcceptPopup', Chat.OnCloseAcceptPopup );
-	
-
+	                                                                            
+	                                                                              
 })();

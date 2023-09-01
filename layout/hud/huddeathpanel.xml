@@ -15,7 +15,7 @@
 				<Panel class="DeathPanel__Content overflow-noclip">
 					<Panel class="DeathPanel__BG" />
 					<Panel class="top-bottom-flow full-width overflow-noclip">
-						<Label id="MedalText" class="DeathPanel__MedalText stratum-regular" html="true" />
+						<Label id="MedalText" class="DeathPanel__MedalText stratum-font" html="true" />
 						<Panel class="full-width overflow-noclip">
 							<Panel class="left-right-flow full-width overflow-noclip">
 								<Panel class="overflow-noclip">

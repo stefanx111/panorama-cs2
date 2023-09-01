@@ -29,6 +29,7 @@
 
    ignore-parent-flow: true;
    transform:translateY( 128px);
+   overflow: noclip;
    padding: 8px 24px;
    border-radius: 5px;
   }
@@ -40,7 +41,27 @@
    background-color: gradient( linear, 0% 0%, 0% 100%, from(#000000d2), to( #00000000) );
 
    flow-children: down;
+
+   transition-property: background-color;
+   transition-duration: 0.25s;
+   transition-timing-function: ease-in;
   }
+   .premier-pickban .premier-pickban__middle.premier-pickban__middle--neutral{
+
+    background-color: gradient( linear, 0% 0%, 0% 100%, from(#272a2cd0), to( #272a2b1c) );
+   }
+
+   .premier-pickban .premier-pickban__middle.premier-pickban__middle--dark{
+
+    background-color: gradient( linear, 0% 0%, 0% 100%, from(#000000d2), to( #00000000) );
+   }
+
+   .premier-pickban .premier-pickban__middle.premier-pickban__middle--light{
+
+    background-color: gradient( linear, 0% 0%, 0% 100%, from(#3a454bd0), to( #272a2b1c) );
+   }
+
+
 
   .premier-pickban .premier-pickban__bottom{
 
@@ -60,12 +81,29 @@
    transition-timing-function: ease-in;
   }
 
+  .premier-pickban #PartyChat{
+
+   opacity: 0;
+   horizontal-align: center;
+   transform: translateX(-578px);
+   vertical-align: bottom;
+   margin-bottom: 240px;
+   margin-left: 32px;
+   width: 250px;
+   z-index: 10;
+   ignore-parent-flow: true;
+
+   transition-property: opacity;
+   transition-duration: 0.5s;
+   transition-timing-function: ease-in;
+  }
+
 
  .premier-pickban__title{
 
   flow-children: right;
   vertical-align: center;
-  horizontal-align: left;
+  horizontal-align: center;
   opacity: 1;
   perspective: 1000px;
   perspective-origin:  0% 0%;
@@ -101,21 +139,16 @@
 
   0%{
 
-   opacity: 1;
-  }
-
-  1%{
-
-   transform: translateY ( 0px ) rotatex( 90deg);
+   brightness: 3;
    opacity: 0;
+   transform: translateY ( 10px ) rotatex( 90deg) scale3d( 1.7, 1.7, 1.7);
   }
 
   100%{
 
    brightness: 1;
-   transform: translateY ( 0px ) rotateX( 0deg);
-   opacity: 0;
    opacity: 1;
+   transform: translateY ( 0px ) rotateX( 0deg) scale3d( 1, 1 ,1 );
   }
  }
 
@@ -250,6 +283,11 @@
    opacity: 0;
   }
 
+  .premier-pickban-phase-0 #PartyChat,.premier-pickban-phase-1 #PartyChat{
+
+   opacity: 0;
+  }
+
 
 
 
@@ -267,6 +305,11 @@
   }
 
   .premier-pickban-phase-2 .premier-pickban__spider-bg,.premier-pickban-phase-3 .premier-pickban__spider-bg,.premier-pickban-phase-4 .premier-pickban__spider-bg{
+
+   opacity: 1;
+  }
+
+  .premier-pickban-phase-2 #PartyChat,.premier-pickban-phase-3 #PartyChat,.premier-pickban-phase-4 #PartyChat{
 
    opacity: 1;
   }
@@ -289,6 +332,11 @@
    opacity: 0;
   }
 
+  .premier-pickban-phase-5 #PartyChat{
+
+   opacity: 1;
+  }
+
 
 
 
@@ -298,6 +346,17 @@
   }
 
   .premier-pickban-phase-6 .premier-pickban__team--result{
+
+   opacity: 1;
+  }
+
+  .premier-pickban-phase-6 .premier-pickban__spider-bg{
+
+   opacity: 0;
+   visibility: collapse;
+  }
+
+  .premier-pickban-phase-6 #PartyChat{
 
    opacity: 1;
   }
@@ -338,8 +397,9 @@
   horizontal-align: center;
   vertical-align: center;
 
-  width: 500px;
-  height: width-percentage( 100%);
+  width: 610px;
+  height: 610px;
+  margin-top: 24px;
  }
 
 
@@ -653,7 +713,7 @@
 
      .premier-pickban__map-btn .premier-pickban__map-btn-container.premier-pickban-veto:disabled .premier-pickban__map-btn__map-fade{
 
-      background-color: rgba(41, 6, 6, 0.9);
+      background-color: rgba(22, 2, 2, 0.9);
      }
 
 
@@ -794,13 +854,34 @@
   }
 
 
+ .rating-root{
+
+  vertical-align: center;
+  margin-right: 8px;
+ }
+
+ .premier-pickban__map-avatars-container .rating-root{
+
+  visibility: collapse;
+ }
+
  .premier-pickban__players{
 
   horizontal-align: right;
-  flow-children: right;
+
+  width: 100%;
+
   vertical-align: bottom;
   margin-bottom: 32px;
+  margin-right: 32px;
+  margin-left: 32px;
  }
+  .premier-pickban__players .premier-pickban__opponents{
+
+
+   wash-color: rgba( 255, 68, 55, 1.0);
+  }
+
   .premier-pickban__players .premier-pickban__teammates-party{
 
 
@@ -809,7 +890,8 @@
   }
 
 
-  .premier-pickban__players CSGOAvatarImage{
+  .premier-pickban__players CSGOAvatarImage,.premier-pickban__players .premier-pickban__map-opponent-avatar{
+
 
    width:28px;
    height:28px;
@@ -818,7 +900,7 @@
 
   .premier-pickban__players .premier-pickban__map-avatars__label{
 
-   width: 160px;
+   width: 140px;
    height: 18px;
    font-size: 16px;
   }
@@ -835,6 +917,11 @@
     visibility: collapse;
    }
 
+
+  .premier-pickban__players .premier-pickban__map-opponent-avatar{
+
+   border: 2px solid rgb(87, 87, 87);
+  }
 
 
 
@@ -901,6 +988,8 @@
    background-position: center;
    background-size: 32px 32px;
   }
+
+
 
 
 

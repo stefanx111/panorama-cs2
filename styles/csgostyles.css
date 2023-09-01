@@ -114,6 +114,16 @@
  @define color-player-orange: rgb(255, 155, 37);
 
 
+
+ @define color-csrating-tier-0: rgb(196, 208, 223);
+ @define color-csrating-tier-1: #8cc6ff;
+ @define color-csrating-tier-2: #6a7dff;
+ @define color-csrating-tier-3: #c166ff;
+ @define color-csrating-tier-4: #f03cff;
+ @define color-csrating-tier-5: #eb4b4b;
+ @define color-csrating-tier-6: #ffd700;
+
+
  @define curve__ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
  @define curve__ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
@@ -314,7 +324,7 @@
   font-family: Stratum2 Light TF, "Arial Unicode MS";
  }
 
- .stratum-regular{
+ .stratum-regular-condensed{
 
   font-family: Stratum2, "Arial Unicode MS";
   font-weight: normal;
@@ -1868,9 +1878,7 @@
  .PopupButton:active{
 
   sound: "UIPanorama.submenu_select";
-  background-color: red;
  }
-
 
  Button.PopupButton.Activated{
 
@@ -1910,7 +1918,6 @@
 
   sound: "UIPanorama.generic_button_press";
  }
-
 
  .PopupButton.Operation:hover{
 
@@ -2375,10 +2382,10 @@
   transition-duration: 0.2s;
  }
 
- TextEntry:focus{
 
-  box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.493);
- }
+
+
+
 
 
 
@@ -3584,6 +3591,7 @@
   padding-right: 8px;
  }
 
+
  .padding-8{
 
   padding: 8px;
@@ -3607,6 +3615,11 @@
  .bottom-margin{
 
   margin-bottom: 8px;
+ }
+
+ .bottom-margin-6{
+
+  margin-bottom: 6px;
  }
 
  .bottom-margin-12{

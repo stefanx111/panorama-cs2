@@ -15,6 +15,7 @@
 				</Panel>
 				<Panel class="MatchInfoContainer">
 					<Panel class="left-right-flow">
+						<Image id="modeicon" class="MatchMap__Icon MatchMap__IconInScoreLister" texturewidth="24" textureheight="-1" />
 						<Label id="score_team0" class="MatchInfo__Score" />
 						<Label id="vs" text="-" />
 						<Label id="score_team1" class="MatchInfo__Score" />

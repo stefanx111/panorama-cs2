@@ -13,6 +13,7 @@
 		<include src="s2r://panorama/scripts/common/iteminfo.vts_c" />
 		<include src="s2r://panorama/scripts/common/characteranims.vts_c" />
 		<include src="s2r://panorama/scripts/common/teamcolor.vts_c" />
+		<include src="s2r://panorama/scripts/rating_emblem.vts_c" />
 		<include src="s2r://panorama/scripts/avatar.vts_c" />
 		<include src="s2r://panorama/scripts/popups/popup_premier_pick_ban.vts_c" />
 		<include src="s2r://panorama/scripts/popups/popup_accept_match.vts_c" />
@@ -33,9 +34,6 @@
 		</snippet>
 	</snippets>
 	<PopupCustomLayout class="accept-match Hidden" popupbackground="blur" onload="PopupAcceptMatch.Init();" oncancel="">
-		<Panel class="chat-panel-outer">
-			<Panel id="id-accept-match-chat-container" class="chat-panel" />
-		</Panel>
 		<Panel id="id-accept-match" class="accept-match accept-match-container">
 			<Panel id="AcceptMatchWarning" class="accept-match-warning hidden">
 				<Image class="vertical-center right-padding" texturewidth="-1" textureheight="24" src="s2r://panorama/images/icons/ui/info.vsvg" />

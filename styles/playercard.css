@@ -471,6 +471,11 @@
   margin: 0px 18px 0px 8px;
  }
 
+ .player-card-rating__labels{
+  flow-children:down;
+  height: fit-children;
+  vertical-align: center;
+ }
 
 
 

@@ -512,6 +512,10 @@
  }
 
 
+ .sb-players-table.with-empty-rows{
+  padding-top: 30px;
+ }
+
 
  #players-table-CT,#players-table-TERRORIST,#players-table-ANY{
 
@@ -581,6 +585,11 @@
 
 
 
+
+
+ #id-player-{
+  visibility: collapse;
+ }
 
 
  .sb-row.muted .sb-row__cell{

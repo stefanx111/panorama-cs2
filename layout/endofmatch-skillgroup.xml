@@ -2,6 +2,7 @@
 <root>
 	<styles>
 		<include src="s2r://panorama/styles/csgostyles.vcss_c" />
+		<include src="s2r://panorama/styles/rating_emblem.vcss_c" />
 		<include src="s2r://panorama/styles/endofmatch-rank.vcss_c" />
 		<include src="s2r://panorama/styles/endofmatch-skillgroup.vcss_c" />
 		<include src="s2r://panorama/styles/endofmatch-win.vcss_c" />
@@ -10,7 +11,7 @@
 		<include src="s2r://panorama/scripts/common/sessionutil.vts_c" />
 		<include src="s2r://panorama/scripts/digitpanel.vts_c" />
 		<include src="s2r://panorama/scripts/rating_emblem.vts_c" />
-		<include src="s2r://panorama/scripts/endofmatch-skillgroup.vjs_c" />
+		<include src="s2r://panorama/scripts/endofmatch-skillgroup.vts_c" />
 	</scripts>
 	<snippets>
 		<snippet name="eom-skillgroup-emblem--new">
@@ -42,9 +43,39 @@
 	</snippets>
 	<CSGOEndOfMatchSkillgroupPanel class="eom-skillgroup full-width full-height" useglobalcontext="true">
 		<Panel class="eom-skillgroup-data">
-			<Panel class="eom-skillgroup-data-bg">
-				<Panel class="eom-win__main__line" />
-				<Panel class="eom-win__main__line vertical-align-bottom" />
+			<Panel class="eom-skillgroup-data-bg-containter">
+				<Panel id="id-eom-skillgroup-bg" class="eom-skillgroup-data-bg">
+					<Panel class="eom-win__main__line" />
+					<Panel class="eom-win__main__line vertical-align-bottom" />
+				</Panel>
+				<Panel class="eom-skillgroup__label-container">
+					<Panel class="left-right-flow">
+						<Label id="id-eom-skillgroup__current_wins" class="eom-skillgroup__info-label small wincount stratum-black" text="{s:total-wins}" />
+						<Label id="id-eom-skillgroup__current_wins_desc" class="eom-skillgroup__info-label small stratum-medium" text="#XP_RankName_Display" />
+					</Panel>
+					<Label id="id-eom-skillgroup__current__title" class="eom-skillgroup__info-label small stratum-medium-italic hidden" text="#XP_RankName_Display" />
+					<Label id="id-eom-skillgroup__current__label" class="eom-skillgroup__info-label stratum-bold" text="{s:rank-info}" />
+				</Panel>
+			</Panel>
+			<Panel id="id-eom-skillgroup-premier-bg" class="eom-premier-skillgroup-data-bg">
+				<Panel class="top-bottom-flow">
+					<Image textureheight="32" texturewidth="-1" class="horizontal-center bottom-margin-6" src="s2r://panorama/images/icons/ui/premier.vsvg" />
+					<Panel class="eom-premier-skillgroup-data-bg-container bottom-margin-6">
+						<Image class="eom-premier-skillgroup-rect" textureheight="82" texturewidth="-1" src="s2r://panorama/images/backgrounds/premier-rankup-bg.vsvg" />
+						<Panel class="eom-premier-skillgroup-linemap" />
+						<Movie id="id-eom-premier-speed-lines" class="eom-premier-skillgroup-speed-lines" controls="none" repeat="false" autoplay="false" hittest="false" />
+						<Image class="eom-premier-skillgroup-dash" textureheight="82" texturewidth="-1" src="s2r://panorama/images/backgrounds/premier-rankup-dash.vsvg" />
+						<Image class="eom-premier-skillgroup-dash-right" textureheight="82" texturewidth="-1" src="s2r://panorama/images/backgrounds/premier-rankup-dash.vsvg" />
+						<Panel class="eom-premier-skillgroup__label-container">
+							<Panel class="left-right-flow eom-premier-skillgroup__label-wins-container">
+								<Label class="eom-premier-skillgroup__label-wins stratum-bold-italic" text="{s:total-wins}" />
+								<Label id="id-eom-skillgroup-premier-wins-desc" class="eom-premier-skillgroup__label-wins-desc stratum-regular-italic" />
+							</Panel>
+							<Label id="id-eom-skillgroup-premier-points" class="eom-premier-skillgroup__label-points stratum-bold-italic" text="" />
+							<Label id="id-eom-skillgroup-premier-desc" class="eom-premier-skillgroup__label-rank-desc stratum-regular-italic" html="true" text="{s:premier-desc}" />
+						</Panel>
+					</Panel>
+				</Panel>
 			</Panel>
 			<Panel class="eom-skillgroup-data__container">
 				<Panel id="id-eom-skillgroup-emblem" class="eom-skillgroup-emblem">
@@ -59,15 +90,7 @@
 						<ParticleScenePanel id="id-eom-skillgroup-emblem--new__pfx--above" class="eom-skillgroup-emblem--new__pfx--above" hittest="true" startActive="false" particleName="" cameraOrigin="0 300 0" lookAt="0 0 0" fov="60" />
 					</Panel>
 				</Panel>
-				<Frame id="jsRatingEmblem" src="s2r://panorama/layout/rating_emblem.vxml_c" />
-				<Panel class="eom-skillgroup__label-container">
-					<Panel class="left-right-flow">
-						<Label id="id-eom-skillgroup__current_wins" class="eom-skillgroup__info-label small wincount stratum-black" text="#XP_RankName_Display" />
-						<Label id="id-eom-skillgroup__current_wins_desc" class="eom-skillgroup__info-label small stratum-medium" text="#XP_RankName_Display" />
-					</Panel>
-					<Label id="id-eom-skillgroup__current__title" class="eom-skillgroup__info-label small stratum-medium-italic hidden" text="#XP_RankName_Display" />
-					<Label id="id-eom-skillgroup__current__label" class="eom-skillgroup__info-label stratum-bold" text="#XP_RankName_Display" />
-				</Panel>
+				<Frame id="jsRatingEmblem" class="horizontal-align-center" src="s2r://panorama/layout/rating_emblem.vxml_c" />
 			</Panel>
 		</Panel>
 	</CSGOEndOfMatchSkillgroupPanel>

@@ -5,11 +5,12 @@
 		<include src="s2r://panorama/styles/scoreboard.vcss_c" />
 	</styles>
 	<scripts>
-		<include src="s2r://panorama/scripts/scoreboard.vts_c" />
 		<include src="s2r://panorama/scripts/common/formattext.vts_c" />
 		<include src="s2r://panorama/scripts/common/gamerules_constants.vts_c" />
 		<include src="s2r://panorama/scripts/mock_adapter.vts_c" />
 		<include src="s2r://panorama/scripts/rating_emblem.vts_c" />
+		<include src="s2r://panorama/scripts/match_stakes.vts_c" />
+		<include src="s2r://panorama/scripts/scoreboard.vts_c" />
 	</scripts>
 	<snippets>
 		<snippet name="snippet_sb-label-set-container">

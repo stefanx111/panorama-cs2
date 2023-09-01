@@ -64,7 +64,7 @@
 		<CSGOHudDeathPanel id="HudDeathPanel" hittest="false" />
 		<Panel id="HudBlur" blurrects="Scoreboard EndOfMatch BuyMenu sliding-panel--TERRORIST sliding-panel--CT" class="HudBlur" hittest="false" hittestchildren="false" />
 		<CSGOHudSpectator id="HudSpectator" />
-		<CSGOHudDemoPlayback id="HudDemoPlayback" />
+		<CSGOHudDemoController id="HudDemoController" />
 		<CSGOHudInstructor id="HudInstructor" hittest="false" />
 		<CSGOHudRosettaSelector id="HudRosettaSelector" />
 		<CSGOMapOverview id="MapOverview" hittest="true" />

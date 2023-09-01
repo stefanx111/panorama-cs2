@@ -10,7 +10,6 @@
 		<include src="s2r://panorama/scripts/hud/hudmoney.vts_c" />
 	</scripts>
 	<CSGOMoneyPanel class="money" hittest="false" force-no-composition-layer="true">
-		<Panel class="hud-bottom-row-background--left" />
 		<Panel class="money-text">
 			<Panel id="MoneyBG" class="money-text-bg" />
 			<Panel class="left-right-flow vertical-center">

@@ -77,13 +77,13 @@
 						</CSGOSettingsEnumDropDown>
 					</Panel>
 					<Panel class="horizontal-separator" />
-					<Panel class="SettingsMenuDropdownContainer">
-						<Label text="#SFUI_SecondaryFireHold" class="half-width" />
-						<CSGOSettingsEnumDropDown class="PopupButton White" convar="cl_debounce_attack2">
-							<Label text="#SFUI_RepeatEnabled" id="debounceattack20" value="0" />
-							<Label text="#SFUI_RepeatDisabled" id="debounceattack21" value="1" />
+					<TooltipPanel class="SettingsMenuDropdownContainer" tooltip="#ZoomButtonHold_Desc">
+						<Label id="ZoomButtonHold" text="#ZoomButtonHold" class="half-width" />
+						<CSGOSettingsEnumDropDown class="PopupButton White" convar="cl_debounce_zoom">
+							<Label text="#RepeatEnabled" id="debouncezoom0" value="0" />
+							<Label text="#RepeatDisabled" id="debouncezoom1" value="1" />
 						</CSGOSettingsEnumDropDown>
-					</Panel>
+					</TooltipPanel>
 					<Panel class="horizontal-separator" />
 					<CSGOSettingsSlider text="#SFUI_MouseSensitivity" id="mousesensitivity" max="8.0" min="0.1" displayprecision="2" convar="sensitivity" />
 					<Panel class="horizontal-separator" />

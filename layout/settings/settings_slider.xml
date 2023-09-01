@@ -9,6 +9,9 @@
 		<Panel class="left-right-flow vertical-center">
 			<Label class="" id="Title" />
 			<ToggleButton class="TickBox setting-toggle" id="Toggle" />
+			<Button id="MusicPreviewBtn" class="IconButton">
+				<Image class="" src="s2r://panorama/images/icons/ui/unmuted.vsvg" />
+			</Button>
 			<Slider class="HorizontalSlider" direction="horizontal" id="Slider" />
 			<TextEntry maxchars="4" textmode="numeric" id="Value" />
 		</Panel>

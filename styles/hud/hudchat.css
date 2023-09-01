@@ -78,7 +78,8 @@
   height: 48px;
   margin-top: 8px;
  }
-  #ChatTextEntry Label{
+  #ChatTextEntry Label,#ChatTextEntry TextEntry{
+
    font-family: Stratum2 Light;
   }
 

@@ -53,6 +53,7 @@
 			<Panel class="buymenu__contents">
 				<Panel class="buymenu-left">
 					<Panel class="buymenu-info">
+						<CSGOMoneyPanel id="buymenu-info-money" class="" hittest="false" />
 						<Panel class="buymenu-timeleft">
 							<Label class="buymenu-timeleft-title" text="#BuyMenu_TimerText" />
 							<CountdownTimer id="Countdown" output_milliseconds="false" class="buymenu-timeleft-timer">

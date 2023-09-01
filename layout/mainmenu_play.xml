@@ -102,13 +102,16 @@
 				<Panel class="left-right-flow no-lock" style="height: fill-parent-flow( 1.0 ); width: 100%;">
 					<Panel class="premier-side left">
 						<Panel class="premier-inner left">
-							<Frame id="jsParty" src="s2r://panorama/layout/leaderboard.vxml_c" lbtype="party" class="playmenu--premier__party" />
+							<Frame id="jsParty" lbtype="party" class="playmenu--premier__party" registerforreadyevents="true" src="s2r://panorama/layout/leaderboard.vxml_c" />
 							<Frame id="jsPremierMapWinRecord" class="premier-play-menu-mapwinrecord" src="s2r://panorama/layout/premier_mapwinrecord.vxml_c" />
 						</Panel>
 					</Panel>
 					<Panel class="premier-side right">
 						<Panel class="premier-inner right">
-							<Frame id="jsLeaderboard" src="s2r://panorama/layout/leaderboard.vxml_c" lbtype="general" class="playmenu--premier__leaderboard" />
+							<Panel id="lbNameButton" class="PopupButton">
+								<Label text="{s:leaderboard_namelock_button}" />
+							</Panel>
+							<Frame id="jsLeaderboard" lbtype="general" class="playmenu--premier__leaderboard" registerforreadyevents="true" src="s2r://panorama/layout/leaderboard.vxml_c" />
 						</Panel>
 					</Panel>
 				</Panel>
@@ -234,7 +237,7 @@
 			</Panel>
 			<Panel id="id-navbar-tabs" class="content-navbar__tabs content-navbar__tabs--dark content-navbar__tabs--noflow">
 				<Panel id="GameModeSelectionRadios" class="left-right-flow vertical-center horizontal-center full-height">
-					<RadioButton id="premier" group="gamemodes" class="content-navbar__tabs__btn visible-if-not-limitedbeta">
+					<RadioButton id="premier" group="gamemodes" class="content-navbar__tabs__btn">
 						<Label text="#SFUI_GameModePremier" />
 						<Panel id="GameModeAlert" class="navbar-btn__notification-dot hidden" />
 					</RadioButton>
@@ -357,10 +360,6 @@
 										</Button>
 									</TooltipPanel>
 								</Panel>
-							</Panel>
-							<Panel id="jsLimitedTestWarning" class="gamemode-setting-limited-test-warning-container">
-								<Image texturewidth="20" textureheight="20" class="vertical-center" src="s2r://panorama/images/icons/ui/info.vsvg" />
-								<Label id="jsLimitedTestWarning" class="fontSize-sm stratum-regular gamemode-setting-limited-test-warning" text="#match_ready_match_unranked_warning_2" />
 							</Panel>
 							<Button class="gamemode-setting-radiobutton vertical-align-bottom ignore-parent-flow" id="WorkshopVisitButton" onactivate="CSGOOpenSteamWorkshop()">
 								<Image texturewidth="20" textureheight="20" src="s2r://panorama/images/icons/ui/link.vsvg" />
