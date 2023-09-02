@@ -112,6 +112,7 @@
   padding-left: 10px;
   padding-right: 5px;
   min-height: 32px;
+  overflow:noclip;
 
   transition-property: opacity;
   transition-duration: 1.0s;
@@ -159,6 +160,7 @@
    flow-children: right;
    vertical-align: top;
    width: rank-bar-length-total;
+   overflow: noclip;
   }
    #id-eom-rank__bar-container .eom-rank__bar .eom-rank__bar__segment{
 

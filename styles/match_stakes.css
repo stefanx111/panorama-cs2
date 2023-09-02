@@ -1,6 +1,14 @@
 .matchstakes-container{
-  width: 350px;
+  width: 500px;
   height: 100px;
+  flow-children:down;
+
+
+
+
+
+
+
 
   visibility: collapse;
 
@@ -9,166 +17,631 @@
 
   margin-top: 10px;
 }
-
-
-
-
-
-
-
-
-
-  .endofmatch .matchstakes-container{
-   opacity: 0;
+  .matchstakes-container .matchstakes-container-top{
+   width:
+          
+          350px
+   ;
+   height:
+           
+           fit-children
+   ;
+   horizontal-align:
+                     
+                     center
+   ;
   }
-
-
-
- .matchstakes-background,.matchstakes-foreground{
-
-  width: 100%;
-  height: 40px;
- }
-
- .matchstakes-pfx{
-  width: 100%;
-  height: 40px;
-
-  opacity: 1;
-  -s2-mix-blend-mode: additive;
- }
-
+  .endofmatch .matchstakes-container{
+   opacity:
+            
+            0
+   ;
+  }
  .matchstakes-background{
-  flow-children: right;
+  width:
+         
+         100%
+  ;
+  height:
+          
+          34px
+  ;
+  y:
+     
+     3px
+  ;
+ }
+ .matchstakes-foreground{
+  width:
+         
+         100%
+  ;
+  height:
+          
+          40px
+  ;
+ }
+ .matchstakes-pfx{
+  width:
+         
+         100%
+  ;
+  height:
+          
+          34px
+  ;
+  margin-top:
+              
+              3px
+  ;
+  -s2-mix-blend-mode:
+                      
+                      screen
+  ;
+  transition-property:
+                       
+                       opacity
+  ;
+  transition-duration:
+                       
+                       2s
+  ;
+ }
+ .no-rating .matchstakes-container-top .matchstakes-background{
+  visibility:
+              
+              collapse
+  ;
+ }
+ .matchstakes-background{
+  flow-children:
+                 
+                 right
+  ;
  }
   .matchstakes-background Panel{
-   background-size: 30px auto;
+   background-size:
+                    
+                    30px
+                         
+                         auto
+   ;
   }
-
-
   .matchstakes-background .left-end{
-   width: 8px;
-   height: 100%;
-   world-blur: hudWorldBlur;
-   background-color: rgba(75, 75, 75, 0.5);
-   opacity-mask: url("s2r://panorama/images/icons/ui/premier_parallelogram_edge.vsvg");
+   width:
+          
+          8px
+   ;
+   height:
+           
+           100%
+   ;
+   world-blur:
+               
+               hudWorldBlur
+   ;
+   background-color:
+                     
+                     rgba
+                         (
+                          75,
+                              
+                              75,
+                                  
+                                  75,
+                                      
+                                      0.5
+                                         )
+   ;
+   opacity-mask:
+                 
+                 url(
+                     "s2r://panorama/images/icons/ui/premier_parallelogram_edge.vsvg"
+                 )
+   ;
   }
-
-
   .matchstakes-background .right-end{
-   width: 8px;
-   height: 100%;
-   world-blur: hudWorldBlur;
-   background-color: rgba(75, 75, 75, 0.5);
-   opacity-mask: url("s2r://panorama/images/icons/ui/premier_parallelogram_edge.vsvg");
-   transform:rotateZ(180deg);
+   width:
+          
+          8px
+   ;
+   height:
+           
+           100%
+   ;
+   world-blur:
+               
+               hudWorldBlur
+   ;
+   background-color:
+                     
+                     rgba
+                         (
+                          75,
+                              
+                              75,
+                                  
+                                  75,
+                                      
+                                      0.5
+                                         )
+   ;
+   opacity-mask:
+                 
+                 url(
+                     "s2r://panorama/images/icons/ui/premier_parallelogram_edge.vsvg"
+                 )
+   ;
+   transform:
+             rotateZ
+                    (
+                     180deg
+                           )
+   ;
   }
-
   .matchstakes-background .background-middle{
-   height: 100%;
-   width: fill-parent-flow(1);
-   world-blur: hudWorldBlur;
-   background-color: gradient( linear, 0% 0%, 100% 0%, from( rgba(75, 75, 75, 0.5) ), color-stop( .5, rgba(156, 156, 156, 0.466) ), color-stop( .51, rgba(6, 107, 6, 0.815) ),color-stop( .9,rgba(75, 75, 75, 0.5), to (rgba(75, 75, 75, 0.5)) );
+   height:
+           
+           100%
+   ;
+   width:
+          
+          fill-parent-flow
+                          (
+                           1
+                            )
+   ;
+   world-blur:
+               
+               hudWorldBlur
+   ;
+   background-color:
+                     
+                     gradient
+                             (
+                               
+                               linear,
+                                       
+                                       0%
+                                          
+                                          0%,
+                                              
+                                              100%
+                                                   
+                                                   0%,
+                                                       
+                                                       from
+                                                           (
+                                                             
+                                                             rgba
+                                                                 (
+                                                                  75,
+                                                                      
+                                                                      75,
+                                                                          
+                                                                          75,
+                                                                              
+                                                                              0.5
+                                                                                 )
+                                                                                   
+                                                                                   )
+                                                                                    ,
+                                                                                      
+                                                                                      color-stop
+                                                                                                (
+                                                                                                  
+                                                                                                  .5,
+                                                                                                      
+                                                                                                      rgba
+                                                                                                          (
+                                                                                                           156,
+                                                                                                                
+                                                                                                                156,
+                                                                                                                     
+                                                                                                                     156,
+                                                                                                                          
+                                                                                                                          0.466
+                                                                                                                               )
+                                                                                                                                 
+                                                                                                                                 )
+                                                                                                                                  ,
+                                                                                                                                    
+                                                                                                                                    color-stop
+                                                                                                                                              (
+                                                                                                                                                
+                                                                                                                                                .51,
+                                                                                                                                                     
+                                                                                                                                                     rgba
+                                                                                                                                                         (
+                                                                                                                                                          6,
+                                                                                                                                                             
+                                                                                                                                                             107,
+                                                                                                                                                                  
+                                                                                                                                                                  6,
+                                                                                                                                                                     
+                                                                                                                                                                     0.815
+                                                                                                                                                                          )
+                                                                                                                                                                            
+                                                                                                                                                                            )
+                                                                                                                                                                             ,color-stop
+                                                                                                                                                                                        (
+                                                                                                                                                                                          
+                                                                                                                                                                                          .9,rgba
+                                                                                                                                                                                                 (
+                                                                                                                                                                                                  75,
+                                                                                                                                                                                                      
+                                                                                                                                                                                                      75,
+                                                                                                                                                                                                          
+                                                                                                                                                                                                          75,
+                                                                                                                                                                                                              
+                                                                                                                                                                                                              0.5
+                                                                                                                                                                                                                 )
+                                                                                                                                                                                                                  ,
+                                                                                                                                                                                                                    
+                                                                                                                                                                                                                    to
+                                                                                                                                                                                                                       
+                                                                                                                                                                                                                       (
+                                                                                                                                                                                                                        rgba
+                                                                                                                                                                                                                            (
+                                                                                                                                                                                                                             75,
+                                                                                                                                                                                                                                 
+                                                                                                                                                                                                                                 75,
+                                                                                                                                                                                                                                     
+                                                                                                                                                                                                                                     75,
+                                                                                                                                                                                                                                         
+                                                                                                                                                                                                                                         0.5
+                                                                                                                                                                                                                                            )
+                                                                                                                                                                                                                                             )
+                                                                                                                                                                                                                                               
+                                                                                                                                                                                                                                               )
+   ;
   }
-
-
-
    .matchstakes-background.matchstakes-background-promo .background-middle{
-    height: 100%;
-    width: fill-parent-flow(1);
-    background-color: rgba(75, 75, 75, 0.5);
+    height:
+            
+            100%
+    ;
+    width:
+           
+           fill-parent-flow
+                           (
+                            1
+                             )
+    ;
+    background-color:
+                      
+                      rgba
+                          (
+                           75,
+                               
+                               75,
+                                   
+                                   75,
+                                       
+                                       0.5
+                                          )
+    ;
    }
-
-
-
  .matchstakes-intro-text{
-  horizontal-align: center;
-  transform: translateY(40px);
-  padding: 7px 0px;
-  min-width: 200px;
-  visibility: collapse;
-  opacity: 0;
-
-  transition-property: opacity;
-  transition-duration: 1s;
+  horizontal-align:
+                    
+                    center
+  ;
+  padding:
+           
+           7px
+               
+               0px
+  ;
+  min-width:
+             
+             200px
+  ;
+  visibility:
+              
+              collapse
+  ;
+  opacity:
+           
+           0
+  ;
+  transition-property:
+                       
+                       opacity
+  ;
+  transition-duration:
+                       
+                       1s
+  ;
  }
-
-
   .show-intro-text .matchstakes-intro-text{
-   visibility: visible;
+   visibility:
+               
+               visible
+   ;
   }
-
   .reveal-stakes .matchstakes-intro-text{
-   opacity: 1;
+   opacity:
+            
+            1
+   ;
   }
-
+   .matchstakes-intro-text .matchstakes-background .left-end{
+    transition-property:
+                         
+                         world-blur
+    ;
+    transition-duration:
+                         
+                         1s
+    ;
+    world-blur:
+                
+                none
+    ;
+    background-color:
+                      
+                      rgba
+                          (
+                           43,
+                               
+                               43,
+                                   
+                                   43,
+                                       
+                                       0.763
+                                            )
+    ;
+   }
+   .matchstakes-intro-text .matchstakes-background .right-end{
+    transition-property:
+                         
+                         world-blur
+    ;
+    transition-duration:
+                         
+                         1s
+    ;
+    world-blur:
+                
+                none
+    ;
+    background-color:
+                      
+                      rgba
+                          (
+                           43,
+                               
+                               43,
+                                   
+                                   43,
+                                       
+                                       0.763
+                                            )
+    ;
+   }
+   .matchstakes-intro-text .matchstakes-background .background-middle{
+    transition-property:
+                         
+                         world-blur
+    ;
+    transition-duration:
+                         
+                         1s
+    ;
+    world-blur:
+                
+                none
+    ;
+    background-color:
+                      
+                      rgba
+                          (
+                           43,
+                               
+                               43,
+                                   
+                                   43,
+                                       
+                                       0.763
+                                            )
+    ;
+   }
   .matchstakes-intro-text Label{
-   vertical-align: center;
-   horizontal-align: center;
-   font-size: 20px;
-   font-family: Stratum2 Medium Italic;
-   color: white;
+   vertical-align:
+                   
+                   center
+   ;
+   horizontal-align:
+                     
+                     center
+   ;
+   font-size:
+              
+              20px
+   ;
+   font-family:
+                
+                Stratum2
+                         
+                         Medium
+                                
+                                Italic
+   ;
+   color:
+          
+          white
+   ;
+   max-height:
+               
+               25px
+   ;
+   padding-left:
+                 
+                 16px
+   ;
+   padding-right:
+                  
+                  16px
+   ;
+   text-overflow:
+                  
+                  shrink
+   ;
   }
-
-
-
  .matchstakes-emblem{
-
-  vertical-align: center;
-  horizontal-align: center;
-  transform: translateX(-3px);
+  vertical-align:
+                  
+                  center
+  ;
+  horizontal-align:
+                    
+                    center
+  ;
+  transform:
+             
+             translateX
+                       (
+                        -3px
+                            )
+  ;
  }
-
  .matchstakes{
-
-  height: fit-children;
-  width: 120px;
-
-  transition-property: transform, opacity,brightness;
-  transition-duration: .6s;
-  transition-timing-function: ease-out;
-  opacity: 0;
-  brightness: 10;
+  height:
+          
+          fit-children
+  ;
+  width:
+         
+         120px
+  ;
+  transition-property:
+                       
+                       transform,
+                                  
+                                  opacity,brightness
+  ;
+  transition-duration:
+                       
+                       .6s
+  ;
+  transition-timing-function:
+                              
+                              ease-out
+  ;
+  opacity:
+           
+           0
+  ;
+  brightness:
+              
+              10
+  ;
  }
+  .no-rating .matchstakes{
+   visibility:
+               
+               collapse
+   ;
+  }
   .matchstakes.win{
-   horizontal-align: left;
-   height: 100%;
-   transform: translateX(200px);
-   transition-delay: 0.5s;
+   horizontal-align:
+                     
+                     left
+   ;
+   height:
+           
+           100%
+   ;
+   transform:
+              
+              translateX
+                        (
+                         200px
+                              )
+   ;
+   transition-delay:
+                     
+                     0.5s
+   ;
   }
    .matchstakes.win Label{
-    color: white;
+    color:
+           
+           white
+    ;
    }
-
-
    .matchstakes.win.reveal-stakes{
-    transform: translateX(226px);
-    opacity: 1;
-    brightness: 1;
+    transform:
+               
+               translateX
+                         (
+                          226px
+                               )
+    ;
+    opacity:
+             
+             1
+    ;
+    brightness:
+                
+                1
+    ;
    }
-
-
   .matchstakes.loss{
-   horizontal-align: right;
-   height: 100%;
-   margin-left: 20px;
-   transform: translateX(-200px);
-   transition-delay: 0.5s;
+   horizontal-align:
+                     
+                     right
+   ;
+   height:
+           
+           100%
+   ;
+   margin-left:
+                
+                20px
+   ;
+   transform:
+              
+              translateX
+                        (
+                         -200px
+                               )
+   ;
+   transition-delay:
+                     
+                     0.5s
+   ;
   }
    .matchstakes.loss Label{
-    color: black;
+    color:
+           
+           black
+    ;
    }
-
    .matchstakes.loss.reveal-stakes{
-    transform: translateX(-230px);
-    opacity: 1;
-    brightness: 1;
+    transform:
+               
+               translateX
+                         (
+                          -230px
+                                )
+    ;
+    opacity:
+             
+             1
+    ;
+    brightness:
+                
+                1
+    ;
    }
-
-
-
  .matchstakes-label-title-width{
-
-  width:50px;
-  text-overflow: shrink;
+  width:
+        50px
+  ;
+  text-overflow:
+                 
+                 shrink
+  ;
 }

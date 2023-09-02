@@ -20,22 +20,24 @@
 		</snippet>
 	</snippets>
 	<Panel class="matchstakes-container">
-		<Frame snippet="parallelogram-bg" />
-		<Panel class="matchstakes-foreground">
-			<Panel id="jsMatchStakesWin" class="matchstakes win">
-				<Label class="stratum-bold-italic left-margin" text="#team-intro-stakes-win" />
-				<Label class="stratum-black-italic right-margin fontSize-s horizontal-align-right text-align-right matchstakes-label-title-width" text="#team-intro-stakes-win-title" />
-			</Panel>
-			<Frame class="matchstakes-emblem" src="s2r://panorama/layout/rating_emblem.vxml_c" />
-			<Panel id="jsMatchStakesLoss" class="matchstakes loss">
-				<Label class="stratum-black-italic left-margin-medium fontSize-s matchstakes-label-title-width" text="#team-intro-stakes-loss-title" />
-				<Label class="stratum-medium-italic stratum-bold-italic horizontal-align-right text-align-right right-margin-medium" text="#team-intro-stakes-loss" />
+		<Panel class="matchstakes-container-top">
+			<Frame snippet="parallelogram-bg" />
+			<Panel class="matchstakes-foreground">
+				<Panel id="jsMatchStakesWin" class="matchstakes win">
+					<Label class="stratum-bold-italic left-margin" text="#team-intro-stakes-win" />
+					<Label class="stratum-black-italic right-margin fontSize-s horizontal-align-right text-align-right matchstakes-label-title-width" text="#team-intro-stakes-win-title" />
+				</Panel>
+				<Frame class="matchstakes-emblem" src="s2r://panorama/layout/rating_emblem.vxml_c" />
+				<Panel id="jsMatchStakesLoss" class="matchstakes loss">
+					<Label class="stratum-black-italic left-margin-medium fontSize-s matchstakes-label-title-width" text="#team-intro-stakes-loss-title" />
+					<Label class="stratum-medium-italic stratum-bold-italic horizontal-align-right text-align-right right-margin-medium" text="#team-intro-stakes-loss" />
+				</Panel>
 			</Panel>
 		</Panel>
 		<Panel class="matchstakes-intro-text">
 			<Frame snippet="parallelogram-bg" class="matchstakes-background-promo" />
-			<ParticleScenePanel id="jsMatchStakes_pfx" class="matchstakes-pfx" style="-s2-mix-blend-mode:screen;" startActive="true" particleName="particles/dev/empty.vpcf" cameraOrigin="0 140 0" lookAt="0 0 0" fov="35" />
-			<Label text="{s:introtext}" />
+			<ParticleScenePanel id="jsMatchStakes_pfx" class="matchstakes-pfx" startActive="true" particleName="particles/dev/empty.vpcf" cameraOrigin="0 140 0" lookAt="0 0 0" fov="35" />
+			<Label text="{s:introtext}" html="true" />
 		</Panel>
 	</Panel>
 </root>

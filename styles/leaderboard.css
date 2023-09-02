@@ -6,6 +6,7 @@
 
  .leaderboard-root{
    padding: 12px;
+   padding-top: 44px;
  }
 
 
@@ -288,4 +289,31 @@
 
   width: 24px;
   height: 24px;
+ }
+
+
+ #lbNameButton{
+
+
+  ignore-parent-flow: true;
+  margin: 0px;
+  margin-top: -36px;
+
+  visibility: collapse;
+
+  vertical-align: top;
+ }
+  #lbNameButton Label{
+   text-transform: none;
+   font-size: 18px;
+   margin: 5px;
+   font-weight: light;
+  }
+
+  #lbNameButton.submitted{
+   wash-color: rgb(165, 165, 0);
+  }
+
+  #lbNameButton.approved{
+   wash-color: white;
 }

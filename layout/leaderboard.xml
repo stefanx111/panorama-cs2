@@ -37,6 +37,9 @@
 		</snippet>
 	</snippets>
 	<Panel class="leaderboard-root">
+		<Panel id="lbNameButton" class="PopupButton">
+			<Label id="lbNameButtonLabel" text="{s:leaderboard_namelock_button}" />
+		</Panel>
 		<Panel class="leaderboard__contents">
 			<Panel class="leaderboard-header">
 				<Label html="true" class="leaderboard-title-bar__label" text="{s:leaderboard-title}" />

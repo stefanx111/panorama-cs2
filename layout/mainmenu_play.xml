@@ -108,9 +108,6 @@
 					</Panel>
 					<Panel class="premier-side right">
 						<Panel class="premier-inner right">
-							<Panel id="lbNameButton" class="PopupButton">
-								<Label text="{s:leaderboard_namelock_button}" />
-							</Panel>
 							<Frame id="jsLeaderboard" lbtype="general" class="playmenu--premier__leaderboard" registerforreadyevents="true" src="s2r://panorama/layout/leaderboard.vxml_c" />
 						</Panel>
 					</Panel>

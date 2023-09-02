@@ -7,9 +7,6 @@ var EOM_Rank = (function () {
 	var _m_pauseBeforeEnd = 1.0;
 	var _m_cP = $.GetContextPanel();
 
-	const DEBUG_RANK = false;
-
-
                                                      
 
 	_m_cP.Data().m_retries = 0;
@@ -27,15 +24,10 @@ var EOM_Rank = (function () {
 		if (!_m_cP || !_m_cP.IsValid())
 			return;
 
-		                                                         
-		                                    
-		if ( !DEBUG_RANK )
+
+		if ( !MockAdapter.bXpDataReady( _m_cP) )
 		{
-			if ( !_m_cP.bXpDataReady && !MockAdapter.GetMockData() )
-			{
-				                                                       
-				return false;
-			}
+			return false;
 		}
 
 		if( MyPersonaAPI.GetElevatedState() !== 'elevated' )
@@ -60,24 +52,6 @@ var EOM_Rank = (function () {
 
 		var oXpData = MockAdapter.XPDataJSO( _m_cP );
 
-		if ( DEBUG_RANK )
-		{
-
-			function _r ( min = 0, max = 100 )
-			{
-				return Math.ceil( Math.random() * ( ( max - min ) + min ) );
-			};
-
-			oXpData = {
-				"xp_earned":
-				{
-					"2": 1000,                    
-					"6": 1000,                    
-				},
-				"current_level": _r(0,39),
-				"current_xp": 4899,                   
-			};
-		}
 		if ( !oXpData )
 			return false;
 

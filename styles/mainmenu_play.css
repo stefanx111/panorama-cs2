@@ -2294,7 +2294,6 @@
 
   width: 570px;
   height: 275px;
-  margin-top: 32px;
 
   horizontal-align: right;
   flow-children: down;
@@ -2311,7 +2310,6 @@
   flow-children: down;
 
   padding-bottom: 16px;
-  margin-top: 32px;
   margin-left: prime-panel-right-left-margin;
  }
 
@@ -2355,74 +2353,4 @@
 
    .premier-side.right{
     background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(0,0,0,0.4)), to (rgba(0,0,0, 0)));
-   }
-
-
-
-
-
-
-
-  .premier-side #lbNameButton{
-
-
-   vertical-align: top;
-   horizontal-align: left;
-   margin-left: 97px;
-
-
-
-
-
-
-
-
-
-
-
-
-
-   margin-right: 20px;
-  }
-   .AspectRatio4x3 .premier-side #lbNameButton{
-    margin-left:
-                 
-                 32px
-    ;
-   }
-   .premier-side #lbNameButton Label{
-    text-transform:
-                    
-                    none
-    ;
-    font-size:
-               
-               22px
-    ;
-    margin:
-            
-            5px
-    ;
-    font-weight:
-                 
-                 normal
-    ;
-   }
-   .premier-side #lbNameButton.submitted{
-    wash-color:
-               rgb
-                  (
-                   165,
-                        
-                        165,
-                             
-                             0
-                              )
-    ;
-   }
-   .premier-side #lbNameButton.approved{
-    wash-color:
-                
-                white
-    ;
 }
