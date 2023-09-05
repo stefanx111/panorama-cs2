@@ -15,7 +15,7 @@
 		<snippet name="leaderboard-entry">
 			<Button class="leaderboard__list__row">
 				<Panel class="leaderboard__list__column rank">
-					<Label text="{s:player-rank}" class="stratum-regular leaderboard_cell rank" />
+					<Label id="jsPlayerRank" text="" class="stratum-regular leaderboard_cell rank" />
 				</Panel>
 				<Panel class="leaderboard__list__column rating">
 					<Frame id="jsRatingEmblem" src="s2r://panorama/layout/rating_emblem.vxml_c" />

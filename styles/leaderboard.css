@@ -189,7 +189,7 @@
 
 
   .leaderboard__list__column.rank{
-   width: 50px;
+   width: 90px;
   }
    .leaderboard__list__column.rank .leaderboard_cell{
      horizontal-align: right;
@@ -316,4 +316,9 @@
 
   #lbNameButton.approved{
    wash-color: white;
+  }
+
+
+ DropDownMenu Label.of-interest{
+  font-family: Stratum2 Black, "Arial Unicode MS";
 }
