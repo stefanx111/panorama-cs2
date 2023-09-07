@@ -953,6 +953,7 @@
   .sb-row__cell--money Label{
    horizontal-align: right;
    text-align: right;
+   text-overflow: shrink;
   }
 
 

@@ -25,9 +25,10 @@
 				<Label id="" text="#BuyMenu_NewUserExperience_Recommended" class="nux Hidden" />
 				<Button id="BuyButton" class="buywheel-wedge">
 					<Label class="buywheel-button__key keybind" id="WedgeKeybinding" text="X" />
-					<Label id="ItemName" class="buywheel-item__name  hud-colorize-wash" />
-					<Image id="ItemIcon" class="buywheel-item__icon  hud-colorize-wash" />
-					<Label id="ItemPrice" class="buywheel-item__price  hud-colorize-wash" />
+					<Label id="ItemName" class="buywheel-item__name hud-colorize-wash" />
+					<Image id="ItemIcon" class="buywheel-item__icon hud-colorize-wash" />
+					<Label id="ItemPrice" class="buywheel-item__price hud-colorize-wash" />
+					<Label id="ItemCurValue" text="{d:current-value}" class="buywheel-item__cur-value hud-colorize-wash" />
 				</Button>
 				<Button id="SellbackButton" class="sellback-button">
 					<TooltipPanel tooltip="#BuyMenu_Sellback">

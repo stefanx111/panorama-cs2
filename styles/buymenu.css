@@ -1873,6 +1873,41 @@
                                ease-out
    ;
   }
+  .buywheel-wedge .buywheel-item__cur-value{
+   font-family:
+                
+                Stratum2
+                         
+                         Condensed
+   ;
+   font-weight:
+                
+                light
+   ;
+   font-size:
+              
+              20px
+   ;
+   color:
+          
+          black
+   ;
+   vertical-align:
+                   
+                   center
+   ;
+   text-align:
+               
+               center
+   ;
+   margin-bottom:
+                 -10px
+   ;
+   margin-right:
+                 
+                 8px
+   ;
+  }
   .buywheel-wedge .buywheel-item__icon{
    horizontal-align:
                      

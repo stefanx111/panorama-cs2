@@ -106,6 +106,8 @@ var SettingsMenu = ( function () {
 				                                            
 				jumpButtons.Children()[ 0 ].checked = true;
 			}
+
+
 			const newSettings = PromotedSettingsUtil.GetUnacknowledgedPromotedSettings();
 			newSettings.forEach( setting => {
 				const el = newPanel.FindChildTraverse( setting.id );
@@ -115,6 +117,13 @@ var SettingsMenu = ( function () {
 				}
 			} )
         }
+
+		if ( tabID == "Search" )
+		{
+			let settings = parentPanel.FindChildInLayoutFile(tabID)
+			let searchTextEntry = settings.FindChildInLayoutFile( 'SettingsSearchTextEntry' );
+			searchTextEntry.SetFocus()
+		}
 
                                                                                   
                                 

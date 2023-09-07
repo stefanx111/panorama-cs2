@@ -103,7 +103,7 @@
 					<Panel class="premier-side left">
 						<Panel class="premier-inner left">
 							<Frame id="jsParty" lbtype="party" class="playmenu--premier__party" registerforreadyevents="true" src="s2r://panorama/layout/leaderboard.vxml_c" />
-							<Frame id="jsPremierMapWinRecord" class="premier-play-menu-mapwinrecord" src="s2r://panorama/layout/premier_mapwinrecord.vxml_c" />
+							<Frame id="jsPremierMapWinRecord" class="premier-play-menu-mapwinrecord" registerforreadyevents="true" src="s2r://panorama/layout/premier_mapwinrecord.vxml_c" />
 						</Panel>
 					</Panel>
 					<Panel class="premier-side right">

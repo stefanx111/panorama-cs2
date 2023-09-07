@@ -189,7 +189,7 @@
 
 
   .leaderboard__list__column.rank{
-   width: 90px;
+   width: 70px;
   }
    .leaderboard__list__column.rank .leaderboard_cell{
      horizontal-align: right;
@@ -240,8 +240,8 @@
 
   font-size: 14px;
 
-  padding-right: 8px;
-  padding-left: 8px;
+  padding-right: 4px;
+  padding-left: 4px;
   font-family: Stratum2 Regular Monodigit;
 
   text-align:right;
@@ -255,6 +255,7 @@
   padding-left: 0px;
   horizontal-align: center;
   font-family: Stratum2 Condensed;
+  text-overflow: shrink;
  }
 
  .leaderboard_cell.faded{
