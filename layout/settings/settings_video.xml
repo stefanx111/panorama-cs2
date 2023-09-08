@@ -26,7 +26,7 @@
 				</Panel>
 			</Panel>
 			<Panel id="video_settings" class="top-bottom-flow full-width">
-				<Panel id="video_settings" class="VideoSettingsMenuTabContent vscroll" style="width: 100%;">
+				<Panel id="video_settings" class="VideoSettingsMenuTabContent vscroll" style="width: 100%;" rememberchildfocus="true">
 					<Panel id="SettingsVideo" class="SettingsBackground">
 						<Panel class="SettingsSectionTitleContianer">
 							<Label class="SettingsSectionTitleLabel" text="#settings_video_section" />

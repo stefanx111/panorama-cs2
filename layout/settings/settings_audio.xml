@@ -19,7 +19,7 @@
 				</RadioButton>
 			</Panel>
 		</Panel>
-		<CSGOAudioSettings id="SettingsMenuTabContent" class="SettingsMenuTabContent vscroll">
+		<CSGOAudioSettings id="SettingsMenuTabContent" class="SettingsMenuTabContent vscroll" rememberchildfocus="true">
 			<Panel id="SettingsAudioSettings" class="SettingsBackground">
 				<Panel class="SettingsSectionTitleContianer">
 					<Label class="SettingsSectionTitleLabel" text="#settings_audio_section" />

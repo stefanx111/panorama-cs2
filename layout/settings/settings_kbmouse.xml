@@ -47,7 +47,7 @@
 				</RadioButton>
 			</Panel>
 		</Panel>
-		<Panel id="SettingsMenuTabContent" class="SettingsMenuTabContent vscroll">
+		<Panel id="SettingsMenuTabContent" class="SettingsMenuTabContent vscroll" rememberchildfocus="true">
 			<Panel id="SettingsKeyboardMouse" class="SettingsBackground">
 				<Panel class="SettingsSectionTitleContianer">
 					<Label class="SettingsSectionTitleLabel" text="#settings_keyboard_mouse_section" />

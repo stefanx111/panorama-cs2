@@ -724,6 +724,10 @@
   text-shadow: 0px 0px 9px 3 #DD0000;
  }
 
+ .HUD--health--low{
+  background-color: gradient(radial, 84px 38px, 0% 0%, 35px 35px, from(rgb(255,0,0)), color-stop(0.7, rgba(255,0,0,0.2), to(rgba(255, 0, 0,0)));
+ }
+
  .HUD--ammo-clip--low .hud-WPN-text .hud-HA-health_or_ammo-label,.HUD--ammo-reserve--low .hud-WPN-reserve-text Label{
 
 

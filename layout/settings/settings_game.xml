@@ -39,7 +39,7 @@
 				</RadioButton>
 			</Panel>
 		</Panel>
-		<Panel id="SettingsMenuTabContent" class="SettingsMenuTabContent vscroll">
+		<Panel id="SettingsMenuTabContent" class="SettingsMenuTabContent vscroll" rememberchildfocus="true">
 			<Panel id="SettingsGameSettings" class="SettingsBackground">
 				<Panel class="SettingsSectionTitleContianer">
 					<Label class="SettingsSectionTitleLabel" text="#settings_game_settings_section" />
