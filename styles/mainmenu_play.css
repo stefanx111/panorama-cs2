@@ -82,6 +82,13 @@
 
 
 
+  .map-selection-list--official-competitive .map-selection-btn__ratingemblem,.map-selection-list--official-casual .map-selection-btn__ratingemblem,.map-selection-list--official-deathmatch .map-selection-btn__ratingemblem,.map-selection-list--official-scrimcomp2v2 .map-selection-btn__ratingemblem,.map-selection-list--official-skirmish .map-selection-btn__ratingemblem,.map-selection-list--listen-competitive .map-selection-btn__ratingemblem,.map-selection-list--listen-scrimcomp2v2 .map-selection-btn__ratingemblem,.map-selection-list--listen-skirmish .map-selection-btn__ratingemblem,.map-selection-list--listen-casual .map-selection-btn__ratingemblem,.map-selection-list--listen-deathmatch .map-selection-btn__ratingemblem{
+   horizontal-align: center;
+   vertical-align: center;
+
+   y: 150px;
+  }
+
   .map-selection-list--official-competitive .map-selection-btn,.map-selection-list--official-casual .map-selection-btn,.map-selection-list--official-deathmatch .map-selection-btn,.map-selection-list--official-scrimcomp2v2 .map-selection-btn,.map-selection-list--official-skirmish .map-selection-btn,.map-selection-list--listen-competitive .map-selection-btn,.map-selection-list--listen-scrimcomp2v2 .map-selection-btn,.map-selection-list--listen-skirmish .map-selection-btn,.map-selection-list--listen-casual .map-selection-btn,.map-selection-list--listen-deathmatch .map-selection-btn{
 
    width: fill-parent-flow(1);

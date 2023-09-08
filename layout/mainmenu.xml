@@ -54,7 +54,7 @@
 						<Panel class="mainmenu-vanity__vignette" hittest="false" />
 						<Panel id="MainMenuVanityInfo" class="full-width full-height MainMenuModeOnly" />
 					</CSGOBlurTarget>
-					<Panel id="JsNewsContainer" class="mainmenu_news_container hidden" hittest="false" />
+					<Frame id="JsLeftColumn" hittest="false" src="s2r://panorama/layout/mainmenu_left_column.vxml_c" />
 					<Button id="JsStreamContainer" class="mainmenu_stream_container hidden MainMenuModeOnly" hittest="true" />
 					<Panel id="JsActiveMissionPanel" class="mainmenu_active-mission-container PauseMenuModeOnly" />
 					<Panel id="JsMainMenuContent" class="mainmenu-content mainmenu-content--offscreen" hittest="true">

@@ -101,6 +101,7 @@
 					<Label class="DropDownMenu" id="musickit" text="#LoadoutSlot_MusicKit" />
 					<Label class="DropDownMenu" id="flair0" text="#LoadoutSlot_Flair" />
 					<Label class="DropDownMenu" id="spray0" text="#LoadoutSlot_Spray" />
+					<Label class="DropDownMenu" id="c4" text="#LoadoutSlot_C4" />
 				</DropDown>
 				<DropDown class="content-navbar__tabs__dropdown horizontal-align-left DropDownMenuFixedWidth-128px" id="id-loadout-filter-itemdef" menuclass="DropDownMenu Width-150" oninputsubmit="LoadoutGrid.UpdateItemList();" />
 				<TooltipPanel id="id-loadout-clear-filters" tooltip="#loadout_clear_filters">

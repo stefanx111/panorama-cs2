@@ -33,6 +33,9 @@
 				<Panel class="leaderboard__list__column rankpct">
 					<Label text="{s:player-percentile}" class="stratum-regular leaderboard_cell" />
 				</Panel>
+				<Panel class="leaderboard__list__column region">
+					<Label text="{s:player-region}" html="true" class="leaderboard_cell" />
+				</Panel>
 			</Button>
 		</snippet>
 	</snippets>
@@ -89,6 +92,9 @@
 					</Panel>
 					<Panel class="leaderboard__list__column rankpct">
 						<Label text="#leaderboard_column_percentile" class="stratum-regular-condensed leaderboard_cell faded" />
+					</Panel>
+					<Panel class="leaderboard__list__column region">
+						<Label text="#leaderboard_column_region" class="leaderboard_cell faded" />
 					</Panel>
 				</Button>
 				<JSDelayLoadList id="id-leaderboard-entries" class="leaderboard__entries-container" itemwidth="716px" itemheight="30px" />

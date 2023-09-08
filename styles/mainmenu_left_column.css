@@ -1,0 +1,16 @@
+.mainmenu-left-column{
+
+
+     padding: 64px 0px 16px 16px;
+     height: 100%;
+     width: 256px;
+     flow-children: up;
+
+     transition-property: opacity;
+  transition-duration: .25s;
+  transition-timing-function: ease-in-out;
+}
+     .mainmenu-left-column.hidden{
+
+         opacity: 0;
+}

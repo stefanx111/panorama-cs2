@@ -119,7 +119,6 @@ var HudMissionPanel = ( function() {
 
 	var isCompetitiveNotSurvival = function()
 	{
-		                                                                          
 		return GameStateAPI.IsQueuedMatchmaking() && GameStateAPI.GetGameModeInternalName( false ) !== "survival";
 	};
 

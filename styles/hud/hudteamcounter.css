@@ -1313,12 +1313,17 @@
      vertical-align:top;
      horizontal-align:center;
      y:70px;
-     wash-color: black;
  }
      #PlayerCount Label{
          font-size: 18px;
          text-align:center;
+
+
+         color:black;
+
+         text-shadow: 0px 0px 4px 2 rgba(255,255,255,0.05);
      }
+
 
 
 

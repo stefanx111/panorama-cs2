@@ -111,7 +111,9 @@
 
 
 
-  .player-card-skillgroup .rating-root,.matchstakes-container .rating-root{
+
+
+  .player-card-skillgroup .rating-root,.matchstakes-container .rating-root,.map-selection-btn .rating-root{
 
     height: 32px;
     width: height-percentage(250%);
@@ -119,7 +121,7 @@
 
 
 
-    .player-card-skillgroup .premier-rating .rating__label-container .rating__value,.matchstakes-container .premier-rating .rating__label-container .rating__value{
+    .player-card-skillgroup .premier-rating .rating__label-container .rating__value,.matchstakes-container .premier-rating .rating__label-container .rating__value,.map-selection-btn .premier-rating .rating__label-container .rating__value{
 
      horizontal-align: center;
      text-align: center;
@@ -128,24 +130,24 @@
 
      padding-top: 2px;
     }
-     .player-card-skillgroup .premier-rating .rating__label-container .rating__value .major,.matchstakes-container .premier-rating .rating__label-container .rating__value .major{
+     .player-card-skillgroup .premier-rating .rating__label-container .rating__value .major,.matchstakes-container .premier-rating .rating__label-container .rating__value .major,.map-selection-btn .premier-rating .rating__label-container .rating__value .major{
       font-size: 23px;
      }
 
-     .player-card-skillgroup .premier-rating .rating__label-container .rating__value .minor,.matchstakes-container .premier-rating .rating__label-container .rating__value .minor{
+     .player-card-skillgroup .premier-rating .rating__label-container .rating__value .minor,.matchstakes-container .premier-rating .rating__label-container .rating__value .minor,.map-selection-btn .premier-rating .rating__label-container .rating__value .minor{
       font-size: 18px;
      }
 
 
 
 
-  .player-card-skillgroup .image-rating,.matchstakes-container .image-rating{
+  .player-card-skillgroup .image-rating,.matchstakes-container .image-rating,.map-selection-btn .image-rating{
    img-shadow: 0px 0px 5px 3.0 #000000;
   }
 
 
 
-   .player-card-skillgroup.matchstakes-container .rating-root,.matchstakes-container.matchstakes-container .rating-root{
+   .player-card-skillgroup.matchstakes-container .rating-root,.matchstakes-container.matchstakes-container .rating-root,.map-selection-btn.matchstakes-container .rating-root{
 
     height: 40px;
    }

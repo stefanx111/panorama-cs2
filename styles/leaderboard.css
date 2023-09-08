@@ -151,7 +151,8 @@
   transition-timing-function: ease-in-out;
  }
 
- .leaderboard__list__row:hover:not(.no-hover){
+ .playmenu--premier__party .leaderboard__list__row:hover:not(.no-hover),.friends .leaderboard__list__row:hover:not(.no-hover){
+
 
   brightness: 2;
 
@@ -200,6 +201,10 @@
    flow-children: right;
    width: fill-parent-flow(1);
   }
+   .leaderboard__list__column.name Label{
+    text-align: left;
+   }
+
 
   .leaderboard__list__column.wins{
    width: 50px;
@@ -219,7 +224,14 @@
 
   .leaderboard__list__column.rankpct{
    width: 50px;
+
+   visibility: collapse;
   }
+   .friends .leaderboard__list__column.rankpct,.playmenu--premier__party .leaderboard__list__column.rankpct{
+
+    visibility: visible;
+   }
+
    .leaderboard__list__column.rankpct .leaderboard_cell{
     horizontal-align: right;
    }
@@ -233,6 +245,20 @@
       vertical-align: center;
     }
 
+
+
+  .leaderboard__list__column.region{
+   width: 30px;
+   visibility: collapse;
+  }
+   .leaderboard__list__column.region Label{
+   text-align:left;
+   }
+
+   .world .leaderboard__list__column.region,.friends .leaderboard__list__column.region{
+
+    visibility: visible;
+   }
 
 
 
