@@ -1,5 +1,8 @@
-.PopupPanel{
+/* Prettified by Source 2 Viewer 5.0.0.0 - https://valveresourceformat.github.io */
 
-  width: 600px;
-  height: fit-children;
+.PopupPanel
+{
+	width: 600px;
+	height: fit-children;
 }
+

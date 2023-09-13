@@ -1,9 +1,12 @@
-.PopupPanel{
+/* Prettified by Source 2 Viewer 5.0.0.0 - https://valveresourceformat.github.io */
 
-  width: 800px;
+.PopupPanel
+{
+	width: 800px;
 }
 
- .PopupTitle{
-
-  max-height: 64px;
+.PopupTitle
+{
+	max-height: 64px;
 }
+

@@ -1,14 +1,17 @@
-.vote-option{
+/* Prettified by Source 2 Viewer 5.0.0.0 - https://valveresourceformat.github.io */
 
-     flow-children: right;
+.vote-option
+{
+	flow-children: right;
 }
 
- #ContextMenuBody Button.vote-option{
-
-  max-width: 400px;
- }
-
- #ContextMenuBody Button.vote-option Label{
-
-  text-overflow: shrink;
+#ContextMenuBody Button.vote-option
+{
+	max-width: 400px;
 }
+
+#ContextMenuBody Button.vote-option Label
+{
+	text-overflow: shrink;
+}
+

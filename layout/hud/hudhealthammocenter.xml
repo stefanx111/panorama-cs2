@@ -168,8 +168,8 @@
 			</Panel>
 			<Panel class="hud-HA-center HUD--on-kill--listener">
 				<Panel class="hud-HA-center__circle additive">
-					<Image class="hud-HA-center-ct-icon hud-colorize-wash" src="s2r://panorama/images/icons/ui/ct_logo_1c.vsvg" texturewidth="48px" scaling="stretch-to-fit-preserve-aspect" />
-					<Image class="hud-HA-center-t-icon hud-colorize-wash" src="s2r://panorama/images/icons/ui/t_logo_1c.vsvg" texturewidth="48px" scaling="stretch-to-fit-preserve-aspect" />
+					<Image class="hud-HA-center-ct-icon hud-ct-colorize" src="s2r://panorama/images/icons/ui/ct_logo_1c.vsvg" texturewidth="48px" scaling="stretch-to-fit-preserve-aspect" />
+					<Image class="hud-HA-center-t-icon hud-t-colorize" src="s2r://panorama/images/icons/ui/t_logo_1c.vsvg" texturewidth="48px" scaling="stretch-to-fit-preserve-aspect" />
 					<Panel id="JsCenterCircle" class="hud-HA-center__circle__border" />
 				</Panel>
 				<Panel id="HudSpecplayer__Avatar" class="HudSpecplayer__Avatar">

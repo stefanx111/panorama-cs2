@@ -225,6 +225,14 @@
 						</TooltipPanel>
 						<Panel class="horizontal-separator" />
 					</Panel>
+					<TooltipPanel id="AllowAnimatedAvatars" class="SettingsMenuDropdownContainer" tooltip="#Settings_AllowAnimatedAvatars_Title_Tooltip">
+						<Label text="#Settings_AllowAnimatedAvatars_Title" class="half-width" />
+						<CSGOSettingsEnumDropDown class="PopupButton White" convar="cl_allow_animated_avatars">
+							<Label text="#GameUI_No" value="0" id="cl_allow_animated_avatars_0" />
+							<Label text="#GameUI_Yes" value="1" id="cl_allow_animated_avatars_1" />
+						</CSGOSettingsEnumDropDown>
+					</TooltipPanel>
+					<Panel class="horizontal-separator" />
 					<Panel class="SettingsMenuDropdownContainer">
 						<Label text="#SFUI_Settings_HideAvatars_Title" class="half-width" />
 						<CSGOSettingsEnumDropDown class="PopupButton White" convar="cl_hide_avatar_images">

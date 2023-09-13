@@ -24,13 +24,13 @@
 			<Frame snippet="parallelogram-bg" />
 			<Panel class="matchstakes-foreground">
 				<Panel id="jsMatchStakesWin" class="matchstakes win">
-					<Label class="stratum-bold-italic left-margin" text="#team-intro-stakes-win" />
-					<Label class="stratum-black-italic right-margin fontSize-s horizontal-align-right text-align-right matchstakes-label-title-width" text="#team-intro-stakes-win-title" />
+					<Label class="delta" text="#team-intro-stakes-win" />
+					<Label class="desc" text="#team-intro-stakes-win-title" />
 				</Panel>
 				<Frame class="matchstakes-emblem" src="s2r://panorama/layout/rating_emblem.vxml_c" />
 				<Panel id="jsMatchStakesLoss" class="matchstakes loss">
-					<Label class="stratum-black-italic left-margin-medium fontSize-s matchstakes-label-title-width" text="#team-intro-stakes-loss-title" />
-					<Label class="stratum-medium-italic stratum-bold-italic horizontal-align-right text-align-right right-margin-medium" text="#team-intro-stakes-loss" />
+					<Label class="desc" text="#team-intro-stakes-loss-title" />
+					<Label class="delta" text="#team-intro-stakes-loss" />
 				</Panel>
 			</Panel>
 		</Panel>

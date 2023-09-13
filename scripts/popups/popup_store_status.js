@@ -7,10 +7,10 @@ var SetupPopup = function()
 {
     var ctx = $.GetContextPanel();
 
-    var strMsg = $.UrlDecode( ctx.GetAttributeString('text', '') );
-    var strClose = $.UrlDecode( ctx.GetAttributeString('close', '0') );
-    var strCancel = $.UrlDecode( ctx.GetAttributeString('cancel', '0') );
-    _strStoreStatusOkCmd = $.UrlDecode( ctx.GetAttributeString('okcmd', '') );
+    var strMsg = ctx.GetAttributeString('text', '');
+    var strClose = ctx.GetAttributeString('close', '0');
+    var strCancel = ctx.GetAttributeString('cancel', '0');
+    _strStoreStatusOkCmd = ctx.GetAttributeString('okcmd', '');
 
     ctx.SetDialogVariable("message", $.Localize(strMsg));
     

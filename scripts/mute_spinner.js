@@ -30,7 +30,7 @@ var MuteSpinner = (function () {
 			var xuid = $.GetContextPanel().GetParent().xuid;
 
 			m_curVal = GameStateAPI.GetPlayerVoiceVolume( xuid );
-			m_curVal = m_curVal.toFixed( 1 );
+			m_curVal = m_curVal.toFixed( 2 );
 
 			m_isMuted = GameStateAPI.IsSelectedPlayerMuted( xuid );
 
@@ -43,7 +43,7 @@ var MuteSpinner = (function () {
 		{
 			var xuid = $.GetContextPanel().GetParent().xuid;
 
-			newval = newval.toFixed( 1 );
+			newval = newval.toFixed( 2 );
 
 			_GetCurrentValues();
 
@@ -80,7 +80,7 @@ var MuteSpinner = (function () {
 		                              
 		                            
 
-		$.GetContextPanel().SetDialogVariable( 'value', m_curVal );
+		$.GetContextPanel().SetDialogVariable( 'value', (m_curVal * 100).toFixed(0) );
 
 		var elSpinner = $.GetContextPanel().FindChildTraverse( 'id-mute-spinner' );
 

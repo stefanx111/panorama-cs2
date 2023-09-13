@@ -177,6 +177,18 @@
 										</CSGOSettingsEnumDropDown>
 									</TooltipPanel>
 									<Panel class="horizontal-separator" />
+									<TooltipPanel class="SettingsMenuDropdownContainer" tooltip="#SFUI_Settings_Filtering_Info">
+										<Label text="#SFUI_Settings_Filtering_Mode" class="half-width" />
+										<CSGOSettingsEnumDropDown onuserinputsubmit="SettingsMenuShared.VideoSettingsEnableDiscard()" oninputsubmit="CSGOVideoChanged(&apos;&apos;)" class="PopupButton White" id="FilteringMode">
+											<Label text="#SFUI_Settings_Bilinear" value="0" id="matforceaniso0" />
+											<Label text="#SFUI_Settings_Trilinear" value="1" id="matforceaniso1" />
+											<Label text="#SFUI_Settings_Anisotropic_2X" value="2" id="matforceaniso2" />
+											<Label text="#SFUI_Settings_Anisotropic_4X" value="3" id="matforceaniso3" />
+											<Label text="#SFUI_Settings_Anisotropic_8X" value="4" id="matforceaniso4" />
+											<Label text="#SFUI_Settings_Anisotropic_16X" value="5" id="matforceaniso5" />
+										</CSGOSettingsEnumDropDown>
+									</TooltipPanel>
+									<Panel class="horizontal-separator" />
 									<TooltipPanel class="SettingsMenuDropdownContainer" tooltip="#SFUI_Settings_ShaderDetail_Info">
 										<Label text="#SFUI_Settings_Shader_Detail" class="half-width" />
 										<CSGOSettingsEnumDropDown onuserinputsubmit="SettingsMenuShared.VideoSettingsEnableDiscard()" oninputsubmit="CSGOVideoChanged(&apos;&apos;)" class="PopupButton White" id="ShaderDetail">

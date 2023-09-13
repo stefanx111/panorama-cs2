@@ -23,13 +23,16 @@ var InpsectPurchaseBar = ( function()
 
 		                              
 		var bFauxItemIdForPurchase = InventoryAPI.IsFauxItemID( m_itemid );
+		var priceOriginal = bFauxItemIdForPurchase ? ItemInfo.GetStoreOriginalPrice( m_itemid, 1 ) : '';
 
 		                                                          
 		                                                                                                                      
+		                                                           
 		                                                                                                                                                                                                    
 		                                                                                   
 
-		if ( ( funcGetSettingCallback( 'inspectonly', 'false' ) === 'true' ) ||
+		if ( !priceOriginal ||
+			( funcGetSettingCallback( 'inspectonly', 'false' ) === 'true' ) ||
 			!InventoryAPI.IsValidItemID( m_itemid )
 		)
 		{

@@ -34,7 +34,7 @@
 					<Image id="HostageOffMap" class="PI_OffMap" src="s2r://panorama/images/icons/ui/map_hostage_offmap.vsvg" />
 					<Image id="HostageDeath" class="PI_Death" src="s2r://panorama/images/hud/radar/icon-hostage-death_png.vtex" />
 					<Image id="HostageGhost" class="PI_Ghost" src="s2r://panorama/images/hud/radar/icon-hostage-ghost_png.vtex" />
-					<Image id="DirectionalIndicator" scaling="stretch-to-fit-preserve-aspect" textureheight="7" texturewidth="10" src="s2r://panorama/images/hud/radar/icon-direction-indicator_png.vtex" />
+					<Image id="DirectionalIndicator" scaling="stretch-to-fit-preserve-aspect" textureheight="20" texturewidth="-1" src="s2r://panorama/images/hud/radar/icon_direction_indicator.vsvg" />
 					<Image id="Defuser" src="s2r://panorama/images/hud/radar/icons-defuser_png.vtex" />
 					<Image id="Selected" src="s2r://panorama/images/icons/ui/map_view_selected.vsvg" />
 				</Panel>
