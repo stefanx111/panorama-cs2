@@ -543,14 +543,6 @@
 				<Label id="label" class="sb-team-tint stratum-regular-mono" />
 			</Panel>
 		</snippet>
-		<snippet name="stat--GGLEADER">
-			<Panel data-stat="ggleader" class="hidden spectator-hidden" />
-		</snippet>
-		<snippet name="stat--GGLEVEL">
-			<Panel data-stat="gglevel" class="spectator-hidden">
-				<Label id="label" class="sb-team-tint stratum-regular-mono" />
-			</Panel>
-		</snippet>
 		<snippet name="stat--DAMAGE">
 			<Panel data-stat="damage" class="spectator-hidden">
 				<Label id="label" class="sb-team-tint stratum-regular-mono" />
@@ -636,7 +628,7 @@
 				<Frame snippet="stat--SCORE" />
 			</Panel>
 		</snippet>
-		<snippet name="snippet_scoreboard__row--demolition">
+		<snippet name="snippet_scoreboard__row--flyingscoutsman">
 			<Panel class="sb-row" cachepaintcmdlist="true">
 				<Frame snippet="stat--STATUS" />
 				<Frame snippet="stat--PING" />
@@ -686,20 +678,6 @@
 				<Frame snippet="stat--FLAIR" />
 				<Frame snippet="stat--AVATAR" />
 				<Frame snippet="stat--NAME" />
-			</Panel>
-		</snippet>
-		<snippet name="snippet_scoreboard__row--armsrace">
-			<Panel class="sb-row" cachepaintcmdlist="true">
-				<Frame snippet="stat--STATUS" />
-				<Frame snippet="stat--PING" />
-				<Frame snippet="stat--FLAIR" />
-				<Frame snippet="stat--AVATAR" />
-				<Frame snippet="stat--NAME" />
-				<Frame snippet="stat--KILLS" />
-				<Frame snippet="stat--DEATHS" />
-				<Frame snippet="stat--SCORE" />
-				<Frame snippet="stat--GGLEADER" />
-				<Frame snippet="stat--GGLEVEL" />
 			</Panel>
 		</snippet>
 	</snippets>

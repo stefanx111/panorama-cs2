@@ -164,6 +164,11 @@
 	visibility: collapse;
 }
 
+.no-valid-xp .vanity-info-seperator
+{
+	visibility: collapse;
+}
+
 .vanity-info-xp-bar
 {
 	height: 3px;

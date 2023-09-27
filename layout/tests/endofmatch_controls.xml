@@ -31,7 +31,6 @@
 			<Label text="competitive" id="mode_comp" value="1" />
 			<Label text="casual" id="mode_cas" value="2" />
 			<Label text="wingman" id="mode_wingman" value="3" />
-			<Label text="arms race" id="mode_armsrace" value="4" />
 			<Label text="guardian" id="mode_guardian" value="5" />
 		</DropDown>
 		<DropDown id="eom-test-player-team" menuclass="" oninputsubmit="" style="height:30px; padding:0px; margin:0px; width:100px;">

@@ -87,7 +87,6 @@ var MainMenuStoreTileLinked = ( function()
 		{
 			elPrice.text = '';
 		}
-
 	};
 
 	var _SetOnActivateEventLinkedItemTile = function()

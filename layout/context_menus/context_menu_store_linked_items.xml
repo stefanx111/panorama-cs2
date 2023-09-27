@@ -6,13 +6,16 @@
 		<include src="s2r://panorama/styles/context_menus/context_menu_store_linked_items.vcss_c" />
 	</styles>
 	<scripts>
-		<include src="s2r://panorama/scripts/context_menus/context_menu_store_linked_items.vjs_c" />
+		<include src="s2r://panorama/scripts/common/iteminfo.vts_c" />
+		<include src="s2r://panorama/scripts/common/tint_spray_icon.vts_c" />
+		<include src="s2r://panorama/scripts/itemtile_store.vts_c" />
+		<include src="s2r://panorama/scripts/context_menus/context_menu_store_linked_items.vts_c" />
 	</scripts>
 	<Panel class="store-linked-items" onload="StoreLinkedItems.Init();" acceptsinput="true" acceptsfocus="true">
 		<Panel id="id-store-linked-items-images" class="store-linked-items__tiles" />
 		<Panel class="store-linked-items__warning">
 			<Image class="vertical-center" src="s2r://panorama/images/icons/ui/info.vsvg" texturewidth="16" textureheight="16" />
-			<Label id="id-store-linked-items-warning" class="store-linked-items__warning__text stratum2Font" />
+			<Label id="id-store-linked-items-warning" class="store-linked-items__warning__text stratum2Font" text="{s:warning}" />
 		</Panel>
 	</Panel>
 </root>

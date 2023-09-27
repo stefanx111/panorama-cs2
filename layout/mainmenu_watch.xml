@@ -9,7 +9,6 @@
 	<scripts>
 		<include src="s2r://panorama/scripts/common/scheduler.vts_c" />
 		<include src="s2r://panorama/scripts/common/commonutil.vts_c" />
-		<include src="s2r://panorama/scripts/generated/items_event_current_generated_store.vjs_c" />
 		<include src="s2r://panorama/scripts/common/licenseutil.vts_c" />
 		<include src="s2r://panorama/scripts/common/iteminfo.vts_c" />
 		<include src="s2r://panorama/scripts/common/formattext.vts_c" />
@@ -50,20 +49,11 @@
 			<Panel id="main-content" class="full-width full-height top-bottom-flow mainmenu-watch-content__container">
 				<Panel id="watch-navbar" class="content-navbar__tabs content-navbar__tabs--noflow">
 					<Panel class="content-navbar__tabs__center-container">
-						<RadioButton id="WatchNavBarButtonTournaments" class="content-navbar__tabs__btn visible-if-not-limitedbeta" group="WatchNavBar" onactivate="mainmenu_watch.NavigateToTab(&apos;JsTournaments&apos;, &apos;tournament menu button&apos;);">
-							<Label class="" text="#CSGO_Watch_Cat_Tournament_0" />
-						</RadioButton>
 						<RadioButton id="WatchNavBarYourMatches" group="WatchNavBar" class="content-navbar__tabs__btn" onactivate="mainmenu_watch.NavigateToTab(&apos;JsYourMatches&apos;, &apos;yourmatches menu button&apos;);">
 							<Label class="" text="#CSGO_Watch_Cat_YourMatches" />
 						</RadioButton>
 						<RadioButton group="WatchNavBar" class="content-navbar__tabs__btn" onactivate="mainmenu_watch.NavigateToTab(&apos;JsDownloaded&apos;, &apos;downloaded menu button&apos;);">
 							<Label class="" text="#CSGO_Watch_Cat_Downloaded" />
-						</RadioButton>
-						<RadioButton id="WatchNavBarButtonLive" class="content-navbar__tabs__btn visible-if-not-limitedbeta" group="WatchNavBar" onactivate="mainmenu_watch.NavigateToTab(&apos;JsLive&apos;, &apos;live menu button&apos;);">
-							<Label class="" text="#CSGO_Watch_Cat_LiveMatches" />
-						</RadioButton>
-						<RadioButton id="WatchNavBarButtonEvents" class="content-navbar__tabs__btn" group="WatchNavBar" onactivate="mainmenu_watch.NavigateToTab(&apos;JsEvents&apos;, &apos;events menu button&apos;);">
-							<Label class="" text="#CSGO_Watch_Cat_Events" />
 						</RadioButton>
 					</Panel>
 					<Panel class="horizontal-align-right vertical-center left-right-padding">

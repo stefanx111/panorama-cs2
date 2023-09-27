@@ -223,11 +223,7 @@
 							<Label text="#play_setting_offline" />
 							<Panel id="GameModeAlert" class="navbar-btn__notification-dot hidden" />
 						</RadioButton>
-						<RadioButton id="PlayWorkshop" group="playtype" data-type="workshop" class="content-navbar__tabs__btn visible-if-not-limitedbeta" onactivate="PlayMenu.OnPressWorkshop();">
-							<Label text="#play_setting_workshop" />
-							<Panel id="GameModeAlert" class="navbar-btn__notification-dot hidden" />
-						</RadioButton>
-						<Button id="PlayCommunity" class="mainmenu-top-navbar__radio-iconbtn visible-if-not-limitedbeta" data-type="workshop" onactivate="PlayMenu.OnPressServerBrowser();" onmouseover="UiToolkitAPI.ShowTextTooltip( &apos;MainMenuNavBarCtrlZoo&apos;, &apos;#tooltip_navbar_zooTESTESTSET&apos; );" onmouseout="UiToolkitAPI.HideTextTooltip();">
+						<Button id="PlayCommunity" class="mainmenu-top-navbar__radio-iconbtn" data-type="workshop" onactivate="PlayMenu.OnPressServerBrowser();" onmouseover="UiToolkitAPI.ShowTextTooltip( &apos;MainMenuNavBarCtrlZoo&apos;, &apos;#tooltip_navbar_zooTESTESTSET&apos; );" onmouseout="UiToolkitAPI.HideTextTooltip();">
 							<Image class="mainmenu-top-navbar__radio-btn__icon" src="s2r://panorama/images/icons/ui/community_servers.vsvg" />
 						</Button>
 					</Panel>
@@ -247,21 +243,15 @@
 						<Label text="#SFUI_GameModeScrimComp2v2" />
 						<Panel id="GameModeAlert" class="navbar-btn__notification-dot hidden" />
 					</RadioButton>
-					<Panel class="mainmenu-top-navbar__play_seperator visible-if-not-limitedbeta" />
+					<Panel class="mainmenu-top-navbar__play_seperator" />
 					<RadioButton id="casual" group="gamemodes" class="content-navbar__tabs__btn">
 						<Label text="#SFUI_GameModeCasual" />
 					</RadioButton>
 					<RadioButton id="deathmatch" group="gamemodes" class="content-navbar__tabs__btn">
 						<Label text="#SFUI_Deathmatch" />
 					</RadioButton>
-					<RadioButton id="cooperative" group="gamemodes" class="content-navbar__tabs__btn visible-if-not-limitedbeta">
-						<Label text="#SFUI_GameModeCooperative" onmouseover="UiToolkitAPI.ShowTextTooltip( &apos;cooperative&apos;, &apos;#PlayMenu_guardian_tooltip&apos; );" onmouseout="UiToolkitAPI.HideTextTooltip();" />
-					</RadioButton>
-					<RadioButton id="coopmission" group="gamemodes" class="content-navbar__tabs__btn visible-if-not-limitedbeta">
-						<Label text="#SFUI_GameModeCoopMission" onmouseover="UiToolkitAPI.ShowTextTooltip( &apos;coopmission&apos;, &apos;#PlayMenu_guardian_tooltip&apos; );" onmouseout="UiToolkitAPI.HideTextTooltip();" />
-					</RadioButton>
-					<Panel class="mainmenu-top-navbar__play_seperator visible-if-not-limitedbeta" />
-					<RadioButton id="JsDirectChallengeBtn" data-type="competitive" group="gamemodes" class="content-navbar__tabs__btn visible-if-not-limitedbeta">
+					<Panel class="mainmenu-top-navbar__play_seperator" />
+					<RadioButton id="JsDirectChallengeBtn" data-type="competitive" group="gamemodes" class="content-navbar__tabs__btn">
 						<Label text="#DirectChallenge_btn" />
 					</RadioButton>
 				</Panel>
@@ -311,9 +301,6 @@
 								<TooltipPanel tooltip="#tooltip_permission_settings_explain" class="vertical-center">
 									<Frame id="PermissionsSettings" class="btn-toggle-slider--playmenu" src="s2r://panorama/layout/slider_toggle.vxml_c" />
 								</TooltipPanel>
-								<TooltipPanel id="id-play-menu-toggle-ranked-tooltip" tooltip="#tooltip_prime_only_3" class="vertical-center">
-									<Frame id="id-play-menu-toggle-ranked" class="btn-toggle-slider--playmenu" src="s2r://panorama/layout/slider_toggle.vxml_c" />
-								</TooltipPanel>
 								<TooltipPanel id="id-play-menu-practicesettings-grenades-tooltip" tooltip="#practicesettings_grenades_tooltip" class="vertical-center">
 									<Frame id="id-play-menu-practicesettings-grenades" class="btn-toggle-slider--playmenu" src="s2r://panorama/layout/slider_toggle.vxml_c" />
 								</TooltipPanel>
@@ -326,6 +313,9 @@
 								<Button id="PlayMenulLeaderboards" class="play-menu-option-btn" style="horizontal-align:left;">
 									<Image texturewidth="-1" textureheight="28" src="s2r://panorama/images/icons/ui/graph.vsvg" />
 									<Label text="#SFUI_LEADERBOARD" />
+								</Button>
+								<Button id="PlayMenuReplayNewUserTrainingButton">
+									<Label text="#PlayMenuReplayNewUserTrainingButton" />
 								</Button>
 							</Panel>
 							<Panel id="JsQuickSelectParent" class="top-bottom-flow map-selection-list__quick-selection-sets visible-if-not-limitedbeta">

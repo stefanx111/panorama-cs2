@@ -141,7 +141,6 @@
 			</Panel>
 		</Panel>
 		<Panel class="hud-HA HUD--on-kill--listener" hittest="false">
-			<CSGOHudPassiveItems id="HudPassiveItems" />
 			<Panel class="vertical-center full-height width-fill-parent-flow additive">
 				<Panel class="hud-HA__stroke left hud-colorize-wash" />
 				<Panel class="hud-HA-main-container">

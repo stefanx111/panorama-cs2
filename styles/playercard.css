@@ -248,6 +248,13 @@
 	img-shadow: 2px 2px 2px #000000;
 }
 
+.player-card-xpbar__container
+{
+	width: 275px;
+	flow-children:right;
+	height: 24px;
+}
+
 .player-card-xp__name-bar
 {
 	flow-children: down;
@@ -260,7 +267,7 @@
 .player-card-xpbar
 {
 	margin-top: 8px;
-	width: 256px;
+	width: 230px;
 	height: fit-children;
 	box-shadow: shadowOffset;
 }
@@ -269,7 +276,7 @@
 {
 	background-color: #000000d3;
 	height: 8px;
-	width: 256px;
+	width: 100%;
 }
 
 .player-card-xpbar__bar--inner
@@ -277,6 +284,18 @@
 	background-color: gradient( linear, 0% 0%, 100% 0%, from ( #0A5A84 ), to( #5DC6FF ));
 	width: 50%;
 	height: 100%;
+}
+
+.player-card-xpbar__care-package
+{
+	margin-left: 10px;
+	vertical-align:center;
+	visibility: collapse;
+}
+
+.care-package-eligible .player-card-xpbar__care-package
+{
+	visibility: visible;
 }
 
 .player-card-xp-getprestigebutton
@@ -478,7 +497,7 @@
 .player-card-prime-btn
 {
 	vertical-align: center;
-	box-shadow: fill 2px 2px 6px #000000d0;
+	box-shadow: shadowOffset;
 	transition-property: brightness;
 	transition-duration: .25s;
 	transition-timing-function: ease-in-out;
@@ -494,6 +513,7 @@
 	padding: 8px;
 	border-radius: 2px;
 	color: white;
+	font-family: Stratum2, 'Arial Unicode MS';
 }
 
 .player-card-prime-btn:hover

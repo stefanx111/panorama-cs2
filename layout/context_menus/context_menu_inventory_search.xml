@@ -16,7 +16,7 @@
 			</Button>
 		</snippet>
 	</snippets>
-	<ContextMenuCustomLayout class="ContextMenuPlayerCard" onload="InventorySearch.Init();" acceptsfocus="true" useglobalcontext="true">
+	<Panel class="ContextMenuPlayerCard" onload="InventorySearch.Init();" acceptsfocus="true" useglobalcontext="true">
 		<Panel id="ContextMenuSearch" class="context-menu-search-container">
 			<Panel class="context-menu-search__input-container">
 				<TextEntry id="InventorySearchInput" class="context-menu-search__input" maxchars="1024" placeholder="#inv_search_placeholder" ontextentrychange="InventorySearch.OnEntryChanged();" />
@@ -32,5 +32,5 @@
 				</Panel>
 			</Panel>
 		</Panel>
-	</ContextMenuCustomLayout>
+	</Panel>
 </root>

@@ -9,7 +9,6 @@
 	</styles>
 	<scripts>
 		<include src="s2r://panorama/scripts/common/iteminfo.vts_c" />
-		<include src="s2r://panorama/scripts/generated/items_event_current_generated_store.vjs_c" />
 		<include src="s2r://panorama/scripts/common/item_context_entries.vts_c" />
 		<include src="s2r://panorama/scripts/popups/popup_inspect_action-bar.vts_c" />
 		<include src="s2r://panorama/scripts/characterbuttons.vts_c" />

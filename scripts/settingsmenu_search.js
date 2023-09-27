@@ -145,7 +145,7 @@ var SettingsMenuSearch = ( function() {
 	function PopulateWithPromotedSettings()
 	{
 		var elTitle = $.CreatePanel( "Label", m_ResultsContainer, "promoted_settings_title" );
-		elTitle.text = $.Localize( "#GameUI_Settings_Recently_Added" );
+		elTitle.text = $.Localize( "#GameUI_Settings_Promoted" );
 		elTitle.AddClass( "SettingsSectionTitleLabel" );
 		elTitle.AddClass( "setting-search-recently-added-header" );
 		g_PromotedSettings.forEach( s => {

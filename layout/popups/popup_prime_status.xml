@@ -7,6 +7,7 @@
 		<include src="s2r://panorama/styles/popups/popup_subscription_upsell.vcss_c" />
 	</styles>
 	<scripts>
+		<include src="s2r://panorama/scripts/common/prime_button_action.vts_c" />
 		<include src="s2r://panorama/scripts/popups/popup_prime_status.vjs_c" />
 	</scripts>
 	<snippets />
@@ -31,7 +32,7 @@
 					<Label class="sub-upsell-body__section__title" text="#popup_elevated_status_drops_title" />
 					<Label class="sub-upsell-body__section__desc" text="#popup_elevated_status_drops_desc" />
 				</Panel>
-				<Image class="sub-upsell-body__section__image sub-upsell-body__section__image--prime" src="s2r://panorama/images/store/prime_drops_png.vtex" />
+				<Image class="sub-upsell-body__section__image sub-upsell-body__section__image--prime" src="s2r://panorama/images/store/prime_drops_psd.vtex" />
 			</Panel>
 			<Panel class="sub-upsell-body__section sub-upsell-body__section--right-aligned sub-upsell-body__section--fit-children-height">
 				<Panel class="sub-upsell-body__section__bg sub-upsell-body__section__bg--prime-3" />
@@ -39,7 +40,7 @@
 					<Label class="sub-upsell-body__section__title" text="#popup_elevated_status_rank_title" />
 					<Label class="sub-upsell-body__section__desc" text="#popup_elevated_status_rank_desc" />
 				</Panel>
-				<Image class="sub-upsell-body__section__image sub-upsell-body__section__image--prime" src="s2r://panorama/images/store/prime_ranks_png.vtex" />
+				<Image class="sub-upsell-body__section__image sub-upsell-body__section__image--prime" src="s2r://panorama/images/store/prime_ranks_psd.vtex" />
 			</Panel>
 		</Panel>
 		<Panel class="PopupButtonRow">

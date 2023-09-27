@@ -7,7 +7,6 @@
 		<include src="s2r://panorama/styles/tournaments/pickem_common.vcss_c" />
 	</styles>
 	<scripts>
-		<include src="s2r://panorama/scripts/generated/items_event_current_generated_store.vjs_c" />
 		<include src="s2r://panorama/scripts/common/licenseutil.vts_c" />
 		<include src="s2r://panorama/scripts/watchtile.vjs_c" />
 		<include src="s2r://panorama/scripts/matchlist.vjs_c" />

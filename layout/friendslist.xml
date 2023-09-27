@@ -7,6 +7,7 @@
 		<include src="s2r://panorama/styles/friendtile.vcss_c" />
 	</styles>
 	<scripts>
+		<include src="s2r://panorama/scripts/rating_emblem.vts_c" />
 		<include src="s2r://panorama/scripts/common/commonutil.vts_c" />
 		<include src="s2r://panorama/scripts/common/sessionutil.vts_c" />
 		<include src="s2r://panorama/scripts/common/collapse.vts_c" />

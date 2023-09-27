@@ -566,14 +566,9 @@ Label
 	vertical-align:center;
 }
 
-.sb-row__cell--lifetime,.sb-row__cell--ggleader
+.sb-row__cell--lifetime
 {
 	visibility: collapse;
-}
-
-.sb-row__cell--gglevel
-{
-	width:37px;
 }
 
 #id-sb-row__lifetime
@@ -1278,7 +1273,7 @@ Label.sb-row__cell--mvps__count
 	position: 0px 0px 0px;
 }
 
-.armrace-scoreboard .time_container,.eom-scoreboard #id-sb-mouse-instructions,.eom-scoreboard #id-sb-meta__musickit,.eom-scoreboard .sb-row__cell--money Label,.eom-scoreboard .sb-team__info__number,.eom-scoreboard .sb-team--Spectator,.eom-scoreboard #id-sb-footer-server-website,.eom-scoreboard #id-sb-meta__blockugc,.eom-scoreboard #id-sb-meta__mutevoice
+.eom-scoreboard #id-sb-mouse-instructions,.eom-scoreboard #id-sb-meta__musickit,.eom-scoreboard .sb-row__cell--money Label,.eom-scoreboard .sb-team__info__number,.eom-scoreboard .sb-team--Spectator,.eom-scoreboard #id-sb-footer-server-website,.eom-scoreboard #id-sb-meta__blockugc,.eom-scoreboard #id-sb-meta__mutevoice
 {
 	visibility: collapse;
 }

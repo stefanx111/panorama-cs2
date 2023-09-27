@@ -55,12 +55,32 @@ var EOM_Rank = (function () {
 		if ( !oXpData )
 			return false;
 
+		                                            
+		                                   
+
+		               
+		const xpBonuses = MyPersonaAPI.GetActiveXpBonuses();
+		const bEligibleForCarePackage = xpBonuses.split( ',' ).includes( '2' );
+
+		const earnedFreeRewards = oXpData.hasOwnProperty( 'free_rewards' ) ? Number( oXpData.free_rewards ) : 0;
+
+		$.GetContextPanel().SetHasClass( 'care-package-eligible', bEligibleForCarePackage || earnedFreeRewards );
+
+		
 		var elProgress = _m_cP.FindChildInLayoutFile( "id-eom-rank__bar-container" );
 		var elNew = _m_cP.FindChildInLayoutFile( "id-eom-new-reveal" );
 		var elCurrent = _m_cP.FindChildInLayoutFile( "id-eom-rank__current" );
 		var elBar = _m_cP.FindChildInLayoutFile( "id-eom-rank__bar" );
 		var elRankLister = _m_cP.FindChildInLayoutFile( "id-eom-rank__lister" );
 		var elRankListerItems = _m_cP.FindChildInLayoutFile( "id-eom-rank__lister__items" );
+
+
+		                                                            
+		    
+		   	                                                       
+		   	                                                           
+		    
+
 
 		var arrPreRankXP = [];                                     
 		var arrPostRankXP = [];                                    
@@ -185,13 +205,14 @@ var EOM_Rank = (function () {
 		}
 
 		                     
-		totalXP += parseInt( oXpData[ "current_xp" ] );
+		totalXP += oXpData[ "current_xp" ];
 
 		                
-		Object.keys( oXpData[ "xp_earned" ] ).forEach( function( key, index ) 
+		oXpData.xp_progress_data.forEach( function( elem, index ) 
 		{
 
-			var xp = parseInt( oXpData[ "xp_earned" ][ key ] );
+			var xp = elem.xp_points;
+			var key = elem.xp_category;
 
 			                                                          
 			if ( totalXP + xp < xPPerLevel )
@@ -252,6 +273,9 @@ var EOM_Rank = (function () {
 		            
 		if ( totalXP >= xPPerLevel )
 		{
+			var elRankEarnedCarePackagefx = _m_cP.FindChildInLayoutFile( "id-eom-rank_carepackage_earned_effects" );
+			var elRankCarePackageBgfx = _m_cP.FindChildInLayoutFile( "id-eom-rank_carepackage_bg_effects" );
+
 			           
 			_AnimSequenceNext( function()
 			{
@@ -260,12 +284,49 @@ var EOM_Rank = (function () {
 
 				$.DispatchEvent( 'CSGOPlaySoundEffect', 'UIPanorama.XP.BarFull', 'eom-rank' );
 				elProgress.FindChildInLayoutFile( 'id-eom-rank-bar-white' ).AddClass( 'eom-rank__bar--white--show' );
+
+				if ( earnedFreeRewards > 0 )
+				{
+					
+					elRankCarePackageBgfx.SetParticleNameAndRefresh( "particles/ui/rank_carepackage_bg_base.vpcf" );
+					elRankCarePackageBgfx.SetControlPoint(3,0,0,1);
+					elRankCarePackageBgfx.StartParticles();
+					
+				}
 			}, 1 );
+
+			                
+			if ( earnedFreeRewards > 0 )
+			{
+				_AnimSequenceNext( function ()
+				{
+					if ( !_m_cP || !_m_cP.IsValid() )
+						return;
+
+					let elCarePackage = _m_cP.FindChildTraverse( 'jsEomCarePackage' );
+					elCarePackage.TriggerClass( 'earned-rewards' );
+
+					$.DispatchEvent( 'CSGOPlaySoundEffect', 'UIPanorama.tab_mainmenu_shop', 'eom-rank' );
+
+					                                  
+					                                          
+
+					elRankEarnedCarePackagefx.SetParticleNameAndRefresh("particles/ui/rank_carepackage_recieve.vpcf");
+					elRankEarnedCarePackagefx.SetControlPoint(3,0,0,1);
+					
+
+				}, 2 );
+					
+			}
 
 			           
 			                                     
 			_AnimSequenceNext( function()
 			{
+				
+
+
+
 				if ( !elProgress || !elProgress.IsValid() || 
 					!elCurrent || !elCurrent.IsValid() ||
 					!elBar || !elBar.IsValid() ||
@@ -277,6 +338,9 @@ var EOM_Rank = (function () {
 
 				                 
 				elBar.FindChildrenWithClassTraverse( "eom-rank__bar__segment" ).forEach( entry => entry.DeleteAsync( .0 ) );
+				
+				                            
+				elRankCarePackageBgfx.StopParticlesWithEndcaps();
 
 				                                       
 				elCurrent.SetDialogVariableInt( "level", newRank );

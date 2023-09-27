@@ -26,7 +26,7 @@ var PopupWorkshopModeSelect = ( function () {
     };
 
     var _InitAllModes = function () {
-        _InitModes( ['casual', 'competitive', 'scrimcomp2v2', 'deathmatch', 'coopmission', 'armsrace', 'demolition', 'flyingscoutsman', 'retakes', 'custom' ] );
+        _InitModes( ['casual', 'competitive', 'scrimcomp2v2', 'deathmatch', 'coopmission', 'flyingscoutsman', 'retakes', 'custom' ] );
     }
 
     var _InitModes = function(modes)

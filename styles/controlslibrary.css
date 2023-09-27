@@ -1359,6 +1359,7 @@ Label.Orange
 	width: 100%;
 	height: 100%;
 	flow-children: right-wrap;
+	-s2-mix-blend-mode: screen;
 }
 
 .spider-graph-example

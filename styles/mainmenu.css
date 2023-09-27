@@ -72,6 +72,7 @@ CSGOMainMenu.PopupBackgroundBlur #MainMenuInput
 	transition-property: transform;
 	transition-duration: .25s;
 	transition-timing-function: ease-in-out;
+	-s2-mix-blend-mode: additive;
 }
 
 .mainmenu-party-search-particle--slide-out
@@ -382,8 +383,8 @@ CSGOMainMenu.PopupBackgroundBlur #MainMenuInput
 	flow-children: down;
 	background-color:blurBackgroundColor;
 	background-image: url("s2r://panorama/images/backgrounds/bluedots_large_png.vtex");
-	background-size: 160% auto;
-	background-img-opacity: .07;
+	background-size: backgroundDotsSize;
+	background-img-opacity: .04;
 }
 
 .mainmenu-content--open .pausemenu-navbar
@@ -579,7 +580,7 @@ CSGOMainMenu.PopupBackgroundBlur #MainMenuInput
 {
 	transform: translateY(3px);
 	margin-left: 0px;
-	font-size: 28px;
+	font-size: 36px;
 	letter-spacing: 1px;
 }
 
@@ -794,7 +795,7 @@ CSGOMainMenu.PopupBackgroundBlur #MainMenuInput
 	padding-top: 64px;
 	background-color: rgba(0, 0, 0, 0.75);
 	background-image: url("s2r://panorama/images/backgrounds/bluedots_large_png.vtex");
-	background-size: 35% auto;
+	background-size: backgroundDotsSize;
 	background-img-opacity: .01;
 	transition-property: opacity, transform;
 	transition-duration: .25s;
@@ -811,7 +812,7 @@ CSGOMainMenu.PopupBackgroundBlur #MainMenuInput
 
 .popup-inspect-border
 {
-	background-color: gradient( linear, 0% 100%, 0% 0%, from( rgba(0, 0, 0, 0.932) ), color-stop(0.4, rgba(0, 0, 0, 0) ), color-stop(0.6, rgba(0, 0, 0, 0) ), to(rgba(0, 0, 0, 0.89) ));
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( rgba(0, 0, 0, 0.932) ), color-stop(0.4, rgba(0, 0, 0, 0) ), color-stop(0.6, rgba(0, 0, 0, 0) ), to(rgba(0, 0, 0, 0.95) ));
 	width: 100%;
 	height: 100%;
 }

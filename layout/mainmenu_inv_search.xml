@@ -13,13 +13,13 @@
 	</scripts>
 	<snippets>
 		<snippet name="SuggestedEntry">
-			<Button class="inv-search__suggestions_entry">
+			<Panel class="inv-search__suggestions_entry">
 				<Panel id="SuggestedRarity" class="inv-search__suggestions_rarity" />
 				<Panel class="top-bottom-flow">
 					<ItemImage id="SuggestedImage" class="inv-search__suggestions_entry__image" scaling="stretch-to-fit-preserve-aspect" />
 					<Label html="true" text="{s:suggestion_text}" class="stratum-font fontWeight-Medium left-right-padding bottom-padding" />
 				</Panel>
-			</Button>
+			</Panel>
 		</snippet>
 	</snippets>
 	<Panel class="mainmenu-content--popuptab mainmenu-content__container mainmenu-content--hidden" useglobalcontext="true">

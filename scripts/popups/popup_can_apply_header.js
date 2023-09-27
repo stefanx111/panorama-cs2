@@ -30,7 +30,8 @@ var CanApplyHeader = ( function()
 
 	var _SetUpWarning = function( oTitleSettings )
 	{
-		m_cP.FindChildInLayoutFile( 'id-can-apply-warning' ).visible = !oTitleSettings.isRemove;
+		let elLabel = m_cP.FindChildInLayoutFile( 'id-can-apply-warning' );
+		elLabel.visible = !oTitleSettings.isRemove;
 		if ( oTitleSettings.isRemove )
 		{
 			                        
@@ -38,14 +39,14 @@ var CanApplyHeader = ( function()
 		}
 
 		                                                                                                           
-		var warningText = _GetWarningTradeRestricted( oTitleSettings.toolId, oTitleSettings.itemId );
+		var warningText = _GetWarningTradeRestricted( oTitleSettings.type, oTitleSettings.toolId, oTitleSettings.itemId );
 		warningText = !warningText ? '#SFUI_InvUse_Warning_use_can_stick_' + oTitleSettings.type : warningText;
 
-		warningText =$.Localize( warningText, m_cP )
+		warningText = $.Localize( warningText, elLabel );
 		m_cP.SetDialogVariable( "CanApplyWarning", warningText );
 	};
 	
-	var _GetWarningTradeRestricted = function( toolId, itemId )
+	var _GetWarningTradeRestricted = function( type, toolId, itemId )
 	{
 		         
 		                                                                                                                           
@@ -66,24 +67,24 @@ var CanApplyHeader = ( function()
 					strSpecialParam = InventoryAPI.GetItemAttributeValue( toolId, "tradable after date" );
 					if ( strSpecialParam !== undefined && strSpecialParam !== null )
 					{
-						strSpecialWarning = _GetSpecialWarningString( strSpecialParam, "#popup_can_stick_warning_marketrestricted_patch" );
+						strSpecialWarning = _GetSpecialWarningString( type, strSpecialParam, "marketrestricted" );
 					}
 				}
 				else
 				{
-					strSpecialWarning = _GetStickerMarketDateGreater( toolId, itemId );
+					strSpecialWarning = _GetStickerMarketDateGreater( type, toolId, itemId );
 				}
 			}
 		}
 		else
 		{
-			strSpecialWarning = _GetStickerMarketDateGreater( toolId, itemId );
+			strSpecialWarning = _GetStickerMarketDateGreater( type, toolId, itemId );
 		}
 		
 		return strSpecialWarning;
 	}
 
-	var _GetStickerMarketDateGreater = function( toolId, itemId )
+	var _GetStickerMarketDateGreater = function( type, toolId, itemId )
 	{
 		                                                                               
 		var rtTradableAfterSticker = InventoryAPI.GetItemAttributeValue( toolId, "{uint32}tradable after date" );
@@ -95,18 +96,18 @@ var CanApplyHeader = ( function()
 			strSpecialParam = InventoryAPI.GetItemAttributeValue( toolId, "tradable after date" );
 			if ( strSpecialParam != undefined && strSpecialParam != null )
 			{
-				return _GetSpecialWarningString( strSpecialParam, "#popup_can_stick_warning_traderestricted_patch");
+				return _GetSpecialWarningString( type, strSpecialParam, "traderestricted");
 			}
 		}
 
 		return '';
 	};
 
-	var _GetSpecialWarningString = function( strSpecialParam, warningText )
+	var _GetSpecialWarningString = function( type, strSpecialParam, warningText )
 	{
-		var elLabel = m_cP.FindChildInLayoutFile( 'CanStickerWarning' );
+		var elLabel = m_cP.FindChildInLayoutFile( 'id-can-apply-warning' );
 		elLabel.SetDialogVariable( 'date', strSpecialParam );
-		return warningText;
+		return "#popup_can_stick_warning_" + warningText + "_" + type;
 	}
 
 	return {

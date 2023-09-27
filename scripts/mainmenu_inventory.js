@@ -873,7 +873,8 @@ var InventoryPanel = ( function (){
 		if( !elList )
 			elList =  $.CreatePanel('InventoryItemList', _m_elSelectItemForCapabilityPopup, 'ItemListForCapability' );
 
-		var capabilityFilter= capability + ':' + id;
+		elList.SetHasClass( 'inv-multi-select-allow', capability === "casketstore" || capability === "casketretrieve" );
+		var capabilityFilter = capability + ':' + id;
 
 		_UpdateActiveItemList(
 			elList,
@@ -1147,6 +1148,14 @@ var InventoryPanel = ( function (){
 		EquipNotification.ShowEquipNotification( elNotification, slot, newItemId );
 	};
 
+	var _UpdateItemListCallback = function()
+	{
+		if ( _SelectedCapabilityInfo.popupVisible === true && _SelectedCapabilityInfo.capability )
+		{
+			_UpdatePopup( _SelectedCapabilityInfo.initialItemId, _SelectedCapabilityInfo.capability );
+		}
+	}
+
 	return {
 		Init: _Init,
 		NavigateToTab: _NavigateToTab,
@@ -1167,7 +1176,8 @@ var InventoryPanel = ( function (){
 		GetCapabilityInfo: _GetCapabilityInfo,
 		InventoryUpdated: _InventoryUpdated,
 		SetIsCapabilityPopUpOpen: _SetIsCapabilityPopUpOpen,
-		ShowDeleteItemConfirmation: _ShowDeleteItemConfirmation
+		ShowDeleteItemConfirmation: _ShowDeleteItemConfirmation,
+		UpdateItemListCallback: _UpdateItemListCallback
 	};
 })();
 

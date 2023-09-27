@@ -813,7 +813,7 @@ CSGOHudHealthAmmoCenter.HUD--no-player
 	height: card-svg-height;
 	opacity-mask: url("s2r://panorama/images/hud/kill_mask.vsvg");
 	background-image: url("s2r://panorama/images/backgrounds/bluedots_large_png.vtex");
-	background-size: 500% auto;
+	background-size: backgroundDotsSize;
 	background-img-opacity: 0.2;
 }
 
@@ -997,114 +997,9 @@ Label.hud-HA__kills__count
 	visibility: collapse;
 }
 
-.HUD--Kill1--default:not(.gungameprogressive) .hud-HA__kill-flag1 .default,.HUD--Kill2--default:not(.gungameprogressive) .hud-HA__kill-flag2 .default,.HUD--Kill3--default:not(.gungameprogressive) .hud-HA__kill-flag3 .default,.HUD--Kill4--default:not(.gungameprogressive) .hud-HA__kill-flag4 .default,.HUD--Kill5--default:not(.gungameprogressive) .hud-HA__kill-flag5 .default,.HUD--Kill1--headshot:not(.gungameprogressive) .hud-HA__kill-flag1 .headshot,.HUD--Kill2--headshot:not(.gungameprogressive) .hud-HA__kill-flag2 .headshot,.HUD--Kill3--headshot:not(.gungameprogressive) .hud-HA__kill-flag3 .headshot,.HUD--Kill4--headshot:not(.gungameprogressive) .hud-HA__kill-flag4 .headshot,.HUD--Kill5--headshot:not(.gungameprogressive) .hud-HA__kill-flag5 .headshot,.HUD--Kill1--blast:not(.gungameprogressive) .hud-HA__kill-flag1 .blast,.HUD--Kill2--blast:not(.gungameprogressive) .hud-HA__kill-flag2 .blast,.HUD--Kill3--blast:not(.gungameprogressive) .hud-HA__kill-flag3 .blast,.HUD--Kill4--blast:not(.gungameprogressive) .hud-HA__kill-flag4 .blast,.HUD--Kill5--blast:not(.gungameprogressive) .hud-HA__kill-flag5 .blast,.HUD--Kill1--burn:not(.gungameprogressive) .hud-HA__kill-flag1 .burn,.HUD--Kill2--burn:not(.gungameprogressive) .hud-HA__kill-flag2 .burn,.HUD--Kill3--burn:not(.gungameprogressive) .hud-HA__kill-flag3 .burn,.HUD--Kill4--burn:not(.gungameprogressive) .hud-HA__kill-flag4 .burn,.HUD--Kill5--burn:not(.gungameprogressive) .hud-HA__kill-flag5 .burn,.HUD--Kill1--slash:not(.gungameprogressive) .hud-HA__kill-flag1 .slash,.HUD--Kill2--slash:not(.gungameprogressive) .hud-HA__kill-flag2 .slash,.HUD--Kill3--slash:not(.gungameprogressive) .hud-HA__kill-flag3 .slash,.HUD--Kill4--slash:not(.gungameprogressive) .hud-HA__kill-flag4 .slash,.HUD--Kill5--slash:not(.gungameprogressive) .hud-HA__kill-flag5 .slash
+.HUD--Kill1--default .hud-HA__kill-flag1 .default,.HUD--Kill2--default .hud-HA__kill-flag2 .default,.HUD--Kill3--default .hud-HA__kill-flag3 .default,.HUD--Kill4--default .hud-HA__kill-flag4 .default,.HUD--Kill5--default .hud-HA__kill-flag5 .default,.HUD--Kill1--headshot .hud-HA__kill-flag1 .headshot,.HUD--Kill2--headshot .hud-HA__kill-flag2 .headshot,.HUD--Kill3--headshot .hud-HA__kill-flag3 .headshot,.HUD--Kill4--headshot .hud-HA__kill-flag4 .headshot,.HUD--Kill5--headshot .hud-HA__kill-flag5 .headshot,.HUD--Kill1--blast .hud-HA__kill-flag1 .blast,.HUD--Kill2--blast .hud-HA__kill-flag2 .blast,.HUD--Kill3--blast .hud-HA__kill-flag3 .blast,.HUD--Kill4--blast .hud-HA__kill-flag4 .blast,.HUD--Kill5--blast .hud-HA__kill-flag5 .blast,.HUD--Kill1--burn .hud-HA__kill-flag1 .burn,.HUD--Kill2--burn .hud-HA__kill-flag2 .burn,.HUD--Kill3--burn .hud-HA__kill-flag3 .burn,.HUD--Kill4--burn .hud-HA__kill-flag4 .burn,.HUD--Kill5--burn .hud-HA__kill-flag5 .burn,.HUD--Kill1--slash .hud-HA__kill-flag1 .slash,.HUD--Kill2--slash .hud-HA__kill-flag2 .slash,.HUD--Kill3--slash .hud-HA__kill-flag3 .slash,.HUD--Kill4--slash .hud-HA__kill-flag4 .slash,.HUD--Kill5--slash .hud-HA__kill-flag5 .slash
 {
 	visibility: visible;
-}
-
-.gungameprogressive .hud-HA__kill-flag1 .default,.gungameprogressive .hud-HA__kill-flag2 .default,.gungameprogressive .hud-HA__kill-flag3 .default,.gungameprogressive .hud-HA__kill-flag4 .default,.gungameprogressive .hud-HA__kill-flag5 .default
-{
-	visibility: visible;
-}
-
-.HUD--required-1Kill .hud-HA__kill-flag1
-{
-	transform: translate3d( -2px, 30px, 0px) rotateZ(0deg);
-}
-
-.HUD--required-2Kills .hud-HA__kill-flag1
-{
-	transform: translate3d( 2px, 25px, 0px) rotateZ(-12deg);
-}
-
-.HUD--required-2Kills .hud-HA__kill-flag2
-{
-	transform: translate3d( 2px, 25px, 0px) rotateZ(12deg);
-}
-
-.gungameprogressive.HUD--required-2Kills .hud-HA__kill-flag1.ggproglevel
-{
-	animation-name: gglevel-req2-flag1;
-	animation-duration: 1s;
-	animation-timing-function: ease-out;
-	animation-iteration-count: 1;
-	visibility: visible;
-	opacity:1;
-}
-
-@keyframes 'gglevel-req2-flag1'
-{
-	0%
-	{
-		transform: translate3d( -2px, 2px, 0px) rotateZ(-6deg) scale3d(1, 1, 1);
-		opacity: 1;
-	}
-	
-	50%
-	{
-		transform: translate3d( -2px, 2px, 0px) rotateZ(-6deg) scale3d(1, 1, 1);
-		opacity: 1;
-	}
-	
-	80%
-	{
-		transform: translate3d( -2px, -20px, 0px) rotateZ(-6deg) scale3d(1, 1, 1);
-		opacity: 0;
-	}
-	
-	81%
-	{
-		transform: translate3d( -2px, -20px, 0px) rotateZ(-6deg) scale3d(1, 1, 1);
-		opacity: 0;
-	}
-	
-	100%
-	{
-		opacity:0;
-	}
-	
-}
-
-.gungameprogressive.HUD--required-2Kills .hud-HA__kill-flag2.ggproglevel
-{
-	animation-name: gglevel-req2-flag2;
-	animation-duration: 1s;
-	animation-timing-function: ease-out;
-	animation-iteration-count: 1;
-	visibility: visible;
-}
-
-@keyframes 'gglevel-req2-flag2'
-{
-	0%
-	{
-		transform: translate3d( 2px, 15px, 0px) rotateZ(6deg) scale3d(1, 1, 1);
-		opacity: 1;
-	}
-	
-	50%
-	{
-		transform: translate3d( 2px, 0px, 0px) rotateZ(6deg) scale3d(1, 1, 1);
-		opacity: 1;
-	}
-	
-	80%
-	{
-		transform: translate3d( 2px, -20px, 0px) rotateZ(6deg) scale3d(1, 1, 1);
-		opacity: 0;
-	}
-	
-	81%
-	{
-		transform: translate3d( 2px, -20px, 0px) rotateZ(6deg) scale3d(1, 1, 1);
-		opacity: 0;
-	}
-	
-	100%
-	{
-		opacity:0;
-	}
-	
 }
 
 @define defaultColor: #ffffff;

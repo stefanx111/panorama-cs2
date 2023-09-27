@@ -6,6 +6,7 @@
 	</styles>
 	<scripts>
 		<include src="s2r://panorama/scripts/common/promoted_settings.vts_c" />
+		<include src="s2r://panorama/scripts/generated/items_event_current_generated_store.vts_c" />
 		<include src="s2r://panorama/scripts/mock_adapter.vts_c" />
 		<include src="s2r://panorama/scripts/particle_controls.vts_c" />
 		<include src="s2r://panorama/scripts/inspect.vts_c" />
@@ -74,13 +75,13 @@
 				</CSGOBlurTarget>
 				<CSGOBlurTarget id="MainMenuNavBarTop" class="mainmenu-top-navbar-container" blurrects="CSGOLoadingScreen">
 					<Panel id="JsMainMenuTopNavBar" class="mainmenu-top-navbar">
-						<ParticleScenePanel id="MainMenuNavigateParticles" class="UiParticlePanel" style="width: 670px; height:100%;horizontal-align: center;" hittest="false" startActive="true" particleName="particles/ui/ui_mainmenu_nav_play_mg.vpcf" cameraOrigin="0 470 0" lookAt="0 0 0" fov="100" />
+						<ParticleScenePanel id="MainMenuNavigateParticles" class="UiParticlePanel" style="width: 670px; height:100%;horizontal-align: center;-s2-mix-blend-mode: additive;" hittest="false" startActive="true" particleName="particles/ui/ui_mainmenu_nav_play_mg.vpcf" cameraOrigin="0 470 0" lookAt="0 0 0" fov="100" />
 						<Panel class="mainmenu-top-navbar__radio-btn__bg" />
 						<Panel class="mainmenu-top-navbar__left-container">
 							<RadioButton id="MainMenuNavBarHome" class="mainmenu-top-navbar__radio-iconbtn" group="NavBar" onactivate="MainMenu.OnHomeButtonPressed(); $.DispatchEvent( &apos;CSGOPlaySoundEffect&apos;, &apos;mainmenu_press_home&apos;, &apos;MOUSE&apos; ); $.DispatchEvent(&apos;PlayMainMenuMusic&apos;, true, true); GameInterfaceAPI.SetSettingString(&apos;panorama_play_movie_ambient_sound&apos;, &apos;1&apos;);" onmouseover="UiToolkitAPI.ShowTextTooltip(&apos;MainMenuNavBarHome&apos;, &apos;#tooltip_navbar_home&apos;);" onmouseout="UiToolkitAPI.HideTextTooltip();">
 								<Image class="mainmenu-top-navbar__radio-btn__icon" src="s2r://panorama/images/icons/ui/home.vsvg" />
 							</RadioButton>
-							<RadioButton id="MainMenuNavBarWatch" class="mainmenu-top-navbar__radio-iconbtn visible-if-not-limitedbeta" group="NavBar" onactivate="MainMenu.NavigateToTab(&apos;JsWatch&apos;, &apos;mainmenu_watch&apos;); MainMenu.WatchBtnPressedUpdateAlert();" onmouseover="UiToolkitAPI.ShowTextTooltip( &apos;MainMenuNavBarSettings&apos;, &apos;#tooltip_navbar_watch&apos; );" onmouseout="UiToolkitAPI.HideTextTooltip();">
+							<RadioButton id="MainMenuNavBarWatch" class="mainmenu-top-navbar__radio-iconbtn" group="NavBar" onactivate="MainMenu.NavigateToTab(&apos;JsWatch&apos;, &apos;mainmenu_watch&apos;); MainMenu.WatchBtnPressedUpdateAlert();" onmouseover="UiToolkitAPI.ShowTextTooltip( &apos;MainMenuNavBarSettings&apos;, &apos;#tooltip_navbar_watch&apos; );" onmouseout="UiToolkitAPI.HideTextTooltip();">
 								<Image class="mainmenu-top-navbar__radio-btn__icon" src="s2r://panorama/images/icons/ui/watch_tv.vsvg" />
 								<Frame id="MainMenuWatchAlert" class="hidden" src="s2r://panorama/layout/btn_alert.vxml_c" />
 							</RadioButton>
@@ -98,7 +99,7 @@
 								<Label class="mainmenu-top-navbar__radio-btn__label stratum-regular-condensed" text="#CSGO_MainMenu_Inventory" />
 							</RadioButton>
 							<Panel class="mainmenu-top-navbar__play_seperator mainmenu-top-navbar__play_seperator--small visible-if-not-limitedbeta" />
-							<RadioButton id="MainMenuNavBarLoadout" class="mainmenu-top-navbar__radio-btn" group="NavBar" onactivate="MainMenu.NavigateToTab(&apos;JsLoadout&apos;, &apos;loadout_grid&apos;); MainMenu.StatsBtnPressedUpdateAlert();" onmouseover="UiToolkitAPI.ShowTextTooltip( &apos;MainMenuNavBarLoadout&apos;, &apos;#tooltip_navbar_loadout&apos; );" onmouseout="UiToolkitAPI.HideTextTooltip();">
+							<RadioButton id="MainMenuNavBarLoadout" class="mainmenu-top-navbar__radio-btn" group="NavBar" onactivate="MainMenu.NavigateToTab(&apos;JsLoadout&apos;, &apos;loadout_grid&apos;); MainMenu.StatsBtnPressedUpdateAlert();">
 								<Frame id="MainMenuInvAlert" class="hidden" src="s2r://panorama/layout/btn_alert.vxml_c" />
 								<Label class="mainmenu-top-navbar__radio-btn__label stratum-regular-condensed" text="#CSGO_MainMenu_Loadout" />
 							</RadioButton>
@@ -110,9 +111,9 @@
 								</Panel>
 								<Panel class="mainmenu-top-navbar__play_seperator horizontal-align-right visible-if-not-limitedbeta" />
 							</RadioButton>
-							<RadioButton id="MainMenuNavBarStats" class="mainmenu-top-navbar__radio-btn visible-if-not-limitedbeta" group="NavBar" onactivate="MainMenu.NavigateToTab(&apos;JsPlayerStats&apos;, &apos;mainmenu_playerstats&apos;); MainMenu.StatsBtnPressedUpdateAlert();" onmouseover="UiToolkitAPI.ShowTextTooltip( &apos;MainMenuNavBarStats&apos;, &apos;#tooltip_navbar_stats&apos; );" onmouseout="UiToolkitAPI.HideTextTooltip();">
-								<Frame id="MainMenuSubscriptionAlert" class="hidden" src="s2r://panorama/layout/btn_alert.vxml_c" />
-								<Label class="mainmenu-top-navbar__radio-btn__label stratum-regular-condensed" text="#CSGO_MainMenu_Stats" />
+							<RadioButton id="MainMenuNavBarStore" class="mainmenu-top-navbar__radio-btn" group="NavBar" onactivate="MainMenu.NavigateToTab(&apos;JsMainMenuStore&apos;, &apos;mainmenu_store_fullscreen&apos;);">
+								<Frame id="MainMenuStoreAlert" class="hidden" src="s2r://panorama/layout/btn_alert.vxml_c" />
+								<Label class="mainmenu-top-navbar__radio-btn__label stratum-regular-condensed" text="#CSGO_MainMenu_Store" />
 							</RadioButton>
 							<Panel class="mainmenu-top-navbar__play_seperator mainmenu-top-navbar__play_seperator--small visible-if-not-limitedbeta" />
 							<RadioButton id="MainMenuNavBarNews" class="mainmenu-top-navbar__radio-btn" group="NavBar" onactivate="MainMenu.NavigateToTab(&apos;JsMainMenuNews&apos;, &apos;mainmenu_news&apos;);">

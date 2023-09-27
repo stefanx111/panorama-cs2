@@ -119,7 +119,7 @@
 	height: 100%;
 	horizontal-align: center;
 	background-image: url("s2r://panorama/images/backgrounds/bluedots_large_png.vtex");
-	background-size: 35% auto;
+	background-size: backgroundDotsSize;
 	background-img-opacity: .01;
 	transition-property: height, position;
 	transition-duration: .25s;

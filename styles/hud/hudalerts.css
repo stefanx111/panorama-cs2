@@ -43,7 +43,7 @@ CSGOHudAlerts .alert-bar-bg
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.0);
 	background-image: url("s2r://panorama/images/backgrounds/bluedots_large_png.vtex");
-	background-size: 150% auto;
+	background-size: backgroundDotsSize;
 	background-img-opacity: .04;
 	opacity: 0;
 	transition-delay: .25s;

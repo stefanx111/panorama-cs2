@@ -56,28 +56,27 @@ var friendLobby = ( function (){
 
 	var _SetSkillGroup = function ( elTile, gameMode )
 	{
-		var skillGroup = PartyBrowserAPI.GetPartySessionSetting( _m_xuid, 'game/ark' );
-		skillGroup = Math.floor( skillGroup/10 );
-		
-		var elSkillGroupImg = elTile.FindChildTraverse( 'JsFriendLobbySkillGroup' );
-
-		var szSkillGroupType = "skillgroup";
+		let szSkillGroupType = "skillgroup";
 		if ( gameMode === 'scrimcomp2v2' )
 		{
-			szSkillGroupType = 'wingman';
+			szSkillGroupType = 'Wingman';
 		}
-		else if ( gameMode === 'survival' )
-		{
-			szSkillGroupType = 'dangerzone';
-		}
-		
-		if( !skillGroup )
-			elSkillGroupImg.AddClass( 'hidden' );
 		else
 		{
-			elSkillGroupImg.RemoveClass( 'hidden' );
-			elTile.FindChildTraverse( 'JsFriendLobbySkillGroup' ).SetImage( 'file://{images}/icons/skillgroups/' + szSkillGroupType + skillGroup +'.svg' );
+			szSkillGroupType = 'Premier';
 		}
+
+		const options =
+		{
+			root_panel: elTile.FindChildTraverse( 'jsRatingEmblem' ),
+			xuid: _m_xuid,
+			do_fx: true,
+			full_details: false,
+			api: 'partybrowser',
+			rating_type: szSkillGroupType,
+		};
+
+		RatingEmblem.SetXuid( options );
 	};
 
 	var _SetLobbySettings = function ( elTile, gameMode )

@@ -159,7 +159,6 @@
 	text-shadow:1px 1px 1px #00000091;
 	font-family: stratum2Font;
 	color: white;
-	letter-spacing: 1px;
 	transition-property: color;
 	transition-duration: .25s;
 	transition-timing-function: ease-in-out;
@@ -230,6 +229,11 @@
 {
 	flow-children: right;
 	margin-top: 4px;
+}
+
+#jsRatingEmblem
+{
+	ui-scale: 65%;
 }
 
 .validation-results-container .friendtile,.popup-addfriend-entry .friendtile

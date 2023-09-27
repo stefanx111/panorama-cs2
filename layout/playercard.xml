@@ -86,9 +86,12 @@
 					</Panel>
 					<Panel class="player-card-xp__name-bar">
 						<Label id="JsPlayerRankName" class="player-card__text-subtitle stratum-medium" text="#XP_RankName_Display" />
-						<Panel class="player-card-xpbar">
-							<Panel class="player-card-xpbar__bar" />
-							<Panel id="JsPlayerXpBarInner" class="player-card-xpbar__bar--inner" />
+						<Panel class="player-card-xpbar__container">
+							<Panel class="player-card-xpbar">
+								<Panel class="player-card-xpbar__bar" />
+								<Panel id="JsPlayerXpBarInner" class="player-card-xpbar__bar--inner" />
+							</Panel>
+							<Image class="player-card-xpbar__care-package" src="s2r://panorama/images/icons/care_package.vsvg" texturewidth="20" textureheight="-1" />
 						</Panel>
 					</Panel>
 				</Panel>

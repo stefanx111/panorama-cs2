@@ -54,7 +54,7 @@
 						<Label id="id-eom-skillgroup__current_wins_desc" class="eom-skillgroup__info-label small stratum-medium" text="#XP_RankName_Display" />
 					</Panel>
 					<Label id="id-eom-skillgroup__current__title" class="eom-skillgroup__info-label small stratum-medium-italic hidden" text="#XP_RankName_Display" />
-					<Label id="id-eom-skillgroup__current__label" class="eom-skillgroup__info-label stratum-bold" text="{s:rank-info}" />
+					<Label id="id-eom-skillgroup__current__label" class="eom-skillgroup__info-label stratum-bold" text="{s:rank-info}" html="true" />
 				</Panel>
 			</Panel>
 			<Panel id="id-eom-skillgroup-premier-bg" class="eom-premier-skillgroup-data-bg">

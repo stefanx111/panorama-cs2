@@ -14,9 +14,6 @@
 				<RadioButton selected="false" group="tests" onactivate="PanelTypeTab(&apos;CSGOWeaponSelectionView&apos;, &apos;square&apos;)">
 					<Label allowrawtext="true" text="WeaponSelection" />
 				</RadioButton>
-				<RadioButton selected="false" group="tests" onactivate="PanelTypeTab(&apos;CSGODemolitionProgressionView&apos;, &apos;wide&apos;)">
-					<Label text="DemolitionProgress" />
-				</RadioButton>
 				<RadioButton selected="false" group="tests" onactivate="PanelTypeTab(&apos;CSGOTeamSelectMenu&apos;, &apos;max&apos;)">
 					<Label allowrawtext="true" text="TeamSelect" />
 				</RadioButton>

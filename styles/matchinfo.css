@@ -324,6 +324,11 @@
 	text-overflow:shrink;
 }
 
+.mi-tick-class-halftime-align Label
+{
+	margin-left: -16px;
+}
+
 .mi-tick-label--halftime
 {
 	width: regtime-width;

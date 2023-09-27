@@ -22,33 +22,12 @@ var PopupPrimeStatus = ( function ()
 		if( strState !== "elevated" )
 		{
 			m_btnPurchase.visible = true;
-			_SetUpPurchaseBtn();
+			PrimeButtonAction.SetUpPurchaseBtn( m_btnPurchase );
 
 			return;
 		}
 
 		m_btnPurchase.visible= false;
-	}
-
-	function _SetUpPurchaseBtn ()
-	{
-		               
-		                                            
-
-		var sPrice = StoreAPI.GetStoreItemSalePrice( InventoryAPI.GetFauxItemIDFromDefAndPaintIndex( 1353, 0 ), 1, '' );
-		m_btnPurchase.SetDialogVariable( "price", sPrice ? sPrice : '$0' );
-		
-		m_btnPurchase.SetPanelEvent('onactivate', function () {
-			SteamOverlayAPI.OpenURL( _GetStoreUrl() + '/sub/54029');
-			$.DispatchEvent('UIPopupButtonClicked', '');
-		});
-	}
-
-	function _GetStoreUrl()
-	{
-		return 'https://store.' +
-			((SteamOverlayAPI.GetAppID() == "710") ? 'beta.' : '') +
-			((MyPersonaAPI.GetSteamType() === 'china' || MyPersonaAPI.GetLauncherType() === "perfectworld" ) ? 'steamchina' : 'steampowered') + '.com';
 	}
 
 	function _UpdateEleveatedStatusPanel()

@@ -205,3 +205,9 @@
 	wash-color: baseText;
 }
 
+#jsRatingEmblem
+{
+	ui-scale: 80%;
+	vertical-align:center;
+}
+

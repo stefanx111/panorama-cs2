@@ -135,7 +135,8 @@ var TooltipLobby = ( function ()
 
 		var flags = parseInt( m_GameSettings.gamemodeflags );
 		
-		if ( !flags || !GameModeFlags.DoesModeUseFlags( m_GameSettings.mode ) )
+		if ( !flags || !GameModeFlags.DoesModeUseFlags( m_GameSettings.mode ) ||
+			!GameModeFlags.DoesModeShowUserVisibleFlags( m_GameSettings.mode ) )
 		{
 			elContainer.visible = false;
 			return;

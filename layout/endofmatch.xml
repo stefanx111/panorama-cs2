@@ -22,6 +22,15 @@
 				<CSGOEndOfMatchVotingPanel id="eom-voting" class="eom-panel" />
 			</Panel>
 		</snippet>
+		<snippet name="snippet-eom-layout--premier">
+			<Panel class="eom-layout">
+				<Frame id="eom-win" class="eom-panel" src="s2r://panorama/layout/endofmatch-win.vxml_c" />
+				<CSGOEndOfMatchCharactersPanel id="eom-characters" class="eom-panel" />
+				<CSGOEndOfMatchSkillgroupPanel id="eom-skillgroup" class="eom-panel" />
+				<CSGOEndOfMatchXpPanel id="eom-rank" class="eom-panel" />
+				<CSGOEndOfMatchVotingPanel id="eom-voting" class="eom-panel" />
+			</Panel>
+		</snippet>
 		<snippet name="snippet_navbar-button">
 			<RadioButton group="eom-nav" class="content-navbar__tabs__btn hidden">
 				<Label id="id-navbar-button__label" />

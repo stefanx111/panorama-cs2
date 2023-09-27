@@ -10,7 +10,7 @@
 			<Panel id="Header" draggable="true">
 				<Label id="Title" text="Console" unlocalized="true" />
 				<Panel class="FillWidth" />
-				<TextButton id="CloseButton" text="X" unlocalized="true" onactivate="SetConsoleUIVisible( false )" />
+				<TextButton id="CloseButton" text="X" unlocalized="true" onactivate="CloseConsole()" />
 			</Panel>
 			<Panel id="ConsoleLog">
 				<ConsoleText id="ConsoleText" AllowOversized="1" scrollparenttofitwhenfocused="false" />

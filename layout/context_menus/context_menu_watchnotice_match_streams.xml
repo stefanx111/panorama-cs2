@@ -19,7 +19,7 @@
 			</Button>
 		</snippet>
 	</snippets>
-	<ContextMenuCustomLayout hittest="true" class="contextmenu-watchnotice_match_streams ContextMenuItem" onload="ContextMenuWatchNoticeMatchStream.Init()">
+	<Panel hittest="true" class="contextmenu-watchnotice_match_streams ContextMenuItem" onload="ContextMenuWatchNoticeMatchStream.Init()">
 		<Button id="id-watchnotice__event__match" class="contextmenu-watchnotice_match_streams__url-link">
 			<Label text="#eventsched_match_link" />
 		</Button>
@@ -33,5 +33,5 @@
 			<Label text="#eventsched_no_streams" />
 		</Button>
 		<Panel id="id-watchnotice__event__match__stream-container" class="top-bottom-flow TopSeparator" />
-	</ContextMenuCustomLayout>
+	</Panel>
 </root>

@@ -8,7 +8,7 @@
 	</styles>
 	<scripts>
 		<include src="s2r://panorama/scripts/popups/popup_tournament_journal.vjs_c" />
-		<include src="s2r://panorama/scripts/generated/items_event_current_generated_store.vjs_c" />
+		<include src="s2r://panorama/scripts/generated/items_event_current_generated_store.vts_c" />
 		<include src="s2r://panorama/scripts/common/iteminfo.vts_c" />
 	</scripts>
 	<snippets>

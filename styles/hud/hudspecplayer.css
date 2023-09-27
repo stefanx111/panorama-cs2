@@ -41,7 +41,7 @@
 	vertical-align: bottom;
 	horizontal-align: center;
 	background-image: url("s2r://panorama/images/backgrounds/bluedots_large_png.vtex");
-	background-size: 115% auto;
+	background-size: backgroundDotsSize;
 	background-img-opacity: .03;
 }
 

@@ -29,7 +29,7 @@
         }
     
     ]]></script>
-	<ContextMenuCustomLayout onload="SetupContextMenu()">
+	<Panel onload="SetupContextMenu()">
 		<TextButton id="DynamicButton" class="PopupButton" onactivate="OnTestPressed()" />
-	</ContextMenuCustomLayout>
+	</Panel>
 </root>

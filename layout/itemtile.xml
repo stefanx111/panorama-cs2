@@ -20,15 +20,19 @@
 		<Label class="item-tile__recent hidden" id="JsRecent" text="#inv_session_prop_recent" />
 		<Panel class="item-tile__equipped">
 			<Panel id="ItemEquipped-noteam" class="item-tile__equipped__radiodot item-tile__equipped__radiodot--noteam hidden" />
-			<Panel id="ItemEquipped-ct" class="item-tile__equipped__radiodot item-tile__equipped__radiodot--ct hidden" />
-			<Panel id="ItemEquipped-t" class="item-tile__equipped__radiodot item-tile__equipped__radiodot--t hidden" />
 			<Panel id="FavoriteIcon-noteam" class="item-tile__equipped__favicon item-tile__equipped__favicon--noteam hidden" />
+			<Panel id="ItemEquipped-ct" class="item-tile__equipped__radiodot item-tile__equipped__radiodot--ct hidden" />
 			<Panel id="FavoriteIcon-ct" class="item-tile__equipped__favicon item-tile__equipped__favicon--ct hidden" />
+			<Panel id="ItemEquipped-t" class="item-tile__equipped__radiodot item-tile__equipped__radiodot--t hidden" />
 			<Panel id="FavoriteIcon-t" class="item-tile__equipped__favicon item-tile__equipped__favicon--t hidden" />
 		</Panel>
 		<Panel id="StickersOnWeapon" class="item-tile__stickers" />
 		<Panel class="item-tile__multi-select">
-			<Image id="IconMultiSelect" texturewidth="32" textureheight="32" src="s2r://panorama/images/icons/ui/check.vsvg" />
+			<Image id="IconMultiSelect" texturewidth="20" textureheight="20" src="s2r://panorama/images/icons/ui/check.vsvg" />
 		</Panel>
+		<Button class="full-width full-height" onactivate="ItemTile.OnActivate()" oncontextmenu="ItemTile.OnActivate()" />
+		<Button class="item-tile__inspect" onactivate="ItemTile.OnActivateInspectButtonFropmTile();">
+			<Image id="IconMultiSelect" texturewidth="22" textureheight="22" src="s2r://panorama/images/icons/ui/zoom_in.vsvg" />
+		</Button>
 	</Panel>
 </root>

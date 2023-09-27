@@ -12,6 +12,7 @@ var CapabiityHeader = ( function()
 	var m_isXrayMode = false;
 	var m_allowXrayClaim = false;
 	var m_allowXrayPurchase = false;
+	var m_inspectOnly = false;
 	
 	var _Init = function( elPanel, itemId, funcGetSettingCallback )
 	{
@@ -22,6 +23,7 @@ var CapabiityHeader = ( function()
 		m_isXrayMode = ( funcGetSettingCallback( "isxraymode", "no" ) === 'yes' ) ? true : false; 
 		m_allowXrayPurchase = ( funcGetSettingCallback( "allowxraypurchase", "no" ) === 'yes' ) ? true : false; 
 		m_allowXrayClaim = ( funcGetSettingCallback( "allowxrayclaim", "no" ) === 'yes' ) ? true : false; 
+		m_inspectOnly = ( funcGetSettingCallback( 'inspectonly', 'false' ) === 'true' ) ? true : false;
 
 		                                                                              
 		if ( !m_worktype && !m_storeItemid )
@@ -62,7 +64,11 @@ var CapabiityHeader = ( function()
 		var elTitle = elPanel.FindChildInLayoutFile( 'CapabilityTitle' );
 		m_worktype = m_storeItemid ? 'purchase' : m_worktype;
 		
-		if ( m_isXrayMode )
+		if ( m_inspectOnly && m_worktype === 'decodeable' )
+		{
+			elTitle.text = '#popup_cartpreview_title';
+		}
+		else if ( m_isXrayMode )
 		{
 			if ( m_allowXrayPurchase || m_allowXrayClaim )
 			{
@@ -137,7 +143,11 @@ var CapabiityHeader = ( function()
 	{
 		var sDescString = '';
 		
-		if ( m_isXrayMode )
+		if ( m_worktype === 'decodeable'&& m_inspectOnly )
+		{
+			sDescString = "#popup_preview_desc";
+		}
+		else if ( m_isXrayMode )
 		{
 			if( m_allowXrayClaim || m_allowXrayPurchase )
 			{

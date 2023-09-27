@@ -43,20 +43,6 @@
 				</Panel>
 			</Panel>
 		</snippet>
-		<snippet name="ProgressionPip">
-			<Panel class="progression-pip additive" />
-		</snippet>
-		<snippet name="ProgressionIcon">
-			<Panel class="weapon-selection-progression-item additive">
-				<Image class="WEAPON-ICON weapon-selection-progression-item-icon-main" src="s2r://panorama/images/icons/equipment/flashbang.vsvg" textureheight="50" svgstrokewidth="1" svgstrokeopacity="1" svgstroke="#ffffff" svgfillopacity="0" />
-				<Label class="weapon-selection-progression-item-level" text="{d:r:ProgressionIcon--level}" />
-			</Panel>
-		</snippet>
-		<snippet name="DemolitionIcon">
-			<Panel class="weapon-selection-demolition-item additive">
-				<Image class="WEAPON-ICON weapon-selection-demolition-item-icon-main" src="s2r://panorama/images/icons/equipment/flashbang.vsvg" textureheight="50" svgstrokewidth="1" svgstrokeopacity="1" svgstroke="#ffffff" svgfillopacity="0" />
-			</Panel>
-		</snippet>
 		<snippet name="grenadePip">
 			<Panel class="grenade-pip_container">
 				<Image src="s2r://panorama/images/hud/weapon_pip.vsvg" class="grenade-pip" textureheight="80" scaling="stretch-to-fit-preserve-aspect" />
@@ -69,7 +55,7 @@
 			</Panel>
 		</snippet>
 	</snippets>
-	<CSGOHudWeaponSelection class="weapon-selection">
+	<CSGOWeaponSelectionViewAbstract class="weapon-selection">
 		<Panel class="weapon-selection-classic" hittest="false">
 			<Panel id="id-weapon-selection-list__always-on-container" class="weapon-selection-list__always-on-container">
 				<Panel class="hud-bottom-row-background--right">
@@ -91,21 +77,5 @@
 			</Panel>
 			<Panel class="weapon-selection-list" id="weapon-selection-list" hittest="false" />
 		</Panel>
-		<Panel class="weapon-selection-demolition">
-			<Label class="weapon-selection-demolition-label" text="#SFUI_WS_GG_AwardNextRound" />
-			<Panel class="weapon-selection-demolition-rewardrow">
-				<Panel class="weapon-selection-demolition-container" id="weapon-selection-demolition" />
-				<Panel class="weapon-selection-demolition-reward">
-					<Label class="weapon-selection-demolition-reward-text" text="#SFUI_ARFlashAlert_BonusGrenade" />
-				</Panel>
-			</Panel>
-		</Panel>
-		<Panel class="weapon-selection-progression">
-			<Panel class="weapon-selection-progression-list" id="weapon-selection-progression" />
-			<Panel class="weapon-selection-progression-xp">
-				<Label text="{d:r:HudWeaponSelection--progression-maxlevel}" />
-				<Panel class="weapon-selection-progression-xp-container" id="weapon-selection-xp" />
-			</Panel>
-		</Panel>
-	</CSGOHudWeaponSelection>
+	</CSGOWeaponSelectionViewAbstract>
 </root>

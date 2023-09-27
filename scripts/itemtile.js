@@ -85,13 +85,13 @@ var ItemTile = ( function()
 			InventoryPanel.GetCapabilityInfo().multiselectItemIds &&
 			InventoryPanel.GetCapabilityInfo().multiselectItemIds.hasOwnProperty( id ) );
 		
-		$.GetContextPanel().SetHasClass( 'capability_multistatus_selected', bSelectedInMultiSelect );
+		$.GetContextPanel().SetHasClass( 'capability_multistatus_selected', bSelectedInMultiSelect && !$.GetContextPanel().BHasClass('capability_multistatus_selected'));
 	};
 
-	                             
-	    
-	   	                                                                   
-	     
+	var _UpdatePopUpCapabilityList = function()
+	{
+		InventoryPanel.UpdateItemListCallback();
+	}
 
 	var _SetImage = function( id )
 	{
@@ -302,7 +302,7 @@ var ItemTile = ( function()
 		var filterForContextMenuEntries = filterValue ? '&populatefiltertext=' + filterValue : '';
 		                                    
 		var contextMenuPanel = UiToolkitAPI.ShowCustomLayoutContextMenuParametersDismissEvent(
-			'',
+			'popup-inspect-' + id,
 			'',
 			'file://{resources}/layout/context_menus/context_menu_inventory_item.xml',
 			'itemid=' + id + filterForContextMenuEntries,
@@ -312,6 +312,13 @@ var ItemTile = ( function()
 		);
 		contextMenuPanel.AddClass( "ContextMenu_NoArrow" );
 	};
+
+	var _OnActivateInspectButtonFropmTile = function()
+	{
+		var id = $.GetContextPanel().GetAttributeString( 'itemid', '0' );
+		var capabilityInfo = _GetPopUpCapability();
+		_CapabilityItemInsideCasketAction( capabilityInfo.initialItemId, id );
+	}
 
 	var _GetPopUpCapability = function()
 	{
@@ -344,7 +351,7 @@ var ItemTile = ( function()
 	var _CapabilityNameableAction = function( idsToUse )
 	{
 		UiToolkitAPI.ShowCustomLayoutPopupParameters(
-			'',
+			'popup-inspect-' + idsToUse.item,
 			'file://{resources}/layout/popups/popup_capability_nameable.xml',
 			'nametag-and-itemtoname=' + idsToUse.tool + ',' + idsToUse.item +
 			'&' + 'asyncworktype=nameable'
@@ -354,7 +361,7 @@ var ItemTile = ( function()
 	var _CapabilityCanStickerAction = function( idsToUse )
 	{
 		UiToolkitAPI.ShowCustomLayoutPopupParameters(
-			'',
+			'popup-inspect-' + idsToUse.item,
 			'file://{resources}/layout/popups/popup_capability_can_sticker.xml',
 			'toolid-and-itemid=' + idsToUse.tool + ',' + idsToUse.item +
 			'&' + 'asyncworktype=can_sticker'
@@ -364,7 +371,7 @@ var ItemTile = ( function()
 	var _CapabilityCanPatchAction = function( idsToUse )
 	{
 		UiToolkitAPI.ShowCustomLayoutPopupParameters(
-			'',
+			'popup-inspect-' + idsToUse.item,
 			'file://{resources}/layout/popups/popup_capability_can_patch.xml',
 			'toolid-and-itemid=' + idsToUse.tool + ',' + idsToUse.item +
 			'&' + 'asyncworktype=can_patch'
@@ -374,7 +381,7 @@ var ItemTile = ( function()
 	var _CapabilityDecodableAction = function( idsToUse )
 	{
 		UiToolkitAPI.ShowCustomLayoutPopupParameters(
-			'',
+			'popup-inspect-' + idsToUse.item,
 			'file://{resources}/layout/popups/popup_capability_decodable.xml',
 			'key-and-case=' + idsToUse.tool + ',' + idsToUse.item +
 			'&' + 'asyncworktype=decodeable'
@@ -419,9 +426,12 @@ var ItemTile = ( function()
 		}
 	};
 
+	var jsUpdateItemListCallback = UiToolkitAPI.RegisterJSCallback(_UpdatePopUpCapabilityList );
+
 	var _CapabilityItemInsideCasketAction = function( idCasket, idItem )
 	{
 		                                                              
+		var capabilityInfo = _GetPopUpCapability();
 
 		UiToolkitAPI.ShowCustomLayoutPopupParameters(
 			'',
@@ -429,8 +439,11 @@ var ItemTile = ( function()
 			'itemid=' + idItem +
 			'&' + 'inspectonly=true' +
 			'&' + 'insidecasketid=' + idCasket +
+			'&' + 'capability=' + capabilityInfo.capability +
 			'&' + 'showequip=false' +
-			'&' + 'allowsave=false',
+			'&' + 'allowsave=false' +
+			'&' + 'isselected=' + $.GetContextPanel().BHasClass( 'capability_multistatus_selected' ) + 
+			'&' + 'callback=' + jsUpdateItemListCallback,
 			'none'
 		);
 	}
@@ -529,7 +542,8 @@ var ItemTile = ( function()
 		OnActivate		: _OnActivate,
 		ShowTooltip		: _ShowTooltip,
 		HideTooltip		: _HideTooltip,
-		Ondblclick		: _Ondblclick
+		Ondblclick		: _Ondblclick,
+		OnActivateInspectButtonFropmTile: _OnActivateInspectButtonFropmTile
 	};
 } )();
 

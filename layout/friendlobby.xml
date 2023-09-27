@@ -25,6 +25,7 @@
 				</Button>
 				<Label id="JsRegionLabel" class="right-margin" text="" />
 				<Image id="JsFriendLobbySkillGroup" class="friendlobby__row__icon-skillgroup" textureheight="20" texturewidth="-1" defaultsrc="" />
+				<Frame id="jsRatingEmblem" src="s2r://panorama/layout/rating_emblem.vxml_c" />
 				<Panel class="friendlobby__row-name">
 					<Image id="JsFriendLobbyPrime" class="friendlobby__row__icon-prime" src="s2r://panorama/images/icons/ui/prime.vsvg" texturewidth="20" textureheight="20" />
 					<Label id="JsFriendLobbyLeaderName" html="true" class="friendlobby__text fontWeight-Bold" text="" />

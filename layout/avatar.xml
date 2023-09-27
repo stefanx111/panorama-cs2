@@ -8,7 +8,7 @@
 	<scripts />
 	<snippets>
 		<snippet name="AvatarPlayerCard">
-			<Button class="avatar" acceptsinput="false">
+			<Panel class="avatar" acceptsinput="false">
 				<Panel class="avatar-image">
 					<Panel>
 						<Panel class="avatar-image__default" />
@@ -19,10 +19,10 @@
 				<Panel class="avatar-flair">
 					<Image id="JsAvatarFlair" class="avatar-flair__icon" src="" scaling="stretch-to-fit-preserve-aspect" />
 				</Panel>
-			</Button>
+			</Panel>
 		</snippet>
 		<snippet name="AvatarParty">
-			<Button class="avatar avatar--party">
+			<Panel class="avatar avatar--party">
 				<Panel class="avatar-image">
 					<Panel>
 						<Panel class="avatar-image__default" />
@@ -44,7 +44,7 @@
 						<Panel class="SoundIcon3" />
 					</Panel>
 				</Panel>
-			</Button>
+			</Panel>
 		</snippet>
 		<snippet name="AvatarNoFlair">
 			<Panel class="avatar">

@@ -7,6 +7,7 @@
 	</styles>
 	<scripts>
 		<include src="s2r://panorama/scripts/common/iteminfo.vts_c" />
+		<include src="s2r://panorama/scripts/common/tint_spray_icon.vts_c" />
 		<include src="s2r://panorama/scripts/mainmenu_store_tile_linked.vjs_c" />
 	</scripts>
 	<Panel class="store-panel__carousel__item" onload="MainMenuStoreTileLinked.Init();">

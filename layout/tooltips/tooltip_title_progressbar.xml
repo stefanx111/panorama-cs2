@@ -10,7 +10,7 @@
 	<TooltipTitleText class="TitleTextContents" ontooltiploaded="TooltipProgress.Init()">
 		<Label id="TitleLabel" html="true" />
 		<Label id="TextLabel" html="true" />
-		<Panel class="left-right-flow full-width top-padding">
+		<Panel id="ProgressBarContainer" class="left-right-flow full-width top-padding">
 			<Label id="TextPercentage" html="true" />
 			<Panel class="tooltip-progress-bar">
 				<Panel class="tooltip-progress-bar__bar full-width" />

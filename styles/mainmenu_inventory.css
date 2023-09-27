@@ -79,7 +79,7 @@
 
 .inv-popup-title__image
 {
-	height: 96px;
+	height: 50px;
 	width: height-percentage( 130% );
 	vertical-align: center;
 	margin: 0px 12px;
@@ -265,5 +265,10 @@
 	vertical-align: top;
 	margin-top: 2px;
 	margin-right: 4px;
+}
+
+.inv-arrow-btn--image
+{
+	transform: rotateZ(90deg);
 }
 

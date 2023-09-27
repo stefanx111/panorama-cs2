@@ -559,7 +559,7 @@ var matchInfo = ( function() {
         var nOvertime = Math.ceil( ( totalRounds - maxRounds ) / 6 );
         if ( nOvertime > 0 )
         {
-            totalRounds = 30 + 6 * nOvertime;
+            totalRounds = maxRounds + 6 * nOvertime;
         }
         var totalBars = elStatsContainer.Children().length;
 
@@ -598,6 +598,7 @@ var matchInfo = ( function() {
             if ( n > maxRounds && ( ( n - maxRounds ) % 6 == 0 ) )
                 return true;
 
+            return false;
         }
 
         function _IsMinorTick ( n )
@@ -671,7 +672,9 @@ var matchInfo = ( function() {
 
         function _GetLabelForTick ( n )
         {
-            if ( _IsRightOfHalftime( n ) || _IsLeftOfHalftime( n ) )
+            if ( _IsRightOfHalftime( n ) )
+                return '<>';
+            else if ( _IsRightOfHalftime( n ) || _IsLeftOfHalftime( n ) )
                 return '';
             else if ( _IsMajorTick( n ) || _IsMinorTick( n ))
                 return n;
@@ -809,7 +812,9 @@ var matchInfo = ( function() {
             var elTick = $.CreatePanel( 'Panel', elTickLabels, 'id-tick' + i );
             elTick.BLoadLayoutSnippet( 'snippet-tick' );
 
-            elTick.SetDialogVariable( 'n', _GetLabelForTick( i ));
+            let strLabelForTick = _GetLabelForTick( i );
+            elTick.SetDialogVariable( 'n', strLabelForTick );
+            elTick.SetHasClass( 'mi-tick-class-halftime-align', strLabelForTick === '<>' );
         }
 
 

@@ -9,10 +9,10 @@
 		<include src="s2r://panorama/scripts/common/iteminfo.vts_c" />
 		<include src="s2r://panorama/scripts/context_menus/context_menu_rewards.vjs_c" />
 	</scripts>
-	<ContextMenuCustomLayout onload="ContextMenuRewards.Init()" class="ContextMenuItem" acceptsinput="true" acceptsfocus="true">
+	<Panel onload="ContextMenuRewards.Init()" class="ContextMenuItem" acceptsinput="true" acceptsfocus="true">
 		<Panel class="Rewards">
 			<Image class="right-margin vertical-center" texturewidth="24" textureheight="24" src="s2r://panorama/images/icons/ui/info.vsvg" />
 			<Label class="stratum-font" text="#op_more_rewards_desc" />
 		</Panel>
-	</ContextMenuCustomLayout>
+	</Panel>
 </root>

@@ -98,8 +98,8 @@
 					<Panel class="SettingsMenuDropdownContainer">
 						<Label text="#SFUI_Settings_Enable_WorkshopTools" class="half-width" />
 						<CSGOSettingsEnumDropDown class="PopupButton White" convar="install_dlc_workshoptools">
-							<Label text="#GameUI_No" value="0" id="installdlcworkshoptools0" />
 							<Label text="#GameUI_Yes" value="1" id="installdlcworkshoptools1" />
+							<Label text="#GameUI_No" value="0" id="installdlcworkshoptools0" />
 						</CSGOSettingsEnumDropDown>
 					</Panel>
 					<Panel class="horizontal-separator" />
@@ -201,8 +201,8 @@
 					<Panel class="SettingsMenuDropdownContainer">
 						<Label text="#SFUI_Settings_MuteEnemies_Title" class="half-width" />
 						<CSGOSettingsEnumDropDown class="PopupButton White" convar="cl_mute_enemy_team">
-							<Label text="#GameUI_No" value="0" id="muteenemies0" />
 							<Label text="#GameUI_Yes" value="1" id="muteenemies1" />
+							<Label text="#GameUI_No" value="0" id="muteenemies0" />
 						</CSGOSettingsEnumDropDown>
 					</Panel>
 					<Panel class="horizontal-separator" />
@@ -228,8 +228,8 @@
 					<TooltipPanel id="AllowAnimatedAvatars" class="SettingsMenuDropdownContainer" tooltip="#Settings_AllowAnimatedAvatars_Title_Tooltip">
 						<Label text="#Settings_AllowAnimatedAvatars_Title" class="half-width" />
 						<CSGOSettingsEnumDropDown class="PopupButton White" convar="cl_allow_animated_avatars">
-							<Label text="#GameUI_No" value="0" id="cl_allow_animated_avatars_0" />
 							<Label text="#GameUI_Yes" value="1" id="cl_allow_animated_avatars_1" />
+							<Label text="#GameUI_No" value="0" id="cl_allow_animated_avatars_0" />
 						</CSGOSettingsEnumDropDown>
 					</TooltipPanel>
 					<Panel class="horizontal-separator" />
@@ -245,8 +245,8 @@
 					<TooltipPanel class="SettingsMenuDropdownContainer" tooltip="#SFUI_Settings_SanitizeNames_Title_Tooltip">
 						<Label text="#SFUI_Settings_SanitizeNames_Title" class="half-width" />
 						<CSGOSettingsEnumDropDown class="PopupButton White" convar="cl_sanitize_player_names">
-							<Label text="#GameUI_No" value="0" id="sanitizenames0" />
 							<Label text="#GameUI_Yes" value="1" id="sanitizenames1" />
+							<Label text="#GameUI_No" value="0" id="sanitizenames0" />
 						</CSGOSettingsEnumDropDown>
 					</TooltipPanel>
 					<Panel class="horizontal-separator" />
@@ -298,13 +298,6 @@
 						<CSGOSettingsSlider text="#SFUI_Settings_Spec_InterpCameraSpeed" max="0.4" min="0.05" displayprecision="2" convar="cl_obs_interp_pos_rate" />
 					</TooltipPanel>
 					<Panel class="horizontal-separator" />
-					<TooltipPanel class="SettingsMenuDropdownContainer" tooltip="#SFUI_Settings_EnableAutomaticDeathcamReplay_Info">
-						<Label text="#SFUI_Settings_EnableAutomaticDeathcamReplay" class="half-width" />
-						<CSGOSettingsEnumDropDown class="PopupButton White" convar="spec_replay_autostart">
-							<Label text="#GameUI_Yes" value="1" id="deathcamreplay0" />
-							<Label text="#GameUI_No" value="0" id="deathcamreplay1" />
-						</CSGOSettingsEnumDropDown>
-					</TooltipPanel>
 				</Panel>
 			</Panel>
 			<Panel id="SettingsItemSettings" class="SettingsBackground">
@@ -519,8 +512,8 @@
 						<Panel id="XhairUseWeaponGap" class="SettingsMenuDropdownContainer">
 							<Label text="#GameUI_ShowWeaponGap" class="half-width" />
 							<CSGOSettingsEnumDropDown class="PopupButton White" convar="cl_crosshairgap_useweaponvalue">
-								<Label text="#GameUI_No" value="0" id="weapongap0" />
 								<Label text="#GameUI_Yes" value="1" id="weapongap1" />
+								<Label text="#GameUI_No" value="0" id="weapongap0" />
 							</CSGOSettingsEnumDropDown>
 						</Panel>
 					</TooltipPanel>

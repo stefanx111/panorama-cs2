@@ -37,16 +37,8 @@
 								<CSGOSettingsEnumDropDown id="MainMenuBkgSettingContainer" class="PopupButton White" convar="ui_mainmenu_bkgnd_movie" />
 							</TooltipPanel>
 							<Panel class="horizontal-separator" />
-							<TooltipPanel class="SettingsMenuDropdownContainer" tooltip="#SFUI_Settings_ColorMode">
-								<Label text="#GameUI_DisplayMode" class="half-width" />
-								<CSGOSettingsEnumDropDown onuserinputsubmit="SettingsMenuShared.VideoSettingsOnUserInputSubmit()" class="PopupButton White" id="ColorMode">
-									<Label text="#GameUI_DisplayMonitor" value="0" id="tvmode0" />
-									<Label text="#GameUI_DisplayTV" value="1" id="tvmode1" />
-								</CSGOSettingsEnumDropDown>
-							</TooltipPanel>
-							<Panel class="horizontal-separator" />
 							<TooltipPanel class="SettingsMenuDropdownContainer" tooltip="#SFUI_Settings_Brightness">
-								<CSGOSettingsSlider disabled="true" onvaluechanged="SettingsMenuShared.VideoSettingsOnUserInputSubmit()" id="brightness" text="#GameUI_Brightness" max="2.6" min="1.6" invert="true" percentage="true" value100percent="2.0" convar="r_fullscreen_gamma" />
+								<CSGOSettingsSlider disabled="true" onvaluechanged="SettingsMenuShared.VideoSettingsOnUserInputSubmit()" id="brightness" text="#GameUI_Brightness" max="4.0" min="1.0" invert="true" percentage="true" value100percent="2.0" convar="r_fullscreen_gamma" />
 							</TooltipPanel>
 							<Panel class="horizontal-separator" />
 							<Panel class="SettingsMenuDropdownContainer">

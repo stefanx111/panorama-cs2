@@ -9,9 +9,8 @@
 	</styles>
 	<scripts>
 		<include src="s2r://panorama/scripts/common/tint_spray_icon.vts_c" />
-		<include src="s2r://panorama/scripts/inspect.vts_c" />
 		<include src="s2r://panorama/scripts/common/characteranims.vts_c" />
-		<include src="s2r://panorama/scripts/common/tint_spray_icon.vts_c" />
+		<include src="s2r://panorama/scripts/inspect.vts_c" />
 	</scripts>
 	<snippets>
 		<snippet name="snippet-image">

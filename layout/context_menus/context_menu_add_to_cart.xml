@@ -6,7 +6,7 @@
 	</styles>
 	<scripts>
 		<include src="s2r://panorama/scripts/common/iteminfo.vts_c" />
-		<include src="s2r://panorama/scripts/generated/items_event_current_generated_store.vjs_c" />
+		<include src="s2r://panorama/scripts/generated/items_event_current_generated_store.vts_c" />
 		<include src="s2r://panorama/scripts/context_menus/context_menu_add_to_cart.vjs_c" />
 	</scripts>
 	<snippets>
@@ -34,7 +34,7 @@
 			</Panel>
 		</snippet>
 	</snippets>
-	<ContextMenuCustomLayout class="add-to-cart" onload="ContextMenuAddToCart.Init()" acceptsfocus="true" useglobalcontext="false">
+	<Panel class="add-to-cart" onload="ContextMenuAddToCart.Init()" acceptsfocus="true" useglobalcontext="false">
 		<Panel id="ItemContainer" class="item-container" />
-	</ContextMenuCustomLayout>
+	</Panel>
 </root>

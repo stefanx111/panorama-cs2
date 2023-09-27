@@ -573,7 +573,7 @@ CSGOHudTeamCounter
 	background-color: #0000006f;
 	border-radius: 0px;
 	background-image: url("s2r://panorama/images/backgrounds/bluedots_large_png.vtex");
-	background-size: 600% auto;
+	background-size: backgroundDotsSize;
 	background-img-opacity: 0.03;
 }
 
@@ -1257,12 +1257,12 @@ CSGOHudTeamCounter
 	text-shadow: hud-outline-shadow;
 }
 
-.GameModeGunGameProgressive #TeamCounter
+.GameModeGunGame #TeamCounter
 {
 	flow-children: down;
 }
 
-.GameModeGunGameProgressive .team__large_container--left,.GameModeGunGameProgressive .team__large_container--right
+.GameModeGunGame .team__large_container--left,.GameModeGunGame .team__large_container--right
 {
 	visibility: collapse;
 }

@@ -175,16 +175,6 @@
 					<Panel class="WinPanelRow__BG__Side horizontal-align-right" />
 				</Panel>
 			</Panel>
-			<Panel id="GunGameExtra" class="WinPanelRow WinPanelRow--FlowDown GunGameExtra">
-				<Panel class="GunGameExtra__Center">
-					<Label id="GunGameExtraTitle" class="GunGameExtra__Text" text="{s:winpanel-gungame-extra-title}" />
-					<Label id="GunGameExtraWeaponName" class="GunGameExtra__Text GunGameExtra__Text--Bold" text="{s:winpanel-gungame-extra-weaponname}" />
-				</Panel>
-				<Panel class="GunGameExtra__Center">
-					<Image id="GunGameExtraWeaponIcon" class="GunGameExtra__Icon" />
-					<Image id="GunGameExtraGrenadeIcon" class="GunGameExtra__Icon" />
-				</Panel>
-			</Panel>
 		</Panel>
 	</CSGOHudWinPanel>
 </root>

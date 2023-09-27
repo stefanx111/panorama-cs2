@@ -886,7 +886,8 @@ var mainmenu_watch_eventsched = ( function()
 						return undefined;
 					}
 
-					watchMatchTile.Init( elMatch, oMatch, _GetTeam( 1 ), _GetTeam( 2 ) );
+					                                    
+					                                                                       
 				}
 			}
 			else if ( isOngoing )

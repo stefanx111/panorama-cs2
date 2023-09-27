@@ -95,7 +95,9 @@
 	<PopupCustomLayout class="PopupPanel Capability Hidden" useglobalcontext="true" popupbackground="blur" oncancel="CapabilityDecodable.ClosePopUp();" onload="CapabilityDecodable.Init();">
 		<Panel class="mainmenu-content__container mainmenu-content__container--inspect" hittest="true">
 			<Panel id="PopUpInspectFullScreenHostContainer" class="full-width full-height">
-				<Frame id="PopUpInspectModelOrImage" hitest="false" src="s2r://panorama/layout/inspect.vxml_c" />
+				<CSGOBlurTarget blurrects="DecodableLootlistContainer" class="full-height full-width popup-decodable-blur-target" force-no-composition-layer="true">
+					<Frame id="PopUpInspectModelOrImage" hitest="false" src="s2r://panorama/layout/inspect.vxml_c" />
+				</CSGOBlurTarget>
 				<Panel class="popup-inspect-border" hittest="false" />
 				<Frame id="PopUpCapabilityHeader" class="hidden" src="s2r://panorama/layout/popups/popup_capability_header.vxml_c" />
 				<Panel id="XrayItemsPanel" class="popup-xray-container hidden" hittest="false">
@@ -123,7 +125,16 @@
 					</Panel>
 				</Panel>
 				<Panel id="DecodableLootlistContainer" class="popup-decodable-lootlist-container hidden">
-					<Label id="CanDecodableDesc" html="true" class="fontSize-m horizontal-align-left bottom-padding" text="#SFUI_InvUse_Items_InContainer_Header" />
+					<Panel class="full-width">
+						<Label id="CanDecodableDesc" html="true" class="popup-decodable-lootlist-single-reward stratum-regular-tf" text="#Econ_Revolving_Loot_List" />
+						<Panel id="CanDecodableDescMulti" class="left-right-flow horizontal-center">
+							<Image class="popup-decodable-lootlist-multi-reward-icon" texturewidth="24" textureheight="24" src="s2r://panorama/images/icons/ui/info.vsvg" />
+							<Label id="CanDecodableDescMulti" html="true" class="popup-decodable-lootlist-multi-reward" text="#SFUI_InvUse_Items_InContainer_Header_multi" />
+						</Panel>
+						<Button id="CanDecodableBrowseBtn" class="popup-browse-btn">
+							<Label class="stratum-font fontSize-sm fontWeight-Medium text-uppercase text-align-center fontcolor-white" text="#popup_inv_lootlist_inspect_all" />
+						</Button>
+					</Panel>
 					<Panel id="DecodableLootlist" class="popup-decodable-lootlist" hittest="true" />
 				</Panel>
 				<Panel id="DecodableItemsScroll" class="popup-decodable-opening hidden" hittest="false" hittestchildren="false">
@@ -142,7 +153,7 @@
 				<Panel class="bottom-top-flow vertical-align-bottom full-width horizontal-center">
 					<Frame id="PopUpInspectAsyncBar" class="hidden" src="s2r://panorama/layout/popups/popup_inspect_async-bar.vxml_c" />
 					<Frame id="PopUpInspectPurchaseBar" class="hidden" src="s2r://panorama/layout/popups/popup_inspect_purchase-bar.vxml_c" />
-					<Label id="InspectItemDesc" html="true" class="popup-inspect__desc" text="{s:h:item_description}" />
+					<Label id="InspectItemDesc" html="true" htmlescapednewlines="true" class="popup-inspect__desc" text="{s:h:item_description}" />
 				</Panel>
 			</Panel>
 		</Panel>

@@ -137,11 +137,6 @@
 					<Panel class="right-left-flow horizontal-align-right">
 						<Panel id="TeamLargeCT" class="Team__Large" />
 					</Panel>
-					<Panel id="AliveBackgroundCT" class="TeamCounter__AliveCT">
-						<Label id="AliveCountCT" class="TeamCounter__AliveCount" />
-						<Image id="AliveSkullCT" class="TeamCounter__AliveSkull" src="s2r://panorama/images/hud/teamcounter/teamcounter_aliveskull_png.vtex" />
-						<Label id="AliveTextCT" class="TeamCounter__AliveText" text="#SFUI_PlayerCount_Alive" />
-					</Panel>
 				</Panel>
 				<Panel id="ScoreAndTimeAndBomb">
 					<Panel id="ScoreAndTimeAndBombBG" class="equipinfo__bg-container">
@@ -174,11 +169,6 @@
 				</Panel>
 				<Panel id="TeamAll" class="Team__All" />
 				<Panel class="team__large_container--right">
-					<Panel id="AliveBackgroundT" class="TeamCounter__AliveT">
-						<Label id="AliveCountT" class="TeamCounter__AliveCount" />
-						<Image id="AliveSkullT" class="TeamCounter__AliveSkull" src="s2r://panorama/images/hud/teamcounter/teamcounter_aliveskull_png.vtex" />
-						<Label id="AliveTextT" class="TeamCounter__AliveText" text="#SFUI_PlayerCount_Alive" />
-					</Panel>
 					<Panel class="left-right-flow">
 						<Panel id="TeamLargeT" class="Team__Large" />
 					</Panel>

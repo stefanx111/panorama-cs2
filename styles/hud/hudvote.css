@@ -8,7 +8,7 @@
 	opacity: 1.0;
 	world-blur: hudWorldBlur;
 	background-image: url("s2r://panorama/images/backgrounds/bluedots_large_png.vtex");
-	background-size: 30px auto;
+	background-size: backgroundDotsSize;
 	background-img-opacity: .02;
 	background-color: #00000090;
 }

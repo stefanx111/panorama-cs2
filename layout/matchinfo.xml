@@ -175,9 +175,6 @@
 					<Panel id="id-mi-round-stats__container" class="mi-round-stats__container" />
 					<Panel class="mi-round-stats__labels">
 						<Panel id="id-mi-round-stats__tick-labels" class="mi-round-stats__tick-labels" />
-						<Panel class="mi-tick-label--halftime">
-							<Label class="mi-tick-label mi-tick-label--halftime" text="#MatchInfo_Halftime" />
-						</Panel>
 					</Panel>
 				</Panel>
 			</Panel>

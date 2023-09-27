@@ -18,7 +18,7 @@
 			<Panel class="full-width full-height">
 				<Panel class="popup-nameable-item-models">
 					<Frame id="PopUpInspectModelOrImage" src="s2r://panorama/layout/inspect.vxml_c" />
-					<Frame id="NameableNameTagModel" src="s2r://panorama/layout/inspect.vxml_c" />
+					<MapItemPreviewPanel id="id-inspect-nametag-model" class="full-width full-height" map="ui/nametag" camera="cam_nametag_initial" player="false" require-composition-layer="true" initial_entity="nametag" mouse_rotate="true" />
 				</Panel>
 				<Frame id="PopUpCapabilityHeader" class="hidden" src="s2r://panorama/layout/popups/popup_capability_header.vxml_c" />
 				<Panel class="popup-nameable__info-block" hittest="true">

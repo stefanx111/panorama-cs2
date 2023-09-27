@@ -14,19 +14,12 @@
 		</Panel>
 		<Panel id="HudBottomGradient" hittest="false" />
 		<Frame id="MapDraft" class="full-width full-height" src="s2r://panorama/layout/mapdraft.vxml_c" />
-		<CCSGOTabletPanoLayer id="TabletPanoLayer" offscreen-composition-layer="true" />
-		<CSGOSurvivalBuyMenu id="SurvivalBuyMenu" />
 		<Panel id="HudSpectatorVignetting" hittest="false" hittestchildren="false" />
-		<Panel id="HudCenter" hittest="false" hittestchildren="false">
-			<CSGOHudDemolitionProgression id="HudDemolitionProgression" />
-		</Panel>
 		<Panel id="HudTopCenter" hittest="false" hittestchildren="false">
-			<CSGOCompass id="Compass" />
 			<CSGOHudTeamCounter id="HudTeamCounter" />
 		</Panel>
 		<CSGOHudWinPanel id="HudWinPanel" hittest="false" hittestchildren="false" />
 		<Panel id="HudTopLeft" hittest="false" hittestchildren="false">
-			<CSGOSurvivalPlayerRemainingCounter id="SurvivalPlayerRemaining" />
 			<Frame id="" class="" src="s2r://panorama/layout/survival/survival_zonetimer.vxml_c" />
 			<CSGOHudRadar id="HudRadar" />
 			<CSGOHudGameIcons id="HudGameIcons" />
@@ -86,7 +79,6 @@
 		<Panel id="ScoreboardContainer" class="full-width full-height" hittest="false" hittestchildren="true">
 			<CSGOScoreboard id="Scoreboard" hittest="true" hittestchildren="true" />
 		</Panel>
-		<CSGOSurvivalSpawnSelect id="SurvivalSpawnSelect" />
 		<CSGOHudChat id="HudChat" />
 		<CSGOHudVote id="HudVote" />
 		<Panel id="ItemPreviewDebugManager" hittest="false" />

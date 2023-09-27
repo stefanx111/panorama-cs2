@@ -5,7 +5,6 @@ var CapabilityNameable = ( function()
 {
 	var m_Inspectpanel = $.GetContextPanel(),
 		m_elTextEntry = $.GetContextPanel().FindChildInLayoutFile( 'NameableTextEntry' ),
-		m_elNameTagModel = $.GetContextPanel().FindChildInLayoutFile( 'NameableNameTagModel' ),
 		m_elRemoveConfirm = $.GetContextPanel().FindChildInLayoutFile( 'NameableRemoveConfirm' ),
 		m_elValidBtn = $.GetContextPanel().FindChildInLayoutFile( 'NameableValidBtn' ),
 		m_elRemoveBtn = $.GetContextPanel().FindChildInLayoutFile( 'NameableRemoveBtn' );
@@ -37,6 +36,15 @@ var CapabilityNameable = ( function()
 		InspectModelImage.Init( elItemModelImagePanel, id );
 
 		elItemModelImagePanel.AddClass( 'popup-inspect-modelpanel_darken' );
+		
+		var elNameTagModel = $.GetContextPanel().FindChildInLayoutFile('id-inspect-nametag-model');
+		if ( elNameTagModel && elNameTagModel.IsValid() )
+		{
+			elNameTagModel.TransitionToCamera( 'cam_nametag', 1.0);
+			elNameTagModel.SetItemModel( 'weapons/models/shared/nametag/nametag_module.vmdl' );
+			elNameTagModel.SetItemLabel( '' );
+		}
+
 	};
 
 	var _SetUpPanelElements = function()
@@ -111,20 +119,17 @@ var CapabilityNameable = ( function()
 		m_Inspectpanel.FindChildInLayoutFile( 'NameableValidBtn' ).enabled = false;
 	};
 
-	var _SetUpNameTagModel = function()
+	var _SetUpNameTagModel = function ()
 	{
-		if ( m_elNameTagModel && m_elNameTagModel.IsValid() )
-		{
-			fakeItem = InventoryAPI.GetFauxItemIDFromDefAndPaintIndex( 1200, 0 );
-			InspectModelImage.Init( m_elNameTagModel, fakeItem );
-			
-			                                               
-			                                              
-
-			                                              
-			                                                  
-			                                                             
-		}
+		var elNameTagModel = $.GetContextPanel().FindChildInLayoutFile( 'id-inspect-nametag-model' );
+		
+		                                                                  
+		                                                      
+		                                                   
+		   
+			                                                                        
+			                                                      
+		   
 	}
 
 	var _SetUpButtonStates = function( toolId, itemId, hasName, noTool )
@@ -170,7 +175,23 @@ var CapabilityNameable = ( function()
 			return m_elTextEntry.text;
 		}
 
-		return hasName ? ItemInfo.GetName( itemId ) : '';
+		if ( !hasName )
+		{
+			return '';
+		}
+
+		let nameWithQuotes = ItemInfo.GetName( itemId );
+		if ( nameWithQuotes && nameWithQuotes.length > 4
+			&& nameWithQuotes[0] == "'" && nameWithQuotes[1] == "'"
+			&& nameWithQuotes[nameWithQuotes.length-1] == "'" && nameWithQuotes[nameWithQuotes.length-2] == "'"
+			)
+		{
+			return nameWithQuotes.substr( 2, nameWithQuotes.length - 4 );
+		}
+		else
+		{
+			return nameWithQuotes;
+		}
 	};
 
 	var _OnRemoveConfirm = function( itemId )
@@ -196,9 +217,10 @@ var CapabilityNameable = ( function()
 
 	var _OnEntryChanged = function()
 	{
-		if ( m_elNameTagModel && m_elNameTagModel.IsValid() )
+		var elNameTagModel = $.GetContextPanel().FindChildInLayoutFile('id-inspect-nametag-model');		
+		if ( elNameTagModel && elNameTagModel.IsValid() )
 		{
-			                                                        
+			elNameTagModel.SetItemLabel( m_elTextEntry.text );	
 			$.DispatchEvent( "CSGOPlaySoundEffect", "rename_teletype", "MOUSE" );
 			_UpdateAcceptState();
 		}
@@ -231,7 +253,7 @@ var CapabilityNameable = ( function()
 			{
 				m_toolId = ItemId;
 				                                 
-				$.DispatchEvent( 'HideStoreStatusPanel', '' );
+				$.DispatchEvent( 'HideStoreStatusPanel' );
 				_SetUpPanelElements();
 				_AcknowlegeNameTags();
 			}

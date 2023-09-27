@@ -143,7 +143,7 @@
 	world-blur: hudWorldBlur;
 	opacity-mask: url("s2r://panorama/images/masks/top-bottom-fade-4_png.vtex");
 	background-image: url("s2r://panorama/images/backgrounds/bluedots_large_png.vtex");
-	background-size: auto 390px;
+	background-size: backgroundDotsSize;
 	background-img-opacity: 0.15;
 	background-position: 100% 100%;
 }

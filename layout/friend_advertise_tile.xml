@@ -24,7 +24,7 @@
 					<Label id="JsFriendName" class="friendtile__text__title" text="#tooltip_lobby_leader_name" />
 					<Panel class="friendtile__status__advert-advert-row">
 						<Image id="JsFriendAdvertisePrime" class="friendlobby__row__icon-prime" src="s2r://panorama/images/icons/ui/prime.vsvg" texturewidth="20" textureheight="20" />
-						<Image id="JsFriendAdvertiseSkillGroup" class="friendlobby__row__icon-skillgroup" textureheight="20" texturewidth="-1" defaultsrc="" />
+						<Frame id="jsRatingEmblem" src="s2r://panorama/layout/rating_emblem.vxml_c" />
 						<Label id="JsRegionLabel" class="" text="" />
 					</Panel>
 				</Panel>
