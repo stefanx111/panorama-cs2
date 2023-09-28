@@ -65,7 +65,6 @@ var CapabilityDecodable = ( function()
 					{
 						var elPopup = UiToolkitAPI.ShowGenericPopupOk( '#popup_xray_first_use_title', '#popup_xray_first_use_desc', '', function() { } );
 						elPopup.FindChildInLayoutFile( 'MessageLabel' ).html = true;
-						var id = InventoryAPI.GetFauxItemIDFromDefAndPaintIndex( m_existingRewardFromXrayId, 0 );
 						elPopup.SetDialogVariable( 'itemname', ItemInfo.GetName( m_existingRewardFromXrayId ) );
 						elPopup.FindChildInLayoutFile( 'MessageLabel' ).text = $.Localize( '#popup_xray_first_use_desc', elPopup );
 					}
@@ -266,7 +265,7 @@ var CapabilityDecodable = ( function()
 	{
 		var elModel = InspectModelImage.GetModelPanel();
 		                                                                             
-		if (elModel.PlaySequence) {
+		if (elModel && elModel.IsValid() && elModel.PlaySequence ) {
 			elModel.PlaySequence(anim, true);
         }
 	};
@@ -481,7 +480,7 @@ var CapabilityDecodable = ( function()
 		var elCase = null;
 		var delay = 0;
 		
-		if ( elImage && !elImage.BHasClass( 'hidden' ) )
+		if ( elImage && elImage.IsValid() && !elImage.BHasClass( 'hidden' ) )
 		{
 			elImage.RemoveClass( 'y-offset' );
 			elCase = elImage;
@@ -502,8 +501,13 @@ var CapabilityDecodable = ( function()
 	var _ShowScroll = function( elCase )
 	{
 		var elScroll = $.GetContextPanel().FindChildInLayoutFile( 'DecodableItemsScroll' );
-		elScroll.RemoveClass( 'hidden' );
+
+		if ( !elScroll || !elScroll.IsValid() )
+		{
+			return;
+		}
 		
+		elScroll.RemoveClass( 'hidden' );
 		elCase.AddClass( 'popup-inspect-modelpanel_darken_blur' );
 
 		
