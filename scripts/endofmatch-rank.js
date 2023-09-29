@@ -66,6 +66,8 @@ var EOM_Rank = (function () {
 
 		$.GetContextPanel().SetHasClass( 'care-package-eligible', bEligibleForCarePackage || earnedFreeRewards );
 
+		let elCarePackage = _m_cP.FindChildTraverse( 'jsEomCarePackage' );
+		elCarePackage.RemoveClass( 'earned-rewards' ); 
 		
 		var elProgress = _m_cP.FindChildInLayoutFile( "id-eom-rank__bar-container" );
 		var elNew = _m_cP.FindChildInLayoutFile( "id-eom-new-reveal" );
@@ -304,9 +306,9 @@ var EOM_Rank = (function () {
 						return;
 
 					let elCarePackage = _m_cP.FindChildTraverse( 'jsEomCarePackage' );
-					elCarePackage.TriggerClass( 'earned-rewards' );
 
 					$.DispatchEvent( 'CSGOPlaySoundEffect', 'UIPanorama.tab_mainmenu_shop', 'eom-rank' );
+					elCarePackage.AddClass( 'earned-rewards' );
 
 					                                  
 					                                          

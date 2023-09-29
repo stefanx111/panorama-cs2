@@ -60,6 +60,7 @@
 	animation-duration: 0.4s;
 	animation-timing-function: ease-in;
 	animation-iteration-count: 5;
+	wash-color: white;
 }
 
 .eom-rank .eom-rank__care-package-earned-fx

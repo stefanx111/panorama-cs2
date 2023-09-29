@@ -502,7 +502,7 @@ var CapabilityDecodable = ( function()
 	{
 		var elScroll = $.GetContextPanel().FindChildInLayoutFile( 'DecodableItemsScroll' );
 
-		if ( !elScroll || !elScroll.IsValid() )
+		if ( !elScroll || !elScroll.IsValid() || !elCase || !elCase.IsValid() )
 		{
 			return;
 		}

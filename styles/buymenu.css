@@ -759,8 +759,6 @@
 {
 	width: fit-children;
 	vertical-align:bottom;
-	margin-bottom: 5px;
-	margin-left: 8px;
 	wash-color: rgb(228, 228, 228);
 	visibility: collapse;
 }
@@ -780,6 +778,8 @@
 {
 	width: 20px;
 	height: width-percentage(100%);
+	margin-bottom: 5px;
+	margin-left: 8px;
 }
 
 .sellback-button:hover

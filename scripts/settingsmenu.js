@@ -197,9 +197,17 @@ var SettingsMenu = ( function () {
 		SettingsMenuShared.ScrollToId( id );                     
 	}
 
-	var _NavigateToSettingPanel = function( tab, p )
+	var _NavigateToSettingPanel = function( tab, submenuRadioId, p )
 	{
 		$.DispatchEvent( "Activated", $( "#" + tabInfo[ tab ].radioid ), "mouse" );
+		if ( submenuRadioId != '' )
+		{
+			let elSubMenuRadio = $.GetContextPanel().GetParent().FindChildTraverse( submenuRadioId );
+			if ( elSubMenuRadio )
+			{
+				$.DispatchEvent("Activated", elSubMenuRadio, "mouse");
+			}
+		}
 		p.ScrollParentToMakePanelFit(3, false);
 		p.AddClass('Highlight');
 	}

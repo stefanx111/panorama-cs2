@@ -47,7 +47,8 @@ var SettingsMenuSearch = ( function() {
 		let searchableMenus = [
 			'GameSettings',
 			'AudioSettings',
-			'VideoSettings',
+			'video_settings',
+			'advanced_video',
 			'KeybdMouseSettings',
 			'ControllerSettings'
 		];
@@ -80,10 +81,20 @@ var SettingsMenuSearch = ( function() {
 						return search.test( setting.text );
 					});
 					if ( bPass ) {
+						let curSubMenu = '';
+						                                                                       
+						                                                                                    
+						                                                                         
+						if (curMenuTab.includes('video')) 
+						{
+							curSubMenu = curMenuTab.includes('advanced') ? 'AdvancedVideoSettingsRadio' : 'SimpleVideoSettingsRadio';
+							curMenuTab = 'VideoSettings'
+						}
 						arrMatches.push( {
 							panel: setting.GetParent(),
 							text: setting.text,
-							menu: curMenuTab
+							menu: curMenuTab,
+							submenu: curSubMenu 
 						} );
 					}
 				}
@@ -126,18 +137,18 @@ var SettingsMenuSearch = ( function() {
 
 		                               
 		arrMatches.forEach( searchResult => { 
-			CreateSearchResultPanel( searchResult.text, searchResult.menu, searchResult.panel );
+			CreateSearchResultPanel( searchResult.text, searchResult.menu, searchResult.submenu, searchResult.panel );
 		});
 	}	
 
-	function CreateSearchResultPanel( text, menuid, panel )
+	function CreateSearchResultPanel( text, menuid, submenu, panel )
 	{
 		var elSearchResult = $.CreatePanel( "Panel", m_ResultsContainer, "setting_result_link" );
 		if ( elSearchResult.BLoadLayoutSnippet( "SearchResult" ) )
 		{
 			elSearchResult.FindChild( "ResultString" ).SetAlreadyLocalizedText( text, true );
 			elSearchResult.SetPanelEvent( 'onactivate', function() {
-				$.DispatchEvent( "SettingsMenu_NavigateToSettingPanel", menuid, panel );
+				$.DispatchEvent( "SettingsMenu_NavigateToSettingPanel", menuid, submenu, panel );
 			});
 		}
 	}
