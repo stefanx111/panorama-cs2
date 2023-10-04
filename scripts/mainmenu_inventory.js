@@ -145,7 +145,7 @@ var InventoryPanel = ( function (){
 				}
 
 				           
-				_AddSortDropdownToNavBar( elNavBar.GetParent() );
+				_AddSortDropdownToNavBar( elNavBar.GetParent(), false );
 
 				              
 				$.CreatePanel( 'InventoryItemList', elCategory, tag + '-List' );
@@ -359,7 +359,7 @@ var InventoryPanel = ( function (){
 	                                                                                                    
 	                               
 	                                                                                                    
-	var _AddSortDropdownToNavBar = function( elNavBar )
+	var _AddSortDropdownToNavBar = function( elNavBar, bIsCapabliltyPopup )
 	{
 		var elDropdown = elNavBar.FindChildInLayoutFile( 'InvSortDropdown' );
 		
@@ -368,7 +368,6 @@ var InventoryPanel = ( function (){
 			var elDropdownParent = $.CreatePanel( 'Panel', elNavBar, 'InvExtraNavOptions', {class:'overflow-noclip'} );
 			elDropdownParent.BLoadLayoutSnippet( 'InvSortDropdownSnippet' );
 			elDropdown = elDropdownParent.FindChildInLayoutFile( 'InvSortDropdown' );
-			elDropdown.SetPanelEvent('oninputsubmit', _UpdateSort.bind( undefined, elDropdown ) );
 
 			var count = InventoryAPI.GetSortMethodsCount();
 
@@ -382,7 +381,12 @@ var InventoryPanel = ( function (){
 				newEntry.text = $.Localize('#'+sort);
 				elDropdown.AddOption(newEntry);
 			}
-	
+
+			if ( !bIsCapabliltyPopup )
+			{
+				elDropdown.SetPanelEvent( 'oninputsubmit', _UpdateSort.bind( undefined, elDropdown ) );
+			}
+
 			                        
 			elDropdown.SetSelected( GameInterfaceAPI.GetSettingString( "cl_inventory_saved_sort2" ) );
 		}
@@ -844,6 +848,11 @@ var InventoryPanel = ( function (){
 		_SelectedCapabilityInfo.multiselectItemIdsArray = [];
 		_SelectedCapabilityInfo.popupVisible = true;
 
+		var elDropDownParent = _m_elSelectItemForCapabilityPopup.FindChildInLayoutFile( 'CapabilityPopupSortContainer' );
+		_AddSortDropdownToNavBar( elDropDownParent, true );
+
+		var elDropdown = elDropDownParent.FindChildInLayoutFile( 'InvSortDropdown' );
+		elDropdown.SetPanelEvent( 'oninputsubmit', _UpdatePopup.bind( undefined, itemid, capability ) );
 		_UpdatePopup( itemid, capability );
 	};
 	
@@ -880,7 +889,7 @@ var InventoryPanel = ( function (){
 			elList,
 			'any',
 			'any',
-			_GetSelectedSort( null ),
+			_GetSelectedSort( _m_elSelectItemForCapabilityPopup.FindChildInLayoutFile( 'CapabilityPopupSortContainer' ) ),
 			capabilityFilter
 		);
 

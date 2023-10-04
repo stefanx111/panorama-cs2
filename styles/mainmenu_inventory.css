@@ -59,6 +59,7 @@
 .content-navbar.inv-popup
 {
 	height:64px;
+	background-color: rgba(0, 0, 0, 0.25);
 }
 
 .inv-popup-title

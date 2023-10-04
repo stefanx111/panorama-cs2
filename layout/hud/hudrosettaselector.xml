@@ -26,7 +26,7 @@
 				</Panel>
 			</Panel>
 			<Label id="RosettaSprayTextHint" class="RosettaSelection__HintText" text="XXXXXX XXXXX XXXX XXXX" />
-			<Label id="RosettaSprayTextCount" class="RosettaSelection__Text" text="XXXXXX XXXXXXXXX: XX" html="true" />
+			<Label id="RosettaSprayTextCount" class="RosettaSelection__Text" text="XXXXXX XXXXXXXXX: XX" html="true" htmlescapednewlines="true" />
 			<Panel id="RosettaNavHint">
 				<Image id="RosettaNavHintArrow" class="RosettaNavHint__Arrow" />
 			</Panel>

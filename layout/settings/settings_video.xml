@@ -165,7 +165,6 @@
 											<Label text="#SFUI_Settings_Low" value="0" id="gpumemlevel0" />
 											<Label text="#SFUI_Settings_Medium" value="1" id="gpumemlevel1" />
 											<Label text="#SFUI_Settings_High" value="2" id="gpumemlevel2" />
-											<Label text="#SFUI_Settings_Very_High" value="3" id="gpumemlevel3" />
 										</CSGOSettingsEnumDropDown>
 									</TooltipPanel>
 									<Panel class="horizontal-separator" />

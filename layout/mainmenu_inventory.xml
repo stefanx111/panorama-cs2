@@ -134,6 +134,7 @@
 							<Label class="inv-popup-title__text" id="CapItemName" text="" />
 						</Panel>
 					</Panel>
+					<Panel id="CapabilityPopupSortContainer" class="content-navbar content-navbar--short" />
 				</Panel>
 			</Panel>
 		</Panel>
