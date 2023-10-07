@@ -8,6 +8,7 @@ var Chat = ( function ()
 {
 	
 	var m_isContentPanelOpen = false;
+	var m_lastChatEntry = null;
 
 	                
 	let m_isChatType = $.GetContextPanel().GetParent().id === "id-team-vote-middle" ? true : false;
@@ -57,6 +58,9 @@ var Chat = ( function ()
 
 	function _Close()
 	{
+		if ( m_isChatType )
+			return true;                                                                                                           
+
 		var elChatContainer = $( '#ChatContainer' );
 		if ( elChatContainer.BHasClass( "chat-open" ) )
 		{
@@ -85,6 +89,11 @@ var Chat = ( function ()
 
 	function _ChatTextSubmitted()
 	{
+		if ( m_lastChatEntry && ( Date.now() - m_lastChatEntry < 200 ) )
+			return;                                                                                                              
+		else
+			m_lastChatEntry = Date.now();
+
 		if ( m_isChatType )
 		{
 			MatchDraftAPI.ActionPregameChat( $( '#ChatInput' ).text, false );

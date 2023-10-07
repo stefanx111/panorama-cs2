@@ -20,7 +20,7 @@
 		</Panel>
 		<Panel class="hud-vote-body">
 			<Label id="VoteDescLabel" class="hud-vote-body__label hud-vote-type-req--regular" html="true" />
-			<Label class="hud-vote-body__label hud-vote-type-req--auto-instant-surrender" html="true" text="#Panorama_Vote_Text_AutoInstantSurrender" />
+			<Label class="hud-vote-body__label hud-vote-type-req--auto-instant-surrender" html="true" text="#Panorama_Vote_Text_AutoInstantSurrender2" />
 			<Panel class="hud-vote-boxes">
 				<Panel class="hud-vote-yesbox">
 					<Image src="s2r://panorama/images/icons/ui/checkbox.vsvg" />

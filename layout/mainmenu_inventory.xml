@@ -97,10 +97,7 @@
 					<Panel class="content-navbar__tabs__center-container">
 						<Panel id="id-navbar-tabs-catagory-btns-container" class="vertical-center left-right-flow horizontal-center" />
 						<Panel class="left-right-flow vertical-center">
-							<RadioButton id="InvXrayBtnContainer" group="inv-top-nav" class="content-navbar__tabs__btn">
-								<Label text="#inv_nav_loadout" />
-							</RadioButton>
-							<Button id="InvXrayBtnContainer" class="content-navbar__tabs__btn">
+							<Button id="InvXrayBtnContainer" class="content-navbar__tabs__btn left-right-flow">
 								<Label text="#popup_xray_title" />
 								<Panel id="" class="navbar-btn__notification inv-nav-solid-btn-notification">
 									<Label id="" class="navbar-btn__notification-text" text="1" />
