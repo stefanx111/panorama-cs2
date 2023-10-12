@@ -1,4 +1,4 @@
-<!-- xml reconstructed by Source 2 Viewer 5.0.0.0 - https://valveresourceformat.github.io -->
+<!-- xml reconstructed by Source 2 Viewer 6.0.0.0 - https://valveresourceformat.github.io -->
 <root>
 	<styles>
 		<include src="s2r://panorama/styles/csgostyles.vcss_c" />
@@ -33,5 +33,8 @@
 				</Panel>
 			</Panel>
 		</Panel>
+		<Button id="vanity-info-settings-btn" class="vanity-settings-btn" onactivate="$.DispatchEvent( &apos;MainMenu_OnGoToCharacterLoadoutPressed&apos; )">
+			<Image textureheight="32" texturewidth="-1" src="s2r://panorama/images/icons/ui/picture.vsvg" />
+		</Button>
 	</Panel>
 </root>

@@ -1,4 +1,4 @@
-/* Prettified by Source 2 Viewer 5.0.0.0 - https://valveresourceformat.github.io */
+/* Prettified by Source 2 Viewer 6.0.0.0 - https://valveresourceformat.github.io */
 
 @define vanity-margin-left: 8px;
 @define right-section: 172px;
@@ -11,7 +11,7 @@
 	flow-children: down;
 	horizontal-align: center;
 	vertical-align: bottom;
-	transition-property: background-color;
+	transition-property: background-color, x, y;
 	transition-duration: .2s;
 	transition-timing-function: ease-in-out;
 }
@@ -24,6 +24,36 @@
 	horizontal-align: center;
 }
 
+.vanity-settings-btn
+{
+	horizontal-align: center;
+	margin-top: 8px;
+	visibility: collapse;
+	border-radius: 2px;
+	transition-property: brightness, background-color;
+	transition-duration: .2s;
+	transition-timing-function: ease-in-out;
+}
+
+.vanity-settings-btn:hover
+{
+	background-color: rgba(0, 0, 0, 0.356);
+}
+
+.show-controls .vanity-settings-btn
+{
+	visibility: visible;
+}
+
+.vanity-settings-btn Image
+{
+	padding: 4px 4px;
+	height: 36px;
+	width: 36px;
+	horizontal-align: center;
+	img-shadow: 0px 0px 4px 1 rgba(0, 0, 0, 0.4);
+}
+
 .vanity-info-loc-0,.vanity-info-loc-1,.vanity-info-loc-2,.vanity-info-loc-3,.vanity-info-loc-4,.vanity-info-loc-5,.vanity-info-loc-6,.vanity-info-loc-7,.vanity-info-loc-8,.vanity-info-loc-9
 {
 	width: 512px;
@@ -32,6 +62,12 @@
 	x:-256px;
 	y: 150px;
 	transform: translate3d( -512px, -256px, 0px );
+}
+
+.vanity-info-loc-0.move-up,.vanity-info-loc-1.move-up,.vanity-info-loc-2.move-up,.vanity-info-loc-3.move-up,.vanity-info-loc-4.move-up,.vanity-info-loc-5.move-up,.vanity-info-loc-6.move-up,.vanity-info-loc-7.move-up,.vanity-info-loc-8.move-up,.vanity-info-loc-9.move-up
+{
+	y:-50px;
+	x: -290px;
 }
 
 .vanity-info-loc-0

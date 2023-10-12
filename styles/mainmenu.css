@@ -1,4 +1,4 @@
-/* Prettified by Source 2 Viewer 5.0.0.0 - https://valveresourceformat.github.io */
+/* Prettified by Source 2 Viewer 6.0.0.0 - https://valveresourceformat.github.io */
 
 CSGOMainMenu,#MainMenuInput,#MainMenuCore,#MainMenuForeground,#MainMenuBackground,#TooltipManager,#ContextMenuManager,#PopupManager,#ItemPreviewDebugManager,.MainMenuBackground-Cloud,.MainMenu-FullscreenPanel,#MainMenuFriendsAndParty,.MainMenuContainer,#MainMenuVanityParent
 {
@@ -226,51 +226,6 @@ CSGOMainMenu.PopupBackgroundBlur #MainMenuInput
 	opacity: 1;
 	z-index: 1;
 	overflow: noclip;
-}
-
-#VanityControls
-{
-	opacity: 0.5;
-	vertical-align: bottom;
-	horizontal-align: center;
-	flow-children: right;
-	margin-bottom: 14px;
-	z-index: 3;
-	transition-property: opacity, brightness;
-	transition-duration: 0.25s;
-	transition-timing-function: ease-in-out;
-}
-
-#VanityControls:hover
-{
-	opacity:1;
-}
-
-#VanityControls Button
-{
-	vertical-align:center;
-	brightness: 0.5;
-	width: 60px;
-	background-color: #404040ff;
-	border-radius: 10px;
-	padding: 10px;
-	margin:10px;
-	transition-property: brightness, opacity;
-	transition-duration: .25s;
-	transition-timing-function: ease-in-out;
-}
-
-#VanityControls Button Image
-{
-	vertical-align: center;
-	horizontal-align: center;
-}
-
-#VanityControls Button:hover
-{
-	brightness: 2;
-	vertical-align:center;
-	wash-color: white;
 }
 
 #id-mainmenu-vanity-hover

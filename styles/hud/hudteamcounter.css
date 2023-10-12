@@ -1,4 +1,4 @@
-/* Prettified by Source 2 Viewer 5.0.0.0 - https://valveresourceformat.github.io */
+/* Prettified by Source 2 Viewer 6.0.0.0 - https://valveresourceformat.github.io */
 
 @define ScoreAndTimeWidth: 84px;
 @define GameScoreWidth: 42px;
@@ -55,9 +55,70 @@ CSGOHudTeamCounter
 	transform-origin: 0% 0%;
 }
 
+#TeamLargeCT,#TeamLargeT
+{
+	transition-property: opacity;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.PlayerCountInsteadOfAvatars #TeamLargeCT,.PlayerCountInsteadOfAvatars #TeamLargeT
+{
+	opacity: 0;
+}
+
 #TeamAll
 {
 	transform-origin: 50% 0%;
+}
+
+.TeamLarge__PlayerCount
+{
+	width: AvatarLBGWidth;
+	height: 106px;
+	vertical-align: top;
+	font-family: stratum2 bold condensed;
+	font-size: 38px;
+	text-align: center;
+	opacity: 0;
+	margin-left: 1px;
+	margin-right: 1px;
+	background-color: rgba(0, 0, 0, 0.918);
+	background-image: url("s2r://panorama/images/backgrounds/bluedots_large_png.vtex");
+	background-size: backgroundDotsSize;
+	background-img-opacity: 0.05;
+	background-position: 100% 100%;
+	opacity-mask: url("s2r://panorama/images/masks/playercount-mask.vsvg");
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.PlayerCountInsteadOfAvatars .TeamLarge__PlayerCount
+{
+	opacity: 1;
+}
+
+.team__large_container--left .TeamLarge__PlayerCount,.team__large_container--left .TeamLarge__PlayerCount .TeamLarge__PlayerCount__Alive
+{
+	horizontal-align: right;
+	color: #B5D4EE;
+}
+
+.team__large_container--right .TeamLarge__PlayerCount,.team__large_container--right .TeamLarge__PlayerCount .TeamLarge__PlayerCount__Alive
+{
+	horizontal-align: left;
+	color: #EAD18A;
+}
+
+.TeamLarge__PlayerCount .TeamLarge__PlayerCount__Alive
+{
+	font-family: stratum2 condensed;
+	font-size: 14px;
+	width: 100%;
+	text-align:center;
+	vertical-align:center;
+	y: -8px;
 }
 
 .team__large_container--left
@@ -946,7 +1007,7 @@ CSGOHudTeamCounter
 #GameTime
 {
 	width: 100%;
-	height: 27px;
+	height: 32px;
 }
 
 #Timer
@@ -1105,7 +1166,7 @@ CSGOHudTeamCounter
 {
 	margin-top: 1px;
 	width: 100%;
-	height: 25.5px;
+	height: 30px;
 	flow-children: right;
 }
 
@@ -1113,15 +1174,49 @@ CSGOHudTeamCounter
 {
 	vertical-align:top;
 	horizontal-align:center;
-	y:70px;
+	flow-children: right;
+	y:60px;
+	width: 100%;
 }
 
 #PlayerCount Label
 {
-	font-size: 18px;
+	font-size: 16px;
 	text-align:center;
-	color:black;
-	text-shadow: 0px 0px 4px 2 rgba(255,255,255,0.05);
+}
+
+.PlayerCountInsteadOfAvatars #PlayerCount
+{
+	opacity: 0;
+}
+
+#PlayerCount .playercount--left
+{
+	flow-children: right;
+	horizontal-align: left;
+	margin-left: 10px;
+	margin-top: 10px;
+	wash-color: #B5D4EE;
+}
+
+#PlayerCount .playercount--right
+{
+	flow-children: right;
+	horizontal-align: right;
+	margin-right: 12px;
+	margin-top: 10px;
+	wash-color: #EAD18A;
+}
+
+#PlayerCount Label
+{
+	vertical-align: center;
+}
+
+#PlayerCount Image
+{
+	img-shadow: 0px 0px 2px 3 rgba(0, 0, 0, 0.5);
+	vertical-align: center;
 }
 
 .GameScore__BGL
@@ -1153,7 +1248,7 @@ CSGOHudTeamCounter
 	horizontal-align: center;
 	vertical-align: center;
 	text-align: center;
-	font-size: 24px;
+	font-size: 28px;
 	font-weight: bold;
 	padding-top: 1px;
 }

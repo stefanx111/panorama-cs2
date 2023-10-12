@@ -1,4 +1,4 @@
-<!-- xml reconstructed by Source 2 Viewer 5.0.0.0 - https://valveresourceformat.github.io -->
+<!-- xml reconstructed by Source 2 Viewer 6.0.0.0 - https://valveresourceformat.github.io -->
 <root>
 	<styles>
 		<include src="s2r://panorama/styles/csgostyles.vcss_c" />
@@ -118,19 +118,28 @@
 						<Label text="#SFUI_Settings_HUD_Color" class="half-width" />
 						<CSGOSettingsEnumDropDown class="PopupButton White" convar="cl_hud_color">
 							<Label text="#SFUI_Settings_HUD_Color_0" value="0" id="hudcolor0" />
+							<Label text="#SFUI_Settings_HUD_Color_12" value="12" id="hudcolor12" />
 							<Label text="#SFUI_Settings_HUD_Color_1" value="1" id="hudcolor1" />
 							<Label text="#SFUI_Settings_HUD_Color_2" value="2" id="hudcolor2" />
 							<Label text="#SFUI_Settings_HUD_Color_3" value="3" id="hudcolor3" />
 							<Label text="#SFUI_Settings_HUD_Color_4" value="4" id="hudcolor4" />
-							<Label text="#SFUI_Settings_HUD_Color_10" value="10" id="hudcolor5" />
-							<Label text="#SFUI_Settings_HUD_Color_5" value="5" id="hudcolor6" />
-							<Label text="#SFUI_Settings_HUD_Color_6" value="6" id="hudcolor7" />
-							<Label text="#SFUI_Settings_HUD_Color_7" value="7" id="hudcolor8" />
-							<Label text="#SFUI_Settings_HUD_Color_8" value="8" id="hudcolor9" />
-							<Label text="#SFUI_Settings_HUD_Color_9" value="9" id="hudcolor10" />
+							<Label text="#SFUI_Settings_HUD_Color_5" value="5" id="hudcolor5" />
+							<Label text="#SFUI_Settings_HUD_Color_6" value="6" id="hudcolor6" />
+							<Label text="#SFUI_Settings_HUD_Color_7" value="7" id="hudcolor7" />
+							<Label text="#SFUI_Settings_HUD_Color_8" value="8" id="hudcolor8" />
+							<Label text="#SFUI_Settings_HUD_Color_9" value="9" id="hudcolor9" />
+							<Label text="#SFUI_Settings_HUD_Color_10" value="10" id="hudcolor10" />
 							<Label text="#SFUI_Settings_HUD_Color_11" value="11" id="hudcolor11" />
 						</CSGOSettingsEnumDropDown>
 					</TooltipPanel>
+					<TooltipPanel class="SettingsMenuDropdownContainer" tooltip="#SFUI_Settings_MiniScoreboardPlayerCount_Tooltip">
+						<Label text="#SFUI_Settings_MiniScoreboardPlayerCount" class="half-width" />
+						<CSGOSettingsEnumDropDown class="PopupButton White" convar="cl_teamcounter_playercount_instead_of_avatars">
+							<Label text="#GameUI_Yes" value="1" id="playercount0" />
+							<Label text="#GameUI_No" value="0" id="playercount1" />
+						</CSGOSettingsEnumDropDown>
+					</TooltipPanel>
+					<Panel class="horizontal-separator" />
 				</Panel>
 			</Panel>
 			<Panel id="SettingsTeamSettings" class="SettingsBackground">

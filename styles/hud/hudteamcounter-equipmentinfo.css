@@ -1,6 +1,7 @@
-/* Prettified by Source 2 Viewer 5.0.0.0 - https://valveresourceformat.github.io */
+/* Prettified by Source 2 Viewer 6.0.0.0 - https://valveresourceformat.github.io */
 
 @define teamcounter-bg:#000000c0;
+@define teamcounter-bg-clock:#000000f0;
 @define teamcounter-bg-t: #855f05;
 @define teamcounter-bg-ct: #046686;
 .debug
@@ -63,7 +64,7 @@
 
 .equipinfo-root .equipinfo__row
 {
-	height: 18px;
+	height: 16px;
 	horizontal-align:center;
 	margin: 2px 0px;
 	visibility: collapse;
@@ -108,10 +109,9 @@
 
 .equipinfo__bg-container
 {
-	width: 100%;
+	width: 94%;
 	height: 176px;
-	border-left: 0.2px solid black;
-	border-right: 0.2px solid black;
+	horizontal-align: center;
 	visibility: collapse;
 }
 
@@ -127,8 +127,8 @@
 
 #ScoreAndTimeAndBomb .equipinfo__bg-container
 {
-	height: 64px;
-	margin: 0px 2px;
+	height: 106px;
+	width: 98%;
 }
 
 .deathmatch #ScoreAndTimeAndBomb .equipinfo__bg-container
@@ -146,6 +146,28 @@
 	background-size: backgroundDotsSize;
 	background-img-opacity: 0.15;
 	background-position: 100% 100%;
+}
+
+.equipinfo__bg-container .equipinfo--score-time__bg
+{
+	width: 100%;
+	height: 100%;
+	opacity-mask: url("s2r://panorama/images/masks/score-time-mask.vsvg");
+	background-color: teamcounter-bg-clock;
+	background-image: url("s2r://panorama/images/backgrounds/bluedots_large_png.vtex");
+	background-size: backgroundDotsSize;
+	background-img-opacity: 0.025;
+	background-position: 100% 100%;
+}
+
+.PlayerCountInsteadOfAvatars .equipinfo__bg-container .equipinfo--score-time__bg
+{
+	opacity-mask: url("s2r://panorama/images/masks/score-time-mask--playercount.vsvg");
+}
+
+.deathmatch .equipinfo__bg-container .equipinfo--score-time__bg
+{
+	opacity-mask: url("s2r://panorama/images/masks/score-time-dm-mask.vsvg");
 }
 
 .equipinfo__bg-container .equipinfo__bg

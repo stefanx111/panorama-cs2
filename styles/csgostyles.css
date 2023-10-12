@@ -1,4 +1,4 @@
-/* Prettified by Source 2 Viewer 5.0.0.0 - https://valveresourceformat.github.io */
+/* Prettified by Source 2 Viewer 6.0.0.0 - https://valveresourceformat.github.io */
 
 @define ct-color: rgb(150, 200, 250);
 @define t-color: #eabe54;
@@ -80,9 +80,9 @@
 @define color-hud-10: #70ffdb;
 @define color-hud-11: #ff9ccd;
 @define color-player-yellow: rgb(248, 246, 45);
-@define color-player-purple: rgb(161, 25, 240 );
-@define color-player-green: rgb(0, 181, 98);
-@define color-player-blue: rgb( 92, 168, 255);
+@define color-player-purple: rgb(192, 54, 153);
+@define color-player-green: rgb(29, 162, 132);
+@define color-player-blue: rgb( 136, 206, 245);
 @define color-player-orange: rgb(255, 155, 37);
 @define color-csrating-tier-0: rgb(196, 208, 223);
 @define color-csrating-tier-1: #8cc6ff;
@@ -420,6 +420,41 @@ Label.MonoNumbersFont,TextEntry.MonoNumbersFont
 	color: t-color;
 }
 
+.csgo-hud__color-12.HUD--team--ct .hud-colorize
+{
+	color: ct-color;
+}
+
+.csgo-hud__color-12.HUD--team--terrorist .hud-colorize
+{
+	color: t-color;
+}
+
+.hud-teammatecolor--yellow.csgo-hud__color-12 .hud-colorize
+{
+	color: color-player-yellow;
+}
+
+.hud-teammatecolor--purple.csgo-hud__color-12 .hud-colorize
+{
+	color: color-player-purple;
+}
+
+.hud-teammatecolor--green.csgo-hud__color-12 .hud-colorize
+{
+	color: color-player-green;
+}
+
+.hud-teammatecolor--blue.csgo-hud__color-12 .hud-colorize
+{
+	color: color-player-blue;
+}
+
+.hud-teammatecolor--orange.csgo-hud__color-12 .hud-colorize
+{
+	color: color-player-orange;
+}
+
 .csgo-hud__color-1 .hud-colorize
 {
 	color: color-hud-1;
@@ -483,6 +518,41 @@ Label.MonoNumbersFont,TextEntry.MonoNumbersFont
 .csgo-hud__color-0.HUD--team--terrorist .hud-colorize-bg
 {
 	background-color: t-color;
+}
+
+.csgo-hud__color-12.HUD--team--ct .hud-colorize-bg
+{
+	background-color: ct-color;
+}
+
+.csgo-hud__color-12.HUD--team--terrorist .hud-colorize-bg
+{
+	background-color: t-color;
+}
+
+.hud-teammatecolor--yellow.csgo-hud__color-12 .hud-colorize-bg
+{
+	background-color: color-player-yellow;
+}
+
+.hud-teammatecolor--purple.csgo-hud__color-12 .hud-colorize-bg
+{
+	background-color: color-player-purple;
+}
+
+.hud-teammatecolor--green.csgo-hud__color-12 .hud-colorize-bg
+{
+	background-color: color-player-green;
+}
+
+.hud-teammatecolor--blue.csgo-hud__color-12 .hud-colorize-bg
+{
+	background-color: color-player-blue;
+}
+
+.hud-teammatecolor--orange.csgo-hud__color-12 .hud-colorize-bg
+{
+	background-color: color-player-orange;
 }
 
 .csgo-hud__color-1 .hud-colorize-bg
@@ -558,6 +628,41 @@ Label.MonoNumbersFont,TextEntry.MonoNumbersFont
 .csgo-hud__color-0.HUD--team--terrorist .hud-colorize-wash
 {
 	wash-color: t-color;
+}
+
+.csgo-hud__color-12.HUD--team--ct .hud-colorize-wash
+{
+	wash-color: ct-color;
+}
+
+.csgo-hud__color-12.HUD--team--terrorist .hud-colorize-wash
+{
+	wash-color: t-color;
+}
+
+.hud-teammatecolor--yellow.csgo-hud__color-12 .hud-colorize-wash
+{
+	wash-color: color-player-yellow;
+}
+
+.hud-teammatecolor--purple.csgo-hud__color-12 .hud-colorize-wash
+{
+	wash-color: color-player-purple;
+}
+
+.hud-teammatecolor--green.csgo-hud__color-12 .hud-colorize-wash
+{
+	wash-color: color-player-green;
+}
+
+.hud-teammatecolor--blue.csgo-hud__color-12 .hud-colorize-wash
+{
+	wash-color: color-player-blue;
+}
+
+.hud-teammatecolor--orange.csgo-hud__color-12 .hud-colorize-wash
+{
+	wash-color: color-player-orange;
 }
 
 .csgo-hud__color-1 .hud-colorize-wash

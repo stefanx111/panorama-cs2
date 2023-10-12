@@ -1,4 +1,4 @@
-<!-- xml reconstructed by Source 2 Viewer 5.0.0.0 - https://valveresourceformat.github.io -->
+<!-- xml reconstructed by Source 2 Viewer 6.0.0.0 - https://valveresourceformat.github.io -->
 <root>
 	<styles>
 		<include src="s2r://panorama/styles/csgostyles.vcss_c" />
@@ -134,14 +134,16 @@
 		<Panel id="TeamCounterBG">
 			<Panel id="TeamCounter">
 				<Panel class="team__large_container--left">
-					<Panel class="right-left-flow horizontal-align-right">
+					<Panel class="horizontal-align-right">
 						<Panel id="TeamLargeCT" class="Team__Large" />
+						<Label class="TeamLarge__PlayerCount" text="{d:left_side_alive}">
+							<Label class="TeamLarge__PlayerCount__Alive" text="#SFUI_PlayerCount_Alive" />
+						</Label>
 					</Panel>
 				</Panel>
 				<Panel id="ScoreAndTimeAndBomb">
 					<Panel id="ScoreAndTimeAndBombBG" class="equipinfo__bg-container">
-						<Panel class="equipinfo__blurbg" />
-						<Panel class="equipinfo__bg" />
+						<Panel class="equipinfo--score-time__bg" />
 					</Panel>
 					<Panel id="ScoreAndTime">
 						<Panel id="GameTime">
@@ -163,14 +165,24 @@
 						<Image id="BombPlantedLines" class="bomb_planted bomb_line" src="s2r://panorama/images/hud/teamcounter/teamcounter_bomb-planted-lines.vsvg" scaling="stretch-to-fit-preserve-aspect" />
 						<Image id="BombDefused" class="bomb_defused" src="s2r://panorama/images/hud/teamcounter/teamcounter_bomb-planted-defused.vsvg" scaling="stretch-to-fit-preserve-aspect" />
 					</Panel>
-					<Panel id="PlayerCount">
-						<Label class="stratum-bold-italic" text="#miniscoreboard_playercount" />
+					<Panel id="PlayerCount" class="additive">
+						<Panel class="playercount--left">
+							<Image src="s2r://panorama/images/icons/person.vsvg" scaling="stretch-to-fit-preserve-aspect" texturewidth="10" textureheight="-1" />
+							<Label class="stratum-bold-italic" text="#miniscoreboard_playercount-left" />
+						</Panel>
+						<Panel class="playercount--right">
+							<Image src="s2r://panorama/images/icons/person.vsvg" scaling="stretch-to-fit-preserve-aspect" texturewidth="10" textureheight="-1" />
+							<Label class="stratum-bold-italic" text="#miniscoreboard_playercount-right" />
+						</Panel>
 					</Panel>
 				</Panel>
 				<Panel id="TeamAll" class="Team__All" />
 				<Panel class="team__large_container--right">
-					<Panel class="left-right-flow">
+					<Panel class="">
 						<Panel id="TeamLargeT" class="Team__Large" />
+						<Label class="TeamLarge__PlayerCount" text="{d:right_side_alive}">
+							<Label class="TeamLarge__PlayerCount__Alive" text="#SFUI_PlayerCount_Alive" />
+						</Label>
 					</Panel>
 				</Panel>
 			</Panel>
