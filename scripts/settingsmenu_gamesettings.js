@@ -11,6 +11,42 @@ var SettingsMenuGameSettings = ( function() {
         {
             $("#enableconsoledropdowncmdline-container").visible = false;
         }
+
+        _RefreshDatacentersList();
+    };
+
+    function _RefreshDatacentersList()
+    {
+        let elContainer = $('#DatacenterListContainer');
+        elContainer.RemoveAndDeleteChildren();
+
+        const dcs = LobbyAPI.GetReachableDatacenters();
+        const samples = dcs.samples;
+
+        let numSamplesAdded = 0;
+        for ( let k = 0; k < 10; ++ k )
+        {
+            if ( !samples || !samples.hasOwnProperty( 'sample'+k ) )
+                break;
+
+            const ss = samples['sample'+k];
+
+            let elPanel = $.CreatePanel( "Panel", elContainer, ss.ping );
+            elPanel.BLoadLayoutSnippet( "snippet_datacenter_entry" );
+            elPanel.SetDialogVariable( 'name', ss.name );
+            elPanel.SetDialogVariableInt( 'ping', ss.ping );
+            ++ numSamplesAdded;
+        }
+
+        if ( numSamplesAdded == 0 )
+        {
+            let elPanel = $.CreatePanel( "Panel", elContainer, '0' );
+            elPanel.BLoadLayoutSnippet( "snippet_datacenter_entry" );
+            elPanel.SetDialogVariable( 'name', $.Localize( "#SFUI_UserAlert_Unreachable" ) );
+            elPanel.SetDialogVariableInt( 'ping', 0 );
+        }
+
+        elContainer.SetHasClass( 'no-data-centers', numSamplesAdded == 0 );
     };
 
     var _InitSteamClanTagsPanel = function () {   
@@ -20,7 +56,7 @@ var SettingsMenuGameSettings = ( function() {
         }
         clanTagDropdown.RemoveAllOptions();
 
-                                       
+        // Add the "No team tag option"
         var id = 'clantagoption_none';
         var optionLabel = $.CreatePanel('Label', clanTagDropdown, id);
         optionLabel.text = $.Localize("#SFUI_Settings_ClanTag_None");
@@ -30,11 +66,11 @@ var SettingsMenuGameSettings = ( function() {
         var nNumClans = MyPersonaAPI.GetMyClanCount();
         for (var i = 0; i < nNumClans; i++)
         {
-                                                               
+            // 64-bit clan id for handle to MyPersona functions
             var clanID = MyPersonaAPI.GetMyClanIdByIndex(i);
             var clanTag = MyPersonaAPI.GetMyClanTagByIdCensored(clanID);
 
-                                                                      
+            // 32-bit clan id for actually storing in convar cl_clanid
             var clanIDForCvar = MyPersonaAPI.GetMyClanId32BitByIndex(i);
 
             id = 'clantagoption' + i.toString();
@@ -49,7 +85,7 @@ var SettingsMenuGameSettings = ( function() {
 
 	var _OnCrosshairStyleChange = function()
 	{
-		                                            
+		// Some sliders don't apply to styles 1 & 2.
 		let nStyle = parseInt( GameInterfaceAPI.GetSettingString( 'cl_crosshairstyle' ) );
 
 		let bEnableControls = nStyle !== 0 && nStyle !== 1;
@@ -83,12 +119,13 @@ var SettingsMenuGameSettings = ( function() {
     return {
         InitSteamClanTagsPanel : _InitSteamClanTagsPanel,
         InitGameSettings: _InitGameSettings,
+        RefreshDatacentersList: _RefreshDatacentersList,
         OnCrosshairStyleChange : _OnCrosshairStyleChange
     };
 
 })();
 
-              
+// On creation
 (function ()
 {
 	SettingsMenuGameSettings.InitSteamClanTagsPanel();
@@ -96,4 +133,5 @@ var SettingsMenuGameSettings = ( function() {
 	SettingsMenuGameSettings.OnCrosshairStyleChange();
 	SettingsMenuShared.ChangeBackground( 0 );
 
+    $.RegisterForUnhandledEvent( 'PanoramaComponent_Lobby_ReachableDatacentersUpdated', SettingsMenuGameSettings.RefreshDatacentersList );
 })();

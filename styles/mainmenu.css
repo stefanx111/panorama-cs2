@@ -228,6 +228,47 @@ CSGOMainMenu.PopupBackgroundBlur #MainMenuInput
 	overflow: noclip;
 }
 
+#VanityControls
+{
+	opacity: 1;
+	vertical-align: bottom;
+	horizontal-align: right;
+	flow-children: right;
+	margin-right: 124px;
+	margin-bottom: 14px;
+	z-index: 3;
+	transition-property: opacity, brightness;
+	transition-duration: 0.25s;
+	transition-timing-function: ease-in-out;
+}
+
+#VanityControls Button
+{
+	vertical-align:center;
+	brightness: 1;
+	z-index: 2;
+	border-radius: 10px;
+	padding: 8px;
+	transition-property: background-color;
+	transition-duration: .25s;
+	transition-timing-function: ease-in-out;
+}
+
+#VanityControls Button Image
+{
+	vertical-align: center;
+	horizontal-align: center;
+	img-shadow: 0px 0px 4px 1 rgba(0, 0, 0, 0.068);
+}
+
+#VanityControls:hover Button
+{
+	background-color: rgba(255, 255, 255, 0.205);
+	transition-property: background-color;
+	transition-duration: .25s;
+	transition-timing-function: ease-in-out;
+}
+
 #id-mainmenu-vanity-hover
 {
 	width: 20%;

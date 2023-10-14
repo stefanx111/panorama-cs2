@@ -25,7 +25,6 @@ CSGOHud .matchmaking-status-container
 	text-align: center;
 	horizontal-align: center;
 	width: 64px;
-	transform: translateY(2px);
 }
 
 .matchmaking-status-header

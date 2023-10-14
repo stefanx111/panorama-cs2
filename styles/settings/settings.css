@@ -70,6 +70,80 @@ CSGOSettingsEnumDropDown:hover
 	font-weight: light;
 }
 
+CSGOSettingsSlider#DatacenterPingThresholdSlider
+{
+	width: fill-parent-flow( 1.0 );
+}
+
+.DatacenterList
+{
+	margin-bottom: 24px;
+	margin-left: 476px;
+	flow-children: right;
+}
+
+.DatacenterList .DatacenterListContainer
+{
+	margin-top: 4px;
+	flow-children: down;
+	horizontal-align: left;
+	width: 220px;
+	max-height: 80px;
+	overflow: squish scroll;
+	padding-right: 12px;
+}
+
+.mainmenu-content__container .DatacenterList .DatacenterListContainer VerticalScrollBar
+{
+	margin-right: 0px;
+}
+
+.DatacenterList .DatacenterListContainer .snippet_datacenter_entry
+{
+	flow-children: right;
+	width: 100%;
+}
+
+.DatacenterList .DatacenterListContainer .snippet_datacenter_entry Label
+{
+	font-weight: light;
+	font-size: 14px;
+}
+
+.DatacenterList .DatacenterListContainer .datacenter_entry__name
+{
+	width: 140px;
+	max-height: 16px;
+	text-overflow: ellipsis;
+}
+
+.DatacenterList .DatacenterListContainer .datacenter_entry__ping
+{
+	horizontal-align: right;
+	text-align: right;
+	width: 60px;
+	max-height: 16px;
+	text-overflow: shrink;
+}
+
+.DatacenterList .DatacenterListContainer.no-data-centers .datacenter_entry__name
+{
+	width: 240px;
+	max-height: fit-children;
+}
+
+.DatacenterList .DatacenterListContainer.no-data-centers .datacenter_entry__ping
+{
+	visibility: collapse;
+}
+
+.DatacenterList .IconButton
+{
+	vertical-align: top;
+	ui-scale: 70%;
+	margin: 0px 8px 0px 0px;
+}
+
 .VideoSettingsMenuTabContent
 {
 	height: fill-parent-flow( 1 );

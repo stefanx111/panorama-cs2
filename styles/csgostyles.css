@@ -2419,7 +2419,7 @@ Slider.HorizontalSlider #SliderThumb,SlottedSlider.HorizontalSlider #SliderThumb
 	background-color: baseText;
 	border-radius: 2px;
 	width: 16px;
-	height: 10px;
+	height: 12px;
 	align: center center;
 }
 

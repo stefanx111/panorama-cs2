@@ -32,7 +32,7 @@
 				<Panel id="JsMainmenu_Vanity-Container" class="mainmenu-map MainMenuModeOnly">
 					<Panel id="VanityControls" hittest="true">
 						<Button id="VanityPanelGoToCharacterLoadout" onactivate="$.DispatchEvent( &apos;MainMenu_OnGoToCharacterLoadoutPressed&apos; )">
-							<Image textureheight="32" texturewidth="-1" src="s2r://panorama/images/icons/ui/tune.vsvg" />
+							<Image textureheight="32" texturewidth="-1" src="s2r://panorama/images/icons/ui/settings_sliders.vsvg" />
 						</Button>
 					</Panel>
 				</Panel>
@@ -53,7 +53,7 @@
 						<Panel id="MainMenuMovieParent" />
 						<CSGOBlurTarget id="MainMenuVanityParent" />
 						<Panel class="mainmenu-vanity__vignette" hittest="false" />
-						<Panel id="MainMenuVanityInfo" class="full-width full-height MainMenuModeOnly" />
+						<Panel id="MainMenuVanityInfo" class="full-width full-height MainMenuModeOnly" hittest="false" />
 					</CSGOBlurTarget>
 					<Frame id="JsLeftColumn" hittest="false" src="s2r://panorama/layout/mainmenu_left_column.vxml_c" />
 					<Button id="JsStreamContainer" class="mainmenu_stream_container hidden MainMenuModeOnly" hittest="true" />

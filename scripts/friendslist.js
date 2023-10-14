@@ -657,9 +657,12 @@ var friendsList = (function() {
 		return PartyBrowserAPI.GetXuidByIndex( index );
 	};
 
-	var _ShowMatchAcceptPopUp = function( map )
+	var _ShowMatchAcceptPopUp = function( map, location, ping )
 	{
-		var popup = UiToolkitAPI.ShowCustomLayoutPopupParameters( '', 'file://{resources}/layout/popups/popup_accept_match.xml', 'map_and_isreconnect=' + map + ',false' );
+		var popup = UiToolkitAPI.ShowCustomLayoutPopupParameters( '','file://{resources}/layout/popups/popup_accept_match.xml',
+			'map_and_isreconnect=' + map + ',false'
+			+ ( ( location && ping ) ? '&ping='+ping+'&location='+location : '' )
+			);
 		$.DispatchEvent( "ShowAcceptPopup", popup );
 	};
 

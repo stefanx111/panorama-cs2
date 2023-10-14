@@ -92,8 +92,8 @@
 
 .map-selection-list--official-deathmatch .map-selection-btn__map-icon,.map-selection-list--official-casual .map-selection-btn__map-icon
 {
-	width: 150px;
-	height: 150px;
+	width: 135px;
+	height: 135px;
 	horizontal-align: center;
 }
 
@@ -128,8 +128,8 @@
 
 .map-selection-list--listen-deathmatch .map-selection-btn__map-icon,.map-selection-list--listen-competitive .map-selection-btn__map-icon,.map-selection-list--listen-casual .map-selection-btn__map-icon,.map-selection-list--official-competitive .map-selection-btn__map-icon
 {
-	width: 150px;
-	height: 150px;
+	width: 135px;
+	height: 135px;
 	horizontal-align: center;
 }
 

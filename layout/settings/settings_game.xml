@@ -10,6 +10,14 @@
 		<include src="s2r://panorama/scripts/settingsmenu_shared.vts_c" />
 		<include src="s2r://panorama/scripts/settingsmenu_gamesettings.vjs_c" />
 	</scripts>
+	<snippets>
+		<snippet name="snippet_datacenter_entry">
+			<Panel class="snippet_datacenter_entry">
+				<Label class="datacenter_entry__name stratum-medium-tf" text="{s:name}" />
+				<Label class="datacenter_entry__ping stratum-medium-tf" text="#datacenter_ping" />
+			</Panel>
+		</snippet>
+	</snippets>
 	<Panel useglobalcontext="true" class="SettingsMenuTab">
 		<Panel id="id-navbar-tabs" class="content-navbar__tabs content-navbar__tabs--dark content-navbar__tabs--noflow">
 			<Panel id="SettingsMenuJumpButtons" class="content-navbar__tabs__center-container">
@@ -45,9 +53,15 @@
 					<Label class="SettingsSectionTitleLabel" text="#settings_game_settings_section" />
 				</Panel>
 				<Panel class="top-bottom-flow full-width">
-					<TooltipPanel class="SettingsMenuDropdownContainer" tooltip="#SFUI_Settings_Match_Ping_Threshold_Info">
-						<CSGOSettingsSlider text="#SFUI_Settings_Match_Ping_Threshold" max="350" min="25" convar="mm_dedicated_search_maxping" />
+					<TooltipPanel class="SettingsMenuDropdownContainer" tooltip="#SFUI_Settings_Match_Ping_Threshold_Info" style="tooltip-position: right;">
+						<CSGOSettingsSlider id="DatacenterPingThresholdSlider" text="#SFUI_Settings_Match_Ping_Threshold" max="350" min="25" convar="mm_dedicated_search_maxping" />
 					</TooltipPanel>
+					<Panel class="DatacenterList">
+						<Button id="DatacenterListContainerRefresh" class="IconButton" onactivate="LobbyAPI.RefreshReachableDatacenters();" onmouseover="UiToolkitAPI.ShowTextTooltip( &apos;DatacenterListContainerRefresh&apos;, &apos;#GameUI_Refresh&apos; );" onmouseout="UiToolkitAPI.HideTextTooltip();">
+							<Image src="s2r://panorama/images/icons/ui/refresh.vsvg" />
+						</Button>
+						<Panel class="DatacenterListContainer" id="DatacenterListContainer" />
+					</Panel>
 					<Panel class="horizontal-separator" />
 					<TooltipPanel class="SettingsMenuDropdownContainer" tooltip="#SFUI_Settings_Network_Bandwidth_Info">
 						<Label text="#SFUI_Settings_Network_Bandwidth" class="half-width" />
@@ -62,24 +76,6 @@
 							<Label text="#SFUI_Settings_Network_Bandwidth_Max" id="netbandwidth10" value="786432" />
 						</CSGOSettingsEnumDropDown>
 					</TooltipPanel>
-					<Panel class="horizontal-separator" />
-					<Panel class="SettingsMenuDropdownContainer">
-						<Label text="#SFUI_SteamToast_Location" class="half-width" />
-						<CSGOSettingsEnumDropDown class="PopupButton White" convar="ui_steam_overlay_notification_position">
-							<Label text="#SFUI_SteamToast_Location_TL" id="toastloc0" value="topleft" />
-							<Label text="#SFUI_SteamToast_Location_BL" id="toastloc1" value="bottomleft" />
-							<Label text="#SFUI_SteamToast_Location_BR" id="toastloc2" value="bottomright" />
-							<Label text="#SFUI_SteamToast_Location_TR" id="toastloc3" value="topright" />
-						</CSGOSettingsEnumDropDown>
-					</Panel>
-					<Panel class="horizontal-separator" />
-					<Panel class="SettingsMenuDropdownContainer">
-						<CSGOSettingsSlider text="#SFUI_SteamToast_Location_Horz" max="100" min="0" convar="ui_steam_overlay_notification_position_horz" />
-					</Panel>
-					<Panel class="horizontal-separator" />
-					<Panel class="SettingsMenuDropdownContainer">
-						<CSGOSettingsSlider text="#SFUI_SteamToast_Location_Vert" max="100" min="0" convar="ui_steam_overlay_notification_position_vert" />
-					</Panel>
 					<Panel class="horizontal-separator" />
 					<TooltipPanel id="enableconsoledropdown-container" class="SettingsMenuDropdownContainer" tooltip="#GameUI_Settings_Enable_Console_Tooltip">
 						<Label text="#SFUI_Settings_Enable_Console" class="half-width" />
@@ -102,7 +98,6 @@
 							<Label text="#GameUI_No" value="0" id="installdlcworkshoptools0" />
 						</CSGOSettingsEnumDropDown>
 					</Panel>
-					<Panel class="horizontal-separator" />
 				</Panel>
 			</Panel>
 			<Panel id="SettingsHudSettings" class="SettingsBackground">
@@ -132,6 +127,7 @@
 							<Label text="#SFUI_Settings_HUD_Color_11" value="11" id="hudcolor11" />
 						</CSGOSettingsEnumDropDown>
 					</TooltipPanel>
+					<Panel class="horizontal-separator" />
 					<TooltipPanel class="SettingsMenuDropdownContainer" tooltip="#SFUI_Settings_MiniScoreboardPlayerCount_Tooltip">
 						<Label text="#SFUI_Settings_MiniScoreboardPlayerCount" class="half-width" />
 						<CSGOSettingsEnumDropDown class="PopupButton White" convar="cl_teamcounter_playercount_instead_of_avatars">
@@ -140,6 +136,23 @@
 						</CSGOSettingsEnumDropDown>
 					</TooltipPanel>
 					<Panel class="horizontal-separator" />
+					<Panel class="SettingsMenuDropdownContainer">
+						<Label text="#SFUI_SteamToast_Location" class="half-width" />
+						<CSGOSettingsEnumDropDown class="PopupButton White" convar="ui_steam_overlay_notification_position">
+							<Label text="#SFUI_SteamToast_Location_TL" id="toastloc0" value="topleft" />
+							<Label text="#SFUI_SteamToast_Location_BL" id="toastloc1" value="bottomleft" />
+							<Label text="#SFUI_SteamToast_Location_BR" id="toastloc2" value="bottomright" />
+							<Label text="#SFUI_SteamToast_Location_TR" id="toastloc3" value="topright" />
+						</CSGOSettingsEnumDropDown>
+					</Panel>
+					<Panel class="horizontal-separator" />
+					<Panel class="SettingsMenuDropdownContainer">
+						<CSGOSettingsSlider text="#SFUI_SteamToast_Location_Horz" max="100" min="0" convar="ui_steam_overlay_notification_position_horz" />
+					</Panel>
+					<Panel class="horizontal-separator" />
+					<Panel class="SettingsMenuDropdownContainer">
+						<CSGOSettingsSlider text="#SFUI_SteamToast_Location_Vert" max="100" min="0" convar="ui_steam_overlay_notification_position_vert" />
+					</Panel>
 				</Panel>
 			</Panel>
 			<Panel id="SettingsTeamSettings" class="SettingsBackground">

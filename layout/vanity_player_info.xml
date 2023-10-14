@@ -33,8 +33,5 @@
 				</Panel>
 			</Panel>
 		</Panel>
-		<Button id="vanity-info-settings-btn" class="vanity-settings-btn" onactivate="$.DispatchEvent( &apos;MainMenu_OnGoToCharacterLoadoutPressed&apos; )">
-			<Image textureheight="32" texturewidth="-1" src="s2r://panorama/images/icons/ui/picture.vsvg" />
-		</Button>
 	</Panel>
 </root>
