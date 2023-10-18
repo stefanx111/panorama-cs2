@@ -63,6 +63,14 @@
 						<Panel class="DatacenterListContainer" id="DatacenterListContainer" />
 					</Panel>
 					<Panel class="horizontal-separator" />
+					<TooltipPanel id="NetworkProblemAutoShow" class="SettingsMenuDropdownContainer" tooltip="#SFUI_Settings_Network_ProblemAutoShow_Info">
+						<Label text="#SFUI_Settings_Network_ProblemAutoShow" class="half-width" />
+						<CSGOSettingsEnumDropDown class="PopupButton White" convar="cq_netgraph_problem_show_auto">
+							<Label text="#SFUI_Settings_Network_ProblemAutoShow_Off" id="problemautoshow0" value="0" />
+							<Label text="#SFUI_Settings_Network_ProblemAutoShow_Auto" id="problemautoshow1" value="1" />
+						</CSGOSettingsEnumDropDown>
+					</TooltipPanel>
+					<Panel class="horizontal-separator" />
 					<TooltipPanel class="SettingsMenuDropdownContainer" tooltip="#SFUI_Settings_Network_Bandwidth_Info">
 						<Label text="#SFUI_Settings_Network_Bandwidth" class="half-width" />
 						<CSGOSettingsEnumDropDown class="PopupButton White" convar="rate">
@@ -128,7 +136,7 @@
 						</CSGOSettingsEnumDropDown>
 					</TooltipPanel>
 					<Panel class="horizontal-separator" />
-					<TooltipPanel class="SettingsMenuDropdownContainer" tooltip="#SFUI_Settings_MiniScoreboardPlayerCount_Tooltip">
+					<TooltipPanel id="ReplaceAvatarsWithPlayerCount" class="SettingsMenuDropdownContainer" tooltip="#SFUI_Settings_MiniScoreboardPlayerCount_Tooltip">
 						<Label text="#SFUI_Settings_MiniScoreboardPlayerCount" class="half-width" />
 						<CSGOSettingsEnumDropDown class="PopupButton White" convar="cl_teamcounter_playercount_instead_of_avatars">
 							<Label text="#GameUI_Yes" value="1" id="playercount0" />

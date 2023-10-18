@@ -56,7 +56,7 @@ var SettingsMenuGameSettings = ( function() {
         }
         clanTagDropdown.RemoveAllOptions();
 
-        // Add the "No team tag option"
+                                       
         var id = 'clantagoption_none';
         var optionLabel = $.CreatePanel('Label', clanTagDropdown, id);
         optionLabel.text = $.Localize("#SFUI_Settings_ClanTag_None");
@@ -66,11 +66,11 @@ var SettingsMenuGameSettings = ( function() {
         var nNumClans = MyPersonaAPI.GetMyClanCount();
         for (var i = 0; i < nNumClans; i++)
         {
-            // 64-bit clan id for handle to MyPersona functions
+                                                               
             var clanID = MyPersonaAPI.GetMyClanIdByIndex(i);
             var clanTag = MyPersonaAPI.GetMyClanTagByIdCensored(clanID);
 
-            // 32-bit clan id for actually storing in convar cl_clanid
+                                                                      
             var clanIDForCvar = MyPersonaAPI.GetMyClanId32BitByIndex(i);
 
             id = 'clantagoption' + i.toString();
@@ -85,7 +85,7 @@ var SettingsMenuGameSettings = ( function() {
 
 	var _OnCrosshairStyleChange = function()
 	{
-		// Some sliders don't apply to styles 1 & 2.
+		                                            
 		let nStyle = parseInt( GameInterfaceAPI.GetSettingString( 'cl_crosshairstyle' ) );
 
 		let bEnableControls = nStyle !== 0 && nStyle !== 1;
@@ -125,7 +125,7 @@ var SettingsMenuGameSettings = ( function() {
 
 })();
 
-// On creation
+              
 (function ()
 {
 	SettingsMenuGameSettings.InitSteamClanTagsPanel();
