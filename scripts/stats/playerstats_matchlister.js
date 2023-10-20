@@ -127,7 +127,7 @@ var MatchLister = ( function ()
 
 	function _Populate ( elPanel, nDays, nMode, sortStat )
 	{
-		if ( !elPanel )
+		if ( !elPanel || !elPanel.IsValid() )
 			return;
 		
 		                                                           

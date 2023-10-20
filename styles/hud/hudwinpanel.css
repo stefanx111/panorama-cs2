@@ -186,6 +186,16 @@ CSGOHudWinPanel Label
 	wash-color: rgb(172, 172, 172);
 }
 
+.HUD--localplayer--spectator .WinPanelRoot--Win--T .WinPanelRow__BG__Glitch,.HUD--localplayer--spectator .WinPanelRoot--Win--T .WinPanelRow__BG__Dots,.HUD--localplayer--spectator .WinPanelRoot--Win--T .WinPanel__Result Label
+{
+	wash-color: t-color;
+}
+
+.HUD--localplayer--spectator .WinPanelRoot--Win--CT .WinPanelRow__BG__Glitch,.HUD--localplayer--spectator .WinPanelRoot--Win--CT .WinPanelRow__BG__Dots,.HUD--localplayer--spectator .WinPanelRoot--Win--CT .WinPanel__Result Label
+{
+	wash-color: ct-color;
+}
+
 .WinPanelRow__BG
 {
 	width: 100%;
@@ -274,7 +284,7 @@ CSGOHudWinPanel Label
 
 .winpanel-basic-round-result-visible .WinPanel__Result__Title
 {
-	letter-spacing: 14px;
+	letter-spacing: 10px;
 }
 
 .winpanel-basic-round-result-visible .WinPanel__Result__Title--Faded

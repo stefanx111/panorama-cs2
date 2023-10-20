@@ -174,7 +174,7 @@
 	text-align: center;
 }
 
-.accept-match__data__gameserver.hidden
+.accept-match__data__time.hidden
 {
 	visibility: collapse;
 }

@@ -137,7 +137,7 @@
 					<Panel class="horizontal-align-right">
 						<Panel id="TeamLargeCT" class="Team__Large" />
 						<Label class="TeamLarge__PlayerCount" text="{d:left_side_alive}">
-							<Label class="TeamLarge__PlayerCount__Alive" text="#SFUI_PlayerCount_Alive" />
+							<Label class="TeamLarge__PlayerCount__Alive" text="#SFUI_PlayerCount_Alive_Left" />
 						</Label>
 					</Panel>
 				</Panel>
@@ -168,11 +168,11 @@
 					<Panel id="PlayerCount" class="additive">
 						<Panel class="playercount--left">
 							<Image src="s2r://panorama/images/icons/person.vsvg" scaling="stretch-to-fit-preserve-aspect" texturewidth="10" textureheight="-1" />
-							<Label class="stratum-bold-italic" text="#miniscoreboard_playercount-left" />
+							<Label class="stratum-bold" text="#miniscoreboard_playercount-left" />
 						</Panel>
 						<Panel class="playercount--right">
 							<Image src="s2r://panorama/images/icons/person.vsvg" scaling="stretch-to-fit-preserve-aspect" texturewidth="10" textureheight="-1" />
-							<Label class="stratum-bold-italic" text="#miniscoreboard_playercount-right" />
+							<Label class="stratum-bold" text="#miniscoreboard_playercount-right" />
 						</Panel>
 					</Panel>
 				</Panel>
@@ -181,7 +181,7 @@
 					<Panel class="">
 						<Panel id="TeamLargeT" class="Team__Large" />
 						<Label class="TeamLarge__PlayerCount" text="{d:right_side_alive}">
-							<Label class="TeamLarge__PlayerCount__Alive" text="#SFUI_PlayerCount_Alive" />
+							<Label class="TeamLarge__PlayerCount__Alive" text="#SFUI_PlayerCount_Alive_Right" />
 						</Label>
 					</Panel>
 				</Panel>

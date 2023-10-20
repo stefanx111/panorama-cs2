@@ -313,9 +313,9 @@ var mainmenu_watch = ( function()
 				arrElPlayers.forEach( function ( elPlayer, i )
 				{
 					let delay = DELAY_INIT + i * DELAY_DELTA;
-					Scheduler.Schedule( delay, function ( elPlayer )
+					Scheduler.Schedule( delay, () =>
 					{
-						if ( elPlayer )
+						if ( elPlayer && elPlayer.IsValid() )
 							elPlayer.RemoveClass( 'hidden' );
 						
 						                                            
@@ -324,7 +324,7 @@ var mainmenu_watch = ( function()
 							$.DispatchEvent( 'CSGOPlaySoundEffect', 'UIPanorama.mainmenu_rollover', 'MOUSE' );
 						}, "player-reveal" );
 
-					}.bind( this, elPlayer ), "player-reveal");
+					}, "player-reveal");
 
 				});
 			}

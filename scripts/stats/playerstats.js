@@ -313,7 +313,11 @@ var playerstats = ( function()
 		const init = 0.2;
 
 		arrPanelsToAnimateIn.forEach(function (panel, idx) {
-			Scheduler.Schedule(init + (delay * idx), function (panel) { panel.RemoveClass('rotatein') }.bind(this, panel));
+			Scheduler.Schedule(init + (delay * idx), () =>
+			{
+				if ( panel && panel.IsValid() )
+					panel.RemoveClass('rotatein');
+			});
 		});
     }
 

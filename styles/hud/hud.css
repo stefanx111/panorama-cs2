@@ -170,3 +170,8 @@ CSGOScoreboard
 	world-blur: hudWorldBlur;
 }
 
+.HUD--localplayer--spectator .WinPanelRoot--Win-T .WinPanelRow__BG__Glitch,.HUD--localplayer--spectator .WinPanelRoot--Win-T .WinPanelRow__BG__Dots
+{
+	wash-color: t-color;
+}
+
