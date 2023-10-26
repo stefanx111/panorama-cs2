@@ -659,11 +659,12 @@ var friendsList = (function() {
 
 	var _ShowMatchAcceptPopUp = function( map, location, ping )
 	{
-		var popup = UiToolkitAPI.ShowCustomLayoutPopupParameters( '','file://{resources}/layout/popups/popup_accept_match.xml',
-			'map_and_isreconnect=' + map + ',false'
-			+ ( ( location && ping ) ? '&ping='+ping+'&location='+location : '' )
+		var popup = UiToolkitAPI.ShowGlobalCustomLayoutPopupParameters(
+			'',
+			'file://{resources}/layout/popups/popup_accept_match.xml',
+			'map_and_isreconnect=' + map + ',false' + ( ( location && ping ) ? '&ping='+ping+'&location='+location : '' ),
+			'dim'
 			);
-		$.DispatchEvent( "ShowAcceptPopup", popup );
 	};
 
 	                      

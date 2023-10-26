@@ -33,7 +33,8 @@
 			</Panel>
 		</snippet>
 	</snippets>
-	<PopupCustomLayout class="accept-match Hidden" popupbackground="blur" onload="PopupAcceptMatch.Init();" oncancel="">
+	<PopupCustomLayout class="accept-match Hidden" popupbackground="dim" onload="PopupAcceptMatch.Init();" oncancel="">
+		<Panel class="accept-match-hit-blocker" hittest="false" />
 		<Panel id="id-accept-match" class="accept-match accept-match-container">
 			<Panel id="AcceptMatchWarning" class="accept-match-warning hidden">
 				<Image class="vertical-center right-padding" texturewidth="-1" textureheight="24" src="s2r://panorama/images/icons/ui/info.vsvg" />

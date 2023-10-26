@@ -1172,6 +1172,7 @@ RadioButton Label.map-selection-info__map-name
 
 .map-selection-info__map-name
 {
+	width: 90%;
 	height: 34px;
 	font-size: 32px;
 	margin: 0px;
@@ -1621,13 +1622,20 @@ ToggleButton .map-selection-info__new,RadioButton .map-selection-info__new
 	visibility: collapse;
 }
 
+.map-selection-no-subscriptions
+{
+	horizontal-align: center;
+	width: 100%;
+}
+
 .map-selection-no-subscriptions-label
 {
 	padding-top: 150px;
 	padding-left: 200px;
 	padding-right: 200px;
-	font-size: 40px;
+	font-size: 32px;
 	text-align: center;
+	horizontal-align: center;
 }
 
 .game-mode-selection-radios-spacer

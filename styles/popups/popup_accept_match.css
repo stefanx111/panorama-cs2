@@ -17,11 +17,18 @@
 	transition-timing-function: ease-in;
 }
 
+.accept-match-hit-blocker
+{
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.01);
+}
+
 .accept-match-container
 {
 	flow-children: down;
 	vertical-align: center;
-	margin-top: 20%;
+	padding-top: 20%;
 	box-shadow: none;
 	transition-property: opacity, transform;
 	transition-duration: 0.2s;

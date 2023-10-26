@@ -51,7 +51,7 @@
 		</snippet>
 		<snippet name="NoWorkshopMaps">
 			<Panel class="map-selection-no-subscriptions">
-				<Label class="map-selection-no-subscriptions-label" html="true" text="#CSGO_Workshop_No_Maps" />
+				<Label class="map-selection-no-subscriptions-label stratum-medium-tf" html="true" text="#CSGO_Workshop_No_Maps" />
 			</Panel>
 		</snippet>
 		<snippet name="QuickSelectionSetButtonSnippet">
