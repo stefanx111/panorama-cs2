@@ -630,7 +630,11 @@ CSGOHudWeaponSelection Label,CSGOWeaponSelectionView Label
 }
 
 @define objective-container-position-4: -225px;
+@define grenade-bg-pip-width-4: 48px;
 @define objective-container-position-3: -170px;
+@define grenade-bg-pip-width-3: 52px;
+@define objective-container-position-5: -255px;
+@define grenade-bg-pip-width-5: 44px;
 .weapon-selection-list__always-on-container
 {
 	horizontal-align:right;
@@ -661,7 +665,17 @@ CSGOHudWeaponSelection Label,CSGOWeaponSelectionView Label
 
 .weapon-row.gear-slot--3 .weapon-selection-item-icon
 {
-	width: 52px;
+	width: grenade-bg-pip-width-3;
+}
+
+.HUD--max-nades-4 .weapon-row.gear-slot--3 .weapon-selection-item-icon
+{
+	width: grenade-bg-pip-width-4;
+}
+
+.HUD--max-nades-5 .weapon-row.gear-slot--3 .weapon-selection-item-icon
+{
+	width: grenade-bg-pip-width-5;
 }
 
 .weapon-row.gear-slot--3 .weapon-row-horiz-container-inner
@@ -724,11 +738,21 @@ CSGOHudWeaponSelection Label,CSGOWeaponSelectionView Label
 
 .grenade-pip_container
 {
-	width: 52px;
 	overflow: noclip;
 	vertical-align:top;
 	horizontal-align:center;
 	margin-top:7px;
+	width: grenade-bg-pip-width-3;
+}
+
+.HUD--max-nades-4 .grenade-pip_container
+{
+	width: grenade-bg-pip-width-4;
+}
+
+.HUD--max-nades-5 .grenade-pip_container
+{
+	width: grenade-bg-pip-width-5;
 }
 
 .HUD--max-nades-3 .nade4
@@ -810,9 +834,19 @@ CSGOHudWeaponSelection Label,CSGOWeaponSelectionView Label
 	transform: translateX(objective-container-position-4);
 }
 
+.weapon-row.kit
+{
+	height: 70px;
+}
+
 .HUD--max-nades-3 .weapon-row.gear-slot--4,.HUD--max-nades-3 .weapon-row.kit
 {
 	transform: translateX(objective-container-position-3);
+}
+
+.HUD--max-nades-5 .weapon-row.gear-slot--4,.HUD--max-nades-5 .weapon-row.kit
+{
+	transform: translateX(objective-container-position-5);
 }
 
 .weapon-selection-list__kit
@@ -820,7 +854,7 @@ CSGOHudWeaponSelection Label,CSGOWeaponSelectionView Label
 	vertical-align: center;
 	horizontal-align: right;
 	height: 40px;
-	position: -25px 6px 0px;
+	position: -10px -4px 0px;
 	opacity: 0;
 }
 

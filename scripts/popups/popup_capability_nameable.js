@@ -44,7 +44,6 @@ var CapabilityNameable = ( function()
 			elNameTagModel.SetItemModel( 'weapons/models/shared/nametag/nametag_module.vmdl' );
 			elNameTagModel.SetItemLabel( '' );
 		}
-
 	};
 
 	var _SetUpPanelElements = function()
@@ -90,12 +89,12 @@ var CapabilityNameable = ( function()
 
 		if( !toolId )
 		{
-			var nametTagStoreId = 1200;
-			fakeItem = InventoryAPI.GetFauxItemIDFromDefAndPaintIndex( 1200, 0 );
+			var nameTagStoreId = 1200;
+			fakeItem = InventoryAPI.GetFauxItemIDFromDefAndPaintIndex( nameTagStoreId, 0 );
 			$.GetContextPanel().SetAttributeString( 'purchaseItemId', fakeItem );
 		}
 
-		InpsectPurchaseBar.Init(
+		InspectPurchaseBar.Init(
 			elPurchase,
 			fakeItem,
 			_GetSettingCallback
@@ -105,7 +104,7 @@ var CapabilityNameable = ( function()
 	var _SetupHeader = function ( itemId )
 	{
 		var elCapabilityHeaderPanel = $.GetContextPanel().FindChildInLayoutFile( 'PopUpCapabilityHeader' );
-		CapabiityHeader.Init( elCapabilityHeaderPanel, itemId, _GetSettingCallback );
+		CapabilityHeader.Init( elCapabilityHeaderPanel, itemId, _GetSettingCallback );
 	}
 
 	var _GetSettingCallback = function( settingname, defaultvalue )
@@ -149,15 +148,7 @@ var CapabilityNameable = ( function()
 			m_elValidBtn.SetHasClass( 'hidden', true );
 		} );
 
-		m_elRemoveBtn.SetPanelEvent( 'onactivate', function()
-		{
-			InspectAsyncActionBar.EnableDisableOkBtn( elAsyncActionBarPanel, false );
-			m_elTextEntry.enabled = true;
-			m_elTextEntry.SetFocus();
-			m_elRemoveBtn.SetHasClass( 'hidden', true );
-			m_elValidBtn.SetHasClass( 'hidden', false );
-			m_elTextEntry.text = '';
-		} );
+		m_elRemoveBtn.SetPanelEvent( 'onactivate', _RemoveButtonAction );
 
 		m_elRemoveConfirm.SetPanelEvent( 'onactivate',
 			_OnRemoveConfirm.bind( undefined, itemId ) );
@@ -167,6 +158,16 @@ var CapabilityNameable = ( function()
 		m_elTextEntry.SetMaxChars( 20 );
 		m_elTextEntry.text = _SetDefaultTextForTextEntry( hasName, itemId );
 	};
+
+	var _RemoveButtonAction = function()
+	{
+		InspectAsyncActionBar.EnableDisableOkBtn( elAsyncActionBarPanel, false );
+		m_elTextEntry.enabled = true;
+		m_elTextEntry.SetFocus();
+		m_elRemoveBtn.SetHasClass( 'hidden', true );
+		m_elValidBtn.SetHasClass( 'hidden', false );
+		m_elTextEntry.text = '';
+	}
 
 	var _SetDefaultTextForTextEntry = function( hasName, itemId )
 	{
@@ -277,19 +278,37 @@ var CapabilityNameable = ( function()
 		}
 		else if ( !elPurchase.BHasClass( 'hidden' ) )
 		{
-			InpsectPurchaseBar.ClosePopup();
+			InspectPurchaseBar.ClosePopup();
 		}
 	};
+
+	var _Refresh = function()
+	{
+		                                                         
+		var elNameTagModel = $.GetContextPanel().FindChildInLayoutFile('id-inspect-nametag-model');		
+		if ( elNameTagModel && elNameTagModel.IsValid() )
+		{
+			_SetUpPanelElements();
+
+			return;
+		}
+
+		_ClosePopup();
+	}
 
 	return {
 		Init: _Init,
 		OnEntryChanged: _OnEntryChanged,
 		NameTagAcquired: _NameTagAcquired,
-		ClosePopup: _ClosePopup
+		ClosePopup: _ClosePopup,
+		Refresh: _Refresh
 	}
 } )();
 
 ( function()
 {
 	$.RegisterForUnhandledEvent( 'PanoramaComponent_Store_PurchaseCompleted', CapabilityNameable.NameTagAcquired );
+
+	$.RegisterForUnhandledEvent( 'CSGOShowMainMenu', CapabilityNameable.Init );
+	$.RegisterForUnhandledEvent( 'PopulateLoadingScreen', CapabilityNameable.ClosePopup );
 } )();

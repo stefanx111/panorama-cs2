@@ -1,6 +1,6 @@
 'use-strict';
 
-var InpsectPurchaseBar = ( function()
+var InspectPurchaseBar = ( function()
 {
 	var m_itemid = '';                                            
 	var m_storeItemid = '';                                                                      

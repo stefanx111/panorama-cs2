@@ -41,6 +41,16 @@
 	height: 100%;
 }
 
+.comp-rating-label
+{
+	font-family: Stratum2 Condensed;
+	horizontal-align: center;
+	position: 0px 0px 0px;
+	color: #c4c4c4;
+	font-size: 18px;
+	text-overflow: shrink;
+}
+
 .premier-rating
 {
 	width: 100%;

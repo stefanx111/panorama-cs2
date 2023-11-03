@@ -11,9 +11,9 @@ var CapabilityDecodable = ( function()
 	var m_caseId = '';
 	var m_existingRewardFromXrayId = '';
 	var m_itemFromContainer = '';
-	var m_Inspectpanel = $.GetContextPanel();
+	var m_InspectPanel = $.GetContextPanel();
 	var m_keyId = '';
-	var m_keytoSellId = '';
+	var m_keyToSellId = '';
 	var m_isKeyless = false;
 	var m_storeItemId = '';
 	var m_unusualItemImagePath = '';
@@ -22,6 +22,7 @@ var CapabilityDecodable = ( function()
 	var m_styleforPopUpInspectFullScreenHostContainer = '';
 	var m_isXrayMode = false;
 	var m_blurOperationPanel = false;
+	var m_elCaseModelImagePanel = null;
 	
 	var _Init = function()
 	{
@@ -52,7 +53,7 @@ var CapabilityDecodable = ( function()
 
 		if ( m_isXrayMode )
 		{
-			m_Inspectpanel.SetHasClass( 'popup-in-xray', m_isXrayMode ); 
+			m_InspectPanel.SetHasClass( 'popup-in-xray', m_isXrayMode ); 
 			var oData = ItemInfo.GetItemsInXray();
 			m_existingRewardFromXrayId = oData.reward;
 
@@ -128,7 +129,7 @@ var CapabilityDecodable = ( function()
 			else if ( !m_storeItemId )
 			{
 				                                                      
-				m_keytoSellId = InventoryAPI.GetAssociatedItemIdByIndex( m_caseId, 0 );
+				m_keyToSellId = InventoryAPI.GetAssociatedItemIdByIndex( m_caseId, 0 );
 			}
 		}
 		else
@@ -186,7 +187,7 @@ var CapabilityDecodable = ( function()
 		                                                                                                              
 		if ( sRestriction !== 'restricted' && sRestriction !== 'xray' || ( m_isXrayMode && sRestriction === 'xray' ) )
 		{
-			_ShowPurchase( ( m_keyId ) ? '' : m_keytoSellId );
+			_ShowPurchase( ( m_keyId ) ? '' : m_keyToSellId );
 
 			var category = ItemInfo.GetLoadoutCategory( m_caseId );
 			if ( category == "musickit" )
@@ -221,7 +222,7 @@ var CapabilityDecodable = ( function()
 	var _SetupHeader = function( caseId )
 	{
 		var elCapabilityHeaderPanel = $.GetContextPanel().FindChildInLayoutFile( 'PopUpCapabilityHeader' );
-		CapabiityHeader.Init( elCapabilityHeaderPanel, caseId, _GetSettingCallback );
+		CapabilityHeader.Init( elCapabilityHeaderPanel, caseId, _GetSettingCallback );
 	};
 
 	var _SetupDescription = function( caseId )
@@ -242,39 +243,27 @@ var CapabilityDecodable = ( function()
 
 	var _GetSettingCallback = function( settingname, defaultvalue )
 	{
-		return m_Inspectpanel.GetAttributeString( settingname, defaultvalue );
+		return m_InspectPanel.GetAttributeString( settingname, defaultvalue );
 	};
 
 	                                                                                                    
-	                                                    
+	                                                   
 	                                                                                                    
 	var _SetCaseModelImage = function( caseId, PanelId )
 	{
 		var elItemModelImagePanel = $.GetContextPanel().FindChildInLayoutFile( PanelId );
+		InspectModelImage.Init( elItemModelImagePanel, caseId );
 
-		if ( ItemInfo.IsSpraySealed( caseId ) )
-		{
-			InspectModelImage.InitSealedSpray( elItemModelImagePanel, caseId );
-			return;
-		}
-
-		InspectModelImage.InitCase( elItemModelImagePanel, caseId );
+		m_elCaseModelImagePanel = InspectModelImage.GetModelPanel();
 	};
 
 	var _PlayCaseModelAnim = function( anim )
 	{
-		var elModel = InspectModelImage.GetModelPanel();
 		                                                                             
-		if (elModel && elModel.IsValid() && elModel.PlaySequence ) {
-			elModel.PlaySequence(anim, true);
+		if (m_elCaseModelImagePanel && m_elCaseModelImagePanel.IsValid() && m_elCaseModelImagePanel.PlaySequence ) {
+			m_elCaseModelImagePanel.PlaySequence(anim, true);
         }
 	};
-
-	                                                                 
-	    
-	   	                                                
-	   	                                                    
-	     
 
 	                                                                                                    
 	              
@@ -290,13 +279,13 @@ var CapabilityDecodable = ( function()
 		);
 	};
 
-	var _ShowPurchase = function( m_keytoSellId )
+	var _ShowPurchase = function( m_keyToSellId )
 	{
 		var elPurchase = $.GetContextPanel().FindChildInLayoutFile( 'PopUpInspectPurchaseBar' );
 
-		InpsectPurchaseBar.Init(
+		InspectPurchaseBar.Init(
 			elPurchase,
-			m_keytoSellId,
+			m_keyToSellId,
 			_GetSettingCallback
 		);
 	};
@@ -314,9 +303,12 @@ var CapabilityDecodable = ( function()
 			_ShowHideLootList( false );
 			return;
 		}
-		
-		var elImage = InspectModelImage.GetImagePanel();
-		elImage.AddClass( 'y-offset' );
+
+		if( m_elCaseModelImagePanel && m_elCaseModelImagePanel.IsValid() && m_elCaseModelImagePanel.id ==='ImagePreviewPanel' )
+		{
+			m_elCaseModelImagePanel.AddClass( 'y-offset' );
+		}
+
 		_ShowHideLootList( true );
 		_SetLootlistHintText( caseId, count );
 		
@@ -327,8 +319,6 @@ var CapabilityDecodable = ( function()
 			
 			if ( !elItem )
 			{
-				                                                            
-
 				var elItem = $.CreatePanel( 'Panel', elLootList, itemid );
 				elItem.SetAttributeString( 'itemid', itemid );
 				elItem.BLoadLayoutSnippet( 'LootListItem' );
@@ -489,26 +479,23 @@ var CapabilityDecodable = ( function()
 	{
 		_ShowHideLootList( false );
 
-		var elImage = InspectModelImage.GetImagePanel();
-		var elCase = null;
 		var delay = 0;
 		
-		if ( elImage && elImage.IsValid() && !elImage.BHasClass( 'hidden' ) )
+		if ( m_elCaseModelImagePanel && 
+			m_elCaseModelImagePanel.IsValid() && 
+			m_elCaseModelImagePanel.id == 'ImagePreviewPanel' && 
+			!m_elCaseModelImagePanel.BHasClass( 'hidden' ) )
 		{
-			elImage.RemoveClass( 'y-offset' );
-			elCase = elImage;
+			m_elCaseModelImagePanel.RemoveClass( 'y-offset' );
 			delay = 0.1;
 		}
 		else
 		{
 			$.Schedule( 1, _PlayCaseModelAnim.bind( undefined, 'open' ) );
-			                                 
-			
-			elCase = InspectModelImage.GetModelPanel();
 			delay = 2.3;
 		}
 
-		$.Schedule( delay, _ShowScroll.bind( undefined, elCase ) );
+		$.Schedule( delay, _ShowScroll.bind( undefined, m_elCaseModelImagePanel ) );
 	};
 
 	var _ShowScroll = function( elCase )
@@ -1033,9 +1020,9 @@ var CapabilityDecodable = ( function()
 	{
 		$.DispatchEvent( "CSGOPlaySoundEffect", "rename_purchaseSuccess", "MOUSE" );
 		
-		if ( !m_keyId && m_keytoSellId )
+		if ( !m_keyId && m_keyToSellId )
 		{
-			var matchingKeyDefName = ItemInfo.GetItemDefinitionName( m_keytoSellId );
+			var matchingKeyDefName = ItemInfo.GetItemDefinitionName( m_keyToSellId );
 			
 			if (  ItemInfo.ItemMatchDefName( ItemId, matchingKeyDefName ) )
 			{
@@ -1060,8 +1047,9 @@ var CapabilityDecodable = ( function()
 	};
 
 	var _ShowUnlockAnimation = function()
-	{
+	{		
 		var lootListCount = InventoryAPI.GetLootListItemsCount( m_caseId );
+
 		if ( lootListCount === undefined )
 		{
 			if ( InventoryAPI.IsValidItemID( m_itemFromContainer ) )
@@ -1113,18 +1101,18 @@ var CapabilityDecodable = ( function()
 		                                  
 		if ( !_m_handlerForHideEvent )
 		{
-			_m_handlerForHideEvent = $.RegisterEventHandler( 'PropertyTransitionEnd', m_Inspectpanel, function ( panel, propertyName )
+			_m_handlerForHideEvent = $.RegisterEventHandler( 'PropertyTransitionEnd', m_InspectPanel, function ( panel, propertyName )
 			{
-				if ( m_Inspectpanel.id === panel.id && propertyName === 'opacity' )
+				if ( m_InspectPanel.id === panel.id && propertyName === 'opacity' )
 				{
 					                                         
-					if ( m_Inspectpanel.visible === true && m_Inspectpanel.BIsTransparent() )
+					if ( m_InspectPanel.visible === true && m_InspectPanel.BIsTransparent() )
 					{
 						                                               
-						m_Inspectpanel.visible = false;
+						m_InspectPanel.visible = false;
 						return true;
 					}
-					else if ( m_Inspectpanel.visible === true )
+					else if ( m_InspectPanel.visible === true )
 					{
 					}
 				}
@@ -1132,14 +1120,14 @@ var CapabilityDecodable = ( function()
 			} );
 		}
 
-		m_Inspectpanel.SetHasClass( 'hide-for-lootlist', true );
+		m_InspectPanel.SetHasClass( 'hide-for-lootlist', true );
 	}
 
 	var _ClosePopUp = function()
 	{
 		InventoryAPI.StopItemPreviewMusic();
 
-		if ( m_Inspectpanel.IsValid() )
+		if ( m_InspectPanel.IsValid() )
 		{ 
 			if ( m_showInspectScheduleHandle )
 			{
@@ -1147,20 +1135,32 @@ var CapabilityDecodable = ( function()
 				m_showInspectScheduleHandle = null;
 			}
 
-			var elAsyncActionBarPanel = m_Inspectpanel.FindChildInLayoutFile( 'PopUpInspectAsyncBar' );
-			var elPurchase = m_Inspectpanel.FindChildInLayoutFile( 'PopUpInspectPurchaseBar' );
+			var elAsyncActionBarPanel = m_InspectPanel.FindChildInLayoutFile( 'PopUpInspectAsyncBar' );
+			var elPurchase = m_InspectPanel.FindChildInLayoutFile( 'PopUpInspectPurchaseBar' );
 			if ( !elAsyncActionBarPanel.BHasClass( 'hidden' ) )
 			{
 				InspectAsyncActionBar.OnEventToClose();
 			}
 			else if ( !elPurchase.BHasClass( 'hidden' ) )
 			{
-				InpsectPurchaseBar.ClosePopup();
+				InspectPurchaseBar.ClosePopup();
 			}
 		}
 
 		_UpdateOpeningCounter.CancelTimer();
 	};
+
+	var _Refresh = function()
+	{
+		if( !m_caseId || !InventoryAPI.IsValidItemID( m_caseId ) )
+		{
+			
+			_ClosePopUp();
+			return;
+		}
+		
+		_SetUpPanelElements();
+	}
 	
 	return {
 		Init: _Init,
@@ -1168,7 +1168,8 @@ var CapabilityDecodable = ( function()
 		ClosePopUp: _ClosePopUp,
 		UpdateScrollResultTile: _UpdateScrollResultTile,
 		ItemAcquired: _ItemAcquired,
-		ShowUnlockAnimation: _ShowUnlockAnimation
+		ShowUnlockAnimation: _ShowUnlockAnimation,
+		Refresh: _Refresh
 	};
 } )();
 
@@ -1181,5 +1182,8 @@ var CapabilityDecodable = ( function()
 		_m_PanelRegisteredForEvents = $.RegisterForUnhandledEvent( 'PanoramaComponent_Inventory_ItemCustomizationNotification', CapabilityDecodable.UpdateScrollResultTile );
 		$.RegisterForUnhandledEvent( 'PanoramaComponent_Store_PurchaseCompleted', CapabilityDecodable.ItemAcquired );
 		$.RegisterForUnhandledEvent( 'StartDecodeableAnim', CapabilityDecodable.ShowUnlockAnimation );
+
+		$.RegisterForUnhandledEvent( 'CSGOShowMainMenu', CapabilityDecodable.Refresh );
+		$.RegisterForUnhandledEvent( 'PopulateLoadingScreen', CapabilityDecodable.ClosePopUp );
 	}
 } )();

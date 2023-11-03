@@ -74,10 +74,10 @@ var InventoryInspect = ( function()
 		InspectHeader.Init( elHeaderPanel, itemId, _GetSettingCallback );
 
 		var elCapabilityPanel = $.GetContextPanel().FindChildInLayoutFile( 'PopUpCapabilityHeader' );
-		CapabiityHeader.Init( elCapabilityPanel, itemId, _GetSettingCallback );
+		CapabilityHeader.Init( elCapabilityPanel, itemId, _GetSettingCallback );
 
 		var elPurchasePanel = $.GetContextPanel().FindChildInLayoutFile( 'PopUpInspectPurchaseBar' );
-		InpsectPurchaseBar.Init( elPurchasePanel, itemId, _GetSettingCallback );
+		InspectPurchaseBar.Init( elPurchasePanel, itemId, _GetSettingCallback );
 
 		_SetDescription( itemId );
 	}
@@ -380,7 +380,7 @@ var InventoryInspect = ( function()
 		}
 		else if ( !elPurchase.BHasClass( 'hidden' ) )
 		{
-			InpsectPurchaseBar.ClosePopup();
+			InspectPurchaseBar.ClosePopup();
 		}
 		else
 		{
@@ -388,11 +388,25 @@ var InventoryInspect = ( function()
 		}
 	};
 
+	var _Refresh = function()
+	{
+		let itemId = $.GetContextPanel().GetAttributeString( "itemid", null );
+		if( !itemId || !InventoryAPI.IsValidItemID( itemId ) )
+		{
+			ClosePopup();
+			return;
+		}
+		
+		_UpdatePanelData( itemId );
+		InspectActionBar.NavigateModelPanel('InspectModel');
+	}
+
 	return{
 		Init: _Init,
 		ShowNotification: _ShowNotification,
 		ClosePopup: _ClosePopup,
-		ItemAcquired: _ItemAcquired
+		ItemAcquired: _ItemAcquired,
+		Refresh: _Refresh
 	};
 } )();
 
@@ -400,4 +414,6 @@ var InventoryInspect = ( function()
 {
 	$.RegisterForUnhandledEvent( 'PanoramaComponent_Loadout_EquipSlotChanged', InventoryInspect.ShowNotification );
 	$.RegisterForUnhandledEvent( 'PanoramaComponent_Store_PurchaseCompleted', InventoryInspect.ItemAcquired );
+	$.RegisterForUnhandledEvent( 'CSGOShowMainMenu', InventoryInspect.Refresh );
+	$.RegisterForUnhandledEvent( 'PopulateLoadingScreen', InventoryInspect.ClosePopup );
 } )();

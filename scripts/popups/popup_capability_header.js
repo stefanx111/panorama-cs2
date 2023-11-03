@@ -1,6 +1,6 @@
 'use strict';
 
-var CapabiityHeader = ( function()
+var CapabilityHeader = ( function()
 {
 	var m_bShowWarning = true;                                            
 	var m_strWarningText = '';                                                   

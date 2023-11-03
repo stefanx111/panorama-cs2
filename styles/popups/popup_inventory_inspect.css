@@ -161,6 +161,24 @@
 	context-menu-position: top;
 }
 
+.inspect-model-image-panel
+{
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+	transition-property: opacity;
+	transition-duration: 0.25s;
+	transition-timing-function: ease-in-out;
+}
+
+.inspect-model-image-panel--hidden
+{
+	transition-property: opacity;
+	transition-duration: 0.25s;
+	transition-timing-function: ease-in-out;
+	opacity: 0;
+}
+
 .hidden
 {
 	visibility: collapse;

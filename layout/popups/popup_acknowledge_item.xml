@@ -13,7 +13,6 @@
 		<include src="s2r://panorama/scripts/common/tint_spray_icon.vts_c" />
 		<include src="s2r://panorama/scripts/inspect.vts_c" />
 		<include src="s2r://panorama/scripts/popups/popup_acknowledge_item.vts_c" />
-		<include src="s2r://panorama/scripts/popups/popup_capability_can_sticker.vts_c" />
 	</scripts>
 	<snippets>
 		<snippet name="Item">

@@ -41,6 +41,36 @@
 	margin: 0px 0px;
 }
 
+.map-selection-btn__wins
+{
+	visibility: collapse;
+	flow-children: right;
+	horizontal-align: center;
+	y: 60px;
+}
+
+.show-win-count .map-selection-btn__wins
+{
+	visibility: visible;
+}
+
+.map-selection-btn__wins Label
+{
+	font-family: Stratum2 Condensed;
+	font-size: 22px;
+	text-align:center;
+	horizontal-align: right;
+	position: 0px 0px 0px;
+}
+
+.map-selection-btn__wins Image
+{
+	width: 18px;
+	height: 18px;
+	vertical-align: center;
+	margin: 4px;
+}
+
 .map-selection-list--official-competitive,.map-selection-list--official-casual,.map-selection-list--official-deathmatch,.map-selection-list--official-scrimcomp2v2,.map-selection-list--official-skirmish,.map-selection-list--listen-competitive,.map-selection-list--listen-scrimcomp2v2,.map-selection-list--listen-skirmish,.map-selection-list--listen-casual,.map-selection-list--listen-deathmatch
 {
 	padding: 0px 0px;
@@ -133,15 +163,24 @@
 	horizontal-align: center;
 }
 
-.map-selection-list-premier
+.map-selection-list--workshop
 {
-	flow-children: none;
 	width: 100%;
+	height: 100%;
+	margin: 8px;
 }
 
 .map-selection-list--workshop .map-selection-btn
 {
-	margin: 4px;
+	margin:8px;
+	width: 200px;
+	height: width-percentage(140%);
+}
+
+.map-selection-list-premier
+{
+	flow-children: none;
+	width: 100%;
 }
 
 #gameModeButtonContainer_workshop
@@ -1625,15 +1664,15 @@ ToggleButton .map-selection-info__new,RadioButton .map-selection-info__new
 .map-selection-no-subscriptions
 {
 	horizontal-align: center;
+	vertical-align: center;
 	width: 100%;
 }
 
 .map-selection-no-subscriptions-label
 {
-	padding-top: 150px;
 	padding-left: 200px;
 	padding-right: 200px;
-	font-size: 32px;
+	font-size: 24px;
 	text-align: center;
 	horizontal-align: center;
 }
@@ -1653,6 +1692,12 @@ ToggleButton .map-selection-info__new,RadioButton .map-selection-info__new
 	margin-bottom: 12px;
 	width: play-settings-width;
 	height: 48px;
+}
+
+.workshop-search-textentry-container .IconButton
+{
+	horizontal-align: right;
+	margin-right: 24px;
 }
 
 .workshop-search-textentry

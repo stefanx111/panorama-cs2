@@ -2,7 +2,7 @@
 
 .PopupPanel
 {
-	width: 1200px;
+	width: 580px;
 }
 
 .PopupPanel--wide
@@ -43,5 +43,10 @@
 {
 	vertical-align: middle;
 	horizontal-align: left;
+}
+
+.popup-workshop-mode .PopupButton.Row
+{
+	width:480px;
 }
 

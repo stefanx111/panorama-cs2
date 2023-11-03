@@ -16,13 +16,13 @@
 		</snippet>
 	</snippets>
 	<PopupCustomLayout class="PopupPanel Hidden" popupbackground="dim" onload="PopupWorkshopModeSelect.Init();">
-		<Label class="PopupTitle" text="#CSGO_Workshop_Mode_Select_Title" />
+		<Label class="PopupTitle" text="#pick_workshop_map_mode_title" />
 		<Panel class="popup-workshop-mode-block">
 			<Panel id="popup-workshop-mode-items" class="popup-workshop-mode" />
-			<Panel class="PopupButtonRow">
-				<TextButton id="GoButton" class="PopupButton" text="#SFUI_GO" />
-				<TextButton id="CancelButton" class="PopupButton" text="#Cancel" />
-			</Panel>
+		</Panel>
+		<Panel class="PopupButtonRow">
+			<TextButton id="GoButton" class="PopupButton" text="#SFUI_GO" />
+			<TextButton id="CancelButton" class="PopupButton" text="#Cancel" />
 		</Panel>
 	</PopupCustomLayout>
 </root>

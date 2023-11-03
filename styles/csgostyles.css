@@ -2496,13 +2496,14 @@ Slider.HorizontalSlider #SliderThumb:disabled,SlottedSlider.HorizontalSlider #Sl
 ProgressBar
 {
 	width: 320px;
-	height: 22px;
-	background-color: #000000ff;
+	height: 8px;
+	background-color: rgba(0, 0, 0, 0.671);
+	border: 0px solid rgb(58, 58, 58);
 }
 
 .ProgressBarLeft
 {
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #222222FF ), to( #444f52FF ) );
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #134f87FF ), to( #1ab8e0FF ) );
 }
 
 .CloseButton

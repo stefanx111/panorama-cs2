@@ -12,6 +12,7 @@
 		<include src="s2r://panorama/scripts/common/iteminfo.vts_c" />
 		<include src="s2r://panorama/scripts/inspect.vts_c" />
 		<include src="s2r://panorama/scripts/popups/popup_capability_can_sticker.vts_c" />
+		<include src="s2r://panorama/scripts/popups/popup_capability_can_patch.vts_c" />
 	</scripts>
 	<snippets>
 		<snippet name="ScrapeStickerBtn">

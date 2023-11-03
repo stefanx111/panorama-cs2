@@ -800,10 +800,12 @@ Label.sb-row__cell--mvps__count
 	vertical-align: center;
 	horizontal-align: center;
 	text-align: center;
-	font-size: 17px;
+	font-size: 18px;
 	margin-top:5px;
+	margin-left: 2px;
+	margin-right: 2px;
+	text-overflow: ellipsis;
 	font-family: Stratum2 Condensed;
-	letter-spacing: 1px;
 	font-weight: normal;
 }
 

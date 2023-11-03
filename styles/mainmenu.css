@@ -1045,7 +1045,7 @@ CSGOMainMenu.PopupBackgroundBlur #MainMenuInput
 	background-color: rgba(0, 0, 0, 0.00);
 }
 
-.content-navbar__tabs.collapse
+.workshop #id-navbar-tabs,.content-navbar__tabs.collapse
 {
 	height: 0px;
 	transition-property: height;
