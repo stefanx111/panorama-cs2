@@ -47,7 +47,7 @@
 		<Panel id="id-itemtile-store-claimed" class="itemtile-store__claimed hidden">
 			<Image class="itemtile-store__claimed__left" textureheight="24" texturewidth="-1" src="s2r://panorama/images/masks/directive_badge_end.vsvg" />
 			<Panel class="itemtile-store__claimed__center">
-				<Label class="stratum-black-condensed fontSize-m horizontal-center text-align-center" text="#op_reward_claimed" />
+				<Label class="stratum-black-condensed fontSize-m horizontal-center text-align-center" text="#rankup_redemption_store_claimed" />
 			</Panel>
 			<Image class="itemtile-store__claimed__right" textureheight="24" texturewidth="-1" src="s2r://panorama/images/masks/directive_badge_end.vsvg" />
 		</Panel>

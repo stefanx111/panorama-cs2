@@ -338,6 +338,25 @@
 	transform: translateX( 0px);
 }
 
+.eom-skillgroup-data__rating-mismatch
+{
+	background-color: red;
+	horizontal-align: center;
+	y: 50px;
+	font-family: Stratum2;
+	font-weight: bold;
+	font-style: italic;
+	font-size: 14px;
+	padding: 4px;
+	color: black;
+	visibility: collapse;
+}
+
+.rating-mismatch .eom-skillgroup-data__rating-mismatch
+{
+	visibility: visible;
+}
+
 #id-eom-skillgroup-emblem
 {
 	width: 400px;

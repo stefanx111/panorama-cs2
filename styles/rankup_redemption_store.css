@@ -240,7 +240,6 @@ Image,Panel
 {
 	vertical-align: bottom;
 	width: 100%;
-	margin-top: 20px;
 }
 
 .rrs__button-row .rrs__redeem
@@ -265,7 +264,7 @@ Image,Panel
 .rrs__desc
 {
 	max-width: 300px;
-	margin-top: 16px;
+	margin-top: 8px;
 	color: rgb(238, 184, 118);
 	horizontal-align: center;
 	font-size: 16px;
@@ -414,12 +413,11 @@ Image,Panel
 	width: 320px;
 	flow-children: right;
 	height: 48px;
-	margin-top: 30px;
 	horizontal-align: center;
 	visibility: collapse;
 }
 
-.store-closed.care-package-eligible .rrs__xpbar__container
+.care-package-eligible .rrs__xpbar__container
 {
 	visibility: visible;
 }
