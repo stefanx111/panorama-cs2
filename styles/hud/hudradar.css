@@ -49,9 +49,9 @@ CSGOHudRadar Label
 	font-weight: medium;
 	font-size: 10px;
 	margin-top: 1px;
-	text-align: center;
-	horizontal-align: center;
-	letter-spacing: 0px;
+	margin-right: 1px;
+	text-align: center_nopixelsnap;
+	horizontal-align: center_nopixelsnap;
 	color: #000000FF;
 	-s2-mix-blend-mode: normal;
 }
@@ -435,10 +435,10 @@ CSGOHudRadar Label
 {
 	width: 42px;
 	height: 36px;
-	x: -1px;
+	x: 0px;
 	y: -10px;
-	horizontal-align: center;
-	vertical-align: center;
+	horizontal-align: center_nopixelsnap;
+	vertical-align: center_nopixelsnap;
 }
 
 #Defuser

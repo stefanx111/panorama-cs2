@@ -54,8 +54,12 @@ var TooltipPlayerXp = ( function()
 				++ numBonusesAdded;
 				                                                   
 				var newTile = $.CreatePanel( "Label", $( "#JsTooltipXpBonuses" ), 'JsTooltipBonus' + i );
+
+				let secRemaining = StoreAPI.GetSecondsUntilXpRollover();
+				newTile.SetDialogVariable( 'time-to-week-rollover', ( secRemaining > 0 ) ? FormatText.SecondsToSignificantTimeString( secRemaining ) : '' );
+				
 				newTile.AddClass( 'tooltip-player-xp__subtitle' );
-				newTile.text =  $.Localize( "#tooltip_xp_bonus_" + bonusesArray[i] );
+				newTile.text = $.Localize( "#tooltip_xp_bonus_" + bonusesArray[ i ], newTile );
 			}
 		}
 

@@ -43,7 +43,7 @@
 
 .comp-rating-label
 {
-	font-family: Stratum2 Condensed;
+	font-family: Stratum2 Condensed, 'Arial Unicode MS';
 	horizontal-align: center;
 	position: 0px 0px 0px;
 	color: #c4c4c4;
@@ -115,7 +115,7 @@
 	vertical-align:center;
 	margin-left: 10px;
 	text-shadow: 1px 1px 1px 0 #000000;
-	font-family: Stratum2 Black Italic;
+	font-family: Stratum2 Black Italic, 'Arial Unicode MS';
 	color: white;
 	brightness: 1.7;
 }
@@ -253,7 +253,7 @@
 
 .eom-skillgroup .premier-rating .rating__label-container--eom .digitpanel-container .digitpanel__digit Label
 {
-	font-family: Stratum2 Black Italic;
+	font-family: Stratum2 Black Italic, 'Arial Unicode MS';
 	width: 100%;
 	font-weight: bold;
 	color: white;

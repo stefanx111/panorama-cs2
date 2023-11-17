@@ -521,11 +521,6 @@ var matchInfo = ( function() {
 
         var currentTeamId = elPlayerRow.teamId;
         
-        if ( MatchInfoAPI.GetTeamsAreSwitchedFromStart( elParentPanel.matchId ) )
-        {
-            currentTeamId = flipBit( currentTeamId );
-        }
-
         if ( elParentPanel.activePlayerRow )
         {
             elParentPanel.activePlayerRow.checked = false;
@@ -682,6 +677,24 @@ var matchInfo = ( function() {
                 return '';
         }
 
+                                                                                                  
+                                                                                                       
+        var numTimesPlayersChangedSides = 0;
+        numTimesPlayersChangedSides += ( ( totalRounds > (maxRounds / 2) ) ? 1 : 0 );                           
+        if ( totalRounds > maxRounds )
+        {
+            var numRoundsPlayedInLastOvertime = ( totalRounds - maxRounds ) % 6;
+            var numFullOvertimesPlayed = ( totalRounds - maxRounds - numRoundsPlayedInLastOvertime ) / 6;
+                                                                                                                            
+            numTimesPlayersChangedSides += numFullOvertimesPlayed + ( ( numRoundsPlayedInLastOvertime > 3 ) ? 1 : 0 );
+        }
+                                                                                          
+        if ( numTimesPlayersChangedSides % 2 == 1 )
+        {
+            currentTeamId = flipBit( currentTeamId );
+        }
+
+                                                                   
         for ( var i = 1; i <= totalRounds; i++ )
         {
             var elRoundStats = undefined;
@@ -797,7 +810,7 @@ var matchInfo = ( function() {
                 elEliminationWinIcons.RemoveClass( 'sb-tint--' + TEAMS[ flipBit( currentTeamId ) ] );
                 elEliminationWinIcons.AddClass( 'sb-tint--' + TEAMS[ currentTeamId ] );
             }
-            if ( ( i == maxRounds / 2 ) || ( i == maxRounds ) || ( ( i > maxRounds ) && ( ( ( i - maxRounds ) % 3 ) == 0 ) ) )
+            if ( ( i == maxRounds / 2 ) || ( ( i > maxRounds ) && ( ( ( i - maxRounds ) % 6 ) == 3 ) ) )
             {
                 currentTeamId = flipBit( currentTeamId );
             }

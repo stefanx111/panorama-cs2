@@ -56,7 +56,7 @@
 
 .map-selection-btn__wins Label
 {
-	font-family: Stratum2 Condensed;
+	font-family: Stratum2 Condensed, 'Arial Unicode MS';
 	font-size: 22px;
 	text-align:center;
 	horizontal-align: right;
@@ -367,7 +367,7 @@
 	vertical-align: top;
 	font-weight: bold;
 	font-size: 20px;
-	font-family: Stratum2;
+	font-family: Stratum2, 'Arial Unicode MS';
 	text-overflow: shrink;
 }
 
@@ -463,7 +463,7 @@
 
 .directchallenge-status__header__codesourcelabel
 {
-	font-family: Stratum2;
+	font-family: Stratum2, 'Arial Unicode MS';
 	font-size: 16px;
 	font-weight: bold;
 	max-width: 350px;
@@ -474,7 +474,7 @@
 
 .directchallenge-status__header__codesource
 {
-	font-family: Stratum2;
+	font-family: Stratum2, 'Arial Unicode MS';
 	font-size: 28px;
 	font-weight: bold;
 	max-width: 350px;
@@ -489,7 +489,7 @@
 	animation-duration: .5s;
 	animation-timing-function: ease-in-out;
 	animation-iteration-count: 1;
-	font-family: Stratum2;
+	font-family: Stratum2, 'Arial Unicode MS';
 	font-size: 26px;
 	font-weight: bold;
 	wash-color: direct-challenge-color;
@@ -539,7 +539,7 @@
 
 #CopyChallengeKey.IconButton Label
 {
-	font-family: Stratum2;
+	font-family: Stratum2, 'Arial Unicode MS';
 	font-size: 18px;
 	font-weight: bold;
 	text-transform: uppercase;

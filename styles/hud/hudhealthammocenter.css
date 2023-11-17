@@ -488,7 +488,7 @@ CSGOHudHealthAmmoCenter.HUD--no-player
 	letter-spacing: 0px;
 	horizontal-align: center;
 	text-align: left;
-	overflow: noclip;
+	text-overflow: shrink;
 	padding-left: 16px;
 }
 

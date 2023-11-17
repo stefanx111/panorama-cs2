@@ -752,19 +752,19 @@
 	text-align: center;
 }
 
-.eom-win__vaclive #vacLiveTitle
+.eom-win__vaclive #matchCancelledTitle
 {
 	font-size: 60px;
 	horizontal-align: center;
 }
 
-.eom-win__vaclive #vacLiveDesc
+.eom-win__vaclive #matchCancelledDesc
 {
 	font-size: 20px;
 	horizontal-align: center;
 }
 
-.eom-win__vaclive #vacLiveDesc2
+.eom-win__vaclive #matchCancelledDesc2
 {
 	font-size: 20px;
 	horizontal-align: center;

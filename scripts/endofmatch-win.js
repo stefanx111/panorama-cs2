@@ -72,9 +72,9 @@ var EOM_Win = ( function () {
 			result = '#SFUI_match_cancelled';
 		}
 
-		if ( _m_oMatchEndData.hasOwnProperty( 'vac_live' ) && _m_oMatchEndData.vac_live )
+		if ( _m_oMatchEndData.hasOwnProperty( 'cancel_reason_code' ) && _m_oMatchEndData.cancel_reason_code )
 		{
-			_ShowVacLive( true );
+			_ShowMatchCancelledEarlyWithReasonExplanation( _m_oMatchEndData.cancel_reason_code );
 		}
 
 		_m_cP.SetDialogVariable( "win-result", $.Localize( result ) );
@@ -89,10 +89,13 @@ var EOM_Win = ( function () {
 		elPanel.TriggerClass( 'show' );
 	}
 	
-	function _ShowVacLive ( )
+	function _ShowMatchCancelledEarlyWithReasonExplanation( cancel_reason_code )
 	{
-		var elPanel = $.GetContextPanel().FindChildTraverse( 'EomVacLive' );
-		elPanel.AddClass( 'show' );
+		var elPanel = $.GetContextPanel().FindChildTraverse( 'EomCancelReason' + cancel_reason_code );
+		if ( elPanel )
+		{
+			elPanel.AddClass( 'show' );
+		}
 	}
 
 	function _DisplayMe()

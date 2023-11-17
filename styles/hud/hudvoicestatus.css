@@ -43,7 +43,7 @@ CSGOHudVoiceStatus.EndOfMatchChat
 
 .AlertText
 {
-	font-family: Stratum2;
+	font-family: Stratum2, 'Arial Unicode MS';
 	width: 100%;
 	text-align: left;
 	vertical-align: bottom;
@@ -377,7 +377,7 @@ CSGOAvatarImage.SteamAvatar .AvatarImage
 	vertical-align: center;
 	margin-left: 4px;
 	overflow: noclip;
-	font-family: Stratum2;
+	font-family: Stratum2, 'Arial Unicode MS';
 	font-size: 18px;
 	font-weight: medium;
 	color: white;

@@ -75,7 +75,7 @@ CSGOHudChat
 
 #ChatTextEntry Label,#ChatTextEntry TextEntry
 {
-	font-family: Stratum2 Light;
+	font-family: Stratum2 Light, 'Arial Unicode MS';
 }
 
 .ChatTextBG

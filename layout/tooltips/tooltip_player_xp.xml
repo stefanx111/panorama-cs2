@@ -6,6 +6,7 @@
 		<include src="s2r://panorama/styles/tooltips/tooltip_player_xp.vcss_c" />
 	</styles>
 	<scripts>
+		<include src="s2r://panorama/scripts/common/formattext.vts_c" />
 		<include src="s2r://panorama/scripts/tooltips/tooltip_player_xp.vjs_c" />
 	</scripts>
 	<Panel ontooltiploaded="TooltipPlayerXp.Init()">

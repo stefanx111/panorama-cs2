@@ -146,7 +146,7 @@
 	horizontal-align: center;
 	font-size: 24px;
 	text-align: center;
-	font-family: Stratum2 Medium Italic;
+	font-family: Stratum2 Medium Italic, 'Arial Unicode MS';
 	color: white;
 	max-height: 24px;
 	padding-left: 16px;
@@ -183,14 +183,14 @@
 	text-overflow: shrink;
 	width: 60%;
 	text-transform: uppercase;
-	font-family: Stratum2 Black Italic;
+	font-family: Stratum2 Black Italic, 'Arial Unicode MS';
 	font-size: 18px;
 	height: 20px;
 }
 
 .matchstakes .desc
 {
-	font-family: Stratum2 Black Italic;
+	font-family: Stratum2 Black Italic, 'Arial Unicode MS';
 	font-size: 12px;
 }
 

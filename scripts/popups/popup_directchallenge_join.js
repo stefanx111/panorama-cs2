@@ -118,6 +118,8 @@ var DirectChallengeJoin = ( function ()
 			                                                                
 			$.Schedule( .1, function ()
 			{
+				if ( !elTile.IsValid() )
+					return;
 				friendTile.Init( elTile );
 				elTile.RemoveClass( 'hidden' );
 			} );

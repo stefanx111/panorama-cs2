@@ -6,7 +6,7 @@
 		<include src="s2r://panorama/styles/popups/popup_workshop_mode_select.vcss_c" />
 	</styles>
 	<scripts>
-		<include src="s2r://panorama/scripts/popups/popup_workshop_mode_select.vjs_c" />
+		<include src="s2r://panorama/scripts/popups/popup_workshop_mode_select.vts_c" />
 	</scripts>
 	<snippets>
 		<snippet name="workshop-mode-item">

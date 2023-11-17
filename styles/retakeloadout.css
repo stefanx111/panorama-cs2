@@ -481,7 +481,7 @@
 {
 	horizontal-align: center;
 	margin-bottom: 6px;
-	font-family: Stratum2;
+	font-family: Stratum2, 'Arial Unicode MS';
 	font-size: 14px;
 	font-weight: bold;
 	color: #000000;
@@ -496,7 +496,7 @@
 {
 	horizontal-align: center;
 	margin-bottom: 6px;
-	font-family: Stratum2;
+	font-family: Stratum2, 'Arial Unicode MS';
 	font-size: 14px;
 	font-weight: bold;
 	color: #000000;
@@ -511,7 +511,7 @@
 {
 	margin-bottom: 6px;
 	horizontal-align: center;
-	font-family: Stratum2;
+	font-family: Stratum2, 'Arial Unicode MS';
 	font-size: 14px;
 	font-weight: bold;
 	color: #000000;

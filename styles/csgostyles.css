@@ -794,6 +794,11 @@ pre
 	font-family: monospaceFont;
 }
 
+.label-link
+{
+	color: blueColor;
+}
+
 .player-card-tooltip-icon
 {
 	width: 16px;
@@ -3329,6 +3334,11 @@ EdgeScrollBar.Vertical #MaxButton
 	margin-right: 32px;
 }
 
+.right-margin-64
+{
+	margin-right: 64px;
+}
+
 .left-margin-none
 {
 	margin-left: 0px;
@@ -3504,16 +3514,18 @@ EdgeScrollBar.Vertical #MaxButton
 
 .world-region-label
 {
-	font-size: 18px;
+	font-size: 14px;
 	text-align: center;
 	text-overflow: shrink;
-	font-weight: black;
+	vertical-align: center;
+	font-weight: medium;
 	color: rgb(255, 255, 255);
-	text-shadow: 0px 0px 2px 3.0 rgb(0, 0, 0);
+	text-shadow: 0px 0px 2px 2.0 rgba(0, 0, 0, 0.438);
 	background-color: rgba(121, 120, 120, 0.87);
 	border: 1px solid rgb(179, 179, 179);
 	border-radius: 50%;
-	width: 42px;
+	width: 32px;
+	height: 18px;
 	font-family: Stratum2, 'Arial Unicode MS';
 }
 

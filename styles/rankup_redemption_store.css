@@ -31,7 +31,7 @@
 	horizontal-align: center;
 	vertical-align: top;
 	text-align: center;
-	font-family: Stratum2 Condensed;
+	font-family: Stratum2 Condensed, 'Arial Unicode MS';
 	font-size: 60px;
 	height: 64px;
 	text-transform: uppercase;
@@ -151,7 +151,7 @@ Image,Panel
 .ghost-item .ghost-item__name
 {
 	max-height: 42px;
-	font-family: Stratum2 Condensed;
+	font-family: Stratum2 Condensed, 'Arial Unicode MS';
 	font-size: 16px;
 	margin: 5px;
 }
@@ -291,7 +291,7 @@ Image,Panel
 	vertical-align: center;
 	horizontal-align: center;
 	text-transform: uppercase;
-	font-family: Stratum2;
+	font-family: Stratum2, 'Arial Unicode MS';
 	font-weight: Medium;
 	text-align: center;
 	font-size: 20px;

@@ -270,17 +270,18 @@
 {
 	flow-children: down;
 	vertical-align: middle;
+	margin: 0px 10px;
+	height: 80%;
 }
 
 .hud-progress-bar-info-title
 {
 	font-family: Stratum2, 'Arial Unicode MS' ;
 	font-weight: bold;
-	font-size: 21px;
-	letter-spacing: 0.5px;
+	font-size: 18px;
 	color: #ffffff;
 	margin-right: 8px;
-	overflow: noclip;
+	text-overflow: shrink;
 	-s2-mix-blend-mode: additive;
 }
 
@@ -291,6 +292,7 @@
 	font-size: 18px;
 	horizontal-align: right;
 	-s2-mix-blend-mode: additive;
+	vertical-align: bottom;
 }
 
 .hud-progress-bar-side

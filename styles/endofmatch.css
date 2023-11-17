@@ -256,11 +256,10 @@
 	opacity: 0;
 }
 
-.eom-vaclive
+.eom-cancelled
 {
 	horizontal-align: center;
 	vertical-align: center;
-	background-color: red;
 	background-image: url("file://{resources}/videos/linemap.webm");
 	background-size: 60% auto;
 	background-img-opacity: 0.1;
@@ -275,34 +274,44 @@
 	transition-timing-function: ease-in;
 }
 
-.eom-vaclive.show
+.eom-cancelled.show
 {
 	opacity: 1;
 	transform: scale3d(1, 1, 1);
 	visibility: visible;
 }
 
-.eom-vaclive Label
+.eom-cancelled Label
 {
 	color: white;
 	text-align: center;
 }
 
-.eom-vaclive #vacLiveTitle
+.eom-cancelled #matchCancelledTitle
 {
 	font-size: 30px;
 	horizontal-align: center;
 }
 
-.eom-vaclive #vacLiveDesc
+.eom-cancelled #matchCancelledDesc
 {
 	font-size: 16px;
 	horizontal-align: center;
 }
 
-.eom-vaclive #vacLiveDesc2
+.eom-cancelled #matchCancelledDesc2
 {
 	font-size: 20px;
 	horizontal-align: center;
+}
+
+.eom-cancelled.vaclive
+{
+	background-color: red;
+}
+
+.eom-cancelled.network-event
+{
+	background-color: black;
 }
 

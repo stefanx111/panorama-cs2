@@ -1098,6 +1098,9 @@ var CapabilityDecodable = ( function()
 	var _m_handlerForHideEvent = null;
 	var _HidePanelForLootlistItemPreview = function()
 	{
+		if ( !m_InspectPanel.IsValid() )
+			return;
+
 		                                  
 		if ( !_m_handlerForHideEvent )
 		{

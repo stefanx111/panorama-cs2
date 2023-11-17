@@ -56,7 +56,7 @@
 							<Label class="" text="#CSGO_Watch_Cat_Downloaded" />
 						</RadioButton>
 					</Panel>
-					<Panel class="horizontal-align-right vertical-center left-right-padding">
+					<Panel class="horizontal-align-right vertical-center right-margin-64 left-right-padding">
 						<Button class="IconButton">
 							<Image src="s2r://panorama/images/icons/ui/refresh.vsvg" onactivate="mainmenu_watch.UpdateActiveTab();" />
 						</Button>

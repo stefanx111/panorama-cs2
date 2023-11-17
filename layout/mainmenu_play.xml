@@ -184,7 +184,6 @@
 										<Label class="directchallenge-explanation title" html="true" text="#DirectChallenge_Help_clan_title2" />
 										<Label class="directchallenge-explanation" html="true" text="#DirectChallenge_Help_clan_desc2" />
 										<Label class="directchallenge-explanation note" html="true" text="#DirectChallenge_Help_note2" />
-										<Label class="directchallenge-explanation" html="true" text="#DirectChallenge_Help_lt" />
 									</Panel>
 								</Panel>
 							</Panel>

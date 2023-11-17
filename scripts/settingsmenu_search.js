@@ -163,7 +163,7 @@ var SettingsMenuSearch = ( function() {
 			var elSettingsMenu = $.GetContextPanel().GetParent();
 			var elPanel = elSettingsMenu.FindChildTraverse( s.id );
 			if ( elPanel ) {
-				CreateSearchResultPanel( $.Localize( s.loc_name ), s.section, elPanel );
+				CreateSearchResultPanel( $.Localize( s.loc_name ), s.section, s.subsection || "", elPanel );
 			}
 		});
 	}

@@ -58,7 +58,7 @@
 {
 	horizontal-align: center;
 	text-transform: uppercase;
-	font-family: Stratum2 Bold Condensed, 'Noto Sans';
+	font-family: Stratum2 Bold Condensed, 'Arial Unicode MS';
 	font-size: 50px;
 	color: white;
 	text-shadow: 1px 1px 1px 1 black;
@@ -72,7 +72,7 @@
 .team-intro-team-label
 {
 	horizontal-align: center;
-	font-family: stratum2;
+	font-family: stratum2, 'Arial Unicode MS';
 	font-weight: normal;
 	font-size: 25px;
 	color: white;
@@ -120,7 +120,7 @@
 
 .team-intro-teammate-name
 {
-	font-family: Stratum2 Medium Condensed, 'Noto Sans';
+	font-family: Stratum2 Medium Condensed, 'Arial Unicode MS';
 	text-overflow: shrink min(20px) ellipsis;
 	horizontal-align: center;
 	opacity: 1;
@@ -134,7 +134,7 @@
 
 .Language_vietnamese .team-intro-teammate-name
 {
-	font-family: ForceStratum2, 'Noto Sans';
+	font-family: ForceStratum2, 'Arial Unicode MS';
 	font-weight: medium;
 	font-stretch: condensed;
 }

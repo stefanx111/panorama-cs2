@@ -41,9 +41,13 @@
 				<CSGOEndOfMatchCharactersPanel id="id-eom-characters-root" class="" />
 				<Panel id="id-eom-chat-container" />
 				<Panel id="id-eom-scoreboard-container" class="horizontal-center eom-scoreboard" />
-				<Panel id="EomVacLive" class="eom-vaclive">
-					<Label id="vacLiveTitle" class="stratum-bold-italic" text="#SFUI_match_cancelled" />
-					<Label id="vacLiveDesc" class="stratum-bold" text="#SFUI_match_abort_match_vac_live" />
+				<Panel id="EomCancelReason1" class="eom-cancelled vaclive">
+					<Label id="matchCancelledTitle" class="stratum-bold-italic" text="#SFUI_match_cancelled" />
+					<Label id="matchCancelledDesc" class="stratum-bold" text="#SFUI_match_abort_match_vac_live" />
+				</Panel>
+				<Panel id="EomCancelReason2" class="eom-cancelled network-event">
+					<Label id="matchCancelledTitle" class="stratum-bold-italic" text="#SFUI_match_cancelled" />
+					<Label id="matchCancelledDesc" class="stratum-bold" text="#SFUI_match_abort_match_network_event" />
 				</Panel>
 			</Panel>
 		</snippet>
