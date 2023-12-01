@@ -275,7 +275,7 @@ DropDownMenu Label.of-interest,.leaderboard-header .DropDownChild.of-interest
 	padding-left: 4px;
 	font-family: Stratum2 Regular Monodigit, 'Arial Unicode MS';
 	text-align:right;
-	max-height: 20px;
+	max-height: 14px;
 	text-overflow: ellipsis;
 	vertical-align:center;
 }

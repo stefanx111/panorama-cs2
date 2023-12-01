@@ -667,6 +667,9 @@
 				<Frame snippet="stat--AVATAR" />
 				<Frame snippet="stat--NAME" />
 				<Frame snippet="stat--KILLS" />
+				<Frame snippet="stat--DEATHS" />
+				<Frame snippet="stat--ASSISTS" />
+				<Frame snippet="stat--KDR" />
 				<Frame snippet="stat--HSP" />
 				<Frame snippet="stat--DAMAGE" />
 				<Frame snippet="stat--SCORE" />

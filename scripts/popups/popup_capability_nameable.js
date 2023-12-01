@@ -161,6 +161,8 @@ var CapabilityNameable = ( function()
 
 	var _RemoveButtonAction = function()
 	{
+		var elAsyncActionBarPanel = $.GetContextPanel().FindChildInLayoutFile( 'PopUpInspectAsyncBar' );
+		
 		InspectAsyncActionBar.EnableDisableOkBtn( elAsyncActionBarPanel, false );
 		m_elTextEntry.enabled = true;
 		m_elTextEntry.SetFocus();
