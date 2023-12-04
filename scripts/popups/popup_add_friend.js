@@ -33,7 +33,7 @@ var PopupAddFriend = ( function(){
 		                                         
 		$( '#JsPopupYourSendRequest' ).enabled = false;
 
-		                                                
+		                                                 
 		$( '#JsFriendCodeNotFound' ).visible = false;
 		$( '#JsFriendCodeFound' ).visible = false;
 
