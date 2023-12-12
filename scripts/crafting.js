@@ -53,7 +53,7 @@ var Crafting = ( function ()
 
         $.DispatchEvent( 'SetInventoryFilter',
             $( '#Crafting-Items' ),
-            'flexible_loadout_group',
+            'inv_group_equipment',
             'any',
             'any',
             sortType,
@@ -72,7 +72,7 @@ var Crafting = ( function ()
 
 			$.DispatchEvent( 'SetInventoryFilter',
 				$( '#Crafting-Ingredients' ),
-				'flexible_loadout_group',
+				'inv_group_equipment',
 				'any',
 				'any',
 				'',
