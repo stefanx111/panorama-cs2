@@ -17,6 +17,12 @@
 	transition-timing-function: ease-in-out;
 }
 
+.navbar-btn__notification--horizontal-left
+{
+	margin-bottom: 0px;
+	vertical-align: center;
+}
+
 .navbar-btn__notification-dot
 {
 	background-color: #D8760E;
@@ -42,7 +48,7 @@
 	background-color: blueColor;
 }
 
-.navbar-btn__notification.hidden,.hide-notification .navbar-btn__notification
+.navbar-btn__notification.hidden,.navbar-btn__notification--horizontal-left.hidden,.hide-notification .navbar-btn__notification
 {
 	opacity: 0;
 	transform:Scale3d(0, 0, 0);

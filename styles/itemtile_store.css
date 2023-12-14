@@ -489,6 +489,7 @@
 .itemtile-store__claimed .itemtile-store__claimed__left,.itemtile-store__claimed .itemtile-store__claimed__right
 {
 	wash-color: #216913;
+	height: 24px;
 }
 
 .itemtile-store__claimed .itemtile-store__claimed__right

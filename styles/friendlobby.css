@@ -7,11 +7,29 @@
 	opacity: 1;
 	transform: translatex( 0px );
 	flow-children: down;
-	margin: 1px 0px;
-	border-bottom: 1px solid #ffffff20;
 	transition-property: height, opacity, transform, position, background-color;
 	transition-duration: .5s, .5s, .5s, .5s, .25s ;
 	transition-timing-function: ease-in-out;
+}
+
+.friendlobby--is-in-popup
+{
+	background-color: rgba(61, 61, 61, 0.582);
+	margin-bottom: 8px;
+}
+
+.friendlobby--is-in-popup #JsFriendLobbySeeAllInvites
+{
+	visibility: collapse;
+}
+
+.friendlobby__seperator
+{
+	height: 1px;
+	margin-top: 4px;
+	width: 93%;
+	horizontal-align: center;
+	background-color: rgba(255, 255, 255, 0.068);
 }
 
 .friendlobby.hidden
@@ -27,12 +45,23 @@
 {
 	width: 100%;
 	height: fit-children;
-	margin: 8px 0px 8px 12px;
+	margin: 0px 0px 0px 12px;
+}
+
+.friendlobby__row.row-margin-top
+{
+	margin-top: 6px;
 }
 
 .friendlobby.playerforhire .friendlobby__row__settings,.friendlobby.playerforhire .friendlobby__row__group
 {
 	visibility: collapse;
+}
+
+.friendlobby__row--join
+{
+	flow-children: right;
+	margin: 2px 6px 2px 14px;
 }
 
 .friendlobby.playerforhire
@@ -53,14 +82,29 @@
 	margin-top: 18px;
 }
 
+.friendlobby__join-btn
+{
+	background-color: positiveColor;
+	vertical-align: center;
+	border-radius: 2px;
+	padding: 6px;
+	margin: 0px 6px;
+	box-shadow:fill rgba(0, 0, 0, 0.25) 0px 0px 3px 1px;
+}
+
+.friendlobby__join-btn Image
+{
+	transform: rotateZ(45deg);
+}
+
 .friendlobby__row--bottom-margin
 {
-	margin: 0px 0px 8px 12px;
+	margin-bottom: 6px;
 }
 
 .friendlobby__row--no-margin
 {
-	margin: 0px 0px 0px 12px;
+	margin: 0px 0px 0px 0px;
 }
 
 .friendlobby__row-name
@@ -83,7 +127,7 @@
 {
 	horizontal-align: left;
 	vertical-align: center;
-	padding: 0px 8px 0px 0px;
+	padding: 0px 8px;
 	opacity: .5;
 }
 
@@ -108,15 +152,9 @@
 	visibility: collapse;
 }
 
-#FriendLobbyCloseButton
+#FriendLobbyCloseButton,#JsFriendLobbyJoinBtn
 {
-	height: 20px;
-	width: 20px;
-}
-
-#FriendLobbyCloseButton Image
-{
-	margin: 0px;
+	margin: 0px 8px 0px 0px;
 }
 
 .IconButton.hidden
@@ -131,7 +169,7 @@
 	flow-children: right;
 	width: fit-children;
 	height: fit-children;
-	margin: 0px 0px 8px 12px;
+	margin: 8px 0px 8px 12px;
 	vertical-align: center;
 }
 
@@ -141,7 +179,7 @@
 	vertical-align: center;
 	width: fit-children;
 	height: fit-children;
-	margin: 0px 14px;
+	margin: 0px 12px;
 }
 
 .friendlobby__slot--first
@@ -149,20 +187,31 @@
 	margin-left: 24px;
 }
 
+.friendlobby__slot--empty
+{
+	width: 40px;
+	height:40px;
+	border-radius: 0px;
+	opacity: .4;
+	background-image: url("s2r://panorama/images/mapdraft/vote_box_png.vtex");
+	background-size: 100% 100%;
+}
+
 .friendlobby__text
 {
-	width: 300px;
+	width: 180px;
 	max-height: 18px;
-	font-size: 14px;
+	font-size: 12px;
 	text-overflow: ellipsis;
 	font-weight: normal;
-	color: white;
 }
 
 #JsFriendLobbyLeaderName
 {
-	width: 100%;
-	max-height: 20px;
+	width: fill-parent-flow(1);
+	max-height: 26px;
+	font-size: 14px;
+	color: white;
 }
 
 .friendlobby-avatar__Image
@@ -186,8 +235,8 @@
 
 .friendlobby-avatar__Image--Slots
 {
-	width: 42px;
-	height: 42px;
+	width: 40px;
+	height: 40px;
 }
 
 .friendlobby-avatar__Image:hover
@@ -199,15 +248,25 @@
 	transition-timing-function: ease-in-out;
 }
 
-.friendlobby__slot .IconButton
+.IconButton
 {
 	margin: 0px;
-	wash-color: baseText;
 }
 
 #jsRatingEmblem
 {
-	ui-scale: 80%;
+	ui-scale: 65%;
 	vertical-align:center;
+}
+
+.friendlobby__lobbies-count
+{
+	font-size: 12px;
+	text-align: center;
+	font-style: italic;
+	color: rgb(245, 240, 240);
+	max-width: 128px;
+	height: 14px;
+	text-overflow: ellipsis;
 }
 

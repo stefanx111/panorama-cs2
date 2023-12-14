@@ -644,8 +644,7 @@ RadioButton.toggle-active Image
 	height: fit-children;
 	width: 100%;
 	flow-children: down;
-	background-color: rgba(10, 104, 33, 0.185);
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( blueColor ), to( #2d692f00 ) );
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #09703e ), to( rgb(19, 59, 20)) );
 	animation-name: InvitePulse;
 	animation-duration: 2s;
 	animation-timing-function: linear;
@@ -656,22 +655,22 @@ RadioButton.toggle-active Image
 {
 	0%
 	{
-		background-color: gradient( linear, 0% 0%, 100% 0%, from( blueColor ), to( #2d692f00 ) );
+		background-color: gradient( linear, 0% 0%, 100% 0%, from( #09703e ), to( rgb(19, 59, 20) ) );
 	}
 	
 	30%
 	{
-		background-color: gradient( linear, 0% 0%, 100% 0%, from( #2d692f00 ), to( #2d692f00 ) );
+		background-color: gradient( linear, 0% 0%, 100% 0%, from( rgb(19, 59, 20) ), to( rgb(19, 59, 20) ) );
 	}
 	
 	60%
 	{
-		background-color: gradient( linear, 0% 0%, 100% 0%, from( blueColor ), to( #2d692f00 ) );
+		background-color: gradient( linear, 0% 0%, 100% 0%, from( #09703e ), to( rgb(19, 59, 20) ) );
 	}
 	
 	100%
 	{
-		background-color: gradient( linear, 0% 0%, 100% 0%, from( blueColor ), to( #2d692f00 ) );
+		background-color: gradient( linear, 0% 0%, 100% 0%, from( #09703e ), to( rgb(19, 59, 20) ) );
 	}
 	
 }

@@ -32,6 +32,11 @@
 	sound: "UIPanorama.sidemenu_select";
 }
 
+#JsInviteAdvertisingPlayer.IconButton
+{
+	margin-right: 16px;
+}
+
 .friendtile,.player-card-row--button
 {
 	opacity: 1;
@@ -238,10 +243,11 @@
 
 .validation-results-container .friendtile,.popup-addfriend-entry .friendtile
 {
-	width: 400px;
+	width: 450px;
 	border-radius: 5px;
 	background-color: rgba(0, 0, 0, 0.445);
 	border: 1px solid rgba(0, 0, 0, 0.452);
+	flow-children: right;
 }
 
 .validation-results-container .friendtile:hover,.popup-addfriend-entry .friendtile:hover

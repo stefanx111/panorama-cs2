@@ -111,7 +111,7 @@ var friendsList = (function() {
 	   				 
 	   			  
 	   			                                                   
-	   		 
+	   		         
 	   	 
 
 	   	                                                                        
@@ -134,6 +134,46 @@ var friendsList = (function() {
 		}
 
 		_UpdateHeightOpenSection();
+
+		                                                         
+		                                                                                      
+		                                                                                            
+		
+		                                                     
+
+		                         
+		    
+		   	                                 
+		   	                                            
+		   	                           
+		   	       
+		    
+
+		                                       
+		                                               
+		                            
+
+		                                        
+		    
+		   	                                                     
+		   	                             
+		    
+
+		                                                                 
+
+		                                                     
+		    
+		   	                              
+		   	                                                         
+		   	                                            
+			
+		   	             
+		   		                                                                  
+		   	    
+		   		                                                                                   
+		    
+
+		                                              
 	}
 
                                                                                
@@ -370,7 +410,7 @@ var friendsList = (function() {
 		if( children && children[index + 1] )
 			elList.MoveChildBefore( elTile, children[index + 1] );
 		
-		_AddTransitionEndEventHandeler( elTile );
+		_AddTransitionEndEventHandler( elTile );
 		_InitTile( elTile, tileXmlToUse );
 
 		return elTile;
@@ -396,6 +436,7 @@ var friendsList = (function() {
 		}
 		else if ( tileXmlToUse === "friendlobby" )
 		{
+			elTile.SetAttributeString( 'showinpopup', 'false' );
 			friendLobby.Init( elTile );
 		}
 		else
@@ -405,7 +446,7 @@ var friendsList = (function() {
 		elTile.RemoveClass( 'hidden' );
 	};
 
-	var _AddTransitionEndEventHandeler =  function ( elTile )
+	var _AddTransitionEndEventHandler =  function ( elTile )
 	{
 		                                                                          
 		elTile.OnPropertyTransitionEndEvent = function( panelName, propertyName )
@@ -685,7 +726,7 @@ var friendsList = (function() {
 		OnGcHello					: _OnGcHello,
 		UpdateBroadcastIcon: _UpdateBroadcastIcon,
 		ShowMatchAcceptPopUp: _ShowMatchAcceptPopUp,
-		UpdateHeightOpenSection: _UpdateHeightOpenSection
+		UpdateHeightOpenSection: _UpdateHeightOpenSection,
 	};
 })();
 

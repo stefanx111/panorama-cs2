@@ -5,7 +5,7 @@ var contextmenuPlayerCard = ( function (){
 	var _Init = function ()
 	{
 		_LoadPlayerCard();
-		_GetContextMenuEnteries();
+		_GetContextMenuEntries();
 
 		                                                                                 
 	};
@@ -52,7 +52,16 @@ var contextmenuPlayerCard = ( function (){
 				FriendsListAPI.ActionInviteFriend( id, '' );
 				$.DispatchEvent( 'ContextMenuEvent', '' );
 				$.DispatchEvent( 'FriendInvitedFromContextMenu', id ); 
-			} 
+			},
+			IsDisabled: function() {
+				var gss = LobbyAPI.GetSessionSettings();
+				if( !gss || !gss.hasOwnProperty( 'game' ) )
+				{
+					return false;
+				}
+				                                        
+				return gss.game.apr > 1 ? true : false;
+		}
 		},
 		{
 			name: 'join',
@@ -423,7 +432,7 @@ var contextmenuPlayerCard = ( function (){
 	};
 
 
-	var _GetContextMenuEnteries = function ()
+	var _GetContextMenuEntries = function ()
 	{
 		$.CreatePanel('Panel', $.GetContextPanel(), '', { class: 'context-menu-playercard-seperator' } );
 		var elContextMenuBtnsParent = $.CreatePanel( 'Panel', $.GetContextPanel(), '', { class: 'context-menu-playercard-btns' } );
@@ -474,12 +483,25 @@ var contextmenuPlayerCard = ( function (){
 					let label = $.CreatePanel( 'Label', elEntryBtn, entry.name +'-label' );
 					label.text = $.Localize( '#tooltip_short_' + entry.name );
 
+					let tooltip = '#tooltip_' + entry.name;
+
+					if( 'IsDisabled' in entry )
+					{
+						if( entry.IsDisabled() ){
+							elEntryBtn.enabled = false;
+							tooltip = '#tooltip_disabled_' + entry.name;
+						}
+						else{
+							elEntryBtn.enabled = true;
+						}
+					}
+
 					elEntryBtn.SetPanelEvent( 'onactivate', entry.OnSelected.bind( this, xuid, type ) );
 
 					          
 					var OnMouseOver = function ()
 					{
-						UiToolkitAPI.ShowTextTooltip( elEntryBtn.id, '#tooltip_' + entry.name );
+						UiToolkitAPI.ShowTextTooltip( elEntryBtn.id, tooltip );
 					}
 
 					var OnMouseOut = function ()
